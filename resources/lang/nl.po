@@ -1,11 +1,11 @@
 # Dutch translations for Potts Modern Theme package.
 # Copyright (C) 2026 THE Potts Modern Theme'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the Potts Modern Theme package.
-# Dutch translator <email@example.com>, 2026.
+# Dutch translation by TheDutchJewel, 2026.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Potts Modern Theme 1.1.0-beta.51\n"
+"Project-Id-Version: Potts Modern Theme 1.1.0-beta.56\n"
 "Report-Msgid-Bugs-To: https://github.com/PottsNet/potts-modern-theme/issues\n"
 "POT-Creation-Date: 2026-06-21 21:18-0500\n"
 "PO-Revision-Date: 2026-06-22 17:20+0200\n"
@@ -214,9 +214,7 @@ msgstr "Paginabreedte"
 
 #: resources/views/admin/settings.phtml:168
 msgid "Standard suits most screens; Wide gives charts and books more room."
-msgstr ""
-"Standaard past op de meeste schermen; Breed geeft grafieken en boeken meer "
-"ruimte."
+msgstr "Standaard past op de meeste schermen; Breed geeft grafieken en boeken meer ruimte."
 
 #: resources/views/admin/settings.phtml:169
 msgid "Content spacing"
@@ -296,9 +294,7 @@ msgstr "Grotere bedieningselementen"
 
 #: resources/views/admin/settings.phtml:190
 msgid "Increase the height of buttons, fields and selectors for easier use."
-msgstr ""
-"Vergroot de hoogte van knoppen, velden en keuzelijsten voor eenvoudiger "
-"gebruik."
+msgstr "Vergroot de hoogte van knoppen, velden en keuzelijsten voor eenvoudiger gebruik."
 
 #: resources/views/admin/settings.phtml:191
 msgid "Higher contrast"
@@ -358,8 +354,7 @@ msgstr "Opslaan wanneer u tevreden bent met het voorbeeld."
 
 #: resources/views/admin/settings.phtml:228
 msgid "A hard refresh may be needed after changing cached styles."
-msgstr ""
-"Een harde verversing kan nodig zijn na het wijzigen van gecachte stijlen."
+msgstr "Een harde verversing kan nodig zijn na het wijzigen van gecachte stijlen."
 
 #: resources/views/admin/settings.phtml:231
 msgid "Restore all Potts Modern settings to their defaults?"

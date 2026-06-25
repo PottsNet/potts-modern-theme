@@ -4,9 +4,9 @@ Potts Modern is a standalone, responsive heritage theme for webtrees 2.2.x. It c
 
 This is a **beta release** intended for testing on non-production or well-backed-up webtrees sites.
 
-## Version 1.1.0-beta.51
+## Version 1.1.0-beta.56
 
-This release makes the mobile Show more events control respond immediately and count only events enabled by the event filters. It retains the substantially reduced portrait payload, semantic event colours and consistent rounded corners.
+This release adds the Dutch translation contributed by TheDutchJewel. It retains the administrator shortcuts block, administration header contrast correction and Messages block layout fixes.
 
 ## Translations
 

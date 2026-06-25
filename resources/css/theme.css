@@ -6045,7 +6045,7 @@ body.potts-dashboard-page .potts-message-table-wrap {
 body.potts-dashboard-page .potts-message-table {
   width: 100% !important;
   min-width: 0 !important;
-  table-layout: fixed !important;
+  table-layout: auto !important;
   margin: 0 !important;
   border: 0 !important;
   border-collapse: separate !important;
@@ -6082,14 +6082,27 @@ body.potts-dashboard-page .potts-message-table > tbody > tr:first-child > th {
 }
 
 body.potts-dashboard-page .potts-message-table tr > :first-child {
-  width: 4rem !important;
+  width: 1% !important;
+  min-width: 4.5rem !important;
   text-align: center !important;
   border-inline-start-width: 1px !important;
   border-radius: 12px 0 0 12px !important;
 }
 
+body.potts-dashboard-page .potts-message-table tr > :nth-child(2) {
+  width: auto !important;
+}
+
+body.potts-dashboard-page .potts-message-table tr > :nth-child(3) {
+  width: 1% !important;
+  white-space: nowrap !important;
+}
+
 body.potts-dashboard-page .potts-message-table tr > :last-child {
-  width: 7.1rem !important;
+  width: 1% !important;
+  min-width: 10.5rem !important;
+  overflow-wrap: break-word !important;
+  word-break: normal !important;
   border-inline-end-width: 1px !important;
   border-radius: 0 12px 12px 0 !important;
 }
@@ -6107,10 +6120,19 @@ body.potts-dashboard-page .potts-message-table :is(a, button:not(.btn)) {
   text-underline-offset: .18em;
 }
 
+body.potts-dashboard-page .potts-message-table tr > :nth-child(2) > a,
+body.potts-dashboard-page .potts-message-table tr > :nth-child(2) > a :is(b, strong, svg) {
+  color: #185a71 !important;
+}
+
 body.potts-dashboard-page .potts-message-table :is(a, button:not(.btn)):hover,
 body.potts-dashboard-page .potts-message-table :is(a, button:not(.btn)):focus {
   color: #123b4b !important;
   text-decoration-thickness: .13em !important;
+}
+
+body.potts-dashboard-page .potts-message-table tr > :nth-child(2) > a:is(:hover, :focus) :is(b, strong, svg) {
+  color: #123b4b !important;
 }
 
 body.potts-dashboard-page .potts-message-table input[type="checkbox"] {
@@ -6307,11 +6329,11 @@ body.potts-status-page .potts-utility-content :is(.alert, .card, .potts-utility-
 
 @media (max-width: 620px) {
   body.potts-dashboard-page .potts-message-table tr > :first-child {
-    width: 3.35rem !important;
+    min-width: 4.15rem !important;
   }
 
   body.potts-dashboard-page .potts-message-table tr > :last-child {
-    width: 6.2rem !important;
+    min-width: 8.5rem !important;
     font-size: .88rem !important;
   }
 

@@ -90,7 +90,7 @@ final class PottsModernTheme extends AbstractModule implements ModuleThemeInterf
 
     public function customModuleVersion(): string
     {
-        return '1.1.0-beta.51';
+        return '1.1.0-beta.56';
     }
 
     public function customModuleAuthorName(): string
@@ -383,6 +383,9 @@ final class PottsModernTheme extends AbstractModule implements ModuleThemeInterf
             '}' .
             'html body,html body button,html body input,html body select,html body textarea{font-size:var(--potts-font-size)!important;}' .
             'body>header,header[role="banner"],.wt-header-wrapper,#header,#top-header{background:linear-gradient(135deg,' . $palette['header1'] . ' 0%,' . $palette['header2'] . ' 100%)!important;}' .
+            'body.wt-control-panel>header>.nav>.nav-item>.nav-link{color:#fff!important;text-decoration:none!important;}' .
+            'body.wt-control-panel>header>.nav>.nav-item>.nav-link:is(:hover,:focus-visible,.show){color:#fff!important;background:rgba(255,255,255,.13)!important;}' .
+            'body.wt-control-panel>header>.nav>.nav-item>.dropdown-toggle::after{border-top-color:currentColor!important;}' .
             '.potts-nav-icon{width:var(--potts-nav-icon-size)!important;height:var(--potts-nav-icon-size)!important;}' .
             '.potts-home-content,.potts-dashboard-content{gap:var(--potts-setting-gap)!important;}' .
             '.wt-block-content,.wt-side-block-content,.card-body,.blockcontent,.block-content{padding:var(--potts-setting-pad)!important;}' .

@@ -1,5 +1,34 @@
 # Changelog
 
+## 1.1.0-beta.56
+
+- Added the Dutch translation contributed by TheDutchJewel.
+- Included the compiled Dutch translation catalogue used by webtrees.
+- Retained the administrator shortcuts, administration header contrast and Messages block fixes.
+
+## 1.1.0-beta.55
+
+- Restored teal text to message subjects and their nested bold text and icons.
+- Replaced the Messages block's fixed table layout with automatic column sizing.
+- Kept the checkbox column compact and allowed the subject column to use remaining space.
+- Kept sent dates on one line and gave email addresses enough room to wrap naturally.
+
+## 1.1.0-beta.54
+
+- Loaded the administration header contrast fix through webtrees' shared style stack.
+- Ensured the fix is available on the Control panel and every module settings page.
+- Kept the rule restricted to the administration layout's `.wt-control-panel` body.
+
+## 1.1.0-beta.53
+
+- Restricted the white utility-link treatment to webtrees administration layouts.
+- Restored the intended dark teal labels in the public genealogy navigation.
+- Kept My page, Language and Sign out clear against administration headers.
+
+## 1.1.0-beta.52
+
+- Improved utility-link contrast across administration page headers.
+
 ## 1.1.0-beta.51
 
 - Made the mobile Show more events control update immediately without delayed animation frames.
