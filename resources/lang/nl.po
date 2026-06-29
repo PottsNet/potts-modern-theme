@@ -1,3 +1,4 @@
+```po
 # Dutch translations for Potts Modern Theme package.
 # Copyright (C) 2026 THE Potts Modern Theme'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the Potts Modern Theme package.
@@ -79,10 +80,6 @@ msgstr "Zacht"
 msgid "Stronger"
 msgstr "Sterker"
 
-#: PottsModernTheme.php:278
-msgid "None"
-msgstr "Geen"
-
 #: PottsModernTheme.php:282 PottsModernTheme.php:293
 msgid "Wide"
 msgstr "Breed"
@@ -115,10 +112,6 @@ msgstr "Pictogrammen en labels"
 msgid "Labels only"
 msgstr "Alleen labels"
 
-#: PottsModernTheme.php:479
-msgid "Menu"
-msgstr "Menu"
-
 #: PottsModernTheme.php:480
 msgid "Open menu"
 msgstr "Menu openen"
@@ -134,14 +127,6 @@ msgstr "Verkennen"
 #: PottsModernTheme.php:483
 msgid "Account and settings"
 msgstr "Account en instellingen"
-
-#: PottsModernTheme.php:484
-msgid "Sign in"
-msgstr "Inloggen"
-
-#: PottsModernTheme.php:485
-msgid "Sign out"
-msgstr "Uitloggen"
 
 #: PottsModernTheme.php:486
 msgid "Show more events"
@@ -181,10 +166,6 @@ msgid "Choose the overall heritage colour scheme."
 msgstr "Kies het algemene erfgoedkleurenschema."
 
 #: resources/views/admin/settings.phtml:159
-msgid "Text size"
-msgstr "Tekstgrootte"
-
-#: resources/views/admin/settings.phtml:159
 msgid "Increase base text across the public site."
 msgstr "Vergroot de standaardtekst op de hele site."
 
@@ -203,10 +184,6 @@ msgstr "Kaartschaduwen"
 #: resources/views/admin/settings.phtml:161
 msgid "Choose a flatter or more dimensional appearance."
 msgstr "Kies voor een vlakker of meer diepte-effect."
-
-#: resources/views/admin/settings.phtml:166
-msgid "Layout"
-msgstr "Indeling"
 
 #: resources/views/admin/settings.phtml:168
 msgid "Page width"
@@ -316,18 +293,6 @@ msgstr "Verwijder overgangen en vloeiend scrollen in het hele thema."
 msgid "Theme preview"
 msgstr "Thema-voorbeeld"
 
-#: resources/views/admin/settings.phtml:199
-msgid "Preview"
-msgstr "Voorbeeld"
-
-#: resources/views/admin/settings.phtml:203
-msgid "Family Tree"
-msgstr "Stamboom"
-
-#: resources/views/admin/settings.phtml:204
-msgid "Search"
-msgstr "Zoeken"
-
 #: resources/views/admin/settings.phtml:209
 msgid "Family history"
 msgstr "Familiegeschiedenis"
@@ -335,18 +300,6 @@ msgstr "Familiegeschiedenis"
 #: resources/views/admin/settings.phtml:210
 msgid "A preview of cards, text, navigation and heritage accents."
 msgstr "Een voorbeeld van kaarten, tekst, navigatie en erfgoedaccenten."
-
-#: resources/views/admin/settings.phtml:214
-msgid "Individuals"
-msgstr "Personen"
-
-#: resources/views/admin/settings.phtml:215
-msgid "Place hierarchy"
-msgstr "Plaatsenhiërarchie"
-
-#: resources/views/admin/settings.phtml:216
-msgid "Sources"
-msgstr "Bronnen"
 
 #: resources/views/admin/settings.phtml:227
 msgid "Save when you are happy with the preview."
@@ -367,3 +320,4 @@ msgstr "Standaardinstellingen herstellen"
 #: resources/views/admin/settings.phtml:232
 msgid "Save settings"
 msgstr "Instellingen opslaan"
+```
