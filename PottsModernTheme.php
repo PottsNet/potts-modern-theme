@@ -90,7 +90,7 @@ final class PottsModernTheme extends AbstractModule implements ModuleThemeInterf
 
     public function customModuleVersion(): string
     {
-        return '1.1.0-beta.56';
+        return '1.1.0-beta.62';
     }
 
     public function customModuleAuthorName(): string
@@ -572,6 +572,7 @@ final class PottsModernTheme extends AbstractModule implements ModuleThemeInterf
             'books'       => 'books.svg',
             'more-charts' => 'more-charts.svg',
             'your-book'   => 'your-book.svg',
+            'faq'         => 'faq.svg',
             'branches'    => 'branches.svg',
             'person'      => 'person.svg',
             'family'      => 'family.svg',

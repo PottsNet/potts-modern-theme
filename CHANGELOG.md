@@ -1,5 +1,32 @@
 # Changelog
 
+## 1.1.0-beta.62
+- Added a generic module icon fallback for unknown module-like third-party top-level menu items.
+- Wrapped wide narrative/shared-note/source tables in a horizontal scroll container so census transcripts and similar records do not break the page layout.
+- Updated the README release note so it reflects the current compatibility changes.
+
+## 1.1.0-beta.61
+- Fixed the FAQ top-menu icon for translated menu labels by adding language-aware FAQ matching.
+- Added URL and class-name fallback detection for FAQ/FAQs menu links, so the icon still appears when the visible label is translated.
+- Added the FAQ icon to the legacy JavaScript menu enhancement fallback.
+
+## 1.1.0-beta.60
+
+- Added a dedicated FAQ navigation icon and mapped top-level FAQ/FAQs menu labels to it.
+- Added FAQ submenu icon support for third-party menu items that use FAQ-style labels.
+
+## 1.1.0-beta.59
+
+- Added starter German, French and Spanish translations for Potts Modern theme labels and settings text.
+- Kept the existing Dutch translation and rebuilt the compiled translation catalogues.
+- Updated the translation documentation to invite native-speaker corrections.
+
+## 1.1.0-beta.57
+
+- Added styling support for the updated Potts Historical Facts global selector.
+- Kept the History region selector aligned with utility/language controls when webtrees is displayed in translated languages.
+- Added mobile-navigation recognition for translated account controls and the History selector.
+
 ## 1.1.0-beta.56
 
 - Added the Dutch translation contributed by TheDutchJewel.

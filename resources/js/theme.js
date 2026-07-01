@@ -20,7 +20,29 @@
     'stories': 'stories',
     'more charts': 'more-charts',
     'books': 'books',
-    'your book': 'your-book'
+    'your book': 'your-book',
+    'faq': 'faq',
+    'faqs': 'faq',
+    'frequently asked questions': 'faq',
+    'question and answer': 'faq',
+    'questions and answers': 'faq',
+    'häufig gestellte fragen': 'faq',
+    'fragen und antworten': 'faq',
+    'foire aux questions': 'faq',
+    'questions fréquentes': 'faq',
+    'preguntas frecuentes': 'faq',
+    'veelgestelde vragen': 'faq',
+    'najczęściej zadawane pytania': 'faq',
+    'perguntas frequentes': 'faq',
+    'domande frequenti': 'faq',
+    'často kladené dotazy': 'faq',
+    'gyakran ismételt kérdések': 'faq',
+    'vanliga frågor': 'faq',
+    'ofte stillede spørgsmål': 'faq',
+    'usein kysytyt kysymykset': 'faq',
+    'întrebări frecvente': 'faq',
+    'soalan lazim': 'faq',
+    'sıkça sorulan sorular': 'faq'
   };
 
   function normalise(value) {
@@ -1365,6 +1387,13 @@
       }
     }
 
+    if (/(^|[\/\?&=#_.-])faqs?($|[\/\?&=#_.-])/.test(text) ||
+        text.includes('frequently-asked') ||
+        text.includes('frequently_asked') ||
+        text.includes('questions-and-answers')) {
+      return 'faq';
+    }
+
     return '';
   }
 
@@ -2407,7 +2436,7 @@
       const text = normalise(link.textContent || '').toLowerCase();
       const href = (link.getAttribute('href') || '').toLowerCase();
 
-      return /^(?:sign in|log in|login)$/.test(text) ||
+      return /^(?:sign in|log in|login|zaloguj się|zaloguj sie|iniciar sessão|iniciar sessao|entrar)$/.test(text) ||
         (/(?:login|sign-in|signin)/.test(href) && !/(?:logout|sign-out|signout)/.test(href));
     });
     const signInAction = signInCandidate ? document.createElement('a') : null;
@@ -2415,18 +2444,33 @@
       const text = normalise(control.textContent || control.value || '').toLowerCase();
       const href = (control.getAttribute('href') || '').toLowerCase();
 
-      return /^(?:sign out|log out|logout)$/.test(text) ||
+      return /^(?:sign out|log out|logout|wyloguj się|wyloguj sie|terminar sessão|terminar sessao|sair)$/.test(text) ||
         /(?:logout|sign-out|signout)/.test(href);
     });
     const accountControls = Array.from(header.querySelectorAll('a[href], button')).filter(function (control) {
       const text = normalise(control.textContent || '').toLowerCase();
+      const identity = [
+        control.id || '',
+        control.className || '',
+        control.getAttribute('aria-label') || '',
+        control.getAttribute('title') || '',
+        control.getAttribute('href') || ''
+      ].join(' ').toLowerCase();
 
-      return /^(?:my page|theme|language|sign out|log out|logout)\b/.test(text);
+      return /^(?:my page|my pages|mijn pagina|mijn pagina's|moje strony|minhas páginas|as minhas páginas|theme|thema|motyw|tema|language|taal|sprache|langue|idioma|lingua|língua|język|jezyk|sign out|log out|logout|uitloggen|abmelden|déconnexion|deconnexion|cerrar sesión|cerrar sesion|wyloguj się|wyloguj sie|terminar sessão|terminar sessao|sair)\b/.test(text) ||
+        /(?:language|locale|lang|logout|signout|sign-out)/.test(identity);
     });
-    const accountRoots = accountControls.map(function (control) {
+    const historySelector = header.querySelector('.potts-history-global') || document.querySelector('.potts-history-global--in-header');
+    let accountRoots = accountControls.map(function (control) {
       return control.closest('li, form') || control;
-    }).filter(function (root, index, roots) {
-      return roots.indexOf(root) === index;
+    });
+
+    if (historySelector) {
+      accountRoots.push(historySelector.closest('li, .nav-item') || historySelector);
+    }
+
+    accountRoots = accountRoots.filter(function (root, index, roots) {
+      return root && roots.indexOf(root) === index;
     });
     let signOutAction = null;
     let genealogyRoot = genealogyMenu.closest('nav') || genealogyMenu;
@@ -3484,6 +3528,77 @@
     });
   }
 
+  function makeWideContentTablesScrollable() {
+    const locationText = (window.location.pathname + ' ' + window.location.search).toLowerCase();
+    const narrativePage = document.body.classList.contains('potts-note-page') ||
+      document.body.classList.contains('potts-source-page') ||
+      (/(?:note\.php|shared-note|note-page|\/note\/|source\.php|source-page|\/source\/)/.test(locationText) &&
+        !/(?:notelist|note-list|sourcelist|source-list)/.test(locationText));
+
+    if (!narrativePage) {
+      return;
+    }
+
+    const selectors = [
+      'main .wt-note table',
+      'main .wt-shared-note table',
+      'main .wt-source-details table',
+      'main .wt-tab-notes table',
+      'main .wt-tab-sources table',
+      'main .note table',
+      'main .shared-note table',
+      'main .note-text table',
+      'main .card-body table',
+      'main .blockcontent table',
+      'main .block-content table',
+      'main .wt-page-content table'
+    ];
+
+    const blockedContexts = [
+      'nav', 'header', 'footer', 'form',
+      '.wt-menu', '.wt-main-menu', '.potts-nav-dropdown', '.dropdown-menu',
+      '.wt-chart', '#tv_tree', '.tv_in', '.tv_out',
+      '.wt-calendar-month', '.wt-family-navigator', '.wt-page-options',
+      '.wt-facts-table', '.facts_table', '.potts-facts-root',
+      '.potts-related-facts-table', '.potts-responsive-facts-table',
+      '.potts-mobile-family-table', '.potts-scroll-table'
+    ].join(', ');
+
+    Array.from(document.querySelectorAll(selectors.join(', '))).forEach(function (table) {
+      if (!(table instanceof HTMLTableElement)) {
+        return;
+      }
+
+      if (table.closest(blockedContexts) || isInsideFactsRoot(table)) {
+        return;
+      }
+
+      const rowCount = table.rows ? table.rows.length : 0;
+      const columnCount = rowCount > 0
+        ? Array.from(table.rows).reduce(function (largest, row) {
+          return Math.max(largest, row.cells ? row.cells.length : 0);
+        }, 0)
+        : 0;
+
+      // Keep tiny two-column definition tables alone, but protect census,
+      // transcript and note tables that commonly contain many columns.
+      const looksLikeWideContent = columnCount >= 3 || table.scrollWidth > (table.parentElement ? table.parentElement.clientWidth + 8 : 0);
+      if (!looksLikeWideContent) {
+        return;
+      }
+
+      const wrapper = document.createElement('div');
+      wrapper.className = 'potts-scroll-table';
+      wrapper.setAttribute('tabindex', '0');
+      wrapper.setAttribute('role', 'region');
+      wrapper.setAttribute('aria-label', 'Scrollable table');
+
+      table.parentNode.insertBefore(wrapper, table);
+      wrapper.appendChild(table);
+      table.classList.add('potts-scrollable-content-table');
+    });
+  }
+
   function cleanLeakedInlineScriptText() {
     const main = document.querySelector('main');
     if (!main) {
@@ -3566,6 +3681,7 @@
     enhanceStructuredPages();
     enhanceDashboardPage();
     enhanceRecordAndNarrativePages();
+    makeWideContentTablesScrollable();
     enhanceHomePage();
     enhanceEditingExperience();
     enhanceMessagesAndNewsBlocks();

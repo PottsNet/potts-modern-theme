@@ -26,8 +26,8 @@ $cleanLabel = static function (string $value): string {
     return trim($value);
 };
 
-$iconForSubmenu = static function (string $label, string $class = '', string|null $parent_icon = null) use ($normalise): string|null {
-    $text = $normalise($label . ' ' . $class);
+$iconForSubmenu = static function (string $label, string $class = '', string $link = '', string|null $parent_icon = null) use ($normalise): string|null {
+    $text = $normalise($label . ' ' . $class . ' ' . $link);
 
     // Exact labels first.  This covers every core webtrees chart/list/calendar
     // item and the custom items currently used on a customised webtrees site.
@@ -59,6 +59,28 @@ $iconForSubmenu = static function (string $label, string $class = '', string|nul
         'month'                        => 'calendar',
         'year'                         => 'calendar',
         'custom module manager'        => 'module',
+        'faq'                          => 'faq',
+        'faqs'                         => 'faq',
+        'frequently asked questions'   => 'faq',
+        'question and answer'          => 'faq',
+        'questions and answers'        => 'faq',
+        'häufig gestellte fragen'      => 'faq',
+        'fragen und antworten'         => 'faq',
+        'foire aux questions'          => 'faq',
+        'questions fréquentes'         => 'faq',
+        'preguntas frecuentes'         => 'faq',
+        'veelgestelde vragen'          => 'faq',
+        'najczęściej zadawane pytania' => 'faq',
+        'perguntas frequentes'         => 'faq',
+        'domande frequenti'            => 'faq',
+        'často kladené dotazy'         => 'faq',
+        'gyakran ismételt kérdések'    => 'faq',
+        'vanliga frågor'               => 'faq',
+        'ofte stillede spørgsmål'      => 'faq',
+        'usein kysytyt kysymykset'     => 'faq',
+        'întrebări frecvente'          => 'faq',
+        'soalan lazim'                 => 'faq',
+        'sıkça sorulan sorular'        => 'faq',
     ];
 
     if (array_key_exists($text, $exact)) {
@@ -82,6 +104,30 @@ $iconForSubmenu = static function (string $label, string $class = '', string|nul
         'descendants'      => ['descendant', 'descendancy'],
         'pedigree'         => ['pedigree'],
         'module'           => ['custom module', 'module manager'],
+        'faq'              => [
+            'faq',
+            'faqs',
+            'frequently asked questions',
+            'question and answer',
+            'questions and answers',
+            'häufig',
+            'fragen und antworten',
+            'foire aux questions',
+            'questions fréquentes',
+            'preguntas frecuentes',
+            'veelgestelde vragen',
+            'zadawane pytania',
+            'perguntas frequentes',
+            'domande frequenti',
+            'kladené dotazy',
+            'ismételt kérdések',
+            'vanliga frågor',
+            'stillede spørgsmål',
+            'kysytyt kysymykset',
+            'întrebări frecvente',
+            'soalan lazim',
+            'sorulan sorular',
+        ],
         'media'            => ['media object', 'media'],
         'place'            => ['place hierarchy', 'place'],
         'repository'       => ['repositor'],
@@ -142,12 +188,37 @@ $label_icons = [
     'more charts'    => 'more-charts',
     'books'          => 'books',
     'your book'      => 'your-book',
+    'faq'            => 'faq',
+    'faqs'           => 'faq',
+    'frequently asked questions'   => 'faq',
+    'question and answer'          => 'faq',
+    'questions and answers'        => 'faq',
+    'häufig gestellte fragen'      => 'faq',
+    'fragen und antworten'         => 'faq',
+    'foire aux questions'          => 'faq',
+    'questions fréquentes'         => 'faq',
+    'preguntas frecuentes'         => 'faq',
+    'veelgestelde vragen'          => 'faq',
+    'najczęściej zadawane pytania' => 'faq',
+    'perguntas frequentes'         => 'faq',
+    'domande frequenti'            => 'faq',
+    'často kladené dotazy'         => 'faq',
+    'gyakran ismételt kérdések'    => 'faq',
+    'vanliga frågor'               => 'faq',
+    'ofte stillede spørgsmål'      => 'faq',
+    'usein kysytyt kysymykset'     => 'faq',
+    'întrebări frecvente'          => 'faq',
+    'soalan lazim'                 => 'faq',
+    'sıkça sorulan sorular'        => 'faq',
 ];
 
 $icon = $label_icons[$menu_label] ?? null;
 
 if ($icon === null) {
     $class_checks = [
+        'faq'      => 'faq',
+        'frequently-asked' => 'faq',
+        'question' => 'faq',
         'clipping' => 'cart',
         'calendar' => 'calendar',
         'report'   => 'reports',
@@ -164,6 +235,34 @@ if ($icon === null) {
             $icon = $candidate;
             break;
         }
+    }
+}
+
+if ($icon === null) {
+    $menu_link = strtolower((string) $menu->getLink());
+
+    if (preg_match('/(?:^|[\/?&=#_.-])faqs?(?:$|[\/?&=#_.-])/', $menu_link) === 1
+        || str_contains($menu_link, 'frequently-asked')
+        || str_contains($menu_link, 'frequently_asked')
+        || str_contains($menu_link, 'questions-and-answers')
+    ) {
+        $icon = 'faq';
+    }
+}
+
+// Third-party modules can register top-level menu items with labels this theme
+// cannot know in advance. Use a generic module icon for module-like links,
+// while leaving utility menus such as language/sign-in alone.
+if ($icon === null) {
+    $menu_link  = strtolower((string) $menu->getLink());
+    $menu_probe = $menu_label . ' ' . strtolower($menu_class) . ' ' . $menu_link;
+
+    if (str_contains($menu_probe, 'module')
+        || str_contains($menu_probe, 'data-check')
+        || str_contains($menu_probe, 'data_check')
+        || str_contains($menu_probe, 'datacheck')
+    ) {
+        $icon = 'module';
     }
 }
 
@@ -196,7 +295,7 @@ $render_label = static function (Menu $item, string|null $item_icon, string $cle
             <?php foreach ($menu->getSubmenus() as $submenu) : ?>
                 <?php
                 $submenu_label = $cleanLabel($submenu->getLabel());
-                $submenu_icon  = $iconForSubmenu($submenu_label, $submenu->getClass(), $icon);
+                $submenu_icon  = $iconForSubmenu($submenu_label, $submenu->getClass(), (string) $submenu->getLink(), $icon);
                 ?>
                 <a
                     class="dropdown-item potts-submenu-item <?= e($submenu->getClass()) ?><?= $submenu_icon !== null ? ' potts-submenu-icon-' . e($submenu_icon) : '' ?>"

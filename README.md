@@ -4,13 +4,15 @@ Potts Modern is a standalone, responsive heritage theme for webtrees 2.2.x. It c
 
 This is a **beta release** intended for testing on non-production or well-backed-up webtrees sites.
 
-## Version 1.1.0-beta.56
+## Version 1.1.0-beta.62
 
-This release adds the Dutch translation contributed by TheDutchJewel. It retains the administrator shortcuts block, administration header contrast correction and Messages block layout fixes.
+This compatibility polish release improves wide shared-note/table handling and gives unknown module-like third-party top-level menu items a generic module icon instead of leaving them unstyled.
 
 ## Translations
 
-The translation template is `resources/lang/messages.pot`. Dutch contributors can edit `resources/lang/nl.po` with Poedit or a text editor, translating each `msgstr` while leaving its English `msgid` unchanged. Submit the completed PO file in a pull request or attach it to a GitHub issue. Release builds compile accepted PO files to the MO files loaded by webtrees.
+The translation template is `resources/lang/messages.pot`. Current translation files are provided for Dutch (`nl`), German (`de`), French (`fr`), Spanish (`es`), Polish (`pl`) and Portuguese (`pt`). These files are starter translations for community review. Native-speaker corrections are welcome.
+
+Contributors can edit the `.po` files with Poedit or a text editor, translating each `msgstr` while leaving its English `msgid` unchanged. Submit the completed PO file in a pull request or attach it to a GitHub issue. Release builds compile accepted PO files to the MO files loaded by webtrees.
 
 ## Features
 
@@ -83,6 +85,8 @@ The administration page provides options for:
 ## Optional integrations
 
 Potts Modern includes non-essential styling for some third-party modules, including history-region selectors, stories and family-book interfaces. These integrations are optional. The theme should continue to operate when those modules are not installed.
+
+The Potts Historical Facts global region selector is styled so it remains with the utility/language controls, including when webtrees is displayed in translated languages.
 
 ## Known beta considerations
 

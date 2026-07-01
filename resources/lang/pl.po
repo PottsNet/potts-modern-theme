@@ -1,22 +1,20 @@
-# Dutch translations for Potts Modern Theme package.
-# Copyright (C) 2026 THE Potts Modern Theme'S COPYRIGHT HOLDER
+# Polish starter translations for Potts Modern Theme.
 # This file is distributed under the same license as the Potts Modern Theme package.
-# Dutch translation by TheDutchJewel, 2026.
-#
+# Corrections from native speakers are welcome.
+
 msgid ""
 msgstr ""
 "Project-Id-Version: Potts Modern Theme 1.1.0-beta.62\n"
 "Report-Msgid-Bugs-To: https://github.com/PottsNet/potts-modern-theme/issues\n"
-"POT-Creation-Date: 2026-06-21 21:18-0500\n"
-"PO-Revision-Date: 2026-06-22 17:20+0200\n"
-"Last-Translator: TheDutchJewel <thedutchjewel@gmail.com>\n"
-"Language-Team: Dutch\n"
-"Language: nl\n"
+"POT-Creation-Date: 2026-06-29 21:40+1000\n"
+"PO-Revision-Date: 2026-06-29 21:55+1000\n"
+"Last-Translator: Jason Potts <noreply@potts.net.au>\n"
+"Language-Team: Polish\n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.9\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 
 #: PottsModernTheme.php:78
 msgid "Potts Modern"
@@ -24,96 +22,96 @@ msgstr "Potts Modern"
 
 #: PottsModernTheme.php:83
 msgid "A modern, responsive heritage theme for webtrees."
-msgstr "Een modern, responsief erfgoedthema voor webtrees."
+msgstr "Nowoczesny, responsywny motyw genealogiczny dla webtrees."
 
 #: PottsModernTheme.php:167 resources/views/admin/settings.phtml:144
 msgid "Potts Modern theme settings"
-msgstr "Instellingen voor het Potts Modern-thema"
+msgstr "Ustawienia motywu Potts Modern"
 
 #: PottsModernTheme.php:260
 msgid "Heritage teal and parchment"
-msgstr "Erfgoed blauwgroen en perkament"
+msgstr "Historyczny turkus i pergamin"
 
 #: PottsModernTheme.php:261
 msgid "Cool teal and mist"
-msgstr "Koel blauwgroen en mist"
+msgstr "Chłodny turkus i mgła"
 
 #: PottsModernTheme.php:262
 msgid "Warm sepia and walnut"
-msgstr "Warm sepia en walnoot"
+msgstr "Ciepła sepia i orzech"
 
 #: PottsModernTheme.php:263
 msgid "Eucalyptus green and linen"
-msgstr "Eucalyptusgroen en linnen"
+msgstr "Zieleń eukaliptusa i len"
 
 #: PottsModernTheme.php:264
 msgid "Claret and archival ivory"
-msgstr "Wijnrood en archiefivoor"
+msgstr "Klaret i archiwalna kość słoniowa"
 
 #: PottsModernTheme.php:267 PottsModernTheme.php:281 PottsModernTheme.php:292
 #: PottsModernTheme.php:297
 msgid "Standard"
-msgstr "Standaard"
+msgstr "Standardowe"
 
 #: PottsModernTheme.php:268
 msgid "Larger"
-msgstr "Groter"
+msgstr "Większy"
 
 #: PottsModernTheme.php:271
 msgid "Soft and rounded"
-msgstr "Zacht en afgerond"
+msgstr "Miękkie i zaokrąglone"
 
 #: PottsModernTheme.php:272
 msgid "Moderately rounded"
-msgstr "Matig afgerond"
+msgstr "Umiarkowanie zaokrąglone"
 
 #: PottsModernTheme.php:273
 msgid "Mostly square"
-msgstr "Meestal hoekig"
+msgstr "Głównie kwadratowe"
 
 #: PottsModernTheme.php:276
 msgid "Soft"
-msgstr "Zacht"
+msgstr "Miękkie"
 
 #: PottsModernTheme.php:277
 msgid "Stronger"
-msgstr "Sterker"
+msgstr "Mocniejsze"
 
 #: PottsModernTheme.php:278
 msgid "None"
-msgstr "Geen"
+msgstr "Brak"
 
 #: PottsModernTheme.php:282 PottsModernTheme.php:293
 msgid "Wide"
-msgstr "Breed"
+msgstr "Szerokie"
 
 #: PottsModernTheme.php:283
 msgid "Full width"
-msgstr "Volledige breedte"
+msgstr "Pełna szerokość"
 
 #: PottsModernTheme.php:286 PottsModernTheme.php:291 PottsModernTheme.php:296
 msgid "Compact"
-msgstr "Compact"
+msgstr "Kompaktowe"
 
 #: PottsModernTheme.php:287
 msgid "Comfortable"
-msgstr "Comfortabel"
+msgstr "Wygodne"
 
 #: PottsModernTheme.php:288
 msgid "Spacious"
-msgstr "Ruim"
+msgstr "Przestronne"
 
 #: PottsModernTheme.php:298
 msgid "Large"
-msgstr "Groot"
+msgstr "Duże"
 
 #: PottsModernTheme.php:301
 msgid "Icons and labels"
-msgstr "Pictogrammen en labels"
+msgstr "Ikony i etykiety"
 
 #: PottsModernTheme.php:302
 msgid "Labels only"
-msgstr "Alleen labels"
+msgstr "Tylko etykiety"
 
 #: PottsModernTheme.php:479
 msgid "Menu"
@@ -121,249 +119,236 @@ msgstr "Menu"
 
 #: PottsModernTheme.php:480
 msgid "Open menu"
-msgstr "Menu openen"
+msgstr "Otwórz menu"
 
 #: PottsModernTheme.php:481
 msgid "Close menu"
-msgstr "Menu sluiten"
+msgstr "Zamknij menu"
 
 #: PottsModernTheme.php:482
 msgid "Explore"
-msgstr "Verkennen"
+msgstr "Przeglądaj"
 
 #: PottsModernTheme.php:483
 msgid "Account and settings"
-msgstr "Account en instellingen"
+msgstr "Konto i ustawienia"
 
 #: PottsModernTheme.php:484
 msgid "Sign in"
-msgstr "Inloggen"
+msgstr "Zaloguj się"
 
 #: PottsModernTheme.php:485
 msgid "Sign out"
-msgstr "Uitloggen"
+msgstr "Wyloguj się"
 
 #: PottsModernTheme.php:486
 msgid "Show more events"
-msgstr "Meer gebeurtenissen tonen"
+msgstr "Pokaż więcej wydarzeń"
 
 #: PottsModernTheme.php:487
 msgid "Show fewer events"
-msgstr "Minder gebeurtenissen tonen"
+msgstr "Pokaż mniej wydarzeń"
 
 #: resources/views/admin/settings.phtml:136
 msgid "The Potts Modern settings have been saved."
-msgstr "De Potts Modern-instellingen zijn opgeslagen."
+msgstr "Ustawienia Potts Modern zostały zapisane."
 
 #: resources/views/admin/settings.phtml:139
 msgid "The Potts Modern defaults have been restored."
-msgstr "De standaardinstellingen van Potts Modern zijn hersteld."
+msgstr "Przywrócono domyślne ustawienia Potts Modern."
 
 #: resources/views/admin/settings.phtml:145
-msgid ""
-"These settings apply site-wide whenever Potts Modern is the selected theme. "
-"Changes are easy to reverse using Restore defaults."
-msgstr ""
-"Deze instellingen gelden voor de hele site wanneer Potts Modern als thema is "
-"geselecteerd. Wijzigingen kunnen eenvoudig worden teruggedraaid via "
-"Standaardinstellingen herstellen."
+msgid "These settings apply site-wide whenever Potts Modern is the selected theme. Changes are easy to reverse using Restore defaults."
+msgstr "Te ustawienia mają zastosowanie w całej witrynie, gdy wybrany jest motyw Potts Modern. Zmiany można łatwo cofnąć, używając opcji Przywróć domyślne."
 
 #: resources/views/admin/settings.phtml:156
 msgid "Appearance"
-msgstr "Weergave"
+msgstr "Wygląd"
 
 #: resources/views/admin/settings.phtml:158
 msgid "Colour palette"
-msgstr "Kleurenpalet"
+msgstr "Paleta kolorów"
 
 #: resources/views/admin/settings.phtml:158
 msgid "Choose the overall heritage colour scheme."
-msgstr "Kies het algemene erfgoedkleurenschema."
+msgstr "Wybierz ogólną historyczną paletę kolorów."
 
 #: resources/views/admin/settings.phtml:159
 msgid "Text size"
-msgstr "Tekstgrootte"
+msgstr "Rozmiar tekstu"
 
 #: resources/views/admin/settings.phtml:159
 msgid "Increase base text across the public site."
-msgstr "Vergroot de standaardtekst op de hele site."
+msgstr "Zwiększ podstawowy rozmiar tekstu w publicznej części witryny."
 
 #: resources/views/admin/settings.phtml:160
 msgid "Card corners"
-msgstr "Kaarthoeken"
+msgstr "Narożniki kart"
 
 #: resources/views/admin/settings.phtml:160
 msgid "Control how rounded cards, panels and controls appear."
-msgstr "Bepaal hoe afgerond kaarten, panelen en bedieningselementen zijn."
+msgstr "Określ stopień zaokrąglenia kart, paneli i elementów sterujących."
 
 #: resources/views/admin/settings.phtml:161
 msgid "Card shadows"
-msgstr "Kaartschaduwen"
+msgstr "Cienie kart"
 
 #: resources/views/admin/settings.phtml:161
 msgid "Choose a flatter or more dimensional appearance."
-msgstr "Kies voor een vlakker of meer diepte-effect."
+msgstr "Wybierz bardziej płaski lub bardziej przestrzenny wygląd."
 
 #: resources/views/admin/settings.phtml:166
 msgid "Layout"
-msgstr "Indeling"
+msgstr "Układ"
 
 #: resources/views/admin/settings.phtml:168
 msgid "Page width"
-msgstr "Paginabreedte"
+msgstr "Szerokość strony"
 
 #: resources/views/admin/settings.phtml:168
 msgid "Standard suits most screens; Wide gives charts and books more room."
-msgstr "Standaard past op de meeste schermen; Breed geeft grafieken en boeken meer ruimte."
+msgstr "Standardowa szerokość pasuje do większości ekranów; szeroka daje więcej miejsca wykresom i książkom."
 
 #: resources/views/admin/settings.phtml:169
 msgid "Content spacing"
-msgstr "Afstand tussen inhoud"
+msgstr "Odstępy treści"
 
 #: resources/views/admin/settings.phtml:169
 msgid "Adjust spacing within cards and between homepage blocks."
-msgstr "Pas de ruimte binnen kaarten en tussen blokken op de startpagina aan."
+msgstr "Dostosuj odstępy wewnątrz kart oraz między blokami strony głównej."
 
 #: resources/views/admin/settings.phtml:170
 msgid "Individual-page sidebar"
-msgstr "Zijbalk per pagina"
+msgstr "Pasek boczny strony osoby"
 
 #: resources/views/admin/settings.phtml:170
 msgid "Controls the width of the Family navigator on larger screens."
-msgstr "Regelt de breedte van de gezinsnavigator op grotere schermen."
+msgstr "Steruje szerokością nawigatora rodziny na większych ekranach."
 
 #: resources/views/admin/settings.phtml:175
 msgid "Header and navigation"
-msgstr "Kop en navigatie"
+msgstr "Nagłówek i nawigacja"
 
 #: resources/views/admin/settings.phtml:177
 msgid "Main icon size"
-msgstr "Grootte hoofdiconen"
+msgstr "Rozmiar głównych ikon"
 
 #: resources/views/admin/settings.phtml:177
 msgid "Change the size of the modern genealogy menu icons."
-msgstr "Verander de grootte van de moderne genealogie-menupictogrammen."
+msgstr "Zmień rozmiar nowoczesnych ikon menu genealogicznego."
 
 #: resources/views/admin/settings.phtml:178
 msgid "Main menu display"
-msgstr "Weergave hoofdmenu"
+msgstr "Wyświetlanie menu głównego"
 
 #: resources/views/admin/settings.phtml:178
 msgid "Display modern icons with labels or use labels alone."
-msgstr "Toon moderne pictogrammen met labels of alleen labels."
+msgstr "Wyświetlaj nowoczesne ikony z etykietami albo używaj samych etykiet."
 
 #: resources/views/admin/settings.phtml:181
 msgid "Show the family photo strip"
-msgstr "Familiefotobalk tonen"
+msgstr "Pokaż pasek zdjęć rodzinnych"
 
 #: resources/views/admin/settings.phtml:181
 msgid "Display the rotating family photograph banner beneath the menu."
-msgstr "Toon de roterende familiefotobanner onder het menu."
+msgstr "Wyświetlaj rotacyjny baner z fotografiami rodzinnymi pod menu."
 
 #: resources/views/admin/settings.phtml:182
 msgid "Show modern dropdown icons"
-msgstr "Moderne uitklappictogrammen tonen"
+msgstr "Pokaż nowoczesne ikony w menu rozwijanych"
 
 #: resources/views/admin/settings.phtml:182
-msgid ""
-"Use the refreshed line icons in Charts, Lists, Calendar and other dropdown "
-"menus."
-msgstr ""
-"Gebruik de vernieuwde lijnpictogrammen in Diagrammen, Lijsten, Kalender en "
-"andere uitklapmenu’s."
+msgid "Use the refreshed line icons in Charts, Lists, Calendar and other dropdown menus."
+msgstr "Używaj odświeżonych ikon liniowych w menu rozwijanych Wykresów, List, Kalendarza i innych."
 
 #: resources/views/admin/settings.phtml:183
 msgid "Show modern fact and event icons"
-msgstr "Moderne feit- en gebeurtenispictogrammen tonen"
+msgstr "Pokaż nowoczesne ikony faktów i wydarzeń"
 
 #: resources/views/admin/settings.phtml:183
-msgid ""
-"Display consistent line icons beside Birth, Marriage, Occupation, Residence "
-"and other facts."
-msgstr ""
-"Toon consistente lijnpictogrammen naast Geboorte, Huwelijk, Beroep, "
-"Woonplaats en andere feiten."
+msgid "Display consistent line icons beside Birth, Marriage, Occupation, Residence and other facts."
+msgstr "Wyświetlaj spójne ikony liniowe obok urodzin, małżeństwa, zawodu, miejsca zamieszkania i innych faktów."
 
 #: resources/views/admin/settings.phtml:188
 msgid "Accessibility"
-msgstr "Toegankelijkheid"
+msgstr "Dostępność"
 
 #: resources/views/admin/settings.phtml:190
 msgid "Larger controls"
-msgstr "Grotere bedieningselementen"
+msgstr "Większe elementy sterujące"
 
 #: resources/views/admin/settings.phtml:190
 msgid "Increase the height of buttons, fields and selectors for easier use."
-msgstr "Vergroot de hoogte van knoppen, velden en keuzelijsten voor eenvoudiger gebruik."
+msgstr "Zwiększ wysokość przycisków, pól i selektorów, aby ułatwić korzystanie."
 
 #: resources/views/admin/settings.phtml:191
 msgid "Higher contrast"
-msgstr "Hoger contrast"
+msgstr "Wyższy kontrast"
 
 #: resources/views/admin/settings.phtml:191
 msgid "Strengthen borders, links and keyboard focus indicators."
-msgstr "Versterk randen, links en focusindicatoren voor toetsenbordgebruik."
+msgstr "Wzmocnij obramowania, linki i wskaźniki fokusu klawiatury."
 
 #: resources/views/admin/settings.phtml:192
 msgid "Reduce animation"
-msgstr "Animatie verminderen"
+msgstr "Ogranicz animacje"
 
 #: resources/views/admin/settings.phtml:192
 msgid "Remove transitions and smooth scrolling throughout the theme."
-msgstr "Verwijder overgangen en vloeiend scrollen in het hele thema."
+msgstr "Usuń przejścia i płynne przewijanie w całym motywie."
 
 #: resources/views/admin/settings.phtml:197
 msgid "Theme preview"
-msgstr "Thema-voorbeeld"
+msgstr "Podgląd motywu"
 
 #: resources/views/admin/settings.phtml:199
 msgid "Preview"
-msgstr "Voorbeeld"
+msgstr "Podgląd"
 
 #: resources/views/admin/settings.phtml:203
 msgid "Family Tree"
-msgstr "Stamboom"
+msgstr "Drzewo rodzinne"
 
 #: resources/views/admin/settings.phtml:204
 msgid "Search"
-msgstr "Zoeken"
+msgstr "Szukaj"
 
 #: resources/views/admin/settings.phtml:209
 msgid "Family history"
-msgstr "Familiegeschiedenis"
+msgstr "Historia rodziny"
 
 #: resources/views/admin/settings.phtml:210
 msgid "A preview of cards, text, navigation and heritage accents."
-msgstr "Een voorbeeld van kaarten, tekst, navigatie en erfgoedaccenten."
+msgstr "Podgląd kart, tekstu, nawigacji i akcentów historycznych."
 
 #: resources/views/admin/settings.phtml:214
 msgid "Individuals"
-msgstr "Personen"
+msgstr "Osoby"
 
 #: resources/views/admin/settings.phtml:215
 msgid "Place hierarchy"
-msgstr "Plaatsenhiërarchie"
+msgstr "Hierarchia miejsc"
 
 #: resources/views/admin/settings.phtml:216
 msgid "Sources"
-msgstr "Bronnen"
+msgstr "Źródła"
 
 #: resources/views/admin/settings.phtml:227
 msgid "Save when you are happy with the preview."
-msgstr "Opslaan wanneer u tevreden bent met het voorbeeld."
+msgstr "Zapisz, gdy podgląd wygląda dobrze."
 
 #: resources/views/admin/settings.phtml:228
 msgid "A hard refresh may be needed after changing cached styles."
-msgstr "Een harde verversing kan nodig zijn na het wijzigen van gecachte stijlen."
+msgstr "Po zmianie buforowanych stylów może być konieczne wymuszone odświeżenie."
 
 #: resources/views/admin/settings.phtml:231
 msgid "Restore all Potts Modern settings to their defaults?"
-msgstr "Alle Potts Modern-instellingen herstellen naar de standaardwaarden?"
+msgstr "Przywrócić wszystkie ustawienia Potts Modern do wartości domyślnych?"
 
 #: resources/views/admin/settings.phtml:231
 msgid "Restore defaults"
-msgstr "Standaardinstellingen herstellen"
+msgstr "Przywróć domyślne"
 
 #: resources/views/admin/settings.phtml:232
 msgid "Save settings"
-msgstr "Instellingen opslaan"
+msgstr "Zapisz ustawienia"

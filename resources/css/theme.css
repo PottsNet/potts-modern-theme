@@ -3791,6 +3791,7 @@ body[class*="individual"] :is(#facts_content, [id*="facts_content"], [id*="perso
 .potts-nav-feature.potts-nav-icon-more-charts .potts-nav-icon { background-image: var(--potts-icon-more-charts); }
 .potts-nav-feature.potts-nav-icon-books .potts-nav-icon       { background-image: var(--potts-icon-books); }
 .potts-nav-feature.potts-nav-icon-your-book .potts-nav-icon   { background-image: var(--potts-icon-your-book); }
+.potts-nav-feature.potts-nav-icon-faq .potts-nav-icon         { background-image: var(--potts-icon-faq); }
 
 /* Xenea may provide an image or background icon through older markup/rules. */
 .potts-nav-feature img,
@@ -4852,6 +4853,118 @@ body.potts-report-page main :is(.wt-report-list, .list-group, [class*="report-li
 .potts-utility-nav .dropdown-item.active,
 .potts-utility-nav .dropdown-item[aria-current="true"] {
   box-shadow: inset 4px 0 0 #b98638 !important;
+}
+
+
+/* ------------------------------------------------------------
+   Version 1.1.0-beta.57
+   Potts Historical Facts global selector integration.
+   The Historical Facts module now exposes .potts-history-global
+   classes. Keep the selector in the utility/header row and stop it
+   being pushed under the genealogy navigation when webtrees is using
+   translated labels such as Dutch "Taal".
+   ------------------------------------------------------------ */
+.potts-history-global-item {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+.potts-site-shell .potts-history-global,
+.potts-utility-nav .potts-history-global,
+header .potts-history-global--in-header,
+.wt-header-wrapper .potts-history-global--in-header,
+.wt-header .potts-history-global--in-header {
+  position: relative !important;
+  z-index: 10620 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  align-self: center !important;
+  justify-content: center !important;
+  flex: 0 0 auto !important;
+  margin: 0 !important;
+  overflow: visible !important;
+  vertical-align: middle !important;
+}
+
+.potts-site-shell .potts-history-global__button,
+header .potts-history-global--in-header .potts-history-global__button,
+.wt-header-wrapper .potts-history-global--in-header .potts-history-global__button,
+.wt-header .potts-history-global--in-header .potts-history-global__button {
+  min-height: 42px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: .35rem !important;
+  margin: 0 !important;
+  padding: .45rem .9rem !important;
+  border-radius: 999px !important;
+  background: transparent !important;
+  border: 0 !important;
+  color: #ffffff !important;
+  font-size: .94rem !important;
+  font-weight: 750 !important;
+  line-height: 1.2 !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  box-shadow: none !important;
+}
+
+.potts-site-shell .potts-history-global__button:hover,
+.potts-site-shell .potts-history-global__button:focus-visible,
+header .potts-history-global--in-header .potts-history-global__button:hover,
+header .potts-history-global--in-header .potts-history-global__button:focus-visible,
+.wt-header-wrapper .potts-history-global--in-header .potts-history-global__button:hover,
+.wt-header-wrapper .potts-history-global--in-header .potts-history-global__button:focus-visible,
+.wt-header .potts-history-global--in-header .potts-history-global__button:hover,
+.wt-header .potts-history-global--in-header .potts-history-global__button:focus-visible {
+  background: rgba(255, 255, 255, .13) !important;
+  color: #ffffff !important;
+  outline: 2px solid rgba(255, 255, 255, .42) !important;
+  outline-offset: 2px !important;
+}
+
+.potts-utility-nav .potts-history-global__button,
+.potts-utility-menu .potts-history-global__button {
+  min-height: 42px !important;
+  padding: .45rem .9rem !important;
+  border-radius: 999px !important;
+  color: #173f4c !important;
+  background: transparent !important;
+}
+
+.potts-utility-nav .potts-history-global__button:hover,
+.potts-utility-nav .potts-history-global__button:focus-visible,
+.potts-utility-menu .potts-history-global__button:hover,
+.potts-utility-menu .potts-history-global__button:focus-visible {
+  background: #e3eadf !important;
+  color: #123b4b !important;
+  outline-color: rgba(24, 90, 113, .28) !important;
+}
+
+.potts-site-shell .potts-history-global__menu,
+.potts-utility-nav .potts-history-global__menu,
+header .potts-history-global--in-header .potts-history-global__menu,
+.wt-header-wrapper .potts-history-global--in-header .potts-history-global__menu,
+.wt-header .potts-history-global--in-header .potts-history-global__menu {
+  z-index: 10650 !important;
+  opacity: 1 !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.potts-genealogy-nav .potts-history-global,
+.potts-genealogy-menu .potts-history-global {
+  color: #173f4c !important;
+}
+
+.potts-genealogy-nav .potts-history-global__button,
+.potts-genealogy-menu .potts-history-global__button {
+  color: #173f4c !important;
 }
 
 /* Signed-in My pages dashboard. */
@@ -6463,6 +6576,7 @@ body:has(.wt-individual-page):not(.potts-edit-page) main.potts-edit-content {
 .potts-submenu-icon-books { --potts-submenu-mask: var(--potts-icon-books); }
 .potts-submenu-icon-more-charts { --potts-submenu-mask: var(--potts-icon-more-charts); }
 .potts-submenu-icon-your-book { --potts-submenu-mask: var(--potts-icon-your-book); }
+.potts-submenu-icon-faq { --potts-submenu-mask: var(--potts-icon-faq); }
 
 .potts-submenu-icon-ancestors { --potts-submenu-mask: var(--potts-icon-ancestors); }
 .potts-submenu-icon-compact-tree { --potts-submenu-mask: var(--potts-icon-compact-tree); }
@@ -10442,3 +10556,57 @@ main .potts-facts-root .potts-fact-category-historic > .potts-responsive-fact-st
     border-left-color: #7c8284 !important;
   }
 }
+
+/* ------------------------------------------------------------
+   Version 1.1.0-beta.62
+   Compatibility polish for wide notes and third-party menus
+   ------------------------------------------------------------ */
+
+.potts-nav-feature.potts-nav-icon-module .potts-nav-icon {
+  background-image: var(--potts-icon-module);
+}
+
+main .potts-scroll-table {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: .85rem 0 !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid rgba(35, 48, 56, .12) !important;
+  border-radius: 12px !important;
+  background: rgba(255, 255, 255, .72) !important;
+}
+
+main .potts-scroll-table:focus-visible {
+  outline: 3px solid rgba(185, 134, 56, .62) !important;
+  outline-offset: 3px !important;
+}
+
+main .potts-scroll-table > table.potts-scrollable-content-table {
+  width: max-content !important;
+  min-width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+main .potts-scroll-table > table.potts-scrollable-content-table th,
+main .potts-scroll-table > table.potts-scrollable-content-table td {
+  white-space: normal !important;
+  vertical-align: top !important;
+}
+
+main :is(.wt-note, .wt-shared-note, .wt-source-details, .wt-page-content, .wt-tab-content, .tab-content) {
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+
+main :is(.wt-note, .wt-shared-note, .wt-source-details) :is(p, li, dd, blockquote),
+main .potts-scroll-table {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
