@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.0
+- Promoted the tested 1.1.0-beta.62 theme to a regular stable release.
+- Changed the internal version from `1.1.0-beta.62` to `1.1.0`.
+- Added `latest-version.txt` and `customModuleLatestVersionUrl()` so webtrees and Custom Module Manager can detect future updates.
+- Kept the wide-table handling, FAQ translation support, third-party menu icon fallback and bundled starter translations from the beta series.
+
 ## 1.1.0-beta.62
 - Added a generic module icon fallback for unknown module-like third-party top-level menu items.
 - Wrapped wide narrative/shared-note/source tables in a horizontal scroll container so census transcripts and similar records do not break the page layout.

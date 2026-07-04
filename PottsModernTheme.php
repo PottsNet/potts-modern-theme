@@ -24,6 +24,7 @@ use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Fisharebest\Webtrees\Module\ModuleCustomTrait;
 use Fisharebest\Webtrees\Module\ModuleThemeInterface;
 use Fisharebest\Webtrees\Module\ModuleThemeTrait;
+use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Validator;
 use Fisharebest\Webtrees\View;
 use Psr\Http\Message\ResponseInterface;
@@ -73,6 +74,9 @@ final class PottsModernTheme extends AbstractModule implements ModuleThemeInterf
         'REDUCED_MOTION'       => '0',
     ];
 
+    private const CUSTOM_VERSION = '1.1.0';
+    private const LATEST_VERSION_URL = 'https://raw.githubusercontent.com/PottsNet/potts-modern-theme/main/latest-version.txt';
+
     public function title(): string
     {
         return I18N::translate('Potts Modern');
@@ -90,7 +94,29 @@ final class PottsModernTheme extends AbstractModule implements ModuleThemeInterf
 
     public function customModuleVersion(): string
     {
-        return '1.1.0-beta.62';
+        return self::CUSTOM_VERSION;
+    }
+
+    public function customModuleLatestVersion(): string
+    {
+        return Registry::cache()->file()->remember(
+            $this->name() . '-latest-version',
+            function (): string {
+                $latest = trim((string) @file_get_contents(self::LATEST_VERSION_URL));
+
+                if (preg_match('/^v?(\d+\.\d+\.\d+(?:[-+][A-Za-z0-9.\-]+)?)$/', $latest, $match) === 1) {
+                    return $match[1];
+                }
+
+                return $this->customModuleVersion();
+            },
+            86400
+        );
+    }
+
+    public function customModuleLatestVersionUrl(): string
+    {
+        return self::LATEST_VERSION_URL;
     }
 
     public function customModuleAuthorName(): string

@@ -2,11 +2,11 @@
 
 Potts Modern is a standalone, responsive heritage theme for webtrees 2.2.x. It combines a dark teal navigation header, parchment-inspired cards, modern SVG icons and configurable accessibility and layout options.
 
-This is a **beta release** intended for testing on non-production or well-backed-up webtrees sites.
+This is the first regular stable release after the 1.1.0 beta series.
 
-## Version 1.1.0-beta.62
+## Version 1.1.0
 
-This compatibility polish release improves wide shared-note/table handling and gives unknown module-like third-party top-level menu items a generic module icon instead of leaving them unstyled.
+This stable release promotes the tested 1.1.0-beta.62 theme to a regular release and adds update-service support for webtrees and Custom Module Manager. It includes the compatibility polish for wide shared-note/table handling and the generic module icon fallback for unknown module-like third-party top-level menu items.
 
 ## Translations
 
@@ -25,6 +25,7 @@ Contributors can edit the `.po` files with Poedit or a text editor, translating 
 - Contributor-ready gettext translation files
 - Optional larger controls, high contrast and reduced motion settings
 - Graceful styling for optional third-party history, story and book modules
+- Update-service support through `latest-version.txt`
 - No webtrees core-file modifications
 
 ## Compatibility
@@ -88,7 +89,7 @@ Potts Modern includes non-essential styling for some third-party modules, includ
 
 The Potts Historical Facts global region selector is styled so it remains with the utility/language controls, including when webtrees is displayed in translated languages.
 
-## Known beta considerations
+## Known considerations
 
 - The theme overrides the shared webtrees menu-item view to provide modern menu icons. Test custom modules that add unusual menu structures.
 - Third-party modules may require small CSS adjustments if they use custom markup.
