@@ -1,4 +1,11 @@
-# Changelog
+# 1.1.1
+
+- Adds layout-only integration for Potts Hero Slideshow v1.0.0+.
+- Detects homepage blocks containing `.ourfamily-hero` and marks them as the Potts Modern homepage hero.
+- Moves the hero block above the normal homepage columns so it can display as a full-width banner.
+- Removes the usual block/card header, padding and background around the hero block.
+- Passes Potts Modern colour variables through to the slideshow module.
+- Leaves slideshow markup, image styling, captions, transitions, selector dots, timing and upload handling to Potts Hero Slideshow.
 
 ## 1.1.0
 - Promoted the tested 1.1.0-beta.62 theme to a regular stable release.

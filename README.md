@@ -2,11 +2,13 @@
 
 Potts Modern is a standalone, responsive heritage theme for webtrees 2.2.x. It combines a dark teal navigation header, parchment-inspired cards, modern SVG icons and configurable accessibility and layout options.
 
-This is the first regular stable release after the 1.1.0 beta series.
+This is a small stable compatibility release that adds enhanced layout support for Potts Hero Slideshow while keeping the slideshow module independent.
 
-## Version 1.1.0
+## Version 1.1.1
 
-This stable release promotes the tested 1.1.0-beta.62 theme to a regular release and adds update-service support for webtrees and Custom Module Manager. It includes the compatibility polish for wide shared-note/table handling and the generic module icon fallback for unknown module-like third-party top-level menu items.
+This release adds layout-only integration for Potts Hero Slideshow v1.0.0+. Potts Modern can now detect the slideshow homepage block, move it above the standard homepage columns and remove the usual block/card chrome so it presents as a full-width hero area.
+
+Potts Hero Slideshow remains an independent module and continues to control its own image styling, captions, transitions, selector dots, timing and upload handling.
 
 ## Translations
 
@@ -24,7 +26,7 @@ Contributors can edit the `.po` files with Poedit or a text editor, translating 
 - Configurable colour palette, spacing, page width, corners and shadows
 - Contributor-ready gettext translation files
 - Optional larger controls, high contrast and reduced motion settings
-- Graceful styling for optional third-party history, story and book modules
+- Graceful styling for optional third-party history, story, book and hero slideshow modules
 - Update-service support through `latest-version.txt`
 - No webtrees core-file modifications
 
@@ -85,9 +87,15 @@ The administration page provides options for:
 
 ## Optional integrations
 
-Potts Modern includes non-essential styling for some third-party modules, including history-region selectors, stories and family-book interfaces. These integrations are optional. The theme should continue to operate when those modules are not installed.
+Potts Modern includes non-essential styling for some third-party modules, including history-region selectors, stories, family-book interfaces and Potts Hero Slideshow homepage placement. These integrations are optional. The theme should continue to operate when those modules are not installed.
 
 The Potts Historical Facts global region selector is styled so it remains with the utility/language controls, including when webtrees is displayed in translated languages.
+
+## Optional homepage hero banner
+
+Potts Modern includes layout-only support for **Potts Hero Slideshow**. If the slideshow block is added to the tree homepage, the theme can move the block above the normal homepage columns and remove the usual block/card chrome so the slideshow presents as a full-width hero area.
+
+The slideshow module itself controls the hero markup, image frame, captions, transitions, selector dots, timing and upload handling. This keeps Potts Hero Slideshow usable with other webtrees themes and avoids duplicate slideshow behaviour in Potts Modern.
 
 ## Known considerations
 

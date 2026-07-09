@@ -1,6 +1,6 @@
 /*
  * Potts Modern Theme for webtrees
- * Version: 1.0.1
+ * Version: 1.1.1
  * Purpose: standalone modern heritage theme for webtrees.
  */
 
@@ -10610,3 +10610,311 @@ main .potts-scroll-table {
   word-break: normal;
 }
 
+/* ------------------------------------------------------------
+   Homepage content helper cards for HTML blocks
+   ------------------------------------------------------------
+
+   These classes are intentionally generic and opt-in. They style ordinary
+   webtrees HTML blocks without changing the underlying block markup.
+*/
+
+.ourfamily-glance {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: clamp(0.75rem, 1.5vw, 1rem) !important;
+  margin: 0 !important;
+}
+
+.ourfamily-glance-item {
+  position: relative !important;
+  min-width: 0 !important;
+  padding: 0.95rem 1rem 0.95rem 1.08rem !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(185, 134, 56, 0.26) !important;
+  border-left: 5px solid var(--potts-gold) !important;
+  border-radius: var(--potts-radius-sm) !important;
+  background:
+    linear-gradient(135deg, rgba(185, 134, 56, 0.13), rgba(255, 255, 255, 0.72) 58%),
+    var(--potts-card-soft) !important;
+  box-shadow: 0 8px 20px rgba(35, 48, 56, 0.07) !important;
+}
+
+.ourfamily-glance-item::after {
+  content: "";
+  position: absolute;
+  right: -1.6rem;
+  top: -1.6rem;
+  width: 4.2rem;
+  height: 4.2rem;
+  border-radius: 999px;
+  background: rgba(24, 90, 113, 0.055);
+  pointer-events: none;
+}
+
+.ourfamily-glance-item strong {
+  display: block !important;
+  margin: 0 0 0.18rem !important;
+  color: var(--potts-blue-dark) !important;
+  font-size: clamp(1.35rem, 2.4vw, 1.68rem) !important;
+  font-weight: 850 !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.025em !important;
+}
+
+.ourfamily-glance-item span {
+  display: block !important;
+  color: var(--potts-muted) !important;
+  font-size: 0.9rem !important;
+  font-weight: 720 !important;
+  line-height: 1.25 !important;
+}
+
+.ourfamily-start-links {
+  display: grid !important;
+  gap: 0.65rem !important;
+  margin: 0 !important;
+}
+
+.ourfamily-start-links a {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 0.75rem !important;
+  padding: 0.78rem 0.9rem !important;
+  border: 1px solid rgba(24, 90, 113, 0.14) !important;
+  border-radius: var(--potts-radius-sm) !important;
+  background: rgba(255, 255, 255, 0.72) !important;
+  color: var(--potts-blue) !important;
+  font-weight: 780 !important;
+  text-decoration: none !important;
+  box-shadow: 0 6px 16px rgba(35, 48, 56, 0.055) !important;
+}
+
+.ourfamily-start-links a::after {
+  content: "›";
+  color: var(--potts-gold) !important;
+  font-size: 1.25rem !important;
+  font-weight: 850 !important;
+  line-height: 1 !important;
+}
+
+.ourfamily-start-links a:hover,
+.ourfamily-start-links a:focus {
+  background: var(--potts-blue-soft) !important;
+  color: var(--potts-blue-dark) !important;
+  transform: translateY(-1px);
+}
+
+.ourfamily-book-grid,
+.ourfamily-highlight-list {
+  display: grid !important;
+  gap: 0.9rem !important;
+  margin: 0 !important;
+}
+
+.ourfamily-book-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+.ourfamily-book-card,
+.ourfamily-highlight {
+  padding: 1rem !important;
+  border: 1px solid rgba(35, 48, 56, 0.11) !important;
+  border-radius: var(--potts-radius-sm) !important;
+  background: rgba(255, 255, 255, 0.74) !important;
+  box-shadow: 0 7px 18px rgba(35, 48, 56, 0.06) !important;
+}
+
+.ourfamily-book-card strong,
+.ourfamily-highlight strong {
+  display: block !important;
+  margin-bottom: 0.28rem !important;
+  color: var(--potts-blue) !important;
+  font-weight: 850 !important;
+}
+
+.ourfamily-book-card p,
+.ourfamily-highlight p {
+  margin: 0 !important;
+}
+
+.ourfamily-highlight {
+  border-left: 5px solid var(--potts-gold) !important;
+  background: linear-gradient(90deg, rgba(185, 134, 56, 0.1), rgba(255, 255, 255, 0.72)) !important;
+}
+
+.ourfamily-cultural-warning {
+  padding: 1rem !important;
+  border: 1px solid rgba(185, 134, 56, 0.34) !important;
+  border-left: 5px solid var(--potts-gold) !important;
+  border-radius: var(--potts-radius-sm) !important;
+  background: rgba(255, 248, 229, 0.82) !important;
+}
+
+.ourfamily-cultural-warning p:last-child,
+.ourfamily-book-card p:last-child,
+.ourfamily-highlight p:last-child {
+  margin-bottom: 0 !important;
+}
+
+@media (max-width: 991.98px) {
+  .ourfamily-glance,
+  .ourfamily-book-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .ourfamily-glance,
+  .ourfamily-book-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .ourfamily-glance-item {
+    padding: 0.85rem 0.9rem 0.85rem 1rem !important;
+  }
+}
+
+
+
+/* ------------------------------------------------------------
+   Balanced homepage columns and sidebar-friendly statistic tiles
+   ------------------------------------------------------------
+
+   webtrees supplies the home page as a main column and a side column.  The
+   default Bootstrap split is close to two-thirds/one-third, which makes rich
+   sidebar blocks such as "OurFamily at a glance" feel cramped.  This keeps
+   the familiar two-column structure, but gives the sidebar more useful room
+   on wide screens and then stacks cleanly on smaller screens.
+*/
+
+@media (min-width: 992px) {
+  body.potts-home-page .potts-home-content > .row,
+  body.potts-home-page .potts-home-content .wt-blocks-page > .row {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1.45fr) minmax(320px, 0.95fr) !important;
+    gap: clamp(1.25rem, 2.2vw, 1.85rem) !important;
+    align-items: start !important;
+  }
+
+  body.potts-home-page .potts-home-content > .row > [class*="col"],
+  body.potts-home-page .potts-home-content .wt-blocks-page > .row > [class*="col"] {
+    flex: none !important;
+    width: auto !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+body.potts-home-page .potts-home-glance .ourfamily-glance,
+body.potts-home-page .wt-side-block .ourfamily-glance,
+body.potts-home-page .potts-home-content > .row > [class*="col"]:last-child .ourfamily-glance,
+body.potts-home-page .potts-home-content .wt-blocks-page > .row > [class*="col"]:last-child .ourfamily-glance {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+body.potts-home-page .ourfamily-glance-item strong {
+  white-space: nowrap !important;
+  overflow-wrap: normal !important;
+  word-break: normal !important;
+}
+
+body.potts-home-page a.ourfamily-glance-item,
+body.potts-home-page .ourfamily-glance-item:is(a) {
+  display: block !important;
+  color: inherit !important;
+  text-decoration: none !important;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    border-color 0.18s ease,
+    background 0.18s ease !important;
+}
+
+body.potts-home-page a.ourfamily-glance-item:hover,
+body.potts-home-page a.ourfamily-glance-item:focus {
+  transform: translateY(-2px);
+  border-color: rgba(24, 90, 113, 0.32) !important;
+  box-shadow: 0 12px 26px rgba(35, 48, 56, 0.12) !important;
+}
+
+body.potts-home-page a.ourfamily-glance-item:focus-visible {
+  outline: 3px solid rgba(24, 90, 113, 0.24) !important;
+  outline-offset: 3px !important;
+}
+
+@media (max-width: 575.98px) {
+  body.potts-home-page .potts-home-glance .ourfamily-glance,
+  body.potts-home-page .wt-side-block .ourfamily-glance,
+  body.potts-home-page .potts-home-content > .row > [class*="col"]:last-child .ourfamily-glance,
+  body.potts-home-page .potts-home-content .wt-blocks-page > .row > [class*="col"]:last-child .ourfamily-glance {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+
+/* ------------------------------------------------------------
+   Potts Hero Slideshow integration
+
+   Potts Hero Slideshow v1.0.0+ owns its own component styling,
+   transitions, selector dots, captions and photo-frame settings. Potts
+   Modern only provides homepage placement, block chrome removal and
+   theme colour variables. This avoids duplicate slideshow behaviour and
+   lets the slideshow module work independently with other webtrees themes.
+   ------------------------------------------------------------ */
+body.potts-home-page .potts-home-hero {
+  grid-column: 1 / -1;
+  width: 100%;
+  max-width: none;
+  margin: 0 0 var(--potts-setting-gap, 1rem);
+  overflow: visible !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body.potts-home-page .potts-home-hero :is(
+  .wt-block-header,
+  .wt-side-block-header,
+  .card-header,
+  .blockheader,
+  .block-header,
+  .panel-heading,
+  .box-header
+) {
+  display: none !important;
+}
+
+body.potts-home-page .potts-home-hero :is(
+  .wt-block-content,
+  .wt-side-block-content,
+  .card-body,
+  .blockcontent,
+  .block-content,
+  .panel-body,
+  .box-body
+) {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body.potts-home-page .potts-home-hero .ourfamily-hero {
+  --potts-hero-primary: var(--potts-blue, #185a71);
+  --potts-hero-dark: var(--potts-blue-dark, #123b4b);
+  --potts-hero-accent: var(--potts-gold, #b98638);
+  --potts-hero-surface: var(--potts-bg-2, #fffaf2);
+  --potts-hero-text: var(--potts-ink, #233038);
+  --potts-hero-muted: var(--potts-muted, #65717a);
+  --potts-hero-radius: var(--potts-radius, 20px);
+  --potts-hero-shadow: var(--potts-shadow, 0 18px 46px rgba(35, 48, 56, 0.13));
+}
+
+@media (max-width: 767.98px) {
+  body.potts-home-page .potts-home-hero {
+    margin-bottom: calc(var(--potts-setting-gap, 1rem) * 0.8);
+  }
+}

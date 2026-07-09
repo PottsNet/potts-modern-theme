@@ -74,7 +74,7 @@ final class PottsModernTheme extends AbstractModule implements ModuleThemeInterf
         'REDUCED_MOTION'       => '0',
     ];
 
-    private const CUSTOM_VERSION = '1.1.0';
+    private const CUSTOM_VERSION = '1.1.1';
     private const LATEST_VERSION_URL = 'https://raw.githubusercontent.com/PottsNet/potts-modern-theme/main/latest-version.txt';
 
     public function title(): string

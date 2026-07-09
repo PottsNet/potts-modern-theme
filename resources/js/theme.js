@@ -2771,6 +2771,10 @@
   }
 
   function classifyHomeBlock(block) {
+    if (block && block.querySelector && block.querySelector('.ourfamily-hero')) {
+      block.classList.add('potts-home-hero');
+    }
+
     const heading = blockHeading(block);
 
     if (!heading) {
@@ -2779,12 +2783,18 @@
 
     const classes = [
       ['welcome', 'potts-home-welcome'],
+      ['at a glance', 'potts-home-glance'],
+      ['ourfamily at a glance', 'potts-home-glance'],
+      ['statistics', 'potts-home-statistics'],
       ['historical facts', 'potts-home-history'],
       ['slide show', 'potts-home-slideshow'],
       ['slideshow', 'potts-home-slideshow'],
       ['on this day', 'potts-home-on-this-day'],
       ['family history books', 'potts-home-books'],
-      ['family books', 'potts-home-books']
+      ['family books', 'potts-home-books'],
+      ['homepage hero', 'potts-home-hero'],
+      ['hero banner', 'potts-home-hero'],
+      ['ourfamily hero', 'potts-home-hero']
     ];
 
     for (const pair of classes) {
@@ -2795,6 +2805,32 @@
     }
   }
 
+  function placeHomeHero(main) {
+    if (!main) {
+      return;
+    }
+
+    const hero = main.querySelector('.potts-home-hero');
+
+    if (!hero || hero.classList.contains('potts-home-hero-placed')) {
+      return;
+    }
+
+    const currentRow = hero.closest('.row');
+
+    if (currentRow && currentRow.parentElement) {
+      currentRow.parentElement.insertBefore(hero, currentRow);
+    } else if (main.firstElementChild && main.firstElementChild !== hero) {
+      main.insertBefore(hero, main.firstElementChild);
+    }
+
+    hero.classList.add('potts-home-hero-placed');
+  }
+
+  // Potts Hero Slideshow is now an independent module.
+  // Potts Modern only detects and places the hero block; the slideshow module
+  // owns slide activation, dots, transitions, captions and timing.
+
   function enhanceHomePage() {
     const blocks = Array.from(document.querySelectorAll(
       '.wt-block, .wt-side-block, main .block, main .card, main .panel, main .box'
@@ -2804,6 +2840,7 @@
 
     const hasHomeMarkers = blocks.some(function (block) {
       return block.classList.contains('potts-home-welcome') ||
+        block.classList.contains('potts-home-hero') ||
         block.classList.contains('potts-home-history') ||
         block.classList.contains('potts-home-slideshow') ||
         block.classList.contains('potts-home-on-this-day');
@@ -2818,6 +2855,7 @@
     const main = document.querySelector('main, #content, #main, #main-content, #page');
     if (main) {
       main.classList.add('potts-home-content');
+      placeHomeHero(main);
     }
 
     const ribbon = findPhotoRibbon();
@@ -3690,6 +3728,7 @@
     enhanceFamilyPopovers();
   }
 
+
   function scheduleEnhancements() {
     if (refreshPending) {
       return;
@@ -3786,6 +3825,8 @@
         scheduleEnhancements();
       }
     }, true);
+
+
 
     const individualMobileQuery = window.matchMedia('(max-width: 767.98px)');
     if (typeof individualMobileQuery.addEventListener === 'function') {
