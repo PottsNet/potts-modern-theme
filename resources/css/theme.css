@@ -2337,7 +2337,7 @@ a:has(img[src$="/menu/story.png"])::before { background-image: var(--potts-icon-
 a:has(img[src*="book"])::before { background-image: var(--potts-icon-books) !important; }
 
 /* Calendar page: remove the old strong xenea blue blocks. */
-main:has(.wt-page-options) .wt-page-options {
+main table.wt-page-options {
   width: 100% !important;
   margin: 1rem auto 0.7rem !important;
   border-collapse: separate !important;
@@ -2349,24 +2349,24 @@ main:has(.wt-page-options) .wt-page-options {
   box-shadow: var(--potts-shadow-soft) !important;
 }
 
-main:has(.wt-page-options) .wt-page-options tr {
+main table.wt-page-options tr {
   background: transparent !important;
 }
 
-main:has(.wt-page-options) .wt-page-options th,
-main:has(.wt-page-options) .wt-page-options td {
+main table.wt-page-options th,
+main table.wt-page-options td {
   border: 0 !important;
   border-bottom: 1px solid rgba(35, 48, 56, 0.09) !important;
   padding: 0.62rem 0.72rem !important;
   vertical-align: middle !important;
 }
 
-main:has(.wt-page-options) .wt-page-options tr:last-child th,
-main:has(.wt-page-options) .wt-page-options tr:last-child td {
+main table.wt-page-options tr:last-child th,
+main table.wt-page-options tr:last-child td {
   border-bottom: 0 !important;
 }
 
-main:has(.wt-page-options) .wt-page-options-label {
+main table.wt-page-options-label {
   width: 6rem !important;
   min-width: 6rem !important;
   background: rgba(24, 90, 113, 0.09) !important;
@@ -2375,20 +2375,20 @@ main:has(.wt-page-options) .wt-page-options-label {
   text-align: left !important;
 }
 
-main:has(.wt-page-options) .wt-page-options-value {
+main table.wt-page-options-value {
   background: rgba(255, 255, 255, 0.76) !important;
   color: var(--potts-ink) !important;
 }
 
 /* Remove separators visually and turn day/month links into small chips. */
-main:has(.wt-page-options) .wt-page-options tr:nth-child(1) .wt-page-options-value,
-main:has(.wt-page-options) .wt-page-options tr:nth-child(2) .wt-page-options-value {
+main table.wt-page-options tr:nth-child(1) .wt-page-options-value,
+main table.wt-page-options tr:nth-child(2) .wt-page-options-value {
   font-size: 0 !important;
   line-height: 1 !important;
 }
 
-main:has(.wt-page-options) .wt-page-options tr:nth-child(1) .wt-page-options-value a,
-main:has(.wt-page-options) .wt-page-options tr:nth-child(2) .wt-page-options-value a {
+main table.wt-page-options tr:nth-child(1) .wt-page-options-value a,
+main table.wt-page-options tr:nth-child(2) .wt-page-options-value a {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -2404,15 +2404,15 @@ main:has(.wt-page-options) .wt-page-options tr:nth-child(2) .wt-page-options-val
   text-decoration: none !important;
 }
 
-main:has(.wt-page-options) .wt-page-options tr:nth-child(1) .wt-page-options-value a:hover,
-main:has(.wt-page-options) .wt-page-options tr:nth-child(2) .wt-page-options-value a:hover {
+main table.wt-page-options tr:nth-child(1) .wt-page-options-value a:hover,
+main table.wt-page-options tr:nth-child(2) .wt-page-options-value a:hover {
   background: rgba(185, 134, 56, 0.14) !important;
   border-color: rgba(185, 134, 56, 0.2) !important;
 }
 
-main:has(.wt-page-options) .wt-page-options a.error,
-main:has(.wt-page-options) .wt-page-options a:has(.error),
-main:has(.wt-page-options) .wt-page-options .error {
+main table.wt-page-options a.error,
+main table.wt-page-options a:has(.error),
+main table.wt-page-options .error {
   background: var(--potts-blue) !important;
   color: #ffffff !important;
   border-color: var(--potts-blue) !important;
@@ -2421,7 +2421,7 @@ main:has(.wt-page-options) .wt-page-options .error {
 }
 
 /* Undo the generic report form card treatment for inline calendar controls. */
-main:has(.wt-page-options) .wt-page-options form {
+main table.wt-page-options form {
   display: inline-flex !important;
   align-items: center !important;
   gap: 0.4rem !important;
@@ -2436,7 +2436,7 @@ main:has(.wt-page-options) .wt-page-options form {
   overflow: visible !important;
 }
 
-main:has(.wt-page-options) .wt-page-options input[type="text"] {
+main table.wt-page-options input[type="text"] {
   width: 4.8rem !important;
   min-width: 4.8rem !important;
   padding: 0.42rem 0.55rem !important;
@@ -2444,7 +2444,7 @@ main:has(.wt-page-options) .wt-page-options input[type="text"] {
   text-align: center !important;
 }
 
-main:has(.wt-page-options) .wt-page-options select {
+main table.wt-page-options select {
   width: auto !important;
   min-width: 13rem !important;
   max-width: 100% !important;
@@ -2456,14 +2456,14 @@ main:has(.wt-page-options) .wt-page-options select {
 }
 
 /* Day/month/year and calendar-system navigation below the filters. */
-main:has(.wt-page-options) .wt-page-options + table.w-100 {
+main table.wt-page-options + table.w-100 {
   margin: 0.6rem auto 1rem !important;
   border-collapse: separate !important;
   border-spacing: 0.5rem 0 !important;
   background: transparent !important;
 }
 
-main:has(.wt-page-options) .wt-page-options + table.w-100 td {
+main table.wt-page-options + table.w-100 td {
   padding: 0.65rem 0.8rem !important;
   border: 1px solid var(--potts-line) !important;
   border-radius: 14px !important;
@@ -10611,6 +10611,7 @@ main .potts-scroll-table {
 }
 
 /* ------------------------------------------------------------
+   Version 1.1.1-beta.1
    Homepage content helper cards for HTML blocks
    ------------------------------------------------------------
 
@@ -10778,6 +10779,7 @@ main .potts-scroll-table {
 
 
 /* ------------------------------------------------------------
+   Version 1.1.1-beta.2
    Balanced homepage columns and sidebar-friendly statistic tiles
    ------------------------------------------------------------
 
@@ -10916,5 +10918,597 @@ body.potts-home-page .potts-home-hero .ourfamily-hero {
 @media (max-width: 767.98px) {
   body.potts-home-page .potts-home-hero {
     margin-bottom: calc(var(--potts-setting-gap, 1rem) * 0.8);
+  }
+}
+
+/* ------------------------------------------------------------
+   Potts Modern Theme 1.1.1-beta.30
+   Page-aware webtrees search/report form repair
+   ------------------------------------------------------------
+   webtrees uses several different form systems: the General Search view,
+   Advanced Search, older chart/report tables and autocomplete widgets.
+   Keep the native row/table layout where possible and apply width fixes only
+   to forms that the theme JavaScript has classified.
+*/
+
+main form.potts-general-search-form,
+main form.potts-advanced-search-form,
+main form.potts-branches-form,
+main form.potts-chart-options-form,
+main form.potts-report-options-form {
+  max-width: var(--potts-page-width) !important;
+  margin: 1.15rem auto 1.5rem !important;
+  padding: 1rem !important;
+  background: rgba(255,255,255,.76) !important;
+  border: 1px solid var(--potts-line) !important;
+  border-radius: var(--potts-radius) !important;
+  box-shadow: var(--potts-shadow-soft) !important;
+  overflow: visible !important;
+}
+
+main :is(form.potts-general-search-form, form.potts-advanced-search-form, form.potts-branches-form, form.potts-chart-options-form, form.potts-report-options-form) table {
+  width: 100% !important;
+  max-width: 100% !important;
+  table-layout: auto !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+main :is(form.potts-general-search-form, form.potts-advanced-search-form, form.potts-branches-form, form.potts-chart-options-form, form.potts-report-options-form) tr.potts-legacy-form-row {
+  background: transparent !important;
+}
+
+main :is(form.potts-general-search-form, form.potts-advanced-search-form, form.potts-branches-form, form.potts-chart-options-form, form.potts-report-options-form) :is(td, th).potts-legacy-form-label,
+main :is(form.potts-general-search-form, form.potts-advanced-search-form, form.potts-branches-form, form.potts-chart-options-form, form.potts-report-options-form) :is(td, th).descriptionbox {
+  width: 13.5rem !important;
+  min-width: 13.5rem !important;
+  max-width: 18rem !important;
+  padding: .72rem .95rem !important;
+  vertical-align: middle !important;
+  background: rgba(24, 90, 113, .08) !important;
+  color: var(--potts-blue-dark) !important;
+  font-weight: 850 !important;
+  text-align: left !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  overflow-wrap: normal !important;
+  word-break: normal !important;
+  line-height: 1.3 !important;
+}
+
+main :is(form.potts-branches-form, form.potts-advanced-search-form) :is(td, th).potts-legacy-form-label,
+main :is(form.potts-branches-form, form.potts-advanced-search-form) :is(td, th).descriptionbox,
+main :is(form.potts-general-search-form) :is(td, th).potts-legacy-form-label,
+main :is(form.potts-general-search-form) :is(td, th).descriptionbox {
+  width: 15.5rem !important;
+  min-width: 15.5rem !important;
+  max-width: 20rem !important;
+}
+
+main :is(form.potts-general-search-form, form.potts-advanced-search-form, form.potts-branches-form, form.potts-chart-options-form, form.potts-report-options-form) :is(td, th).potts-legacy-form-value,
+main :is(form.potts-general-search-form, form.potts-advanced-search-form, form.potts-branches-form, form.potts-chart-options-form, form.potts-report-options-form) :is(td, th).optionbox,
+main :is(form.potts-general-search-form, form.potts-advanced-search-form, form.potts-branches-form, form.potts-chart-options-form, form.potts-report-options-form) :is(td, th).value {
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  padding: .62rem .72rem !important;
+  vertical-align: middle !important;
+  overflow: visible !important;
+  text-align: left !important;
+  background: rgba(255,255,255,.72) !important;
+}
+
+/* General Search: one wide search box and a tidy checkbox row. */
+main form.potts-general-search-form tr.potts-general-search-query-row .potts-legacy-form-value,
+main form.potts-general-search-form tr.potts-general-search-query-row :is(td.optionbox, td.value) {
+  width: 100% !important;
+}
+
+main form.potts-general-search-form tr.potts-general-search-query-row :is(.input-group, .twitter-typeahead, .select2-container),
+main form.potts-general-search-form tr.potts-general-search-query-row input:is([type="text"], [type="search"], :not([type])),
+main form.potts-general-search-form tr.potts-general-search-query-row .form-control {
+  display: flex !important;
+  width: min(100%, 68rem) !important;
+  min-width: min(28rem, calc(100vw - 28rem)) !important;
+  max-width: 100% !important;
+  text-align: left !important;
+  box-sizing: border-box !important;
+}
+
+main form.potts-general-search-form tr.potts-general-search-query-row .input-group > :is(input[type="text"], input[type="search"], .form-control) {
+  flex: 1 1 auto !important;
+  width: 100% !important;
+  min-width: 0 !important;
+}
+
+main form.potts-general-search-form tr.potts-legacy-choice-row .potts-legacy-form-value,
+main form.potts-general-search-form tr.potts-legacy-choice-row :is(td.optionbox, td.value) {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: .65rem 2.2rem !important;
+}
+
+/* Chart/report/advanced selectors: wide where useful, compact where not. */
+main :is(form.potts-advanced-search-form, form.potts-branches-form, form.potts-chart-options-form, form.potts-report-options-form) tr.potts-legacy-wide-field-row :is(.input-group, .twitter-typeahead, .select2-container, .ts-wrapper, .choices),
+main :is(form.potts-advanced-search-form, form.potts-branches-form, form.potts-chart-options-form, form.potts-report-options-form) tr.potts-legacy-wide-field-row input:is([type="text"], [type="search"], [type="email"], [type="url"], :not([type])),
+main :is(form.potts-advanced-search-form, form.potts-branches-form, form.potts-chart-options-form, form.potts-report-options-form) tr.potts-legacy-wide-field-row textarea,
+main :is(form.potts-advanced-search-form, form.potts-branches-form, form.potts-chart-options-form, form.potts-report-options-form) tr.potts-legacy-wide-field-row .form-control {
+  width: min(100%, 58rem) !important;
+  min-width: min(22rem, 100%) !important;
+  max-width: 100% !important;
+  text-align: left !important;
+  box-sizing: border-box !important;
+}
+
+main :is(form.potts-chart-options-form, form.potts-report-options-form) tr.potts-legacy-compact-number-row input,
+main :is(form.potts-chart-options-form, form.potts-report-options-form) input[type="number"],
+main :is(form.potts-chart-options-form, form.potts-report-options-form) input[name*="generation" i],
+main :is(form.potts-chart-options-form, form.potts-report-options-form) input[id*="generation" i],
+main :is(form.potts-chart-options-form, form.potts-report-options-form) input[name*="year" i],
+main :is(form.potts-chart-options-form, form.potts-report-options-form) input[id*="year" i] {
+  width: 8rem !important;
+  min-width: 6rem !important;
+  max-width: 12rem !important;
+  display: inline-block !important;
+  text-align: left !important;
+}
+
+main :is(form.potts-general-search-form, form.potts-advanced-search-form, form.potts-branches-form, form.potts-chart-options-form, form.potts-report-options-form) input:is([type="checkbox"], [type="radio"]),
+main :is(form.potts-general-search-form, form.potts-advanced-search-form, form.potts-branches-form, form.potts-chart-options-form, form.potts-report-options-form) .form-check-input {
+  -webkit-appearance: auto !important;
+  appearance: auto !important;
+  width: 1.15rem !important;
+  height: 1.15rem !important;
+  min-width: 1.15rem !important;
+  min-height: 1.15rem !important;
+  max-width: 1.15rem !important;
+  max-height: 1.15rem !important;
+  padding: 0 !important;
+  margin: 0 .45rem .12rem 0 !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+  flex: 0 0 auto !important;
+  box-shadow: none !important;
+  accent-color: var(--potts-blue) !important;
+}
+
+main :is(form.potts-general-search-form, form.potts-advanced-search-form, form.potts-branches-form, form.potts-chart-options-form, form.potts-report-options-form) button[type="submit"],
+main :is(form.potts-general-search-form, form.potts-advanced-search-form, form.potts-branches-form, form.potts-chart-options-form, form.potts-report-options-form) input[type="submit"] {
+  background: var(--potts-blue) !important;
+  color: #fff !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  padding: .7rem 1.1rem !important;
+  font-weight: 850 !important;
+  box-shadow: 0 10px 24px rgba(24,90,113,.22) !important;
+}
+
+/* Dynamically-created autocomplete/typeahead fields. */
+html body :is(.select2-container, .select2-drop, .select2-drop-active, .select2-dropdown, .twitter-typeahead, .tt-menu, .ts-wrapper, .ts-dropdown, .ui-autocomplete, .potts-modern-wide-autocomplete) {
+  max-width: calc(100vw - 2rem) !important;
+  box-sizing: border-box !important;
+  text-align: left !important;
+}
+
+html body :is(.select2-search-field, .select2-search, .select2-container .select2-search--dropdown, .select2-dropdown .select2-search, .ts-control, .ts-dropdown-content, .twitter-typeahead) {
+  width: 100% !important;
+  max-width: 100% !important;
+  text-align: left !important;
+  box-sizing: border-box !important;
+}
+
+html body :is(.select2-input, .select2-search-field input, .select2-search__field, textarea.select2-search__field, input.select2-search__field, .select2-container input[type="text"], .select2-container input[type="search"], .select2-dropdown input[type="text"], .select2-dropdown input[type="search"], .ts-control input, .ts-dropdown input, .tt-input, .tt-hint, .ui-autocomplete-input, input[aria-autocomplete="list"], input[role="combobox"], input.autocomplete, .potts-modern-wide-autocomplete-field) {
+  min-width: min(20rem, calc(100vw - 3rem)) !important;
+  max-width: 100% !important;
+  text-align: left !important;
+  box-sizing: border-box !important;
+}
+
+html body :is(.select2-container--open .select2-dropdown, .select2-drop, .select2-drop-active, .tt-menu, .ui-autocomplete, .ts-dropdown) {
+  min-width: min(30rem, calc(100vw - 2rem)) !important;
+  max-width: calc(100vw - 2rem) !important;
+}
+
+@media (max-width: 760px) {
+  main :is(form.potts-general-search-form, form.potts-advanced-search-form, form.potts-branches-form, form.potts-chart-options-form, form.potts-report-options-form) tr,
+  main :is(form.potts-general-search-form, form.potts-advanced-search-form, form.potts-branches-form, form.potts-chart-options-form, form.potts-report-options-form) :is(td, th).potts-legacy-form-label,
+  main :is(form.potts-general-search-form, form.potts-advanced-search-form, form.potts-branches-form, form.potts-chart-options-form, form.potts-report-options-form) :is(td, th).potts-legacy-form-value {
+    display: block !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+
+  main form.potts-general-search-form tr.potts-general-search-query-row :is(.input-group, .twitter-typeahead, .select2-container),
+  main form.potts-general-search-form tr.potts-general-search-query-row input:is([type="text"], [type="search"], :not([type])),
+  main :is(form.potts-advanced-search-form, form.potts-branches-form, form.potts-chart-options-form, form.potts-report-options-form) tr.potts-legacy-wide-field-row :is(.input-group, .twitter-typeahead, .select2-container, input[type="text"], input[type="search"], .form-control) {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+}
+
+
+/* ------------------------------------------------------------
+   Potts Modern Theme 1.1.1-beta.31
+   Targeted refinements for legacy report/search forms after live testing.
+   Keep the chart forms that now work, but handle report forms that webtrees
+   does not identify with a body class and restore the General search width.
+*/
+
+/* General Search: keep the label column, but give the actual query control room. */
+main form.potts-general-search-form tr.potts-general-search-query-row :is(td.optionbox, td.value, td.potts-legacy-form-value) {
+  width: auto !important;
+  max-width: none !important;
+  overflow: visible !important;
+}
+
+main form.potts-general-search-form tr.potts-general-search-query-row :is(.input-group, .twitter-typeahead, .select2-container) {
+  display: flex !important;
+  align-items: stretch !important;
+  width: min(100%, 74rem) !important;
+  min-width: min(46rem, calc(100vw - 24rem)) !important;
+  max-width: 100% !important;
+}
+
+main form.potts-general-search-form tr.potts-general-search-query-row :is(input[type="text"], input[type="search"], input:not([type]), .form-control) {
+  width: 100% !important;
+  min-width: min(42rem, calc(100vw - 26rem)) !important;
+  max-width: 100% !important;
+  text-align: left !important;
+}
+
+main form.potts-general-search-form tr.potts-general-search-query-row .input-group > :is(input[type="text"], input[type="search"], input:not([type]), .form-control) {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+}
+
+/* Report option pages such as Births/Lifespans use old table cells and need a
+   wider label column than the default webtrees layout. */
+main form.potts-report-options-form :is(td, th).potts-legacy-form-label,
+main form.potts-report-options-form :is(td, th).descriptionbox {
+  width: 17rem !important;
+  min-width: 17rem !important;
+  max-width: 22rem !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  line-height: 1.28 !important;
+}
+
+main form.potts-report-options-form :is(td, th).potts-legacy-form-value,
+main form.potts-report-options-form :is(td, th).optionbox,
+main form.potts-report-options-form :is(td, th).value {
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  overflow: visible !important;
+}
+
+main form.potts-report-options-form tr.potts-legacy-wide-field-row :is(.input-group, .twitter-typeahead, .select2-container, .ts-wrapper, .choices),
+main form.potts-report-options-form tr.potts-legacy-wide-field-row :is(input[type="text"], input[type="search"], input[type="email"], input[type="url"], input:not([type]), textarea, .form-control) {
+  width: min(100%, 62rem) !important;
+  min-width: min(28rem, 100%) !important;
+  max-width: 100% !important;
+  text-align: left !important;
+  box-sizing: border-box !important;
+}
+
+/* Keep compact report controls compact. */
+main form.potts-report-options-form :is(select, .form-select) {
+  max-width: min(18rem, 100%) !important;
+}
+
+main form.potts-report-options-form tr.potts-legacy-compact-number-row input,
+main form.potts-report-options-form input[type="number"],
+main form.potts-report-options-form input[name*="generation" i],
+main form.potts-report-options-form input[id*="generation" i],
+main form.potts-report-options-form input[name*="year" i],
+main form.potts-report-options-form input[id*="year" i] {
+  width: 8rem !important;
+  min-width: 6rem !important;
+  max-width: 12rem !important;
+}
+
+@media (max-width: 760px) {
+  main form.potts-general-search-form tr.potts-general-search-query-row :is(.input-group, .twitter-typeahead, .select2-container),
+  main form.potts-general-search-form tr.potts-general-search-query-row :is(input[type="text"], input[type="search"], input:not([type]), .form-control),
+  main form.potts-report-options-form tr.potts-legacy-wide-field-row :is(.input-group, .twitter-typeahead, .select2-container, input[type="text"], input[type="search"], .form-control) {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  main form.potts-report-options-form :is(td, th).potts-legacy-form-label,
+  main form.potts-report-options-form :is(td, th).descriptionbox {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+}
+
+
+/* ------------------------------------------------------------
+   Potts Modern Theme 1.1.1-beta.32
+   Final targeted pass for webtrees legacy search/report forms.
+   Keep the now-good chart pages stable, while fixing General Search
+   and report pages such as Births/Marriages/Lifespans.
+   ------------------------------------------------------------ */
+
+/* General search: keep the first column readable and give the query field the
+   remaining row width.  The calendar button remains attached to the right. */
+main form.potts-general-search-form tr.potts-general-search-query-row > :is(td, th).potts-legacy-form-label,
+main form.potts-general-search-form tr.potts-general-search-query-row > :is(td, th).descriptionbox {
+  width: 12rem !important;
+  min-width: 12rem !important;
+  max-width: 16rem !important;
+}
+
+main form.potts-general-search-form tr.potts-general-search-query-row > :is(td, th).potts-legacy-form-value,
+main form.potts-general-search-form tr.potts-general-search-query-row > :is(td, th).optionbox,
+main form.potts-general-search-form tr.potts-general-search-query-row > :is(td, th).value {
+  width: calc(100% - 12rem) !important;
+  max-width: none !important;
+  padding-right: 1rem !important;
+}
+
+main form.potts-general-search-form tr.potts-general-search-query-row :is(.input-group, .input-group.wt-gender, .twitter-typeahead) {
+  display: flex !important;
+  align-items: stretch !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+
+main form.potts-general-search-form tr.potts-general-search-query-row :is(input[type="text"], input[type="search"], input:not([type]), .form-control) {
+  flex: 1 1 auto !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  text-align: left !important;
+}
+
+/* General search checkboxes/radios: keep the improved compact row. */
+main form.potts-general-search-form tr.potts-legacy-choice-row > :is(td, th).potts-legacy-form-value,
+main form.potts-general-search-form tr.potts-legacy-choice-row > :is(td, th).optionbox,
+main form.potts-general-search-form tr.potts-legacy-choice-row > :is(td, th).value {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: .65rem 2.1rem !important;
+}
+
+main form.potts-general-search-form tr.potts-legacy-choice-row label,
+main form.potts-general-search-form tr.potts-legacy-choice-row .form-check {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: .45rem !important;
+  white-space: nowrap !important;
+}
+
+/* Report option pages: labels need more room, but do not force a stacked layout. */
+main form.potts-report-options-form :is(td, th).potts-legacy-form-label,
+main form.potts-report-options-form :is(td, th).descriptionbox {
+  width: 15.5rem !important;
+  min-width: 15.5rem !important;
+  max-width: 20rem !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  overflow-wrap: normal !important;
+  word-break: normal !important;
+  line-height: 1.32 !important;
+}
+
+/* Do not let the raw HTML size attribute keep name/place report inputs tiny. */
+main form.potts-report-options-form tr.potts-legacy-wide-field-row :is(.twitter-typeahead, .select2-container, .ts-wrapper, .choices),
+main form.potts-report-options-form tr.potts-legacy-wide-field-row :is(input[type="text"], input[type="search"], input[type="email"], input[type="url"], input:not([type]), textarea, .form-control) {
+  width: min(100%, 42rem) !important;
+  min-width: min(24rem, 100%) !important;
+  max-width: 100% !important;
+  text-align: left !important;
+  box-sizing: border-box !important;
+}
+
+/* Date ranges can stay wide, but compact controls should remain sensible. */
+main form.potts-report-options-form tr:has(input[data-wt-datepicker]),
+main form.potts-report-options-form tr:has(.input-group-append),
+main form.potts-report-options-form tr:has(.input-group-text) {
+  --potts-report-date-row: 1;
+}
+
+main form.potts-report-options-form tr:has(input[data-wt-datepicker]) :is(.input-group, input[type="text"], .form-control),
+main form.potts-report-options-form tr:has(.input-group-append) :is(.input-group, input[type="text"], .form-control),
+main form.potts-report-options-form tr:has(.input-group-text) :is(.input-group, input[type="text"], .form-control) {
+  width: min(100%, 62rem) !important;
+  max-width: 100% !important;
+}
+
+main form.potts-report-options-form tr.potts-legacy-compact-number-row :is(input[type="number"], input[type="text"], input:not([type])),
+main form.potts-report-options-form input[type="number"],
+main form.potts-report-options-form input[name*="year" i],
+main form.potts-report-options-form input[id*="year" i],
+main form.potts-report-options-form input[name*="generation" i],
+main form.potts-report-options-form input[id*="generation" i] {
+  width: 8rem !important;
+  min-width: 6rem !important;
+  max-width: 12rem !important;
+}
+
+/* Branches: preserve the good field width, but stop labels from clipping. */
+main form.potts-branches-form :is(td, th).potts-legacy-form-label,
+main form.potts-branches-form :is(td, th).descriptionbox {
+  width: 13rem !important;
+  min-width: 13rem !important;
+  max-width: 18rem !important;
+  white-space: normal !important;
+  overflow: visible !important;
+}
+
+@media (max-width: 760px) {
+  main form.potts-general-search-form tr.potts-general-search-query-row > :is(td, th).potts-legacy-form-label,
+  main form.potts-general-search-form tr.potts-general-search-query-row > :is(td, th).descriptionbox,
+  main form.potts-general-search-form tr.potts-general-search-query-row > :is(td, th).potts-legacy-form-value,
+  main form.potts-general-search-form tr.potts-general-search-query-row > :is(td, th).optionbox,
+  main form.potts-general-search-form tr.potts-general-search-query-row > :is(td, th).value,
+  main form.potts-report-options-form :is(td, th).potts-legacy-form-label,
+  main form.potts-report-options-form :is(td, th).descriptionbox {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+
+  main form.potts-report-options-form tr.potts-legacy-wide-field-row :is(.twitter-typeahead, .select2-container, input[type="text"], input[type="search"], .form-control) {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+}
+
+/* ------------------------------------------------------------
+   Version 1.1.1-beta.35
+   Restore webtrees 2.2.6 form grid widths
+   ------------------------------------------------------------
+   webtrees search and report pages use Bootstrap rows and columns inside a
+   form.wt-page-options.  The calendar uses a table.wt-page-options.  Earlier
+   calendar styling targeted every .wt-page-options element, which forced all
+   text fields to 4.8rem and all labels to 6rem.  Keep those compact dimensions
+   on the calendar table only and restore the native 3/6/3 and 3/9 grids on
+   search, report and chart forms.
+*/
+
+/* Form-based page options must not inherit compact calendar-table widths. */
+main form.wt-page-options .wt-page-options-label {
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  text-align: left !important;
+  overflow-wrap: normal !important;
+  word-break: normal !important;
+  white-space: normal !important;
+}
+
+main form.wt-page-options input[type="text"],
+main form.wt-page-options input[type="search"],
+main form.wt-page-options input[type="number"],
+main form.wt-page-options input[type="date"],
+main form.wt-page-options input[type="email"],
+main form.wt-page-options input[type="password"],
+main form.wt-page-options textarea,
+main form.wt-page-options select,
+main form.wt-page-options .form-control,
+main form.wt-page-options .form-select,
+main form.wt-page-options .select2,
+main form.wt-page-options .select2-container,
+main form.wt-page-options .input-group {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+
+/* Preserve the webtrees Bootstrap grid used by report and search templates. */
+@media (min-width: 576px) {
+  main form.wt-page-options .col-sm-3 {
+    flex: 0 0 auto !important;
+    width: 25% !important;
+    max-width: 25% !important;
+  }
+
+  main form.wt-page-options .col-sm-6 {
+    flex: 0 0 auto !important;
+    width: 50% !important;
+    max-width: 50% !important;
+  }
+
+  main form.wt-page-options .col-sm-9 {
+    flex: 0 0 auto !important;
+    width: 75% !important;
+    max-width: 75% !important;
+  }
+
+  main form.wt-page-options .col-sm-12 {
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+/* Advanced search has a deliberate 3/6/3 structure. */
+#advanced-search-page form.wt-page-options-search-advanced .wt-page-options-value {
+  min-width: 0 !important;
+}
+
+#advanced-search-page form.wt-page-options-search-advanced .row {
+  align-items: center !important;
+}
+
+/* Report controls, including date fields with a calendar button, fill the
+   available 9-column value area rather than collapsing around their content. */
+form.wt-page-options-report-setup .wt-page-options-value,
+form.wt-page-options-report-setup .input-group > .form-control,
+form.wt-page-options-report-setup .input-group > input {
+  min-width: 0 !important;
+}
+
+/* The compact dimensions belong only to the calendar's table layout. */
+main table.wt-page-options .wt-page-options-label {
+  width: 6rem !important;
+  min-width: 6rem !important;
+}
+
+main table.wt-page-options input[type="text"] {
+  width: 4.8rem !important;
+  min-width: 4.8rem !important;
+  max-width: 4.8rem !important;
+}
+
+@media (max-width: 575.98px) {
+  main form.wt-page-options .col-sm-3,
+  main form.wt-page-options .col-sm-6,
+  main form.wt-page-options .col-sm-9,
+  main form.wt-page-options .col-sm-12 {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  main form.wt-page-options .wt-page-options-label {
+    padding-bottom: 0.25rem !important;
+  }
+}
+
+
+/* ------------------------------------------------------------
+   Version 1.1.1-beta.35
+   Remove the last calendar selector leak into form-based pages
+   ------------------------------------------------------------
+   The earlier selector `main:has(.wt-page-options) .wt-page-options` had
+   greater specificity than the beta.34 form repair, so its 4.8rem text-field
+   width still won on ordinary form.wt-page-options controls.  The calendar
+   rules above now target table.wt-page-options only, matching webtrees 2.2.6.
+*/
+
+/* ------------------------------------------------------------
+   Version 1.1.1-beta.36
+   Flexible dropdown width and translated menu-label support
+   ------------------------------------------------------------ */
+@media (min-width: 992px) {
+  .potts-nav-dropdown {
+    width: max-content !important;
+    min-width: 15rem !important;
+    max-width: min(32rem, calc(100vw - 2rem)) !important;
+  }
+
+  .potts-nav-dropdown .potts-submenu-item {
+    min-width: 100% !important;
+    white-space: nowrap !important;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .potts-nav-dropdown,
+  .potts-nav-dropdown .potts-submenu-item {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    white-space: normal !important;
   }
 }
