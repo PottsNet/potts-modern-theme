@@ -59,6 +59,7 @@ final class PottsModernTheme extends AbstractModule implements ModuleThemeInterf
     private const DEFAULTS = [
         'PALETTE'              => 'heritage',
         'TEXT_SIZE'            => 'standard',
+        'FONT_WEIGHT'          => 'standard',
         'CORNERS'              => 'soft',
         'SHADOWS'              => 'soft',
         'PAGE_WIDTH'           => 'standard',
@@ -72,9 +73,17 @@ final class PottsModernTheme extends AbstractModule implements ModuleThemeInterf
         'LARGE_CONTROLS'       => '0',
         'HIGH_CONTRAST'        => '0',
         'REDUCED_MOTION'       => '0',
+        'POTTS_EXPERIENCE'      => '1',
+        'HOMEPAGE_STYLE'        => 'storytelling',
+        'SHOW_WELCOME_PANEL'    => '1',
+        'SHOW_HOME_SEARCH'      => '1',
+        'SHOW_HOME_QUICK_LINKS' => '1',
+        'HERO_INTEGRATION'      => '1',
+        'WELCOME_HEADING'       => '',
+        'WELCOME_TEXT'          => 'Discover the people, places and stories that shaped our family.',
     ];
 
-    private const CUSTOM_VERSION = '1.1.1';
+    private const CUSTOM_VERSION = '1.2.0';
     private const LATEST_VERSION_URL = 'https://raw.githubusercontent.com/PottsNet/potts-modern-theme/main/latest-version.txt';
 
     public function title(): string
@@ -149,6 +158,8 @@ final class PottsModernTheme extends AbstractModule implements ModuleThemeInterf
     {
         View::registerNamespace('potts-modern', $this->resourcesFolder() . 'views/');
         View::registerCustomView('::components/menu-item', 'potts-modern::components/menu-item');
+        View::registerCustomView('::tree-page', 'potts-modern::tree-page');
+        View::registerCustomView('::individual-page', 'potts-modern::individual-page');
 
         View::pushunique('styles');
         echo $this->iconStyle();
@@ -216,7 +227,13 @@ final class PottsModernTheme extends AbstractModule implements ModuleThemeInterf
                 $this->setPreference($key, $value);
             }
 
-            return redirect(route('module', [
+            foreach (['WELCOME_HEADING', 'WELCOME_TEXT'] as $key) {
+            $field = strtolower($key);
+            $value = isset($data[$field]) && is_string($data[$field]) ? trim($data[$field]) : self::DEFAULTS[$key];
+            $this->setPreference($key, $value);
+        }
+
+        return redirect(route('module', [
                 'module' => $this->name(),
                 'action' => 'Admin',
                 'reset'  => '1',
@@ -234,9 +251,15 @@ final class PottsModernTheme extends AbstractModule implements ModuleThemeInterf
             $this->setPreference($key, $value);
         }
 
-        foreach (['SHOW_PHOTO_STRIP', 'SHOW_SUBMENU_ICONS', 'SHOW_EVENT_ICONS', 'LARGE_CONTROLS', 'HIGH_CONTRAST', 'REDUCED_MOTION'] as $key) {
+        foreach (['SHOW_PHOTO_STRIP', 'SHOW_SUBMENU_ICONS', 'SHOW_EVENT_ICONS', 'LARGE_CONTROLS', 'HIGH_CONTRAST', 'REDUCED_MOTION', 'POTTS_EXPERIENCE', 'SHOW_WELCOME_PANEL', 'SHOW_HOME_SEARCH', 'SHOW_HOME_QUICK_LINKS', 'HERO_INTEGRATION'] as $key) {
             $field = strtolower($key);
             $value = isset($data[$field]) && (string) $data[$field] === '1' ? '1' : '0';
+            $this->setPreference($key, $value);
+        }
+
+        foreach (['WELCOME_HEADING', 'WELCOME_TEXT'] as $key) {
+            $field = strtolower($key);
+            $value = isset($data[$field]) && is_string($data[$field]) ? trim($data[$field]) : self::DEFAULTS[$key];
             $this->setPreference($key, $value);
         }
 
@@ -268,7 +291,7 @@ final class PottsModernTheme extends AbstractModule implements ModuleThemeInterf
                 $value = $default;
             }
 
-            if (in_array($key, ['SHOW_PHOTO_STRIP', 'SHOW_SUBMENU_ICONS', 'SHOW_EVENT_ICONS', 'LARGE_CONTROLS', 'HIGH_CONTRAST', 'REDUCED_MOTION'], true)) {
+            if (in_array($key, ['SHOW_PHOTO_STRIP', 'SHOW_SUBMENU_ICONS', 'SHOW_EVENT_ICONS', 'LARGE_CONTROLS', 'HIGH_CONTRAST', 'REDUCED_MOTION', 'POTTS_EXPERIENCE', 'SHOW_WELCOME_PANEL', 'SHOW_HOME_SEARCH', 'SHOW_HOME_QUICK_LINKS', 'HERO_INTEGRATION'], true)) {
                 $value = $value === '1' ? '1' : '0';
             }
 
@@ -283,15 +306,22 @@ final class PottsModernTheme extends AbstractModule implements ModuleThemeInterf
     {
         return [
             'PALETTE' => [
-                'heritage' => I18N::translate('Heritage teal and parchment'),
-                'cool'     => I18N::translate('Cool teal and mist'),
-                'sepia'    => I18N::translate('Warm sepia and walnut'),
-                'eucalyptus' => I18N::translate('Eucalyptus green and linen'),
-                'claret'     => I18N::translate('Claret and archival ivory'),
+                'heritage'   => I18N::translate('Potts green and parchment'),
+                'ocean'      => I18N::translate('Ocean blue and mist'),
+                'claret'     => I18N::translate('Burgundy and archival ivory'),
+                'purple'     => I18N::translate('Heritage purple and lilac'),
+                'slate'      => I18N::translate('Slate and silver'),
+                'teal'       => I18N::translate('Teal and sea glass'),
+                'sandstone'  => I18N::translate('Sandstone and walnut'),
             ],
             'TEXT_SIZE' => [
                 'standard' => I18N::translate('Standard'),
                 'large'    => I18N::translate('Larger'),
+            ],
+            'FONT_WEIGHT' => [
+                'light'    => I18N::translate('Light'),
+                'standard' => I18N::translate('Standard'),
+                'bold'     => I18N::translate('Bold'),
             ],
             'CORNERS' => [
                 'soft'     => I18N::translate('Soft and rounded'),
@@ -323,6 +353,11 @@ final class PottsModernTheme extends AbstractModule implements ModuleThemeInterf
                 'standard' => I18N::translate('Standard'),
                 'large'    => I18N::translate('Large'),
             ],
+            'HOMEPAGE_STYLE' => [
+                'storytelling' => I18N::translate('Storytelling'),
+                'classic'      => I18N::translate('Classic blocks'),
+                'compact'      => I18N::translate('Compact dashboard'),
+            ],
             'NAV_DISPLAY' => [
                 'icons_labels' => I18N::translate('Icons and labels'),
                 'labels_only'  => I18N::translate('Labels only'),
@@ -336,29 +371,39 @@ final class PottsModernTheme extends AbstractModule implements ModuleThemeInterf
 
         $palettes = [
             'heritage' => [
-                'bg' => '#f5efe4', 'bg2' => '#fffaf2', 'ink' => '#233038', 'muted' => '#65717a',
-                'blue' => '#185a71', 'blue_dark' => '#123b4b', 'gold' => '#b98638', 'green' => '#51735e',
-                'header1' => '#123b4b', 'header2' => '#185a71',
-            ],
-            'cool' => [
-                'bg' => '#eaf1f2', 'bg2' => '#fbfefe', 'ink' => '#203238', 'muted' => '#61757a',
-                'blue' => '#17677a', 'blue_dark' => '#104551', 'gold' => '#8f9e67', 'green' => '#4f7467',
-                'header1' => '#104551', 'header2' => '#27778a',
-            ],
-            'sepia' => [
-                'bg' => '#eee4d3', 'bg2' => '#fffaf1', 'ink' => '#3d3026', 'muted' => '#786a5d',
-                'blue' => '#765038', 'blue_dark' => '#4e3424', 'gold' => '#b27b33', 'green' => '#68745a',
-                'header1' => '#4a3022', 'header2' => '#765038',
-            ],
-            'eucalyptus' => [
                 'bg' => '#edf1e9', 'bg2' => '#fbfcf7', 'ink' => '#26352e', 'muted' => '#66736c',
                 'blue' => '#416b56', 'blue_dark' => '#203e34', 'gold' => '#a88a52', 'green' => '#55715e',
                 'header1' => '#203e34', 'header2' => '#416b56',
+            ],
+            'ocean' => [
+                'bg' => '#eaf1f6', 'bg2' => '#fbfdff', 'ink' => '#20313d', 'muted' => '#61727e',
+                'blue' => '#246f98', 'blue_dark' => '#17455f', 'gold' => '#b18b45', 'green' => '#4f746c',
+                'header1' => '#17455f', 'header2' => '#246f98',
             ],
             'claret' => [
                 'bg' => '#f2ece8', 'bg2' => '#fffaf4', 'ink' => '#342b2d', 'muted' => '#74676a',
                 'blue' => '#743c4a', 'blue_dark' => '#4d2731', 'gold' => '#aa8954', 'green' => '#66745f',
                 'header1' => '#4d2731', 'header2' => '#743c4a',
+            ],
+            'purple' => [
+                'bg' => '#f1edf5', 'bg2' => '#fdfbff', 'ink' => '#302b38', 'muted' => '#6d6676',
+                'blue' => '#6b4f83', 'blue_dark' => '#453355', 'gold' => '#b08a4d', 'green' => '#657363',
+                'header1' => '#453355', 'header2' => '#6b4f83',
+            ],
+            'slate' => [
+                'bg' => '#edf0f2', 'bg2' => '#fcfdfe', 'ink' => '#29343b', 'muted' => '#67737a',
+                'blue' => '#536b78', 'blue_dark' => '#344650', 'gold' => '#a9864b', 'green' => '#607268',
+                'header1' => '#344650', 'header2' => '#536b78',
+            ],
+            'teal' => [
+                'bg' => '#eaf3f1', 'bg2' => '#fbfefd', 'ink' => '#203633', 'muted' => '#607672',
+                'blue' => '#2c786f', 'blue_dark' => '#194c47', 'gold' => '#af8b45', 'green' => '#4f7564',
+                'header1' => '#194c47', 'header2' => '#2c786f',
+            ],
+            'sandstone' => [
+                'bg' => '#eee4d3', 'bg2' => '#fffaf1', 'ink' => '#3d3026', 'muted' => '#786a5d',
+                'blue' => '#765038', 'blue_dark' => '#4e3424', 'gold' => '#b27b33', 'green' => '#68745a',
+                'header1' => '#4a3022', 'header2' => '#765038',
             ],
         ];
 
@@ -380,12 +425,18 @@ final class PottsModernTheme extends AbstractModule implements ModuleThemeInterf
         ];
         $sidebars = ['compact' => '310px', 'standard' => '370px', 'wide' => '430px'];
         $icons = ['compact' => '22px', 'standard' => '27px', 'large' => '34px'];
+        $weights = [
+            'light' => ['heading' => '650', 'navigation' => '600', 'label' => '600', 'emphasis' => '600'],
+            'standard' => ['heading' => '800', 'navigation' => '700', 'label' => '700', 'emphasis' => '700'],
+            'bold' => ['heading' => '850', 'navigation' => '800', 'label' => '750', 'emphasis' => '750'],
+        ];
 
         $palette = $palettes[$settings['PALETTE']];
         $radius = $radii[$settings['CORNERS']];
         $shadow = $shadows[$settings['SHADOWS']];
         $space = $spacing[$settings['CONTENT_SPACING']];
         $font_size = $settings['TEXT_SIZE'] === 'large' ? '17.2px' : '16px';
+        $weight = $weights[$settings['FONT_WEIGHT']];
 
         $css = ':root{' .
             '--potts-bg:' . $palette['bg'] . ';' .
@@ -406,8 +457,16 @@ final class PottsModernTheme extends AbstractModule implements ModuleThemeInterf
             '--potts-sidebar-width:' . $sidebars[$settings['SIDEBAR_WIDTH']] . ';' .
             '--potts-nav-icon-size:' . $icons[$settings['NAV_ICON_SIZE']] . ';' .
             '--potts-font-size:' . $font_size . ';' .
+            '--potts-weight-heading:' . $weight['heading'] . ';' .
+            '--potts-weight-navigation:' . $weight['navigation'] . ';' .
+            '--potts-weight-label:' . $weight['label'] . ';' .
+            '--potts-weight-emphasis:' . $weight['emphasis'] . ';' .
             '}' .
             'html body,html body button,html body input,html body select,html body textarea{font-size:var(--potts-font-size)!important;}' .
+            'html body :is(h1,h2,h3,h4,h5,h6,.wt-page-title,.card-title,.modal-title,.potts-preview-title){font-weight:var(--potts-weight-heading)!important;}' .
+            'html body :is(.wt-genealogy-menu,.wt-user-menu,.potts-nav-feature-link,.potts-submenu-item,.navbar-nav) :is(a,button,.nav-link,.dropdown-item,.potts-nav-label,.potts-submenu-label){font-weight:var(--potts-weight-navigation)!important;}' .
+            'html body :is(label,.form-label,.col-form-label,.wt-page-options-label,th,.table th){font-weight:var(--potts-weight-label)!important;}' .
+            'html body :is(strong,b,.fw-bold){font-weight:var(--potts-weight-emphasis)!important;}' .
             'body>header,header[role="banner"],.wt-header-wrapper,#header,#top-header{background:linear-gradient(135deg,' . $palette['header1'] . ' 0%,' . $palette['header2'] . ' 100%)!important;}' .
             'body.wt-control-panel>header>.nav>.nav-item>.nav-link{color:#fff!important;text-decoration:none!important;}' .
             'body.wt-control-panel>header>.nav>.nav-item>.nav-link:is(:hover,:focus-visible,.show){color:#fff!important;background:rgba(255,255,255,.13)!important;}' .
@@ -444,6 +503,12 @@ final class PottsModernTheme extends AbstractModule implements ModuleThemeInterf
         if ($settings['REDUCED_MOTION'] === '1') {
             $css .= 'html{scroll-behavior:auto!important;}*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important;}';
         }
+
+        if ($settings['POTTS_EXPERIENCE'] === '1') {
+            $css .= '.potts-homepage .wt-block,.potts-homepage .card,.potts-homepage .wt-side-block{border-radius:var(--potts-radius)!important;box-shadow:var(--potts-shadow-soft)!important;border:1px solid color-mix(in srgb,var(--potts-blue) 16%,transparent)!important;overflow:hidden;}.potts-homepage .wt-block-header,.potts-homepage .card-header{background:linear-gradient(135deg,color-mix(in srgb,var(--potts-blue) 10%,#fff),color-mix(in srgb,var(--potts-gold) 8%,#fff))!important;}';
+        }
+
+        $css .= '.potts-homepage{display:flex;flex-direction:column;gap:var(--potts-setting-gap);}.potts-home-intro{position:relative;overflow:hidden;padding:clamp(1.15rem,3vw,2.25rem);border:1px solid color-mix(in srgb,var(--potts-blue) 20%,transparent);border-radius:var(--potts-radius);background:linear-gradient(135deg,var(--potts-bg-2),color-mix(in srgb,var(--potts-bg) 82%,#fff));box-shadow:var(--potts-shadow-soft);}.potts-home-intro::after{content:"";position:absolute;right:-4rem;top:-5rem;width:15rem;height:15rem;border-radius:50%;background:color-mix(in srgb,var(--potts-gold) 14%,transparent);pointer-events:none;}.potts-home-intro-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,.62fr);gap:1.25rem;align-items:center;}.potts-home-kicker{margin:0 0 .35rem;color:var(--potts-blue);font-weight:var(--potts-weight-navigation);letter-spacing:.08em;text-transform:uppercase;font-size:.78rem;}.potts-home-heading{margin:0 0 .45rem;color:var(--potts-ink);font-weight:var(--potts-weight-heading);font-size:clamp(1.55rem,3vw,2.45rem);}.potts-home-copy{margin:0;color:var(--potts-muted);font-size:1.05rem;max-width:62ch;}.potts-home-search{padding:.85rem;border-radius:var(--potts-radius-sm);background:rgba(255,255,255,.84);border:1px solid color-mix(in srgb,var(--potts-blue) 14%,transparent);}.potts-home-search label{display:block;margin-bottom:.4rem;color:var(--potts-ink);font-weight:var(--potts-weight-label);}.potts-homepage-style-compact .potts-home-blocks>.row{--bs-gutter-x:.85rem;--bs-gutter-y:.85rem;}.potts-homepage-style-compact .wt-block-content,.potts-homepage-style-compact .card-body{padding:.78rem!important;}.potts-homepage-style-classic .potts-home-intro{box-shadow:none;}.potts-home-hero-host{order:-2;width:100%;}.potts-home-hero-host>*{margin-bottom:0!important;}.potts-home-empty-column{display:none!important;}@media(max-width:767.98px){.potts-home-intro-grid{grid-template-columns:1fr;}.potts-home-intro{padding:1rem;}}';
 
         return "\n<style id=\"potts-modern-theme-settings\">" . $css . "</style>\n";
     }

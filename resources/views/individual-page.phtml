@@ -1,0 +1,389 @@
+<?php
+
+declare(strict_types=1);
+
+use Fisharebest\Webtrees\Fact;
+use Fisharebest\Webtrees\Family;
+use Fisharebest\Webtrees\I18N;
+use Fisharebest\Webtrees\Http\RequestHandlers\AddNewFact;
+use Fisharebest\Webtrees\Individual;
+use Fisharebest\Webtrees\Media;
+use Fisharebest\Webtrees\Module\ModuleSidebarInterface;
+use Fisharebest\Webtrees\Module\ModuleTabInterface;
+use Fisharebest\Webtrees\Tree;
+use Fisharebest\Webtrees\User;
+use Illuminate\Support\Collection;
+
+/**
+ * @var string                                 $age
+ * @var bool                                   $can_upload_media
+ * @var Collection<int,Fact>                   $clipboard_facts
+ * @var Collection<int,Media>                  $individual_media
+ * @var Individual                             $record
+ * @var Collection<int,string>                 $shares
+ * @var Collection<int,ModuleSidebarInterface> $sidebars
+ * @var Collection<int,ModuleTabInterface>     $tabs
+ * @var Tree                                   $tree
+ * @var Collection<int,User>                   $users
+ */
+
+
+$sex_code = strtoupper($record->sex());
+$silhouette_filename = match ($sex_code) {
+    'M'     => 'silhouette-male.webp',
+    'F'     => 'silhouette-female.webp',
+    default => 'chart-silhouette-unknown.svg',
+};
+
+// Embed the theme's bundled silhouette directly. This is intentionally based
+// on the view's own filesystem location, avoiding module asset-route and URL
+// resolution differences between webtrees installations.
+$silhouette_file = dirname(__DIR__) . '/images/' . $silhouette_filename;
+$silhouette_url  = '';
+if (is_readable($silhouette_file)) {
+    $silhouette_data = file_get_contents($silhouette_file);
+    if ($silhouette_data !== false && $silhouette_data !== '') {
+        $extension = strtolower((string) pathinfo($silhouette_filename, PATHINFO_EXTENSION));
+        $mime = $extension === 'svg' ? 'image/svg+xml' : 'image/webp';
+        $silhouette_url = 'data:' . $mime . ';base64,' . base64_encode($silhouette_data);
+    }
+}
+
+$plain_text = static function (?string $value): string {
+    if ($value === null || $value === '') {
+        return '';
+    }
+
+    // webtrees date and lifespan helpers may return HTML, and in some contexts
+    // that HTML can already be entity-encoded. Decode twice, strip markup, and
+    // normalise whitespace before rendering it in the biography summary.
+    $value = html_entity_decode($value, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+    $value = html_entity_decode($value, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+    $value = strip_tags($value);
+
+    return trim((string) preg_replace('/\s+/u', ' ', $value));
+};
+
+$birth_place = $record->getBirthPlace()->gedcomName();
+$death_place = $record->getDeathPlace()->gedcomName();
+$parents     = new Collection();
+
+foreach ($record->childFamilies() as $family) {
+    if ($family instanceof Family) {
+        foreach ($family->spouses() as $parent) {
+            if ($parent instanceof Individual) {
+                $parents->put($parent->xref(), $parent);
+            }
+        }
+    }
+}
+
+$spouses       = new Collection();
+$marriage_rows = new Collection();
+foreach ($record->spouseFamilies() as $family) {
+    if (!$family instanceof Family) {
+        continue;
+    }
+
+    $spouse = $family->spouse($record);
+    if ($spouse instanceof Individual) {
+        $spouses->put($spouse->xref(), $spouse);
+        $marriage = $family->getMarriage();
+        $marriage_rows->push([
+            'spouse' => $spouse,
+            'date'   => $marriage?->date(),
+            'place'  => $marriage?->place()->gedcomName() ?? '',
+        ]);
+    }
+}
+
+$children = new Collection();
+foreach ($record->spouseFamilies() as $family) {
+    if ($family instanceof Family) {
+        foreach ($family->children() as $child) {
+            if ($child instanceof Individual) {
+                $children->put($child->xref(), $child);
+            }
+        }
+    }
+}
+$children_count  = $children->count();
+$occupation_facts = $record->facts(['OCCU'], true)->filter(static fn (Fact $fact): bool => trim(strip_tags($fact->value())) !== '');
+$residence_facts  = $record->facts(['RESI'], true);
+$all_places       = $record->getAllEventPlaces(['BIRT', 'BAPM', 'CHR', 'IMMI', 'EMIG', 'MARR', 'OCCU', 'RESI', 'DEAT', 'BURI']);
+$countries        = [];
+foreach ($all_places as $place) {
+    $name = trim($place->gedcomName());
+    if ($name === '') {
+        continue;
+    }
+    $parts = array_map('trim', explode(',', $name));
+    $country = end($parts);
+    if (is_string($country) && $country !== '') {
+        $countries[mb_strtolower($country)] = $country;
+    }
+}
+
+$occupation_labels = $occupation_facts
+    ->map(static fn (Fact $fact): string => trim(strip_tags($fact->value())))
+    ->filter()
+    ->unique()
+    ->take(3);
+
+// Add a small number of useful life-summary badges when occupation facts alone
+// do not tell the visitor much about the person. These are derived only from
+// visible GEDCOM facts, so privacy rules remain controlled by webtrees.
+$life_badges = $occupation_labels->values();
+$has_migration = $record->facts(['IMMI', 'EMIG'], true)->isNotEmpty();
+if ($has_migration && !$life_badges->contains(I18N::translate('Immigrant'))) {
+    $life_badges->push(I18N::translate('Immigrant'));
+}
+if ($children_count > 0) {
+    $life_badges->push(I18N::plural('%s child', '%s children', $children_count, I18N::number($children_count)));
+}
+$life_badges = $life_badges->filter()->unique()->take(4);
+
+$lifespan_text = $plain_text($record->lifespan());
+$age_text      = trim($plain_text($age), " ()");
+
+// Build a concise, privacy-safe life summary from facts already visible to
+// the current visitor. The summary is deliberately factual rather than
+// interpretive and disappears gracefully when little information is known.
+$life_summary = [];
+$birth_date_text = $record->getBirthDate()->isOK() ? $plain_text($record->getBirthDate()->display()) : '';
+$death_date_text = $record->getDeathDate()->isOK() ? $plain_text($record->getDeathDate()->display()) : '';
+
+if ($birth_date_text !== '' || $birth_place !== '') {
+    if ($birth_date_text !== '' && $birth_place !== '') {
+        $life_summary[] = I18N::translate('Born %s in %s.', $birth_date_text, $birth_place);
+    } elseif ($birth_place !== '') {
+        $life_summary[] = I18N::translate('Born in %s.', $birth_place);
+    } else {
+        $life_summary[] = I18N::translate('Born %s.', $birth_date_text);
+    }
+}
+
+if ($marriage_rows->isNotEmpty()) {
+    $first_marriage = $marriage_rows->first();
+    if (is_array($first_marriage) && $first_marriage['spouse'] instanceof Individual) {
+        $spouse_name = $plain_text($first_marriage['spouse']->fullName());
+        $marriage_date_text = $first_marriage['date']?->isOK() ? $plain_text($first_marriage['date']->display()) : '';
+        $marriage_place_text = trim((string) $first_marriage['place']);
+
+        if ($marriage_date_text !== '' && $marriage_place_text !== '') {
+            $life_summary[] = I18N::translate('Married %s on %s in %s.', $spouse_name, $marriage_date_text, $marriage_place_text);
+        } elseif ($marriage_date_text !== '') {
+            $life_summary[] = I18N::translate('Married %s on %s.', $spouse_name, $marriage_date_text);
+        } elseif ($marriage_place_text !== '') {
+            $life_summary[] = I18N::translate('Married %s in %s.', $spouse_name, $marriage_place_text);
+        } else {
+            $life_summary[] = I18N::translate('Married %s.', $spouse_name);
+        }
+    }
+}
+
+if ($children_count > 0) {
+    $life_summary[] = I18N::plural('Parent of %s child.', 'Parent of %s children.', $children_count, I18N::number($children_count));
+}
+
+if (count($countries) > 1) {
+    $life_summary[] = I18N::plural('Lived in %s country.', 'Lived in %s countries.', count($countries), I18N::number(count($countries)));
+}
+
+if ($death_date_text !== '' || $death_place !== '') {
+    if ($death_date_text !== '' && $death_place !== '') {
+        $life_summary[] = I18N::translate('Died %s in %s%s.', $death_date_text, $death_place, $age_text !== '' ? ' (' . $age_text . ')' : '');
+    } elseif ($death_place !== '') {
+        $life_summary[] = I18N::translate('Died in %s%s.', $death_place, $age_text !== '' ? ' (' . $age_text . ')' : '');
+    } elseif ($age_text !== '') {
+        $life_summary[] = I18N::translate('Died %s (%s).', $death_date_text, $age_text);
+    } else {
+        $life_summary[] = I18N::translate('Died %s.', $death_date_text);
+    }
+}
+?>
+
+<?= view('individual-page-pending', ['record' => $record]) ?>
+
+<section class="potts-profile-hero mb-3" aria-labelledby="potts-person-name">
+    <div class="potts-profile-toolbar">
+        <span class="potts-profile-kicker"><?= I18N::translate('Biography') ?></span>
+        <?php if ($record->canEdit()) : ?>
+            <div class="potts-profile-menu">
+                <?= view('individual-page-menu', [
+                    'can_upload_media' => $can_upload_media,
+                    'clipboard_facts'  => $clipboard_facts,
+                    'record'           => $record,
+                    'shares'           => $shares,
+                ]) ?>
+            </div>
+        <?php endif ?>
+    </div>
+
+    <div class="potts-profile-grid">
+        <div class="potts-profile-photo">
+            <?php if ($individual_media->isNotEmpty()) : ?>
+                <div class="potts-profile-media-layer">
+                    <?= view('individual-page-images', [
+                        'can_upload_media' => $can_upload_media,
+                        'individual_media' => $individual_media,
+                        'record'           => $record,
+                        'tree'             => $tree,
+                    ]) ?>
+                </div>
+            <?php else : ?>
+                <?php if ($silhouette_url !== '') : ?>
+                    <figure class="potts-profile-fallback-portrait img-thumbnail" data-potts-fallback-portrait>
+                        <img
+                            class="potts-profile-fallback-image"
+                            src="<?= e($silhouette_url) ?>"
+                            alt="<?= e(I18N::translate('No photograph available')) ?>"
+                            loading="eager"
+                        >
+                        <figcaption class="potts-profile-fallback-caption"><?= I18N::translate('No known portrait') ?></figcaption>
+                    </figure>
+                <?php endif ?>
+
+                <?php if ($can_upload_media) : ?>
+                    <div class="potts-profile-add-media text-center">
+                        <a href="<?= e(route(AddNewFact::class, ['tree' => $record->tree()->name(), 'xref' => $record->xref(), 'fact' => 'OBJE'])) ?>">
+                            <?= I18N::translate('Add a media object') ?>
+                        </a>
+                    </div>
+                <?php endif ?>
+            <?php endif ?>
+        </div>
+
+        <div class="potts-profile-core">
+            <h1 class="wt-page-title potts-profile-name" id="potts-person-name"><?= $record->fullName() ?></h1>
+
+            <?php if ($lifespan_text !== '' || $age_text !== '') : ?>
+                <div class="potts-profile-lifespan">
+                    <?php if ($lifespan_text !== '') : ?><span><?= e($lifespan_text) ?></span><?php endif ?>
+                    <?php if ($age_text !== '') : ?><small><?= e($age_text) ?></small><?php endif ?>
+                </div>
+            <?php endif ?>
+
+            <?php if ($life_badges->isNotEmpty()) : ?>
+                <div class="potts-profile-chips" aria-label="<?= e(I18N::translate('Life summary')) ?>">
+                    <?php foreach ($life_badges as $badge) : ?>
+                        <span class="potts-profile-chip"><?= e($badge) ?></span>
+                    <?php endforeach ?>
+                </div>
+            <?php endif ?>
+
+            <div class="potts-profile-vitals">
+                <?php if ($record->getBirthDate()->isOK() || $birth_place !== '') : ?>
+                    <article class="potts-vital potts-vital-birth">
+                        <span class="potts-vital-label"><?= I18N::translate('Born') ?></span>
+                        <?php if ($record->getBirthDate()->isOK()) : ?><strong><?= e($plain_text($record->getBirthDate()->display())) ?></strong><?php endif ?>
+                        <?php if ($birth_place !== '') : ?><span><?= e($birth_place) ?></span><?php endif ?>
+                    </article>
+                <?php endif ?>
+
+                <?php if ($record->getDeathDate()->isOK() || $death_place !== '') : ?>
+                    <article class="potts-vital potts-vital-death">
+                        <span class="potts-vital-label"><?= I18N::translate('Died') ?></span>
+                        <?php if ($record->getDeathDate()->isOK()) : ?><strong><?= e($plain_text($record->getDeathDate()->display())) ?></strong><?php endif ?>
+                        <?php if ($death_place !== '') : ?><span><?= e($death_place) ?></span><?php endif ?>
+                    </article>
+                <?php endif ?>
+            </div>
+
+            <?php if ($marriage_rows->isNotEmpty()) : ?>
+                <div class="potts-profile-marriages">
+                    <?php foreach ($marriage_rows as $row) : ?>
+                        <div class="potts-marriage-row">
+                            <span class="potts-vital-label"><?= I18N::translate('Married') ?></span>
+                            <a href="<?= e($row['spouse']->url()) ?>"><strong><?= $row['spouse']->fullName() ?></strong></a>
+                            <?php if ($row['date']?->isOK()) : ?><span><?= e($plain_text($row['date']->display())) ?></span><?php endif ?>
+                            <?php if ($row['place'] !== '') : ?><span><?= e($row['place']) ?></span><?php endif ?>
+                        </div>
+                    <?php endforeach ?>
+                </div>
+            <?php endif ?>
+
+            <?php if ($life_summary !== []) : ?>
+                <section class="potts-profile-life-summary" aria-labelledby="potts-life-summary-heading">
+                    <h2 id="potts-life-summary-heading"><?= I18N::translate('Life summary') ?></h2>
+                    <p><?= e(implode(' ', array_slice($life_summary, 0, 5))) ?></p>
+                </section>
+            <?php endif ?>
+        </div>
+
+        <aside class="potts-profile-family" aria-label="<?= e(I18N::translate('Family')) ?>">
+            <?php if ($parents->isNotEmpty()) : ?>
+                <section class="potts-family-group">
+                    <h2><?= I18N::translate('Parents') ?></h2>
+                    <?php foreach ($parents as $parent) : ?>
+                        <a class="potts-family-person" href="<?= e($parent->url()) ?>">
+                            <span><?= $parent->fullName() ?></span>
+                            <small><?= e($plain_text($parent->lifespan())) ?></small>
+                        </a>
+                    <?php endforeach ?>
+                </section>
+            <?php endif ?>
+
+            <?php if ($spouses->isNotEmpty()) : ?>
+                <section class="potts-family-group">
+                    <h2><?= I18N::translate('Spouses') ?></h2>
+                    <?php foreach ($spouses as $spouse) : ?>
+                        <a class="potts-family-person" href="<?= e($spouse->url()) ?>">
+                            <span><?= $spouse->fullName() ?></span>
+                            <small><?= e($plain_text($spouse->lifespan())) ?></small>
+                        </a>
+                    <?php endforeach ?>
+                </section>
+            <?php endif ?>
+
+            <?php if ($children_count > 0) : ?>
+                <section class="potts-family-group potts-family-children">
+                    <h2><?= I18N::translate('Children') ?></h2>
+                    <strong><?= I18N::plural('%s child', '%s children', $children_count, I18N::number($children_count)) ?></strong>
+                </section>
+            <?php endif ?>
+        </aside>
+    </div>
+
+    <details class="potts-profile-record-details">
+        <summary><?= I18N::translate('Names and personal details') ?></summary>
+        <?= view('individual-page-names', ['record' => $record]) ?>
+    </details>
+</section>
+
+<section class="potts-life-stats mb-4" aria-label="<?= e(I18N::translate('Life at a glance')) ?>">
+    <?php if ($age !== '') : ?>
+        <div class="potts-life-stat potts-stat-lived"><span><?= I18N::translate('Lived') ?></span><strong><?= e(trim($plain_text($age), " ()")) ?></strong></div>
+    <?php endif ?>
+    <?php if ($children_count > 0) : ?>
+        <div class="potts-life-stat potts-stat-children"><span><?= I18N::translate('Children') ?></span><strong><?= I18N::number($children_count) ?></strong></div>
+    <?php endif ?>
+    <?php if ($occupation_facts->isNotEmpty()) : ?>
+        <div class="potts-life-stat potts-stat-occupations"><span><?= I18N::translate('Occupations') ?></span><strong><?= I18N::number($occupation_facts->count()) ?></strong></div>
+    <?php endif ?>
+    <?php if ($residence_facts->isNotEmpty()) : ?>
+        <div class="potts-life-stat potts-stat-residences"><span><?= I18N::translate('Residences') ?></span><strong><?= I18N::number($residence_facts->count()) ?></strong></div>
+    <?php endif ?>
+    <?php if ($countries !== []) : ?>
+        <div class="potts-life-stat potts-stat-countries"><span><?= I18N::translate('Countries') ?></span><strong><?= I18N::number(count($countries)) ?></strong><small><?= e(implode(', ', array_values($countries))) ?></small></div>
+    <?php endif ?>
+    <?php if ($marriage_rows->isNotEmpty()) : ?>
+        <div class="potts-life-stat potts-stat-spouses"><span><?= I18N::translate('Spouses') ?></span><strong><?= I18N::number($spouses->count()) ?></strong></div>
+    <?php endif ?>
+</section>
+
+<?php if ($sidebars->isEmpty()) : ?>
+    <?= view('individual-page-tabs', ['record' => $record, 'tabs' => $tabs]) ?>
+<?php else : ?>
+    <div class="row potts-profile-content">
+        <div class="col-sm-8">
+            <?= view('individual-page-tabs', ['record' => $record, 'tabs' => $tabs]) ?>
+        </div>
+        <div class="col-sm-4">
+            <?= view('individual-page-sidebars', ['record' => $record, 'sidebars' => $sidebars]) ?>
+        </div>
+    </div>
+<?php endif ?>
+
+<?= view('modals/ajax') ?>
+<?= view('modals/shares', ['shares' => $shares, 'title' => I18N::translate('Share') . ' — ' . $record->fullName()]) ?>

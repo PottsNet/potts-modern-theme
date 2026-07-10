@@ -1,0 +1,84 @@
+<?php
+
+declare(strict_types=1);
+
+use Fisharebest\Webtrees\Http\RequestHandlers\SearchQuickAction;
+use Fisharebest\Webtrees\I18N;
+use Fisharebest\Webtrees\Registry;
+use Fisharebest\Webtrees\Module\ModuleThemeInterface;
+use Fisharebest\Webtrees\Tree;
+use Illuminate\Support\Collection;
+
+/**
+ * @var Collection<int,string> $main_blocks
+ * @var Collection<int,string> $side_blocks
+ * @var Tree                   $tree
+ */
+
+// webtrees registers the currently selected theme in the service container.
+// Reading it directly is more reliable than looking it up again by folder name.
+$module = Registry::container()->get(ModuleThemeInterface::class);
+
+$style           = $module->getPreference('HOMEPAGE_STYLE', 'storytelling');
+$show_welcome    = $module->getPreference('SHOW_WELCOME_PANEL', '1') === '1';
+$show_search     = $module->getPreference('SHOW_HOME_SEARCH', '1') === '1';
+$hero_integration = $module->getPreference('HERO_INTEGRATION', '1') === '1';
+$heading         = trim($module->getPreference('WELCOME_HEADING', ''));
+$copy            = trim($module->getPreference('WELCOME_TEXT', ''));
+
+if ($heading === '') {
+    $heading = $tree->title();
+}
+?>
+<div class="potts-homepage potts-homepage-style-<?= e($style) ?>" data-potts-homepage data-potts-hero-integration="<?= $hero_integration ? '1' : '0' ?>">
+    <?php if ($show_welcome || $show_search) : ?>
+        <section class="potts-home-intro" aria-labelledby="potts-home-heading">
+            <div class="potts-home-intro-grid">
+                <?php if ($show_welcome) : ?>
+                    <div class="potts-home-welcome-copy">
+                        <p class="potts-home-kicker"><?= e(I18N::translate('Family history')) ?></p>
+                        <h2 class="potts-home-heading" id="potts-home-heading"><?= e($heading) ?></h2>
+                        <?php if ($copy !== '') : ?>
+                            <p class="potts-home-copy"><?= e($copy) ?></p>
+                        <?php endif ?>
+                    </div>
+                <?php endif ?>
+
+                <?php if ($show_search) : ?>
+                    <form method="post" action="<?= e(route(SearchQuickAction::class, ['tree' => $tree->name()])) ?>" class="potts-home-search" role="search">
+                        <label for="potts-home-search-field"><?= e(I18N::translate('Search this family tree')) ?></label>
+                        <div class="input-group">
+                            <input type="search" class="form-control" id="potts-home-search-field" name="query" placeholder="<?= e(I18N::translate('Name, place or record')) ?>">
+                            <button type="submit" class="btn btn-primary"><?= e(I18N::translate('Search')) ?></button>
+                        </div>
+                        <?= csrf_field() ?>
+                    </form>
+                <?php endif ?>
+            </div>
+        </section>
+    <?php endif ?>
+
+
+    <div class="potts-home-blocks">
+        <div class="row">
+            <?php if ($main_blocks->isEmpty() || $side_blocks->isEmpty()) : ?>
+                <div class="col-md-12 wt-main-blocks">
+                    <?php foreach ($main_blocks->concat($side_blocks) as $block_id => $block) : ?>
+                        <?= view('tree-page-block', ['block_id' => $block_id, 'block' => $block, 'tree' => $tree]) ?>
+                    <?php endforeach ?>
+                </div>
+            <?php else : ?>
+                <div class="col-md-8 wt-main-blocks">
+                    <?php foreach ($main_blocks as $block_id => $block) : ?>
+                        <?= view('tree-page-block', ['block_id' => $block_id, 'block' => $block, 'tree' => $tree]) ?>
+                    <?php endforeach ?>
+                </div>
+                <div class="col-md-4 wt-side-blocks">
+                    <?php foreach ($side_blocks as $block_id => $block) : ?>
+                        <?= view('tree-page-block', ['block_id' => $block_id, 'block' => $block, 'tree' => $tree]) ?>
+                    <?php endforeach ?>
+                </div>
+            <?php endif ?>
+        </div>
+    </div>
+</div>

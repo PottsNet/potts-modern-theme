@@ -2792,6 +2792,13 @@
       ['on this day', 'potts-home-on-this-day'],
       ['family history books', 'potts-home-books'],
       ['family books', 'potts-home-books'],
+      ['most viewed pages', 'potts-home-most-viewed'],
+      ['top surnames', 'potts-home-surnames'],
+      ['start exploring', 'potts-home-explore'],
+      ['cultural warning', 'potts-home-cultural-warning'],
+      ['webtrees modules', 'potts-home-modules'],
+      ['modules by', 'potts-home-modules'],
+      ['highlights from our story', 'potts-home-history'],
       ['homepage hero', 'potts-home-hero'],
       ['hero banner', 'potts-home-hero'],
       ['ourfamily hero', 'potts-home-hero']
@@ -2831,6 +2838,68 @@
   // Potts Modern only detects and places the hero block; the slideshow module
   // owns slide activation, dots, transitions, captions and timing.
 
+  function enhanceOnThisDayEvents(root) {
+    const scope = root || document;
+    scope.querySelectorAll('.potts-home-on-this-day tr, .potts-home-on-this-day .list-group-item').forEach(function (row) {
+      if (!(row instanceof HTMLElement) || row.dataset.pottsEventStyled === '1') {
+        return;
+      }
+
+      const text = normalise(row.textContent || '');
+      let type = '';
+
+      if (/\b(?:birth|born|birthday)\b/.test(text)) {
+        type = 'birth';
+      } else if (/\b(?:marriage|married|wedding|anniversary)\b/.test(text)) {
+        type = 'marriage';
+      } else if (/\b(?:death|died|burial|buried)\b/.test(text)) {
+        type = 'death';
+      }
+
+      if (type !== '') {
+        row.classList.add('potts-home-event-' + type);
+      }
+      row.dataset.pottsEventStyled = '1';
+    });
+  }
+
+  function installHomepageReveal(root) {
+    if (!(root instanceof HTMLElement) || root.dataset.pottsRevealReady === '1') {
+      return;
+    }
+
+    root.dataset.pottsRevealReady = '1';
+    const items = Array.from(root.querySelectorAll(
+      '.potts-home-hero-host, .potts-home-intro, .potts-home-blocks .wt-block, ' +
+      '.potts-home-blocks .wt-side-block, .potts-home-blocks .card, .potts-home-blocks .panel'
+    ));
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+      items.forEach(function (item) { item.classList.add('potts-home-revealed'); });
+      return;
+    }
+
+    items.forEach(function (item, index) {
+      if (!(item instanceof HTMLElement)) {
+        return;
+      }
+      item.classList.add('potts-home-reveal');
+      item.style.setProperty('--potts-reveal-delay', Math.min(index, 8) * 45 + 'ms');
+    });
+
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) {
+          return;
+        }
+        entry.target.classList.add('potts-home-revealed');
+        observer.unobserve(entry.target);
+      });
+    }, { rootMargin: '0px 0px -7% 0px', threshold: 0.06 });
+
+    items.forEach(function (item) { observer.observe(item); });
+  }
+
   function enhanceHomePage() {
     const blocks = Array.from(document.querySelectorAll(
       '.wt-block, .wt-side-block, main .block, main .card, main .panel, main .box'
@@ -2861,6 +2930,12 @@
     const ribbon = findPhotoRibbon();
     if (ribbon) {
       ribbon.classList.add('potts-photo-ribbon');
+    }
+
+    enhanceOnThisDayEvents(main || document);
+    const homepage = document.querySelector('[data-potts-homepage]');
+    if (homepage instanceof HTMLElement) {
+      installHomepageReveal(homepage);
     }
   }
 
@@ -3674,6 +3749,50 @@
     });
   }
 
+
+  function integrateHeroSlideshow() {
+    const homepage = document.querySelector('[data-potts-homepage]');
+    if (!(homepage instanceof HTMLElement) || homepage.dataset.pottsHeroIntegration !== '1') {
+      return;
+    }
+
+    const existingHost = homepage.querySelector(':scope > .potts-home-hero-host');
+    if (existingHost) {
+      return;
+    }
+
+    const marker = homepage.querySelector(
+      '.potts-hero-slideshow, .ourfamily-hero, [data-potts-hero], [class*="potts-hero"], [id*="potts-hero"], ' +
+      '[class*="hero-slideshow"], [id*="hero-slideshow"], [class*="hero_slider"], [id*="hero_slider"]'
+    );
+
+    if (!(marker instanceof Element)) {
+      return;
+    }
+
+    const block = marker.closest('.wt-block, .card, [data-wt-ajax-url]') || marker;
+    if (!(block instanceof HTMLElement) || block.closest('.potts-home-intro')) {
+      return;
+    }
+
+    const oldColumn = block.closest('.wt-main-blocks, .wt-side-blocks');
+    const host = document.createElement('div');
+    host.className = 'potts-home-hero-host';
+    homepage.insertBefore(host, homepage.firstChild);
+    host.appendChild(block);
+
+    const intro = homepage.querySelector(':scope > .potts-home-intro');
+    if (intro instanceof HTMLElement) {
+      host.insertAdjacentElement('afterend', intro);
+    }
+
+    if (oldColumn instanceof HTMLElement && oldColumn.querySelectorAll('.wt-block, .card, [data-wt-ajax-url]').length === 0) {
+      oldColumn.classList.add('potts-home-empty-column');
+    }
+    homepage.classList.add('potts-homepage-has-hero');
+    installHomepageReveal(homepage);
+  }
+
   function runEnhancements() {
     refreshPending = false;
     cleanIndividualCarryover();
@@ -3721,13 +3840,206 @@
     enhanceRecordAndNarrativePages();
     makeWideContentTablesScrollable();
     enhanceHomePage();
+    integrateHeroSlideshow();
     enhanceEditingExperience();
     enhanceMessagesAndNewsBlocks();
     enhanceUtilityPages();
+    enhanceLegacySearchAndReportForms();
+    widenAutocompleteSearchFields(document);
     replaceDefaultSilhouettes();
     enhanceFamilyPopovers();
   }
 
+
+  function pageHeadingText(main) {
+    const headingNode = main ? main.querySelector('h1, .wt-page-title, .page-title, header h1') : null;
+    return normalise(headingNode ? headingNode.textContent : document.title);
+  }
+
+  function enhanceLegacySearchAndReportForms() {
+    const main = document.querySelector('main, #content, #main, #main-content, #page');
+
+    if (!main) {
+      return;
+    }
+
+    const headingText = pageHeadingText(main);
+    const pathText = normalise(window.location.pathname + ' ' + window.location.search);
+
+    const generalSearchPage = /^(?:general search|search)$/.test(headingText) ||
+      main.querySelector('input[name="search_individuals"], input[name="search_families"], input[name="search_sources"], input[name="search_repositories"], input[name="search_notes"]');
+
+    const advancedSearchPage = /^advanced search$/.test(headingText) || pathText.includes('advanced-search');
+    const branchesPage = /^branches$/.test(headingText) || pathText.includes('branches');
+
+    main.querySelectorAll('form').forEach(function (form) {
+      if (!(form instanceof HTMLElement)) {
+        return;
+      }
+
+      const hasLegacyCells = Boolean(form.querySelector('.descriptionbox, .optionbox, .wt-page-options-label, .wt-page-options-value'));
+      const hasPersonSelector = Boolean(form.querySelector(
+        '.select2-container, .twitter-typeahead, .ts-wrapper, input[aria-autocomplete="list"], input[role="combobox"], input.autocomplete'
+      ));
+      const hasSearchCheckBoxes = Boolean(form.querySelector('input[name="search_individuals"], input[name="search_families"]'));
+      const hasReportControls = Boolean(form.querySelector('input[type="number"], input[type="radio"], select'));
+
+      if (generalSearchPage && hasSearchCheckBoxes) {
+        form.classList.add('potts-general-search-form');
+      }
+
+      if (advancedSearchPage) {
+        form.classList.add('potts-advanced-search-form');
+      }
+
+      if (branchesPage) {
+        form.classList.add('potts-branches-form');
+      }
+
+      if (!generalSearchPage && !advancedSearchPage && !branchesPage && (hasLegacyCells || hasPersonSelector || hasReportControls)) {
+        if (document.body.classList.contains('potts-chart-page')) {
+          form.classList.add('potts-chart-options-form');
+        } else if (document.body.classList.contains('potts-report-page')) {
+          form.classList.add('potts-report-options-form');
+        } else {
+          // Many webtrees report option pages (for example Births/Lifespans)
+          // use the legacy descriptionbox/optionbox table markup but do not
+          // expose a reliable body class.  Classify them conservatively by
+          // their old table cells and submit control so CSS can fix them
+          // without affecting normal individual/family detail tables.
+          const submitControl = form.querySelector('button[type="submit"], input[type="submit"]');
+          const legacyCellCount = form.querySelectorAll('.descriptionbox, .optionbox, .wt-page-options-label, .wt-page-options-value').length;
+          if (submitControl && legacyCellCount >= 4) {
+            form.classList.add('potts-report-options-form');
+          }
+        }
+      }
+
+      const legacyRows = form.querySelectorAll('tr');
+      legacyRows.forEach(function (row) {
+        if (!(row instanceof HTMLElement)) {
+          return;
+        }
+
+        const cells = Array.from(row.children).filter(function (cell) {
+          return cell instanceof HTMLElement && cell.matches('td, th');
+        });
+
+        if (cells.length < 2) {
+          return;
+        }
+
+        const label = cells.find(function (cell) {
+          return cell.matches('.descriptionbox, .wt-page-options-label, th');
+        }) || cells[0];
+        const value = cells.find(function (cell) {
+          return cell !== label && cell.matches('.optionbox, .value, .wt-page-options-value, td');
+        }) || cells[1];
+
+        if (!label || !value) {
+          return;
+        }
+
+        row.classList.add('potts-legacy-form-row');
+        label.classList.add('potts-legacy-form-label');
+        value.classList.add('potts-legacy-form-value');
+
+        const labelText = normalise(label.textContent || '');
+        if (labelText.length > 13 || /(?:phonetic|birthplace|place of|date of|descendant generations|generations|show sources|show notes|show photos|individual|surname)/.test(labelText)) {
+          label.classList.add('potts-legacy-form-label-wide');
+        }
+
+        const textInputs = Array.from(value.querySelectorAll('input:not([type]), input[type="text"], input[type="search"], input[type="email"], input[type="url"], textarea'));
+        const numberInputs = Array.from(value.querySelectorAll('input[type="number"], input[name*="generation" i], input[id*="generation" i], input[name*="year" i], input[id*="year" i]'));
+        const choiceInputs = Array.from(value.querySelectorAll('input[type="checkbox"], input[type="radio"]'));
+        const selectors = Array.from(value.querySelectorAll('.select2-container, .twitter-typeahead, .ts-wrapper, .choices, .input-group, input[aria-autocomplete="list"], input[role="combobox"], input.autocomplete'));
+
+        if (textInputs.length > 0 || selectors.length > 0) {
+          row.classList.add('potts-legacy-wide-field-row');
+        }
+
+        if (selectors.length > 0) {
+          row.classList.add('potts-legacy-autocomplete-row');
+        }
+
+        if (numberInputs.length > 0 && textInputs.length <= numberInputs.length) {
+          row.classList.add('potts-legacy-compact-number-row');
+        }
+
+        if (choiceInputs.length > 0) {
+          row.classList.add('potts-legacy-choice-row');
+        }
+
+        if (form.classList.contains('potts-general-search-form') && textInputs.length > 0 && choiceInputs.length === 0) {
+          row.classList.add('potts-general-search-query-row');
+        }
+
+        if (form.classList.contains('potts-general-search-form')) {
+          const likelyQueryInput = value.querySelector('input[name="query"], input[name="search"], input[type="search"], input[type="text"], input:not([type])');
+          if (likelyQueryInput && choiceInputs.length === 0) {
+            row.classList.add('potts-general-search-query-row');
+            row.classList.add('potts-legacy-wide-field-row');
+          }
+        }
+      });
+    });
+  }
+
+  function widenAutocompleteSearchFields(root) {
+    const scope = root && root.querySelectorAll ? root : document;
+    const fields = scope.querySelectorAll(
+      '.select2-search__field, textarea.select2-search__field, input.select2-search__field, ' +
+      '.select2-input, .select2-search-field input, .select2-search input, ' +
+      '.select2-container input[type="text"], .select2-container input[type="search"], ' +
+      '.select2-dropdown input[type="text"], .select2-dropdown input[type="search"], ' +
+      '.ts-control input, .ts-dropdown input, .tt-input, .tt-hint, .ui-autocomplete-input, ' +
+      'input[aria-autocomplete="list"], input[role="combobox"], input.autocomplete'
+    );
+
+    fields.forEach(function (field) {
+      if (!(field instanceof HTMLElement)) {
+        return;
+      }
+
+      const inHeader = Boolean(field.closest('header, .wt-header-wrapper, .navbar, .potts-site-shell'));
+      if (inHeader) {
+        return;
+      }
+
+      field.classList.add('potts-modern-wide-autocomplete-field');
+      field.style.setProperty('box-sizing', 'border-box', 'important');
+      field.style.setProperty('text-align', 'left', 'important');
+
+      const cell = field.closest('td.optionbox, td.value, .wt-page-options-value, .potts-legacy-form-value');
+      const container = field.closest('.select2-container, .select2-drop, .select2-dropdown, .ts-wrapper, .twitter-typeahead, .input-group') || cell || field.parentElement;
+      const reference = cell || container;
+      const referenceWidth = reference && reference.getBoundingClientRect ? reference.getBoundingClientRect().width : 0;
+      const viewportWidth = Math.max(280, window.innerWidth || document.documentElement.clientWidth || 960);
+      const wanted = Math.max(280, Math.min(referenceWidth ? referenceWidth - 12 : 640, viewportWidth - 48));
+
+      field.style.setProperty('width', wanted + 'px', 'important');
+      field.style.setProperty('min-width', Math.min(wanted, viewportWidth - 48) + 'px', 'important');
+      field.style.setProperty('max-width', '100%', 'important');
+    });
+
+    const containers = scope.querySelectorAll(
+      '.select2-container, .select2-dropdown, .select2-container--open, .select2-drop, .select2-drop-active, .twitter-typeahead, .tt-menu, .ui-autocomplete, .ts-wrapper, .ts-dropdown'
+    );
+
+    containers.forEach(function (container) {
+      if (!(container instanceof HTMLElement) || container.closest('header, .wt-header-wrapper, .navbar, .potts-site-shell')) {
+        return;
+      }
+
+      container.classList.add('potts-modern-wide-autocomplete');
+      container.style.setProperty('text-align', 'left', 'important');
+      container.style.setProperty('max-width', 'calc(100vw - 2rem)', 'important');
+
+      if (container.matches('.select2-dropdown, .select2-container--open, .select2-drop, .select2-drop-active, .tt-menu, .ui-autocomplete, .ts-dropdown')) {
+        container.style.setProperty('min-width', 'min(30rem, calc(100vw - 2rem))', 'important');
+      }
+    });
+  }
 
   function scheduleEnhancements() {
     if (refreshPending) {
@@ -3828,6 +4140,24 @@
 
 
 
+    document.addEventListener('input', function (event) {
+      const target = event.target instanceof Element ? event.target : null;
+      if (target && target.matches('.select2-search__field, .select2-input, .tt-input, .ui-autocomplete-input, input[aria-autocomplete="list"], input[role="combobox"], input.autocomplete')) {
+        widenAutocompleteSearchFields(document);
+      }
+    }, true);
+
+    document.addEventListener('focusin', function (event) {
+      const target = event.target instanceof Element ? event.target : null;
+      if (target && target.matches('.select2-search__field, .select2-input, .tt-input, .ui-autocomplete-input, input[aria-autocomplete="list"], input[role="combobox"], input.autocomplete')) {
+        [0, 40, 160].forEach(function (delay) {
+          window.setTimeout(function () {
+            widenAutocompleteSearchFields(document);
+          }, delay);
+        });
+      }
+    }, true);
+
     const individualMobileQuery = window.matchMedia('(max-width: 767.98px)');
     if (typeof individualMobileQuery.addEventListener === 'function') {
       individualMobileQuery.addEventListener('change', scheduleEnhancements);
@@ -3842,3 +4172,126 @@
     start();
   }
 })();
+
+/* Potts Modern 1.2.0 navigation and accessibility polish test 5. */
+(function () {
+  'use strict';
+
+  function initialisePottsNavigationPolish() {
+    const body = document.body;
+    if (!body || !body.classList.contains('potts-modern')) {
+      return;
+    }
+
+    /* Remember collapsed homepage blocks in this browser. webtrees already
+       performs the actual collapse; the theme only preserves the visitor's
+       presentation preference between page loads. */
+    if (body.classList.contains('potts-home-page')) {
+      const storagePrefix = 'potts-modern:block:' + window.location.pathname + ':';
+      const collapseElements = Array.from(document.querySelectorAll(
+        '.wt-block .collapse[id], .wt-side-block .collapse[id], .wt-main-blocks .collapse[id], .wt-side-blocks .collapse[id]'
+      ));
+
+      collapseElements.forEach(function (collapse) {
+        const id = collapse.id;
+        if (!id) {
+          return;
+        }
+
+        const key = storagePrefix + id;
+        try {
+          const saved = window.localStorage.getItem(key);
+          if (saved === 'hidden') {
+            collapse.classList.remove('show');
+            document.querySelectorAll('[data-bs-target="#' + CSS.escape(id) + '"], [href="#' + CSS.escape(id) + '"]').forEach(function (trigger) {
+              trigger.classList.add('collapsed');
+              trigger.setAttribute('aria-expanded', 'false');
+            });
+          } else if (saved === 'shown') {
+            collapse.classList.add('show');
+            document.querySelectorAll('[data-bs-target="#' + CSS.escape(id) + '"], [href="#' + CSS.escape(id) + '"]').forEach(function (trigger) {
+              trigger.classList.remove('collapsed');
+              trigger.setAttribute('aria-expanded', 'true');
+            });
+          }
+        } catch (error) {
+          /* Storage can be unavailable in private browsing. */
+        }
+
+        collapse.addEventListener('shown.bs.collapse', function () {
+          try { window.localStorage.setItem(key, 'shown'); } catch (error) {}
+        });
+        collapse.addEventListener('hidden.bs.collapse', function () {
+          try { window.localStorage.setItem(key, 'hidden'); } catch (error) {}
+        });
+      });
+    }
+
+    /* A small back-to-top control is useful on long family-history homepages
+       and report pages, while staying out of the way near the top. */
+    if (!document.querySelector('.potts-back-to-top')) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'potts-back-to-top';
+      button.setAttribute('aria-label', 'Back to top');
+      button.setAttribute('title', 'Back to top');
+      button.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"/></svg>';
+      document.body.appendChild(button);
+
+      const updateVisibility = function () {
+        button.classList.toggle('is-visible', window.scrollY > Math.max(520, window.innerHeight * .75));
+      };
+
+      button.addEventListener('click', function () {
+        const reduced = body.classList.contains('potts-reduced-motion') || window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
+      });
+
+      window.addEventListener('scroll', updateVisibility, { passive: true });
+      updateVisibility();
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initialisePottsNavigationPolish, { once: true });
+  } else {
+    initialisePottsNavigationPolish();
+  }
+})();
+
+/* Potts Modern 1.2.0 event-card classification - test 8 */
+(function () {
+  'use strict';
+
+  function classifyPottsLifeEvents() {
+    document.querySelectorAll('main .wt-tab-facts .potts-top-level-fact-row').forEach(function (row) {
+      var title = row.querySelector('.potts-event-title-panel, .potts-fact-title, th, td');
+      var text = title ? title.textContent.trim().toLowerCase() : '';
+      var classes = {
+        birth: ['birth', 'baptism', 'christening'],
+        marriage: ['marriage', 'married'],
+        occupation: ['occupation', 'employment', 'economic'],
+        residence: ['residence', 'property'],
+        migration: ['immigration', 'emigration', 'arrival', 'departure'],
+        death: ['death', 'burial', 'cremation'],
+        will: ['will', 'probate']
+      };
+
+      Object.keys(classes).some(function (kind) {
+        if (classes[kind].some(function (word) { return text.indexOf(word) !== -1; })) {
+          row.classList.add('potts-event-' + kind);
+          return true;
+        }
+        return false;
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', classifyPottsLifeEvents);
+  } else {
+    classifyPottsLifeEvents();
+  }
+  window.setTimeout(classifyPottsLifeEvents, 350);
+  window.setTimeout(classifyPottsLifeEvents, 1200);
+}());

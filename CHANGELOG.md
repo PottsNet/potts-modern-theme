@@ -1,11 +1,131 @@
-# 1.1.1
+# 1.2.0
 
-- Adds layout-only integration for Potts Hero Slideshow v1.0.0+.
-- Detects homepage blocks containing `.ourfamily-hero` and marks them as the Potts Modern homepage hero.
-- Moves the hero block above the normal homepage columns so it can display as a full-width banner.
-- Removes the usual block/card header, padding and background around the hero block.
-- Passes Potts Modern colour variables through to the slideshow module.
-- Leaves slideshow markup, image styling, captions, transitions, selector dots, timing and upload handling to Potts Hero Slideshow.
+## Added
+- Added a biography-style individual profile header with key life and family details.
+- Refined existing homepage blocks with semantic styling, restrained event accents, subtle motion and improved mobile behaviour.
+
+### Homepage experience refinements
+
+- Added responsive shortcut cards for desktop, tablet and mobile.
+- Corrected saving of custom welcome heading and introduction text.
+- Improved the homepage template to keep all optional features independently configurable.
+
+- Seven selectable colour presets: Potts Green, Ocean Blue, Burgundy, Heritage Purple, Slate, Teal and Sandstone.
+- Typography weight presets: Light, Standard and Bold.
+- Standard, Wide and Full Width page layouts.
+- Compact, Comfortable and Spacious content density options.
+- Live preview for colour, typography, spacing, corners, shadows and page width.
+
+## Improved
+
+- Settings page organisation and accessibility controls.
+- Desktop dropdown sizing for long and translated menu labels.
+- Form, report and advanced-search field widths on webtrees 2.2.6.
+- Calendar-specific sizing is now isolated from ordinary forms.
+- Card, table, button, navigation and form consistency.
+- Hero Slideshow compatibility.
+- Storytelling, Classic and Compact homepage presentation modes.
+- Optional welcome panel with configurable heading and introduction.
+- Prominent homepage quick search.
+- Automatic Potts Hero Slideshow placement above the homepage content.
+- Quick homepage style presets and a single Potts Modern Experience switch.
+
+# 1.1.1-beta.36
+
+- Adds a new Typography weight setting with Light, Standard and Bold presets for headings, navigation, labels and emphasised text.
+- Makes desktop dropdown menus expand to fit longer and translated labels while retaining safe viewport limits.
+- Keeps mobile dropdowns full-width and allows long labels to wrap.
+- Includes the beta.35 form-width and calendar-selector corrections.
+
+# 1.1.1-beta.35
+
+- Corrected the remaining narrow text fields on Advanced Search and report setup pages.
+- Scoped all calendar-specific `.wt-page-options` styling to `table.wt-page-options` so it can no longer affect webtrees form-based page options.
+- Preserved the native webtrees 2.2.6 Bootstrap widths for ordinary text, date and report fields.
+
+# 1.1.1-beta.34
+
+- Corrects search, report and chart form layouts against the actual webtrees 2.2.6 Bootstrap markup.
+- Restores the native 3/6/3 advanced-search grid and 3/9 report grid.
+- Prevents calendar-only 6rem label and 4.8rem input widths from leaking into every `.wt-page-options` form.
+- Keeps compact calendar controls scoped to `table.wt-page-options`.
+
+# 1.1.1-beta.33
+
+- Updated Potts Hero Slideshow integration for the standalone v1.0.0 slideshow module.
+- Keeps full-width homepage placement, block chrome removal and Potts Modern colour-variable support.
+- Removes duplicated theme-side slideshow JavaScript so slide timing, dots, captions and transitions are controlled by the slideshow module.
+- Removes old heavy theme-side `.ourfamily-hero` component styling so the slideshow module owns its own appearance and settings.
+- Retains the 1.1.1-beta.32 search/report form refinements.
+
+# 1.1.1-beta.32
+- Refined legacy search/report form styling after live testing.
+- Keeps General Search query field wide while preserving compact checkbox/radio controls.
+- Widens legacy report label cells and non-date text/autocomplete fields on Births, Marriages and Lifespans-style report pages.
+- Avoids changing the chart pages that were already displaying correctly.
+
+# 1.1.1-beta.31
+
+- Refines legacy webtrees report/search form styling after live testing.
+- Classifies Births/Lifespans and similar report option forms even when webtrees does not expose a report body class.
+- Widens report label/title cells and key text/autocomplete fields while preserving the working chart form layout.
+- Restores a wider main input on General search without disturbing checkbox/radio options.
+
+# 1.1.1-beta.30
+
+- Rebuilt search/report form styling from the stable hero build after inspecting webtrees form patterns.
+- Added JavaScript form classification for General search, Advanced search, Branches and chart/report option pages.
+- Added targeted CSS for autocomplete fields, label columns and compact checkbox/radio controls without broad global form overrides.
+
+# 1.1.1-beta.15
+
+- Ensures the Potts Hero Slideshow overlay caption offset setting applies reliably on the homepage.
+
+# 1.1.1-beta.14
+
+- Adds theme-side support for the Potts Hero Slideshow overlay caption position control.
+
+## 1.1.1-beta.12
+
+- Refines Potts Hero Slideshow overlay captions on the homepage.
+- Keeps overlay title strips aligned to the bottom of the image, with auto height and centred text.
+
+## 1.1.1-beta.12
+
+- Added theme support for Potts Hero Slideshow transition-speed CSS variables.
+
+
+## 1.1.1-beta.12
+
+- Refines Potts Hero Slideshow caption/title display for exact-frame photos.
+- Supports the module caption display classes for below-image, overlay and hidden titles.
+
+## 1.1.1-beta.8
+- Corrected Potts Hero Slideshow exact frame support on homepage.
+- Preserved offset frame as the separate Offset photo mount style.
+
+# Changelog
+
+## 1.1.1-beta.7
+
+- Updated homepage hero styling to follow Potts Modern palette colours.
+- Added theme-side support for the new Potts Hero Slideshow transition effects, including random transitions.
+- Kept full-width homepage hero placement compatible with the module block.
+
+## 1.1.1-beta.5
+
+- Added homepage CSS support for Potts Hero Slideshow module settings including selector dots off, simple/no frame styles and colour/sepia/mono image treatment.
+- Added a small JavaScript safeguard to remove existing selector dots when a hero is configured with `data-dots="0"`.
+
+## 1.1.1-beta.4
+
+- Adjusts the homepage hero image frame to favour best-fit display so full family photographs remain visible.
+- Slightly increases the hero photo area and adds optional `ourfamily-hero-fit-cover` / `ourfamily-hero-fit-contain` helper classes.
+
+## 1.1.1-beta.3
+- Added an optional full-width homepage hero banner feature.
+- Allows an ordinary HTML block containing `.ourfamily-hero` to be moved above the normal two-column homepage layout.
+- Added responsive vintage-frame slideshow styling, fade transitions, optional slide dots and hero action buttons.
 
 ## 1.1.0
 - Promoted the tested 1.1.0-beta.62 theme to a regular stable release.
@@ -198,7 +318,6 @@
 
 ## 1.1.0-beta.32
 
-- Preserved Bootstrap's collapsed state for unchecked historic, associated and close-relative facts.
 - Added direct support for webtrees' native `.wt-tab-relatives` Families markup.
 - Stacked spouse, marriage and child rows and expanded person boxes on phones.
 - Located the signed-in owner's complete identity wrapper without relying on a Bootstrap row class.
@@ -393,3 +512,12 @@ All notable changes to Potts Modern are documented here.
 ## Earlier development releases
 
 Versions 0.9.x through 1.0.38 were private development releases used while refining responsive layouts, menus, event cards, icons, settings and modal compatibility.
+
+
+## 1.1.1-beta.12
+
+- Adds theme-side support for the Potts Hero Slideshow below-frame caption strip, so captions are rendered outside the exact photo frame and are no longer clipped.
+
+### 1.2.0 test 16
+- Fixed the biography silhouette being hidden by the theme's older global placeholder-suppression rule.
+- Exempted the biography fallback image from JavaScript silhouette replacement.

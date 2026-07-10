@@ -1,6 +1,6 @@
 /*
  * Potts Modern Theme for webtrees
- * Version: 1.1.1
+ * Version: 1.2.0
  * Purpose: standalone modern heritage theme for webtrees.
  */
 
@@ -11510,5 +11510,1084 @@ main table.wt-page-options input[type="text"] {
     min-width: 0 !important;
     max-width: 100% !important;
     white-space: normal !important;
+  }
+}
+
+
+/* ================================================================
+   Potts Modern Theme 1.2.0
+   Personalisation release: palettes, typography, density and width
+   ================================================================ */
+
+/* Keep full-width pages usable by retaining a small viewport gutter. */
+:root { --potts-viewport-gutter: clamp(.75rem, 2vw, 1.5rem); }
+
+main > .container,
+main > .container-fluid,
+.wt-main-container,
+.wt-page-content {
+  max-width: var(--potts-page-width, 1260px);
+}
+
+@media (min-width: 992px) {
+  main > .container,
+  main > .container-fluid,
+  .wt-main-container,
+  .wt-page-content {
+    padding-inline: var(--potts-viewport-gutter);
+  }
+}
+
+/* ================================================================
+   Potts Modern 1.2.0 homepage experience continuation
+   Quick links and stronger homepage composition
+   ================================================================ */
+.potts-home-quick-links {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(.6rem, 1.4vw, 1rem);
+  margin: 0 0 clamp(1rem, 2vw, 1.6rem);
+}
+
+.potts-home-quick-links[hidden] {
+  display: none !important;
+}
+
+.potts-home-quick-link {
+  display: flex;
+  align-items: center;
+  gap: .72rem;
+  min-height: 4rem;
+  padding: .78rem .95rem;
+  color: var(--potts-ink, #26352e);
+  text-decoration: none;
+  background: color-mix(in srgb, var(--potts-surface, #fff) 94%, var(--potts-blue, #416b56));
+  border: 1px solid color-mix(in srgb, var(--potts-blue, #416b56) 22%, transparent);
+  border-radius: var(--potts-radius-small, 12px);
+  box-shadow: var(--potts-shadow-small, 0 10px 28px rgba(35,48,56,.09));
+  transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease;
+}
+
+.potts-home-quick-link:hover,
+.potts-home-quick-link:focus-visible {
+  color: var(--potts-blue-dark, #203e34);
+  text-decoration: none;
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--potts-blue, #416b56) 55%, transparent);
+  box-shadow: var(--potts-shadow-large, 0 18px 46px rgba(35,48,56,.13));
+}
+
+.potts-home-quick-link:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--potts-gold, #a88a52) 58%, transparent);
+  outline-offset: 2px;
+}
+
+.potts-home-quick-link-icon {
+  display: inline-grid;
+  flex: 0 0 2.35rem;
+  width: 2.35rem;
+  height: 2.35rem;
+  place-items: center;
+  color: #fff;
+  font-size: 1.25rem;
+  background: linear-gradient(145deg, var(--potts-blue, #416b56), var(--potts-blue-dark, #203e34));
+  border-radius: 50%;
+}
+
+.potts-home-quick-link-icon :is(svg, img) {
+  width: 1.2rem;
+  height: 1.2rem;
+  max-width: 1.2rem;
+  max-height: 1.2rem;
+  filter: brightness(0) invert(1);
+}
+
+.potts-home-quick-link-label {
+  min-width: 0;
+  overflow: hidden;
+  font-weight: var(--potts-weight-navigation, 700);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.potts-homepage-style-compact .potts-home-quick-link {
+  min-height: 3.35rem;
+  padding: .55rem .72rem;
+  box-shadow: none;
+}
+
+.potts-homepage-style-compact .potts-home-quick-link-icon {
+  width: 1.95rem;
+  height: 1.95rem;
+  flex-basis: 1.95rem;
+}
+
+@media (max-width: 900px) {
+  .potts-home-quick-links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .potts-home-quick-links {
+    grid-template-columns: 1fr;
+  }
+
+  .potts-home-quick-link-label {
+    white-space: normal;
+  }
+}
+
+body.potts-reduced-motion .potts-home-quick-link {
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .potts-home-quick-link {
+    transition: none;
+  }
+}
+
+
+/* ================================================================
+   Potts Modern 1.2.0 homepage composition refinement
+   Hero first, focused search second, no dashboard-style shortcut dots
+   ================================================================ */
+body.potts-home-page .potts-homepage-has-hero > .potts-home-hero-host {
+  order: 1;
+  margin-bottom: clamp(.85rem, 1.7vw, 1.25rem);
+}
+
+body.potts-home-page .potts-homepage-has-hero > .potts-home-intro {
+  order: 2;
+  padding: .85rem 1rem;
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+}
+
+body.potts-home-page .potts-homepage-has-hero > .potts-home-blocks {
+  order: 3;
+}
+
+body.potts-home-page .potts-homepage-has-hero {
+  display: flex;
+  flex-direction: column;
+}
+
+body.potts-home-page .potts-homepage-has-hero .potts-home-welcome-copy {
+  display: none;
+}
+
+body.potts-home-page .potts-homepage-has-hero .potts-home-intro-grid {
+  display: block;
+}
+
+body.potts-home-page .potts-homepage-has-hero .potts-home-search {
+  display: grid;
+  grid-template-columns: max-content minmax(280px, 1fr);
+  align-items: center;
+  gap: .85rem;
+  width: min(100%, 760px);
+  margin-inline: auto;
+}
+
+body.potts-home-page .potts-homepage-has-hero .potts-home-search > label {
+  margin: 0;
+  white-space: nowrap;
+}
+
+body.potts-home-page .potts-home-quick-links {
+  display: none !important;
+}
+
+@media (max-width: 700px) {
+  body.potts-home-page .potts-homepage-has-hero .potts-home-search {
+    grid-template-columns: 1fr;
+    gap: .5rem;
+  }
+
+  body.potts-home-page .potts-homepage-has-hero .potts-home-search > label {
+    white-space: normal;
+  }
+}
+
+/* ================================================================
+   Potts Modern 1.2.0 homepage polish test 4
+   Smarter existing blocks, subtle reveals and mobile refinement
+   No new homepage blocks are introduced by this update.
+   ================================================================ */
+
+/* Gentle entrance treatment. Content remains visible without JavaScript. */
+body.potts-home-page .potts-home-reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity .42s ease var(--potts-reveal-delay, 0ms),
+    transform .42s ease var(--potts-reveal-delay, 0ms);
+}
+
+body.potts-home-page .potts-home-reveal.potts-home-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* Give recognisable webtrees blocks a more deliberate visual hierarchy. */
+body.potts-home-page :is(.potts-home-glance, .potts-home-statistics) .card-body,
+body.potts-home-page :is(.potts-home-glance, .potts-home-statistics) .wt-block-content {
+  background:
+    radial-gradient(circle at 92% 12%, color-mix(in srgb, var(--potts-gold, #b98638) 12%, transparent) 0 3.5rem, transparent 3.6rem),
+    var(--potts-surface, #fff);
+}
+
+body.potts-home-page .potts-home-history :is(.list-group-item, article, .card-body > div),
+body.potts-home-page .potts-home-books :is(.list-group-item, article, .card-body > div),
+body.potts-home-page .potts-home-modules :is(.list-group-item, article, .card-body > div) {
+  border-radius: calc(var(--potts-radius-small, 12px) - 2px);
+}
+
+body.potts-home-page .potts-home-explore a {
+  position: relative;
+  transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease;
+}
+
+body.potts-home-page .potts-home-explore a:hover,
+body.potts-home-page .potts-home-explore a:focus-visible {
+  z-index: 1;
+  transform: translateX(2px);
+}
+
+/* On-this-day event accents are intentionally restrained and work with all palettes. */
+body.potts-home-page .potts-home-on-this-day :is(tr, .list-group-item) {
+  border-inline-start: 3px solid transparent;
+}
+
+body.potts-home-page .potts-home-on-this-day .potts-home-event-birth {
+  border-inline-start-color: color-mix(in srgb, var(--potts-blue, #416b56) 76%, #fff);
+  background: color-mix(in srgb, var(--potts-blue, #416b56) 5%, transparent);
+}
+
+body.potts-home-page .potts-home-on-this-day .potts-home-event-marriage {
+  border-inline-start-color: color-mix(in srgb, var(--potts-gold, #b98638) 80%, #fff);
+  background: color-mix(in srgb, var(--potts-gold, #b98638) 6%, transparent);
+}
+
+body.potts-home-page .potts-home-on-this-day .potts-home-event-death {
+  border-inline-start-color: color-mix(in srgb, var(--potts-muted, #65717a) 82%, #fff);
+  background: color-mix(in srgb, var(--potts-muted, #65717a) 5%, transparent);
+}
+
+/* Word-cloud and ranking blocks should read as supporting material, not compete with the hero. */
+body.potts-home-page :is(.potts-home-surnames, .potts-home-most-viewed) a {
+  text-underline-offset: .16em;
+}
+
+body.potts-home-page .potts-home-cultural-warning {
+  --potts-block-accent: var(--potts-gold, #b98638);
+}
+
+body.potts-home-page .potts-home-cultural-warning :is(.card-body, .wt-block-content) {
+  font-size: .93rem;
+  line-height: 1.58;
+}
+
+/* Hero-first search bar: improve touch targets and prevent the button becoming cramped. */
+body.potts-home-page .potts-homepage-has-hero .potts-home-search .input-group {
+  min-width: 0;
+}
+
+body.potts-home-page .potts-homepage-has-hero .potts-home-search :is(input, button) {
+  min-height: 2.75rem;
+}
+
+body.potts-home-page .potts-homepage-has-hero .potts-home-search button {
+  white-space: nowrap;
+}
+
+@media (max-width: 767.98px) {
+  body.potts-home-page .potts-homepage {
+    width: 100%;
+  }
+
+  body.potts-home-page .potts-home-hero-host,
+  body.potts-home-page .potts-home-intro,
+  body.potts-home-page .potts-home-blocks {
+    min-width: 0;
+  }
+
+  body.potts-home-page .potts-homepage-has-hero > .potts-home-intro {
+    padding: .75rem;
+    border-radius: var(--potts-radius-small, 12px);
+  }
+
+  body.potts-home-page .potts-homepage-has-hero .potts-home-search .input-group {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  body.potts-home-page .potts-homepage-has-hero .potts-home-search input {
+    min-width: 0;
+  }
+
+  body.potts-home-page .potts-home-blocks > .row {
+    margin-inline: 0;
+  }
+
+  body.potts-home-page .potts-home-blocks :is(.wt-main-blocks, .wt-side-blocks) {
+    width: 100%;
+    padding-inline: 0;
+  }
+
+  body.potts-home-page .potts-home-blocks :is(.wt-block, .wt-side-block, .card, .panel) {
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 430px) {
+  body.potts-home-page .potts-homepage-has-hero .potts-home-search .input-group {
+    grid-template-columns: 1fr;
+    gap: .5rem;
+  }
+
+  body.potts-home-page .potts-homepage-has-hero .potts-home-search button {
+    width: 100%;
+  }
+}
+
+body.potts-reduced-motion .potts-home-reveal {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.potts-home-page .potts-home-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ================================================================
+   Potts Modern 1.2.0 navigation and accessibility polish test 5
+   ================================================================ */
+
+/* A consistent, clearly visible keyboard focus treatment across the theme. */
+body.potts-modern :is(
+  a,
+  button,
+  input,
+  select,
+  textarea,
+  [tabindex]:not([tabindex="-1"]),
+  .select2-selection
+):focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--potts-gold, #b98638) 82%, #fff);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--potts-gold, #b98638) 18%, transparent);
+}
+
+/* Preserve a strong focus ring inside clipped cards and navigation controls. */
+body.potts-modern :is(.card, .wt-block, .dropdown-menu, .potts-home-search) :focus-visible {
+  outline-offset: 1px;
+}
+
+/* Make the current navigation destination easier to recognise. */
+body.potts-modern .wt-genealogy-menu :is(.nav-link.active, .dropdown-item.active),
+body.potts-modern .navbar :is(.nav-link.active, .dropdown-item.active) {
+  position: relative;
+  font-weight: var(--potts-weight-navigation, 700);
+}
+
+body.potts-modern .wt-genealogy-menu .nav-link.active::after,
+body.potts-modern .navbar .nav-link.active::after {
+  content: "";
+  position: absolute;
+  inset-inline: .65rem;
+  bottom: .2rem;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--potts-gold, #b98638);
+}
+
+/* Homepage block headings gain a larger, easier touch target without changing appearance. */
+body.potts-home-page .wt-block :is(.card-header, .wt-block-header) button,
+body.potts-home-page .wt-side-block :is(.card-header, .wt-block-header) button {
+  min-height: 2.6rem;
+}
+
+/* Back-to-top control appears only after meaningful scrolling. */
+.potts-back-to-top {
+  position: fixed;
+  z-index: 1035;
+  inset-inline-end: clamp(.8rem, 2vw, 1.4rem);
+  bottom: clamp(.8rem, 2vw, 1.4rem);
+  display: inline-grid;
+  place-items: center;
+  width: 2.9rem;
+  height: 2.9rem;
+  padding: 0;
+  border: 1px solid color-mix(in srgb, var(--potts-blue, #185a71) 70%, #fff);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--potts-blue, #185a71) 94%, #000);
+  color: #fff;
+  box-shadow: 0 10px 26px rgba(20, 37, 45, .22);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(.55rem);
+  transition: opacity .18s ease, transform .18s ease, visibility .18s ease, background-color .18s ease;
+}
+
+.potts-back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.potts-back-to-top:hover {
+  background: color-mix(in srgb, var(--potts-blue, #185a71) 82%, #000);
+}
+
+.potts-back-to-top svg {
+  width: 1.15rem;
+  height: 1.15rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (max-width: 575.98px) {
+  .potts-back-to-top {
+    width: 2.7rem;
+    height: 2.7rem;
+  }
+}
+
+body.potts-reduced-motion .potts-back-to-top,
+@media (prefers-reduced-motion: reduce) {
+  .potts-back-to-top {
+    transition: none;
+  }
+}
+
+/* Potts Modern 1.2.0 - Biography header */
+.potts-biography-header {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(1.15rem, 2.2vw, 2rem);
+    border: 1px solid color-mix(in srgb, var(--bs-border-color) 78%, var(--potts-accent, #356859));
+    border-radius: var(--potts-radius, 1rem);
+    background:
+        radial-gradient(circle at 92% 8%, color-mix(in srgb, var(--potts-accent, #356859) 12%, transparent) 0, transparent 34%),
+        var(--bs-body-bg);
+    box-shadow: var(--potts-shadow, 0 0.5rem 1.5rem rgb(0 0 0 / .08));
+}
+
+.potts-biography-toolbar {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.potts-biography-kicker {
+    margin: 0 0 .2rem;
+    color: var(--potts-accent, #356859);
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .11em;
+    text-transform: uppercase;
+}
+
+.potts-biography-name {
+    margin: 0;
+    line-height: 1.08;
+    text-align: left;
+}
+
+.potts-biography-lifespan {
+    margin: .35rem 0 0;
+    color: var(--bs-secondary-color);
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+}
+
+.potts-biography-main > .col-sm-3 {
+    flex: 0 0 clamp(150px, 22vw, 240px);
+    max-width: clamp(150px, 22vw, 240px);
+}
+
+.potts-biography-main .img-thumbnail {
+    border-radius: calc(var(--potts-radius, 1rem) * .8);
+    box-shadow: 0 .45rem 1.3rem rgb(0 0 0 / .12);
+}
+
+.potts-biography-facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .8rem;
+}
+
+.potts-biography-fact {
+    min-width: 0;
+    padding: .85rem 1rem;
+    border: 1px solid var(--bs-border-color);
+    border-radius: calc(var(--potts-radius, 1rem) * .65);
+    background: color-mix(in srgb, var(--bs-body-bg) 92%, var(--potts-accent, #356859));
+}
+
+.potts-biography-fact > * {
+    display: block;
+}
+
+.potts-biography-label {
+    margin-bottom: .22rem;
+    color: var(--bs-secondary-color);
+    font-size: .73rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+}
+
+.potts-biography-links a {
+    font-weight: 650;
+    text-decoration-thickness: .08em;
+    text-underline-offset: .16em;
+}
+
+.potts-biography-names {
+    margin-top: 1rem;
+}
+
+.potts-biography-names #individual-names {
+    margin: 0;
+}
+
+.potts-biography-names #individual-names > .accordion-item:first-child {
+    border-top-left-radius: calc(var(--potts-radius, 1rem) * .65);
+    border-top-right-radius: calc(var(--potts-radius, 1rem) * .65);
+}
+
+@media (max-width: 767.98px) {
+    .potts-biography-toolbar {
+        align-items: center;
+    }
+
+    .potts-biography-main > .col-sm-3 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .potts-biography-main > .col-sm-3 > * {
+        max-width: 230px;
+        margin-inline: auto;
+    }
+
+    .potts-biography-facts {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Potts Modern 1.2.0 biography presentation - test 7 */
+.potts-profile-hero {
+  position: relative;
+  padding: clamp(1rem, 2.2vw, 2rem);
+  border: 1px solid color-mix(in srgb, var(--bs-border-color, #d7ddd9) 82%, transparent);
+  border-radius: var(--potts-card-radius, 1rem);
+  background: color-mix(in srgb, var(--bs-body-bg, #fff) 96%, var(--potts-accent, #b58a35) 4%);
+  box-shadow: var(--potts-card-shadow, 0 10px 30px rgba(24, 45, 48, .09));
+}
+.potts-profile-toolbar { display:flex; justify-content:space-between; align-items:center; gap:1rem; margin-bottom:.75rem; }
+.potts-profile-kicker { font-size:.72rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--potts-accent, #9b7428); }
+.potts-profile-grid { display:grid; grid-template-columns:minmax(150px, 220px) minmax(0, 1fr) minmax(190px, 260px); gap:clamp(1rem, 2.4vw, 2rem); align-items:start; }
+.potts-profile-photo .wt-individual-images { width:100%; }
+.potts-profile-photo img { width:100%; max-height:330px; object-fit:cover; border-radius:.9rem; box-shadow:0 10px 22px rgba(20,35,37,.15); }
+.potts-profile-photo [class*="col-"] { width:100%; max-width:100%; flex:0 0 100%; }
+.potts-profile-name { margin:0; text-align:left; font-size:clamp(2rem, 4vw, 3.5rem); line-height:1.02; }
+.potts-profile-lifespan { margin:.45rem 0 1rem; font-size:clamp(1rem, 1.7vw, 1.3rem); color:var(--potts-accent, #9b7428); font-weight:650; }
+.potts-profile-chips { display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:1.1rem; }
+.potts-profile-chip { padding:.42rem .72rem; border-radius:999px; background:color-mix(in srgb, var(--potts-accent, #b58a35) 13%, #fff); border:1px solid color-mix(in srgb, var(--potts-accent, #b58a35) 22%, transparent); font-weight:650; }
+.potts-profile-vitals { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.75rem; }
+.potts-vital { display:flex; flex-direction:column; gap:.18rem; padding:.85rem 1rem; border-radius:.8rem; background:color-mix(in srgb, var(--bs-secondary-bg, #eef2ef) 82%, #fff); border-left:4px solid var(--potts-accent, #b58a35); }
+.potts-vital-death { border-left-color:#667177; }
+.potts-vital-label { font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; font-weight:800; color:var(--bs-secondary-color, #5d6868); }
+.potts-profile-marriages { margin-top:.85rem; padding-top:.85rem; border-top:1px solid var(--bs-border-color, #dde3df); }
+.potts-marriage-row { display:grid; grid-template-columns:auto 1fr; gap:.15rem .65rem; }
+.potts-marriage-row > span:not(.potts-vital-label) { grid-column:2; }
+.potts-profile-family { border-left:1px solid var(--bs-border-color, #dde3df); padding-left:1.25rem; }
+.potts-family-group + .potts-family-group { margin-top:1rem; padding-top:1rem; border-top:1px solid var(--bs-border-color, #dde3df); }
+.potts-family-group h2 { margin:0 0 .55rem; font-size:.82rem; text-transform:uppercase; letter-spacing:.07em; }
+.potts-family-person { display:flex; flex-direction:column; padding:.45rem 0; text-decoration:none; }
+.potts-family-person span { font-weight:700; }
+.potts-family-person small { color:var(--bs-secondary-color, #687273); }
+.potts-profile-record-details { margin-top:1rem; border-top:1px solid var(--bs-border-color, #dde3df); padding-top:.75rem; }
+.potts-profile-record-details summary { cursor:pointer; font-weight:700; color:var(--bs-secondary-color, #596566); }
+.potts-profile-record-details .wt-individual-names { margin-top:.8rem; }
+.potts-life-stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); border:1px solid var(--bs-border-color, #dde3df); border-radius:var(--potts-card-radius, 1rem); overflow:hidden; background:var(--bs-body-bg, #fff); box-shadow:0 7px 20px rgba(24,45,48,.06); }
+.potts-life-stat { min-height:92px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; gap:.15rem; padding:.8rem; border-right:1px solid var(--bs-border-color, #dde3df); }
+.potts-life-stat:last-child { border-right:0; }
+.potts-life-stat span { font-size:.78rem; font-weight:750; color:var(--bs-secondary-color, #5d6868); }
+.potts-life-stat strong { font-size:1.65rem; line-height:1; color:var(--potts-primary, #174e5b); }
+.potts-life-stat small { margin-top:.2rem; line-height:1.2; }
+@media (max-width: 991.98px) {
+  .potts-profile-grid { grid-template-columns:160px minmax(0,1fr); }
+  .potts-profile-family { grid-column:1 / -1; border-left:0; border-top:1px solid var(--bs-border-color, #dde3df); padding:1rem 0 0; display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1rem; }
+  .potts-family-group + .potts-family-group { margin:0; padding:0; border:0; }
+}
+@media (max-width: 575.98px) {
+  .potts-profile-grid { grid-template-columns:1fr; }
+  .potts-profile-photo { max-width:220px; margin-inline:auto; }
+  .potts-profile-name, .potts-profile-lifespan { text-align:center; }
+  .potts-profile-chips { justify-content:center; }
+  .potts-profile-vitals { grid-template-columns:1fr; }
+  .potts-profile-family { grid-template-columns:1fr; }
+  .potts-life-stats { grid-template-columns:repeat(2,1fr); }
+  .potts-life-stat { border-bottom:1px solid var(--bs-border-color, #dde3df); }
+}
+
+/* Potts Modern 1.2.0 biography refinement - test 8 */
+.potts-profile-hero {
+  padding: clamp(1.25rem, 2.8vw, 2.6rem);
+  overflow: hidden;
+}
+.potts-profile-grid {
+  grid-template-columns: minmax(190px, 270px) minmax(0, 1fr) minmax(210px, 280px);
+  gap: clamp(1.25rem, 3vw, 2.75rem);
+}
+.potts-profile-photo img {
+  min-height: 250px;
+  max-height: 400px;
+  aspect-ratio: 4 / 5;
+  object-position: center top;
+}
+.potts-profile-name {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  letter-spacing: -.035em;
+  max-width: 14ch;
+}
+.potts-profile-lifespan {
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  margin-top: .6rem;
+}
+.potts-profile-vitals {
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+}
+.potts-vital {
+  padding: .25rem 0 0 1rem;
+  background: transparent;
+  border-radius: 0;
+  border-left-width: 3px;
+  min-height: 105px;
+}
+.potts-vital strong {
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  line-height: 1.25;
+}
+.potts-vital > span:last-child {
+  line-height: 1.45;
+  color: var(--bs-secondary-color, #647071);
+}
+.potts-profile-marriages {
+  margin-top: 1.25rem;
+  padding-top: 1.15rem;
+}
+.potts-marriage-row {
+  grid-template-columns: 82px minmax(0, 1fr);
+  row-gap: .25rem;
+}
+.potts-profile-family {
+  padding-left: 1.5rem;
+}
+.potts-family-person {
+  padding: .6rem .7rem;
+  margin-inline: -.7rem;
+  border-radius: .65rem;
+}
+.potts-family-person:hover,
+.potts-family-person:focus-visible {
+  background: color-mix(in srgb, var(--potts-accent, #b58a35) 10%, transparent);
+}
+.potts-life-stat {
+  position: relative;
+  min-height: 112px;
+  padding-top: 2rem;
+}
+.potts-life-stat::before {
+  position: absolute;
+  top: .65rem;
+  left: 50%;
+  translate: -50% 0;
+  width: 1.65rem;
+  height: 1.65rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--potts-accent, #b58a35) 16%, #fff);
+  color: var(--potts-primary, #174e5b);
+  font-size: .9rem;
+  font-weight: 800;
+}
+.potts-stat-lived::before { content: "⌛"; }
+.potts-stat-children::before { content: "◉"; }
+.potts-stat-occupations::before { content: "▣"; }
+.potts-stat-residences::before { content: "⌂"; }
+.potts-stat-countries::before { content: "◎"; }
+.potts-stat-spouses::before { content: "♥"; }
+
+/* Modern life-event cards built on the existing webtrees facts table. */
+body:has(.wt-individual-page) main .wt-tab-facts .potts-top-level-fact-row {
+  position: relative;
+  margin-bottom: .8rem !important;
+  border: 1px solid color-mix(in srgb, var(--bs-border-color, #d8dfdc) 90%, transparent) !important;
+  border-radius: .85rem !important;
+  background: var(--bs-body-bg, #fff) !important;
+  box-shadow: 0 4px 14px rgba(24, 45, 48, .055);
+  overflow: hidden;
+}
+body:has(.wt-individual-page) main .wt-tab-facts .potts-top-level-fact-row::before {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  width: 4px;
+  background: var(--potts-event-colour, var(--potts-accent, #b58a35));
+}
+body:has(.wt-individual-page) main .wt-tab-facts .potts-top-level-fact-row.potts-event-birth { --potts-event-colour:#6f9a68; }
+body:has(.wt-individual-page) main .wt-tab-facts .potts-top-level-fact-row.potts-event-marriage { --potts-event-colour:#4d8dab; }
+body:has(.wt-individual-page) main .wt-tab-facts .potts-top-level-fact-row.potts-event-occupation { --potts-event-colour:#c7952d; }
+body:has(.wt-individual-page) main .wt-tab-facts .potts-top-level-fact-row.potts-event-residence { --potts-event-colour:#8a78b5; }
+body:has(.wt-individual-page) main .wt-tab-facts .potts-top-level-fact-row.potts-event-migration { --potts-event-colour:#4f99a2; }
+body:has(.wt-individual-page) main .wt-tab-facts .potts-top-level-fact-row.potts-event-death { --potts-event-colour:#657177; }
+body:has(.wt-individual-page) main .wt-tab-facts .potts-top-level-fact-row.potts-event-will { --potts-event-colour:#8b765b; }
+body:has(.wt-individual-page) main .wt-tab-facts .potts-fact-summary-cell {
+  background: color-mix(in srgb, var(--potts-event-colour, var(--potts-accent, #b58a35)) 10%, var(--bs-body-bg, #fff)) !important;
+}
+body:has(.wt-individual-page) main .wt-tab-facts .potts-fact-detail-cell {
+  min-width: 0;
+  overflow: hidden;
+}
+body:has(.wt-individual-page) main .wt-tab-facts .potts-fact-detail-cell img {
+  max-width: min(140px, 100%) !important;
+  max-height: 120px !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: cover;
+  border-radius: .55rem;
+}
+body:has(.wt-individual-page) main .wt-tab-facts .potts-fact-detail-cell :is(.row, [class*="d-flex"]) {
+  min-width: 0;
+  max-width: 100%;
+  flex-wrap: wrap;
+}
+body:has(.wt-individual-page) main .wt-tab-facts .potts-fact-detail-cell :is(a, span, div, p) {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 991.98px) {
+  .potts-profile-grid { grid-template-columns: 190px minmax(0,1fr); }
+}
+@media (max-width: 575.98px) {
+  .potts-profile-photo { max-width: 260px; }
+  .potts-profile-photo img { min-height: 0; max-height: 360px; }
+  .potts-profile-name { max-width: none; font-size: clamp(2.35rem, 12vw, 3.4rem); }
+}
+
+/* Potts Modern 1.2 biography: always provide a dignified portrait placeholder. */
+.potts-profile-silhouette {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 240px;
+    overflow: hidden;
+    background: linear-gradient(145deg, rgba(var(--bs-body-bg-rgb, 255, 255, 255), .96), rgba(233, 237, 234, .92));
+}
+
+.potts-profile-silhouette .wt-individual-silhouette {
+    display: block;
+    width: min(100%, 190px);
+    height: 220px;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: .72;
+}
+
+.potts-profile-add-media {
+    margin-top: .4rem;
+    font-size: .82rem;
+}
+
+@media (max-width: 767.98px) {
+    .potts-profile-silhouette {
+        min-height: 210px;
+    }
+
+    .potts-profile-silhouette .wt-individual-silhouette {
+        height: 190px;
+    }
+}
+
+/* Potts Modern 1.2.0 life-summary refinement - test 11 */
+.potts-profile-hero {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 8% 12%, color-mix(in srgb, var(--potts-accent, #b58a35) 8%, transparent) 0 1px, transparent 2px) 0 0 / 22px 22px,
+    linear-gradient(135deg, color-mix(in srgb, var(--bs-body-bg, #fff) 96%, var(--potts-accent, #b58a35)) 0%, var(--bs-body-bg, #fff) 68%);
+}
+.potts-profile-hero::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  background:linear-gradient(90deg, color-mix(in srgb, var(--potts-primary, #174e5b) 3%, transparent), transparent 35%);
+}
+.potts-profile-lifespan {
+  display:flex;
+  align-items:baseline;
+  flex-wrap:wrap;
+  gap:.35rem .55rem;
+}
+.potts-profile-lifespan small {
+  font-size:.78em;
+  font-weight:650;
+  color:var(--bs-secondary-color, #647071);
+}
+.potts-profile-chip {
+  display:inline-flex;
+  align-items:center;
+  min-height:2rem;
+}
+.potts-profile-family .potts-family-group h2 {
+  text-transform:none;
+  letter-spacing:0;
+  font-size:1rem;
+  color:var(--potts-primary, #174e5b);
+}
+.potts-profile-silhouette {
+  border:1px solid color-mix(in srgb, var(--potts-accent, #b58a35) 24%, var(--bs-border-color, #dde3df));
+  border-radius:1rem;
+  box-shadow:0 10px 22px rgba(20,35,37,.10);
+}
+.potts-profile-silhouette > i[class*="icon-silhouette-"] {
+  display:block;
+  width:min(78%, 180px);
+  height:auto;
+  max-height:230px;
+  object-fit:contain;
+  opacity:.72;
+  filter:sepia(.12) saturate(.7);
+}
+@media (max-width: 575.98px) {
+  .potts-profile-lifespan { justify-content:center; }
+}
+
+/* Potts Modern 1.2.0 biography refinement - test 12 */
+.potts-profile-silhouette {
+  position: relative;
+  flex-direction: column;
+  gap: .7rem;
+  min-height: 270px;
+  padding: 1.2rem 1rem .9rem;
+  color: color-mix(in srgb, var(--potts-primary, #174e5b) 58%, #7b817f);
+}
+.potts-profile-silhouette-svg {
+  display: block;
+  width: min(84%, 180px);
+  height: 215px;
+  overflow: visible;
+  fill: currentColor;
+  opacity: .43;
+  filter: drop-shadow(0 7px 10px rgba(20,35,37,.09));
+}
+.potts-profile-silhouette-detail {
+  fill: color-mix(in srgb, currentColor 72%, transparent);
+  opacity: .45;
+}
+.potts-profile-no-photo {
+  font-size: .78rem;
+  font-weight: 650;
+  color: var(--bs-secondary-color, #6c757d);
+  letter-spacing: .02em;
+}
+.potts-profile-life-summary {
+  margin-top: 1.1rem;
+  padding-top: 1rem;
+  border-top: 1px solid color-mix(in srgb, var(--potts-accent, #b58a35) 22%, var(--bs-border-color, #dde3df));
+}
+.potts-profile-life-summary h2 {
+  margin: 0 0 .45rem;
+  font-size: .76rem;
+  font-weight: 800;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  color: var(--potts-accent, #9a741f);
+}
+.potts-profile-life-summary p {
+  max-width: 64ch;
+  margin: 0;
+  font-size: .96rem;
+  line-height: 1.62;
+  color: color-mix(in srgb, var(--bs-body-color, #263238) 88%, var(--bs-secondary-color, #6c757d));
+}
+@media (max-width: 575.98px) {
+  .potts-profile-silhouette { min-height: 235px; }
+  .potts-profile-silhouette-svg { height: 180px; }
+  .potts-profile-life-summary { text-align: left; }
+}
+
+
+/* Potts Modern 1.2.0 silhouette compatibility - test 13 */
+.potts-profile-silhouette-icon {
+  display: block !important;
+  width: min(84%, 190px) !important;
+  height: 220px !important;
+  flex: 0 0 220px;
+  background-position: center bottom !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  opacity: .72;
+  filter: sepia(.12) saturate(.7) drop-shadow(0 7px 10px rgba(20,35,37,.09));
+}
+@media (max-width: 575.98px) {
+  .potts-profile-silhouette-icon { height: 190px !important; flex-basis: 190px; }
+}
+
+/* Biography portrait fallback: use the theme's bundled silhouette images directly. */
+.potts-profile-silhouette {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  min-height: 235px;
+  margin: 0;
+  padding: .65rem;
+}
+
+.potts-profile-silhouette-image {
+  display: block;
+  width: 100%;
+  height: 205px;
+  object-fit: contain;
+  object-position: center;
+}
+
+.potts-profile-silhouette .potts-profile-no-photo {
+  display: block;
+  margin-top: .4rem;
+  font-size: .78rem;
+  color: var(--bs-secondary-color, #6c757d);
+  text-align: center;
+}
+
+@media (max-width: 767.98px) {
+  .potts-profile-silhouette-image {
+    height: 180px;
+  }
+}
+
+/* Potts Modern 1.2.0 biography silhouette visibility fix - test 16.
+   Earlier global silhouette-replacement rules intentionally hide native
+   webtrees placeholders.  The biography placeholder is rendered by this
+   theme itself, so it must remain visible. */
+main .potts-profile-silhouette,
+main .potts-profile-silhouette-image,
+main .potts-profile-silhouette .potts-profile-no-photo,
+main .potts-profile-silhouette .potts-profile-silhouette-detail {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+
+/* Potts Modern 1.2.0 biography portrait fallback - test 17.
+   This deliberately avoids the word "silhouette" in CSS class names because
+   legacy theme rules hide native webtrees silhouette selectors. The fallback
+   sits beneath the standard media view, so it remains visible when a record has
+   media links but no displayable portrait. */
+.potts-profile-photo {
+  position: relative;
+  min-height: 250px;
+}
+.potts-profile-fallback-portrait {
+  position: absolute;
+  inset: 0 0 auto 0;
+  z-index: 0;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 235px;
+  margin: 0;
+  padding: .65rem;
+  overflow: hidden;
+  opacity: 1 !important;
+  visibility: visible !important;
+  background: linear-gradient(145deg, rgba(255,255,255,.96), rgba(233,237,234,.92));
+  border: 1px solid color-mix(in srgb, var(--potts-accent, #b58a35) 24%, var(--bs-border-color, #dde3df));
+  border-radius: 1rem;
+  box-shadow: 0 10px 22px rgba(20,35,37,.10);
+}
+.potts-profile-fallback-image {
+  display: block !important;
+  width: 100% !important;
+  height: 205px !important;
+  max-height: 205px !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  opacity: .78 !important;
+  visibility: visible !important;
+  filter: sepia(.12) saturate(.72);
+}
+.potts-profile-fallback-caption {
+  display: block !important;
+  margin-top: .35rem;
+  font-size: .78rem;
+  font-weight: 650;
+  color: var(--bs-secondary-color, #6c757d);
+  text-align: center;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+.potts-profile-media-layer {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+.potts-profile-media-layer > .col-sm-3 {
+  width: 100%;
+  max-width: 100%;
+  flex: 0 0 100%;
+  padding: 0;
+}
+.potts-profile-media-layer:has(img:not([src=""])) + .potts-profile-add-media {
+  margin-top: .4rem;
+}
+@media (max-width: 767.98px) {
+  .potts-profile-photo { min-height: 220px; }
+  .potts-profile-fallback-portrait { min-height: 210px; }
+  .potts-profile-fallback-image { height: 180px !important; max-height: 180px !important; }
+}
+
+/* Potts Modern 1.2.0 biography portrait fallback - test 18.
+   Do not render webtrees' native silhouette layer when there is no media.
+   Its hidden placeholder previously covered the bundled theme portrait. */
+.potts-profile-photo:has(.potts-profile-fallback-portrait) {
+  padding-bottom: 2rem;
+}
+.potts-profile-photo:has(.potts-profile-fallback-portrait) .potts-profile-add-media {
+  position: absolute;
+  top: 242px;
+  left: 0;
+  width: 100%;
+  z-index: 3;
+}
+@media (max-width: 767.98px) {
+  .potts-profile-photo:has(.potts-profile-fallback-portrait) .potts-profile-add-media {
+    top: 217px;
   }
 }

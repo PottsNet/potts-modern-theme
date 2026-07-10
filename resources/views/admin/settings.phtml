@@ -29,6 +29,51 @@ $select = static function (string $key, string $label, string $help) use ($setti
     <?php
 };
 
+
+$textField = static function (string $key, string $label, string $help, bool $multiline = false) use ($settings): void {
+    $name = strtolower($key);
+    ?>
+    <div class="potts-setting-field <?= $multiline ? 'potts-setting-field-wide' : '' ?>">
+        <label class="form-label" for="potts-<?= e($name) ?>"><?= e($label) ?></label>
+        <?php if ($multiline) : ?>
+            <textarea class="form-control" rows="3" id="potts-<?= e($name) ?>" name="<?= e($name) ?>" data-potts-setting="<?= e($name) ?>"><?= e($settings[$key]) ?></textarea>
+        <?php else : ?>
+            <input class="form-control" type="text" id="potts-<?= e($name) ?>" name="<?= e($name) ?>" value="<?= e($settings[$key]) ?>" data-potts-setting="<?= e($name) ?>">
+        <?php endif ?>
+        <div class="form-text"><?= e($help) ?></div>
+    </div>
+    <?php
+};
+
+$paletteCards = static function () use ($settings): void {
+    $palettes = [
+        'heritage'  => ['Potts Green', '#203e34', '#416b56', '#a88a52', '#edf1e9'],
+        'ocean'     => ['Ocean Blue', '#17455f', '#246f98', '#b18b45', '#eaf1f6'],
+        'claret'    => ['Burgundy', '#4d2731', '#743c4a', '#aa8954', '#f2ece8'],
+        'purple'    => ['Heritage Purple', '#453355', '#6b4f83', '#b08a4d', '#f1edf5'],
+        'slate'     => ['Slate', '#344650', '#536b78', '#a9864b', '#edf0f2'],
+        'teal'      => ['Teal', '#194c47', '#2c786f', '#af8b45', '#eaf3f1'],
+        'sandstone' => ['Sandstone', '#4e3424', '#765038', '#b27b33', '#eee4d3'],
+    ];
+    ?>
+    <fieldset class="potts-palette-fieldset">
+        <legend class="form-label"><?= e(I18N::translate('Colour preset')) ?></legend>
+        <div class="potts-palette-grid">
+            <?php foreach ($palettes as $value => [$label, $dark, $accent, $gold, $background]) : ?>
+                <label class="potts-palette-card">
+                    <input type="radio" name="palette" value="<?= e($value) ?>" data-potts-setting="palette" <?= $settings['PALETTE'] === $value ? 'checked' : '' ?>>
+                    <span class="potts-palette-swatch" style="--swatch-dark:<?= e($dark) ?>;--swatch-accent:<?= e($accent) ?>;--swatch-gold:<?= e($gold) ?>;--swatch-bg:<?= e($background) ?>">
+                        <i></i><i></i><i></i><i></i>
+                    </span>
+                    <strong><?= e(I18N::translate($label)) ?></strong>
+                </label>
+            <?php endforeach ?>
+        </div>
+        <div class="form-text"><?= e(I18N::translate('Choose a complete colour scheme for the header, navigation, cards and page background.')) ?></div>
+    </fieldset>
+    <?php
+};
+
 $toggle = static function (string $key, string $label, string $help) use ($settings): void {
     $name = strtolower($key);
     ?>
@@ -48,7 +93,7 @@ $t = static fn (string $text): string => I18N::translate($text);
 ?>
 
 <style>
-.potts-settings-page{max-width:1180px;margin:0 auto 3rem}.potts-settings-intro{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1.35rem;padding:1.15rem 1.25rem;border:1px solid rgba(35,48,56,.14);border-radius:16px;background:linear-gradient(135deg,#f4f0e6,#edf2eb)}.potts-settings-intro h2{margin:0 0 .25rem;font-size:1.35rem}.potts-settings-intro p{margin:0;color:#5f6b70}.potts-version{white-space:nowrap;padding:.35rem .7rem;border-radius:999px;background:#185a71;color:#fff;font-weight:800}.potts-settings-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(310px,.75fr);gap:1.25rem}.potts-settings-section{margin-bottom:1rem;border:1px solid rgba(35,48,56,.14);border-radius:16px;background:#fff;box-shadow:0 10px 26px rgba(35,48,56,.07);overflow:hidden}.potts-settings-section>header{padding:.9rem 1rem;background:#edf2eb;border-bottom:1px solid rgba(35,48,56,.12)}.potts-settings-section>header h3{margin:0;font-size:1.05rem;color:#30483a}.potts-settings-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;padding:1rem}.potts-setting-field label{font-weight:800;color:#26363d}.potts-setting-toggle{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.85rem 1rem;border-top:1px solid rgba(35,48,56,.09);cursor:pointer}.potts-setting-toggle:first-child{border-top:0}.potts-setting-toggle strong,.potts-setting-toggle small{display:block}.potts-setting-toggle small{margin-top:.12rem;color:#667278;font-weight:400}.potts-setting-toggle .form-check{margin:0}.potts-settings-preview{position:sticky;top:1rem}.potts-preview-shell{overflow:hidden;border:1px solid rgba(35,48,56,.16);border-radius:20px;background:#f5efe4;box-shadow:0 18px 42px rgba(35,48,56,.12)}.potts-preview-header{display:flex;align-items:center;justify-content:space-between;padding:.8rem 1rem;background:linear-gradient(135deg,#123b4b,#185a71);color:#fff}.potts-preview-title{font-weight:850;font-size:1.08rem}.potts-preview-nav{display:flex;gap:.35rem;justify-content:center;padding:.65rem;background:#fffaf2;border-bottom:1px solid rgba(35,48,56,.12)}.potts-preview-nav span{display:flex;align-items:center;justify-content:center;min-width:2.5rem;height:2.5rem;padding:.3rem .55rem;border-radius:11px;color:#185a71;font-weight:800;background:#fff}.potts-preview-content{padding:1rem}.potts-preview-card{padding:1rem;border-radius:15px;background:#fff;box-shadow:0 10px 25px rgba(35,48,56,.09)}.potts-preview-card h4{margin:0 0 .5rem;color:#233038}.potts-preview-card p{margin:0;color:#65717a}.potts-preview-chips{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.8rem}.potts-preview-chips span{padding:.28rem .58rem;border-radius:999px;background:#e3eadf;color:#30483a;font-weight:750;font-size:.86rem}.potts-settings-actions{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:1.25rem;padding:1rem;border:1px solid rgba(35,48,56,.14);border-radius:16px;background:#fff}.potts-settings-actions .btn-primary{border-color:#185a71;background:#185a71}.potts-settings-actions .btn-outline-secondary{border-color:#8a7c67;color:#5e5142}.potts-settings-notice{margin-bottom:1rem}.potts-submenu-demo{margin-top:1rem;padding:.75rem;border-radius:12px;background:#fffaf2}.potts-submenu-demo div{display:flex;align-items:center;gap:.5rem;padding:.35rem .45rem;color:#123b4b;font-weight:750}.potts-submenu-demo i{display:inline-grid;place-items:center;width:1.6rem;height:1.6rem;border-radius:7px;background:#e3eadf;font-style:normal;color:#185a71}@media(max-width:900px){.potts-settings-grid{grid-template-columns:1fr}.potts-settings-preview{position:static}.potts-settings-fields{grid-template-columns:1fr}}@media(max-width:560px){.potts-settings-intro,.potts-settings-actions{align-items:stretch;flex-direction:column}.potts-settings-actions .btn-group{display:grid;gap:.55rem}.potts-settings-actions .btn{width:100%}}
+.potts-settings-page{max-width:1180px;margin:0 auto 3rem}.potts-settings-intro{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1.35rem;padding:1.15rem 1.25rem;border:1px solid rgba(35,48,56,.14);border-radius:16px;background:linear-gradient(135deg,#f4f0e6,#edf2eb)}.potts-settings-intro h2{margin:0 0 .25rem;font-size:1.35rem}.potts-settings-intro p{margin:0;color:#5f6b70}.potts-version{white-space:nowrap;padding:.35rem .7rem;border-radius:999px;background:#185a71;color:#fff;font-weight:800}.potts-settings-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(310px,.75fr);gap:1.25rem}.potts-settings-section{margin-bottom:1rem;border:1px solid rgba(35,48,56,.14);border-radius:16px;background:#fff;box-shadow:0 10px 26px rgba(35,48,56,.07);overflow:hidden}.potts-settings-section>header{padding:.9rem 1rem;background:#edf2eb;border-bottom:1px solid rgba(35,48,56,.12)}.potts-settings-section>header h3{margin:0;font-size:1.05rem;color:#30483a}.potts-settings-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;padding:1rem}.potts-setting-field label{font-weight:800;color:#26363d}.potts-setting-field-wide{grid-column:1/-1}.potts-quick-styles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.7rem;padding:1rem}.potts-quick-style{padding:.8rem;border:1px solid rgba(35,48,56,.16);border-radius:12px;background:#fff;text-align:left}.potts-quick-style strong,.potts-quick-style small{display:block}.potts-quick-style small{margin-top:.2rem;color:#667278}.potts-quick-style:hover{border-color:#185a71;background:#f7fbfc}.potts-setting-toggle{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.85rem 1rem;border-top:1px solid rgba(35,48,56,.09);cursor:pointer}.potts-setting-toggle:first-child{border-top:0}.potts-setting-toggle strong,.potts-setting-toggle small{display:block}.potts-setting-toggle small{margin-top:.12rem;color:#667278;font-weight:400}.potts-setting-toggle .form-check{margin:0}.potts-settings-preview{position:sticky;top:1rem}.potts-preview-shell{overflow:hidden;border:1px solid rgba(35,48,56,.16);border-radius:20px;background:#f5efe4;box-shadow:0 18px 42px rgba(35,48,56,.12)}.potts-preview-header{display:flex;align-items:center;justify-content:space-between;padding:.8rem 1rem;background:linear-gradient(135deg,#123b4b,#185a71);color:#fff}.potts-preview-title{font-weight:850;font-size:1.08rem}.potts-preview-nav{display:flex;gap:.35rem;justify-content:center;padding:.65rem;background:#fffaf2;border-bottom:1px solid rgba(35,48,56,.12)}.potts-preview-nav span{display:flex;align-items:center;justify-content:center;min-width:2.5rem;height:2.5rem;padding:.3rem .55rem;border-radius:11px;color:#185a71;font-weight:800;background:#fff}.potts-preview-content{padding:1rem}.potts-preview-card{padding:1rem;border-radius:15px;background:#fff;box-shadow:0 10px 25px rgba(35,48,56,.09)}.potts-preview-card h4{margin:0 0 .5rem;color:#233038}.potts-preview-card p{margin:0;color:#65717a}.potts-preview-chips{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.8rem}.potts-preview-chips span{padding:.28rem .58rem;border-radius:999px;background:#e3eadf;color:#30483a;font-weight:750;font-size:.86rem}.potts-settings-actions{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:1.25rem;padding:1rem;border:1px solid rgba(35,48,56,.14);border-radius:16px;background:#fff}.potts-settings-actions .btn-primary{border-color:#185a71;background:#185a71}.potts-settings-actions .btn-outline-secondary{border-color:#8a7c67;color:#5e5142}.potts-settings-notice{margin-bottom:1rem}.potts-submenu-demo{margin-top:1rem;padding:.75rem;border-radius:12px;background:#fffaf2}.potts-submenu-demo div{display:flex;align-items:center;gap:.5rem;padding:.35rem .45rem;color:#123b4b;font-weight:750}.potts-submenu-demo i{display:inline-grid;place-items:center;width:1.6rem;height:1.6rem;border-radius:7px;background:#e3eadf;font-style:normal;color:#185a71}@media(max-width:900px){.potts-settings-grid{grid-template-columns:1fr}.potts-settings-preview{position:static}.potts-settings-fields{grid-template-columns:1fr}}.potts-palette-fieldset{grid-column:1/-1;margin:0;padding:0;border:0}.potts-palette-fieldset>legend{float:none;width:auto;margin:0 0 .55rem;font-weight:800;color:#26363d}.potts-palette-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.7rem}.potts-palette-card{position:relative;display:flex;flex-direction:column;gap:.45rem;padding:.65rem;border:2px solid rgba(35,48,56,.12);border-radius:13px;background:#fff;cursor:pointer;transition:border-color .15s ease,box-shadow .15s ease,transform .15s ease}.potts-palette-card:hover{transform:translateY(-1px);border-color:rgba(24,90,113,.38)}.potts-palette-card:has(input:checked){border-color:#185a71;box-shadow:0 0 0 3px rgba(24,90,113,.14)}.potts-palette-card input{position:absolute;top:.55rem;right:.55rem;z-index:2}.potts-palette-swatch{display:grid;grid-template-columns:repeat(4,1fr);height:2.25rem;overflow:hidden;border:1px solid rgba(35,48,56,.12);border-radius:9px}.potts-palette-swatch i:nth-child(1){background:var(--swatch-dark)}.potts-palette-swatch i:nth-child(2){background:var(--swatch-accent)}.potts-palette-swatch i:nth-child(3){background:var(--swatch-gold)}.potts-palette-swatch i:nth-child(4){background:var(--swatch-bg)}.potts-palette-card strong{font-size:.88rem;line-height:1.2;color:#26363d}@media(max-width:1050px){.potts-palette-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:900px){.potts-settings-grid{grid-template-columns:1fr}.potts-settings-preview{position:static}.potts-settings-fields{grid-template-columns:1fr}.potts-palette-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}@media(max-width:680px){.potts-palette-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){.potts-settings-intro,.potts-settings-actions{align-items:stretch;flex-direction:column}.potts-settings-actions .btn-group{display:grid;gap:.55rem}.potts-settings-actions .btn{width:100%}}
 </style>
 
 <style>
@@ -155,8 +200,9 @@ body:has(.potts-settings-page) :is(
                 <section class="potts-settings-section">
                     <header><h3><?= e($t('Appearance')) ?></h3></header>
                     <div class="potts-settings-fields">
-                        <?php $select('PALETTE', $t('Colour palette'), $t('Choose the overall heritage colour scheme.')); ?>
+                        <?php $paletteCards(); ?>
                         <?php $select('TEXT_SIZE', $t('Text size'), $t('Increase base text across the public site.')); ?>
+                        <?php $select('FONT_WEIGHT', $t('Typography weight'), $t('Choose lighter, standard or bolder headings, navigation and labels.')); ?>
                         <?php $select('CORNERS', $t('Card corners'), $t('Control how rounded cards, panels and controls appear.')); ?>
                         <?php $select('SHADOWS', $t('Card shadows'), $t('Choose a flatter or more dimensional appearance.')); ?>
                     </div>
@@ -168,6 +214,27 @@ body:has(.potts-settings-page) :is(
                         <?php $select('PAGE_WIDTH', $t('Page width'), $t('Standard suits most screens; Wide gives charts and books more room.')); ?>
                         <?php $select('CONTENT_SPACING', $t('Content spacing'), $t('Adjust spacing within cards and between homepage blocks.')); ?>
                         <?php $select('SIDEBAR_WIDTH', $t('Individual-page sidebar'), $t('Controls the width of the Family navigator on larger screens.')); ?>
+                    </div>
+                </section>
+
+
+                <section class="potts-settings-section">
+                    <header><h3><?= e($t('Homepage experience')) ?></h3></header>
+                    <div class="potts-quick-styles" aria-label="<?= e($t('Quick homepage styles')) ?>">
+                        <button type="button" class="potts-quick-style" data-potts-preset="storytelling"><strong><?= e($t('Storytelling')) ?></strong><small><?= e($t('Welcome panel, quick search and generous spacing.')) ?></small></button>
+                        <button type="button" class="potts-quick-style" data-potts-preset="classic"><strong><?= e($t('Classic')) ?></strong><small><?= e($t('Traditional webtrees blocks with subtle theme polish.')) ?></small></button>
+                        <button type="button" class="potts-quick-style" data-potts-preset="compact"><strong><?= e($t('Compact')) ?></strong><small><?= e($t('A tighter dashboard for information-rich homepages.')) ?></small></button>
+                    </div>
+                    <div class="potts-settings-fields">
+                        <?php $select('HOMEPAGE_STYLE', $t('Homepage style'), $t('Choose the overall spacing and presentation of the family-tree homepage.')); ?>
+                        <?php $textField('WELCOME_HEADING', $t('Welcome heading'), $t('Leave blank to use the family-tree title automatically.')); ?>
+                        <?php $textField('WELCOME_TEXT', $t('Welcome message'), $t('A short introduction shown beneath the welcome heading.'), true); ?>
+                    </div>
+                    <div>
+                        <?php $toggle('POTTS_EXPERIENCE', $t('Enable Potts Modern Experience'), $t('Apply coordinated cards, headers, tables, forms and homepage presentation.')); ?>
+                        <?php $toggle('SHOW_WELCOME_PANEL', $t('Show welcome panel'), $t('Display the homepage introduction above the webtrees blocks.')); ?>
+                        <?php $toggle('SHOW_HOME_SEARCH', $t('Show homepage quick search'), $t('Add a prominent family-tree search field to the welcome panel.')); ?>
+                        <?php $toggle('HERO_INTEGRATION', $t('Integrate Potts Hero Slideshow'), $t('When the slideshow module is present, move its homepage block above the welcome panel and allow it to span the page.')); ?>
                     </div>
                 </section>
 
@@ -246,14 +313,29 @@ body:has(.potts-settings-page) :is(
     const bar=el.closest('nav,header,.navbar,.wt-header,.wt-header-wrapper,#header,#top-header');
     if(bar){bar.classList.add('potts-settings-header-bar');}
   });
+  document.querySelectorAll('[data-potts-preset]').forEach(button=>button.addEventListener('click',()=>{
+    const preset=button.dataset.pottsPreset;
+    const values={
+      storytelling:{homepage_style:'storytelling',content_spacing:'comfortable',show_welcome_panel:true,show_home_search:true,potts_experience:true},
+      classic:{homepage_style:'classic',content_spacing:'comfortable',show_welcome_panel:false,show_home_search:false,potts_experience:true},
+      compact:{homepage_style:'compact',content_spacing:'compact',show_welcome_panel:true,show_home_search:true,potts_experience:true}
+    }[preset];
+    Object.entries(values).forEach(([name,value])=>{
+      const control=document.querySelector('[name="'+name+'"]');
+      if(!control){return;}
+      if(control.type==='checkbox'){control.checked=Boolean(value);}else{control.value=String(value);}
+      control.dispatchEvent(new Event('change',{bubbles:true}));
+    });
+  }));
   const preview=document.getElementById('potts-theme-preview');
   if(!preview){return;}
-  const palettes={heritage:{bg:'#f5efe4',bg2:'#fffaf2',ink:'#233038',muted:'#65717a',accent:'#185a71',dark:'#123b4b',gold:'#b98638',sage:'#e3eadf'},cool:{bg:'#eaf1f2',bg2:'#fbfefe',ink:'#203238',muted:'#61757a',accent:'#17677a',dark:'#104551',gold:'#8f9e67',sage:'#dfeceb'},sepia:{bg:'#eee4d3',bg2:'#fffaf1',ink:'#3d3026',muted:'#786a5d',accent:'#765038',dark:'#4e3424',gold:'#b27b33',sage:'#e7e5d7'},eucalyptus:{bg:'#edf1e9',bg2:'#fbfcf7',ink:'#26352e',muted:'#66736c',accent:'#416b56',dark:'#203e34',gold:'#a88a52',sage:'#dfe8dc'},claret:{bg:'#f2ece8',bg2:'#fffaf4',ink:'#342b2d',muted:'#74676a',accent:'#743c4a',dark:'#4d2731',gold:'#aa8954',sage:'#e4e8dc'}};
+  const palettes={heritage:{bg:'#edf1e9',bg2:'#fbfcf7',ink:'#26352e',muted:'#66736c',accent:'#416b56',dark:'#203e34',gold:'#a88a52',sage:'#dfe8dc'},ocean:{bg:'#eaf1f6',bg2:'#fbfdff',ink:'#20313d',muted:'#61727e',accent:'#246f98',dark:'#17455f',gold:'#b18b45',sage:'#dfe9ee'},claret:{bg:'#f2ece8',bg2:'#fffaf4',ink:'#342b2d',muted:'#74676a',accent:'#743c4a',dark:'#4d2731',gold:'#aa8954',sage:'#e4e8dc'},purple:{bg:'#f1edf5',bg2:'#fdfbff',ink:'#302b38',muted:'#6d6676',accent:'#6b4f83',dark:'#453355',gold:'#b08a4d',sage:'#e8e2ee'},slate:{bg:'#edf0f2',bg2:'#fcfdfe',ink:'#29343b',muted:'#67737a',accent:'#536b78',dark:'#344650',gold:'#a9864b',sage:'#e1e7ea'},teal:{bg:'#eaf3f1',bg2:'#fbfefd',ink:'#203633',muted:'#607672',accent:'#2c786f',dark:'#194c47',gold:'#af8b45',sage:'#dcebe7'},sandstone:{bg:'#eee4d3',bg2:'#fffaf1',ink:'#3d3026',muted:'#786a5d',accent:'#765038',dark:'#4e3424',gold:'#b27b33',sage:'#e7e5d7'}};
   function refresh(){
-    const palette=document.querySelector('[name="palette"]').value;
+    const palette=document.querySelector('[name="palette"]:checked')?.value || 'heritage';
     const corners=document.querySelector('[name="corners"]').value;
     const shadows=document.querySelector('[name="shadows"]').value;
     const text=document.querySelector('[name="text_size"]').value;
+    const weight=document.querySelector('[name="font_weight"]').value;
     const p=palettes[palette];
     const radius={soft:'20px',moderate:'13px',square:'3px'}[corners];
     const shadow={soft:'0 18px 42px rgba(35,48,56,.12)',strong:'0 22px 55px rgba(35,48,56,.22)',none:'none'}[shadows];
@@ -262,6 +344,10 @@ body:has(.potts-settings-page) :is(
     preview.style.borderRadius=radius;
     preview.style.boxShadow=shadow;
     preview.style.fontSize=text==='large'?'1.075rem':'1rem';
+    const weights={light:{heading:'650',nav:'600',label:'600'},standard:{heading:'800',nav:'700',label:'700'},bold:{heading:'850',nav:'800',label:'750'}}[weight];
+    preview.querySelectorAll('.potts-preview-title,.potts-preview-card h4').forEach(el=>el.style.fontWeight=weights.heading);
+    preview.querySelectorAll('.potts-preview-nav span,.potts-submenu-demo div').forEach(el=>el.style.fontWeight=weights.nav);
+    preview.querySelectorAll('.potts-preview-chips span').forEach(el=>el.style.fontWeight=weights.label);
     preview.querySelector('.potts-preview-header').style.background='linear-gradient(135deg,'+p.dark+','+p.accent+')';
     preview.querySelectorAll('.potts-preview-card').forEach(el=>{el.style.borderRadius=radius;el.style.boxShadow=shadow;});
     preview.querySelectorAll('.potts-preview-chips span,.potts-submenu-demo i').forEach(el=>{el.style.background=p.sage;el.style.color=p.accent;});

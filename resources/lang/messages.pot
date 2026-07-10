@@ -359,3 +359,37 @@ msgstr ""
 #: resources/views/admin/settings.phtml:232
 msgid "Save settings"
 msgstr ""
+
+msgid "Light"
+msgstr ""
+
+msgid "Bold"
+msgstr ""
+
+msgid "Typography weight"
+msgstr ""
+
+msgid "Choose lighter, standard or bolder headings, navigation and labels."
+msgstr ""
+
+# Potts Modern 1.2.0 palette names
+msgid "Potts green and parchment"
+msgstr ""
+
+msgid "Ocean blue and mist"
+msgstr ""
+
+msgid "Burgundy and archival ivory"
+msgstr ""
+
+msgid "Heritage purple and lilac"
+msgstr ""
+
+msgid "Slate and silver"
+msgstr ""
+
+msgid "Teal and sea glass"
+msgstr ""
+
+msgid "Sandstone and walnut"
+msgstr ""
