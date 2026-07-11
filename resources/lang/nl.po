@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Potts Modern Theme 1.1.0-beta.62\n"
 "Report-Msgid-Bugs-To: https://github.com/PottsNet/potts-modern-theme/issues\n"
 "POT-Creation-Date: 2026-06-21 21:18-0500\n"
-"PO-Revision-Date: 2026-06-22 17:20+0200\n"
+"PO-Revision-Date: 2026-07-11 08:18+0200\n"
 "Last-Translator: TheDutchJewel <thedutchjewel@gmail.com>\n"
 "Language-Team: Dutch\n"
 "Language: nl\n"
@@ -214,7 +214,9 @@ msgstr "Paginabreedte"
 
 #: resources/views/admin/settings.phtml:168
 msgid "Standard suits most screens; Wide gives charts and books more room."
-msgstr "Standaard past op de meeste schermen; Breed geeft grafieken en boeken meer ruimte."
+msgstr ""
+"Standaard past op de meeste schermen; Breed geeft grafieken en boeken meer "
+"ruimte."
 
 #: resources/views/admin/settings.phtml:169
 msgid "Content spacing"
@@ -270,7 +272,7 @@ msgid ""
 "menus."
 msgstr ""
 "Gebruik de vernieuwde lijnpictogrammen in Diagrammen, Lijsten, Kalender en "
-"andere uitklapmenu’s."
+"andere uitklapmenu's."
 
 #: resources/views/admin/settings.phtml:183
 msgid "Show modern fact and event icons"
@@ -294,7 +296,9 @@ msgstr "Grotere bedieningselementen"
 
 #: resources/views/admin/settings.phtml:190
 msgid "Increase the height of buttons, fields and selectors for easier use."
-msgstr "Vergroot de hoogte van knoppen, velden en keuzelijsten voor eenvoudiger gebruik."
+msgstr ""
+"Vergroot de hoogte van knoppen, velden en keuzelijsten voor eenvoudiger "
+"gebruik."
 
 #: resources/views/admin/settings.phtml:191
 msgid "Higher contrast"
@@ -354,7 +358,8 @@ msgstr "Opslaan wanneer u tevreden bent met het voorbeeld."
 
 #: resources/views/admin/settings.phtml:228
 msgid "A hard refresh may be needed after changing cached styles."
-msgstr "Een harde verversing kan nodig zijn na het wijzigen van gecachte stijlen."
+msgstr ""
+"Een harde verversing kan nodig zijn na het wijzigen van gecachte stijlen."
 
 #: resources/views/admin/settings.phtml:231
 msgid "Restore all Potts Modern settings to their defaults?"
@@ -367,3 +372,38 @@ msgstr "Standaardinstellingen herstellen"
 #: resources/views/admin/settings.phtml:232
 msgid "Save settings"
 msgstr "Instellingen opslaan"
+
+msgid "Light"
+msgstr "Licht"
+
+msgid "Bold"
+msgstr "Vet"
+
+msgid "Typography weight"
+msgstr "Typografische dikte"
+
+msgid "Choose lighter, standard or bolder headings, navigation and labels."
+msgstr ""
+"Kies lichtere, standaard of vettere koppen, navigatie-elementen en labels."
+
+# Potts Modern 1.2.0 palette names
+msgid "Potts green and parchment"
+msgstr "Potts-groen en perkament"
+
+msgid "Ocean blue and mist"
+msgstr "Oceaanblauw en mist"
+
+msgid "Burgundy and archival ivory"
+msgstr "Bordeauxrood en archiefivoor"
+
+msgid "Heritage purple and lilac"
+msgstr "Erfgoedpaars en lila"
+
+msgid "Slate and silver"
+msgstr "Leigrijs en zilver"
+
+msgid "Teal and sea glass"
+msgstr "Blauwgroen en zeeglas"
+
+msgid "Sandstone and walnut"
+msgstr "Zandsteen en walnoot"
