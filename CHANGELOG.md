@@ -1,3 +1,82 @@
+# Changelog
+
+## [1.3.0] - 2026-07-19
+
+### Added
+
+- Added the first stable foundation for semantic life-event presentation on individual pages, including event classification, visual tiers and a connected timeline treatment.
+- Added Light, Standard and Bold typography-weight presets.
+
+### Fixed
+
+- Improved desktop dropdown sizing for long and translated menu entries.
+- Strengthened masthead and heading contrast for improved readability.
+- Stabilised logged-in homepage main and sidebar columns in translated languages.
+- Contained Favourite/Favorite blocks within their selected homepage column.
+- Fixed the **Add a favourite** AJAX dialog appearing underneath its Bootstrap backdrop.
+- Replaced legacy webtrees silhouette placeholders in Potts Narrative Ancestor Book output with Potts Modern male, female or neutral artwork.
+
+### Improved
+
+- Expanded the translation template and language catalogues for colour presets, homepage controls and newer biography text.
+- Incorporated updated Dutch typography and palette translations.
+- Kept silhouette replacement narrowly scoped so photographs and unrelated modules retain control of their own media.
+
+### Documentation
+
+- Updated the README for the stable release and added information and links for 12 other Potts modules and related projects.
+- Added stable 1.3.0 release notes and upgrade guidance.
+
+
+## [1.3.0-alpha.4] - 2026-07-19
+
+- Fixed the Favourite individuals **Add a favourite** AJAX dialog appearing underneath its Bootstrap backdrop. AJAX modals trapped inside homepage/block stacking contexts are now promoted to the document body and assigned a reliable modal/backdrop stacking order.
+- Added a narrowly scoped MutationObserver for dynamically inserted webtrees modal layers without restoring the earlier page-wide observer.
+
+## [1.3.0-alpha.3] - 2026-07-19
+
+### Fixed
+
+- Replaced legacy webtrees silhouette placeholders inside Potts Narrative Ancestor Book pages with the Potts Modern male, female or neutral artwork.
+- Expanded silhouette gender detection to read image titles, data attributes and nearby record context.
+- Kept silhouette replacement narrowly scoped to individual profiles, recognised charts and the Potts Narrative Ancestor Book so other modules retain control of their own media.
+
+### Verified
+
+- The translated German homepage retains the intended responsive two-column layout.
+- Theme settings remain available under translated interfaces; testing should focus on readable labels, working controls and saving changed values rather than every label being translated already.
+
+### Clarified
+
+- Potts Modern restores normal interaction styling for favourites controls that webtrees considers enabled, while leaving genuine disabled states intact. A greyed-out entry in Change blocks selects the block itself; records are added through the control inside the installed favourites block.
+
+## [1.3.0-alpha.2] - 2026-07-18
+
+### Fixed
+- Added an explicit responsive homepage grid so the main and sidebar columns remain stable for logged-in users in translated languages.
+- Contained Favourite/Favorite blocks within their assigned homepage column and neutralised inherited widths and floats.
+- Limited custom silhouette replacement to recognised webtrees profile and chart contexts, preserving silhouettes supplied by Potts Narrative Ancestor Book and other modules.
+- Expanded the translation template and PO catalogues to include colour presets, homepage experience controls and newer theme text.
+- Incorporated the currently proposed Dutch typography and palette translations.
+
+### Documentation
+- Rebuilt the README for the current test version and added information and links for 12 other Potts modules and related repositories.
+
+### Testing note
+- This is a test build based on 1.3.0-alpha.1. The four GitHub issue scenarios should be verified in a live webtrees 2.2.6 installation before a public release.
+
+## [1.3.0-alpha.1] - 2026-07-11
+
+### Added
+- First foundation for the Potts Modern life-story event system.
+- Semantic event classification and major, standard and minor event tiers.
+- A connected timeline rail on individual Facts and events pages.
+- Distinct icons and restrained colours for major genealogy event types.
+- Quieter editing controls that remain fully accessible on hover and keyboard focus.
+
+### Notes
+- This alpha deliberately keeps webtrees native fact rendering and editing behaviour. Event grouping and specialised career/residence cards will follow after this visual foundation is tested.
+
 # 1.2.0
 
 ## Added

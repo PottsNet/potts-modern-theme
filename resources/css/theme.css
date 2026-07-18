@@ -1,6 +1,6 @@
 /*
  * Potts Modern Theme for webtrees
- * Version: 1.2.0
+ * Version: 1.3.0
  * Purpose: standalone modern heritage theme for webtrees.
  */
 
@@ -10445,10 +10445,10 @@ body:has(.wt-individual-page) main .potts-empty-script-leak {
   }
 }
 
-main [class*="silhouette" i]:not(.potts-modern-silhouette):not(.potts-modern-chart-silhouette),
-main img[src*="silhouette" i]:not(.potts-modern-silhouette):not(.potts-modern-chart-silhouette) {
-  opacity: 0 !important;
-}
+/* Native and module-owned silhouettes are intentionally left alone here.
+   Earlier builds hid every silhouette inside <main>, which also hid images
+   supplied by Narrative Ancestor Book and other custom modules. Approved
+   profile and chart replacements are handled contextually in theme.js. */
 
 main .potts-modern-silhouette,
 main .potts-modern-chart-silhouette {
@@ -12590,4 +12590,294 @@ main .potts-profile-silhouette .potts-profile-silhouette-detail {
   .potts-profile-photo:has(.potts-profile-fallback-portrait) .potts-profile-add-media {
     top: 217px;
   }
+}
+
+
+/* ========================================================================== 
+   Potts Modern 1.3.0 alpha 1 — life-story event foundation
+   Keeps the native webtrees fact markup and editing behaviour while adding a
+   true timeline, semantic event tiers and recognisable event imagery.
+   ========================================================================== */
+body:has(.wt-individual-page) main .wt-tab-facts .wt-facts-table > tbody {
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  body:has(.wt-individual-page) main .wt-tab-facts .wt-facts-table > tbody::before {
+    content: "";
+    position: absolute;
+    top: 2.25rem;
+    bottom: 2.25rem;
+    left: 2.05rem;
+    width: 2px;
+    border-radius: 999px;
+    background: linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--potts-accent, #b58a35) 34%, transparent),
+      color-mix(in srgb, var(--potts-primary, #174e5b) 23%, transparent)
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+body:has(.wt-individual-page) main .wt-tab-facts .potts-life-event {
+  --potts-event-colour: var(--potts-accent, #b58a35);
+  --potts-event-icon: url("../icons/fact-generic.svg");
+  isolation: isolate;
+  transition: border-color .18s ease, box-shadow .18s ease, translate .18s ease;
+}
+body:has(.wt-individual-page) main .wt-tab-facts .potts-life-event:hover {
+  border-color: color-mix(in srgb, var(--potts-event-colour) 38%, var(--bs-border-color, #d8dfdc)) !important;
+  box-shadow: 0 8px 22px rgba(24, 45, 48, .09);
+  translate: 0 -1px;
+}
+
+body:has(.wt-individual-page) main .wt-tab-facts .potts-event-birth { --potts-event-colour:#6f9a68; --potts-event-icon:url("../icons/fact-birth.svg"); }
+body:has(.wt-individual-page) main .wt-tab-facts .potts-event-baptism { --potts-event-colour:#69a9b5; --potts-event-icon:url("../icons/fact-baptism.svg"); }
+body:has(.wt-individual-page) main .wt-tab-facts .potts-event-marriage { --potts-event-colour:#4d8dab; --potts-event-icon:url("../icons/fact-marriage.svg"); }
+body:has(.wt-individual-page) main .wt-tab-facts .potts-event-migration { --potts-event-colour:#4f99a2; --potts-event-icon:url("../icons/fact-immigration.svg"); }
+body:has(.wt-individual-page) main .wt-tab-facts .potts-event-military { --potts-event-colour:#7d8061; --potts-event-icon:url("../icons/fact-military.svg"); }
+body:has(.wt-individual-page) main .wt-tab-facts .potts-event-will { --potts-event-colour:#8b765b; --potts-event-icon:url("../icons/fact-will.svg"); }
+body:has(.wt-individual-page) main .wt-tab-facts .potts-event-death { --potts-event-colour:#657177; --potts-event-icon:url("../icons/fact-death.svg"); }
+body:has(.wt-individual-page) main .wt-tab-facts .potts-event-burial { --potts-event-colour:#747a7d; --potts-event-icon:url("../icons/fact-burial.svg"); }
+body:has(.wt-individual-page) main .wt-tab-facts .potts-event-occupation { --potts-event-colour:#c7952d; --potts-event-icon:url("../icons/fact-occupation.svg"); }
+body:has(.wt-individual-page) main .wt-tab-facts .potts-event-education { --potts-event-colour:#8b71a3; --potts-event-icon:url("../icons/fact-education.svg"); }
+body:has(.wt-individual-page) main .wt-tab-facts .potts-event-residence { --potts-event-colour:#788da0; --potts-event-icon:url("../icons/fact-residence.svg"); }
+body:has(.wt-individual-page) main .wt-tab-facts .potts-event-property { --potts-event-colour:#987555; --potts-event-icon:url("../icons/fact-property.svg"); }
+body:has(.wt-individual-page) main .wt-tab-facts .potts-event-religion { --potts-event-colour:#8b7b9a; --potts-event-icon:url("../icons/fact-faith.svg"); }
+body:has(.wt-individual-page) main .wt-tab-facts .potts-event-public { --potts-event-colour:#697f91; --potts-event-icon:url("../icons/fact-generic.svg"); }
+
+body:has(.wt-individual-page) main .wt-tab-facts .potts-life-event-marker {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  margin: 0 auto .45rem;
+  border: 2px solid color-mix(in srgb, var(--potts-event-colour) 72%, white);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--potts-event-colour) 14%, white);
+  box-shadow: 0 0 0 5px var(--bs-body-bg, #fff);
+}
+body:has(.wt-individual-page) main .wt-tab-facts .potts-life-event-marker::before {
+  content: "";
+  width: 1.05rem;
+  height: 1.05rem;
+  background: var(--potts-event-colour);
+  -webkit-mask: var(--potts-event-icon) center / contain no-repeat;
+  mask: var(--potts-event-icon) center / contain no-repeat;
+}
+
+body:has(.wt-individual-page) main .wt-tab-facts .potts-event-tier-major {
+  border-width: 1px !important;
+  box-shadow: 0 7px 20px rgba(24, 45, 48, .08);
+}
+body:has(.wt-individual-page) main .wt-tab-facts .potts-event-tier-major > .potts-fact-summary-cell,
+body:has(.wt-individual-page) main .wt-tab-facts .potts-event-tier-major > th {
+  background: color-mix(in srgb, var(--potts-event-colour) 15%, var(--bs-body-bg, #fff)) !important;
+}
+body:has(.wt-individual-page) main .wt-tab-facts .potts-event-tier-major .potts-event-title-text,
+body:has(.wt-individual-page) main .wt-tab-facts .potts-event-tier-major .wt-fact-label {
+  font-size: 1.02rem;
+  font-weight: var(--potts-weight-heading, 750);
+}
+body:has(.wt-individual-page) main .wt-tab-facts .potts-event-tier-minor {
+  box-shadow: none;
+  opacity: .92;
+}
+
+/* Editing remains fully available, but the story is visually primary. */
+body:has(.wt-individual-page) main .wt-tab-facts .potts-life-event .wt-fact-edit-links,
+body:has(.wt-individual-page) main .wt-tab-facts .potts-life-event [class*="fact-edit"] {
+  opacity: .35;
+  transition: opacity .16s ease;
+}
+body:has(.wt-individual-page) main .wt-tab-facts .potts-life-event:hover .wt-fact-edit-links,
+body:has(.wt-individual-page) main .wt-tab-facts .potts-life-event:focus-within .wt-fact-edit-links,
+body:has(.wt-individual-page) main .wt-tab-facts .potts-life-event:hover [class*="fact-edit"],
+body:has(.wt-individual-page) main .wt-tab-facts .potts-life-event:focus-within [class*="fact-edit"] {
+  opacity: 1;
+}
+
+@media (max-width: 767.98px) {
+  body:has(.wt-individual-page) main .wt-tab-facts .potts-life-event-marker {
+    width: 1.9rem;
+    height: 1.9rem;
+    margin-inline: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body:has(.wt-individual-page) main .wt-tab-facts .potts-life-event {
+    transition: none;
+  }
+}
+
+/* ========================================================================== 
+   Potts Modern 1.3.0 alpha 2 — resilient homepage columns
+   The custom homepage now owns its column layout instead of relying on
+   language-sensitive or third-party Bootstrap row overrides.
+   ========================================================================== */
+body.potts-home-page .potts-home-blocks,
+body.potts-home-page .potts-home-columns {
+  width: 100%;
+  max-width: 100%;
+}
+
+body.potts-home-page .potts-home-columns {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start !important;
+  gap: clamp(1rem, 2vw, 1.75rem);
+  margin-inline: 0 !important;
+  margin-block: 0 !important;
+}
+
+body.potts-home-page .potts-home-columns > :is(.potts-home-main-column, .potts-home-side-column) {
+  min-width: 0 !important;
+  width: 100% !important;
+  max-width: none !important;
+  flex: none !important;
+  margin: 0 !important;
+  padding-inline: 0 !important;
+}
+
+body.potts-home-page .potts-home-columns :is(.wt-block, .wt-side-block, .card, .panel) {
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  margin-inline: 0;
+}
+
+@media (min-width: 768px) {
+  body.potts-home-page .potts-home-columns-split {
+    grid-template-columns: minmax(0, 1.45fr) minmax(16rem, .95fr);
+  }
+
+  [dir="rtl"] body.potts-home-page .potts-home-columns-split {
+    grid-template-columns: minmax(16rem, .95fr) minmax(0, 1.45fr);
+  }
+
+  [dir="rtl"] body.potts-home-page .potts-home-columns-split > .potts-home-main-column {
+    grid-column: 2;
+  }
+
+  [dir="rtl"] body.potts-home-page .potts-home-columns-split > .potts-home-side-column {
+    grid-column: 1;
+    grid-row: 1;
+  }
+}
+
+/* Keep webtrees favourite/favorite blocks inside the column selected on the
+   tree homepage. Some block variants carry legacy widths or floated content. */
+body.potts-home-page .potts-home-columns :is(
+  .wt-block-tree_favorites,
+  .wt-block-tree-favorites,
+  .wt-block-user_favorites,
+  .wt-block-user-favorites,
+  [class*="favorite" i],
+  [class*="favourite" i]
+) {
+  display: block !important;
+  float: none !important;
+  clear: both;
+  min-width: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-inline: 0 !important;
+  inset-inline: auto !important;
+}
+
+body.potts-home-page .potts-home-columns :is(
+  [class*="favorite" i],
+  [class*="favourite" i]
+) :is(.card-body, .wt-block-content, .table-responsive, ul, ol) {
+  min-width: 0;
+  max-width: 100%;
+}
+
+body.potts-home-page .potts-home-columns :is(
+  [class*="favorite" i],
+  [class*="favourite" i]
+) :is(table, img, svg, canvas) {
+  max-width: 100%;
+}
+
+@media (max-width: 767.98px) {
+  body.potts-home-page .potts-home-columns {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}
+
+
+
+/* Do not allow inherited theme decoration to make an enabled favourites
+   control look or behave disabled. Genuine disabled/aria-disabled controls
+   remain under webtrees' control. */
+body.potts-home-page .potts-home-columns :is(
+  .wt-block-tree_favorites,
+  .wt-block-tree-favorites,
+  .wt-block-user_favorites,
+  .wt-block-user-favorites,
+  [class*="favorite" i],
+  [class*="favourite" i]
+) :is(a, button, input, select, textarea):not(:disabled):not([aria-disabled="true"]) {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  filter: none !important;
+}
+
+
+/* ========================================================================== 
+   Potts Modern 1.3.0 alpha 3 — Narrative Ancestor Book silhouettes
+   Replace only recognised placeholder images, while preserving each module's
+   own portrait container and responsive sizing.
+   ========================================================================== */
+main img.potts-modern-book-silhouette {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  max-width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
+  margin-inline: auto !important;
+}
+
+main img.potts-modern-book-silhouette[src*="chart-silhouette-unknown"] {
+  width: min(100%, 10rem) !important;
+}
+
+/* ========================================================================== 
+   Potts Modern 1.3.0 alpha 4 — AJAX modal stacking repair
+
+   webtrees can render the shared AJAX modal inside the homepage content while
+   Bootstrap places its backdrop directly under <body>. Any transformed or
+   isolated homepage ancestor then traps the modal below the backdrop. The
+   companion script promotes the AJAX modal to <body>; these rules give the
+   promoted dialog and its backdrop an unambiguous stacking order.
+   ========================================================================== */
+body > :is(#wt-ajax-modal, .wt-ajax-modal, .modal.potts-promoted-modal) {
+  position: fixed !important;
+  z-index: 20050 !important;
+  opacity: 1 !important;
+  filter: none !important;
+  isolation: isolate !important;
+}
+
+body > .modal-backdrop,
+body.modal-open > .modal-backdrop {
+  z-index: 20040 !important;
+}
+
+body > :is(#wt-ajax-modal, .wt-ajax-modal, .modal.potts-promoted-modal) .modal-dialog {
+  position: relative;
+  z-index: 1;
+}
+
+body > :is(#wt-ajax-modal, .wt-ajax-modal, .modal.potts-promoted-modal) .modal-content {
+  opacity: 1 !important;
+  filter: none !important;
+  pointer-events: auto !important;
 }

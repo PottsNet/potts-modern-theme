@@ -60,20 +60,20 @@ if ($heading === '') {
 
 
     <div class="potts-home-blocks">
-        <div class="row">
+        <div class="row potts-home-columns <?= $main_blocks->isEmpty() || $side_blocks->isEmpty() ? 'potts-home-columns-single' : 'potts-home-columns-split' ?>">
             <?php if ($main_blocks->isEmpty() || $side_blocks->isEmpty()) : ?>
-                <div class="col-md-12 wt-main-blocks">
+                <div class="col-md-12 wt-main-blocks potts-home-main-column">
                     <?php foreach ($main_blocks->concat($side_blocks) as $block_id => $block) : ?>
                         <?= view('tree-page-block', ['block_id' => $block_id, 'block' => $block, 'tree' => $tree]) ?>
                     <?php endforeach ?>
                 </div>
             <?php else : ?>
-                <div class="col-md-8 wt-main-blocks">
+                <div class="col-md-8 wt-main-blocks potts-home-main-column">
                     <?php foreach ($main_blocks as $block_id => $block) : ?>
                         <?= view('tree-page-block', ['block_id' => $block_id, 'block' => $block, 'tree' => $tree]) ?>
                     <?php endforeach ?>
                 </div>
-                <div class="col-md-4 wt-side-blocks">
+                <div class="col-md-4 wt-side-blocks potts-home-side-column">
                     <?php foreach ($side_blocks as $block_id => $block) : ?>
                         <?= view('tree-page-block', ['block_id' => $block_id, 'block' => $block, 'tree' => $tree]) ?>
                     <?php endforeach ?>

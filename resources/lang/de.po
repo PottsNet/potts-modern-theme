@@ -1,371 +1,693 @@
 # German starter translations for Potts Modern Theme.
 # This file is distributed under the same license as the Potts Modern Theme package.
 # Corrections from native speakers are welcome.
-
 msgid ""
 msgstr ""
-"Project-Id-Version: Potts Modern Theme 1.1.0-beta.62\n"
+"Project-Id-Version: Potts Modern Theme 1.3.0\n"
 "Report-Msgid-Bugs-To: https://github.com/PottsNet/potts-modern-theme/issues\n"
-"POT-Creation-Date: 2026-06-29 21:40+1000\n"
+"POT-Creation-Date: 2026-07-19 00:14+1000\n"
 "PO-Revision-Date: 2026-06-29 21:40+1000\n"
 "Last-Translator: Jason Potts <noreply@potts.net.au>\n"
-"Language-Team: German\n"
 "Language: de\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Language-Team: German\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: PottsModernTheme.php:78
-msgid "Potts Modern"
-msgstr "Potts Modern"
-
-#: PottsModernTheme.php:83
-msgid "A modern, responsive heritage theme for webtrees."
-msgstr "Ein modernes, responsives Heritage-Theme für webtrees."
-
-#: PottsModernTheme.php:167 resources/views/admin/settings.phtml:144
-msgid "Potts Modern theme settings"
-msgstr "Einstellungen für das Potts-Modern-Theme"
-
-#: PottsModernTheme.php:260
-msgid "Heritage teal and parchment"
-msgstr "Historisches Petrol und Pergament"
-
-#: PottsModernTheme.php:261
-msgid "Cool teal and mist"
-msgstr "Kühles Petrol und Nebel"
-
-#: PottsModernTheme.php:262
-msgid "Warm sepia and walnut"
-msgstr "Warmes Sepia und Walnuss"
-
-#: PottsModernTheme.php:263
-msgid "Eucalyptus green and linen"
-msgstr "Eukalyptusgrün und Leinen"
-
-#: PottsModernTheme.php:264
-msgid "Claret and archival ivory"
-msgstr "Bordeauxrot und Archiv-Elfenbein"
-
-#: PottsModernTheme.php:267 PottsModernTheme.php:281 PottsModernTheme.php:292
-#: PottsModernTheme.php:297
-msgid "Standard"
-msgstr "Standard"
-
-#: PottsModernTheme.php:268
-msgid "Larger"
-msgstr "Größer"
-
-#: PottsModernTheme.php:271
-msgid "Soft and rounded"
-msgstr "Weich und abgerundet"
-
-#: PottsModernTheme.php:272
-msgid "Moderately rounded"
-msgstr "Mäßig abgerundet"
-
-#: PottsModernTheme.php:273
-msgid "Mostly square"
-msgstr "Überwiegend eckig"
-
-#: PottsModernTheme.php:276
-msgid "Soft"
-msgstr "Weich"
-
-#: PottsModernTheme.php:277
-msgid "Stronger"
-msgstr "Stärker"
-
-#: PottsModernTheme.php:278
-msgid "None"
-msgstr "Keine"
-
-#: PottsModernTheme.php:282 PottsModernTheme.php:293
-msgid "Wide"
-msgstr "Breit"
-
-#: PottsModernTheme.php:283
-msgid "Full width"
-msgstr "Volle Breite"
-
-#: PottsModernTheme.php:286 PottsModernTheme.php:291 PottsModernTheme.php:296
-msgid "Compact"
-msgstr "Kompakt"
-
-#: PottsModernTheme.php:287
-msgid "Comfortable"
-msgstr "Komfortabel"
-
-#: PottsModernTheme.php:288
-msgid "Spacious"
-msgstr "Großzügig"
-
-#: PottsModernTheme.php:298
-msgid "Large"
-msgstr "Groß"
-
-#: PottsModernTheme.php:301
-msgid "Icons and labels"
-msgstr "Symbole und Beschriftungen"
-
-#: PottsModernTheme.php:302
-msgid "Labels only"
-msgstr "Nur Beschriftungen"
-
-#: PottsModernTheme.php:479
-msgid "Menu"
-msgstr "Menü"
-
-#: PottsModernTheme.php:480
-msgid "Open menu"
-msgstr "Menü öffnen"
-
-#: PottsModernTheme.php:481
-msgid "Close menu"
-msgstr "Menü schließen"
-
-#: PottsModernTheme.php:482
-msgid "Explore"
-msgstr "Erkunden"
-
-#: PottsModernTheme.php:483
-msgid "Account and settings"
-msgstr "Konto und Einstellungen"
-
-#: PottsModernTheme.php:484
-msgid "Sign in"
-msgstr "Anmelden"
-
-#: PottsModernTheme.php:485
-msgid "Sign out"
-msgstr "Abmelden"
-
-#: PottsModernTheme.php:486
-msgid "Show more events"
-msgstr "Mehr Ereignisse anzeigen"
-
-#: PottsModernTheme.php:487
-msgid "Show fewer events"
-msgstr "Weniger Ereignisse anzeigen"
-
-#: resources/views/admin/settings.phtml:136
-msgid "The Potts Modern settings have been saved."
-msgstr "Die Potts-Modern-Einstellungen wurden gespeichert."
-
-#: resources/views/admin/settings.phtml:139
-msgid "The Potts Modern defaults have been restored."
-msgstr "Die Potts-Modern-Standardeinstellungen wurden wiederhergestellt."
-
-#: resources/views/admin/settings.phtml:145
-msgid ""
-"These settings apply site-wide whenever Potts Modern is the selected theme. "
-"Changes are easy to reverse using Restore defaults."
-msgstr ""
-"Diese Einstellungen gelten seitenweit, wenn Potts Modern als Theme "
-"ausgewählt ist. Änderungen lassen sich über „Standards wiederherstellen“ "
-"leicht rückgängig machen."
-
-#: resources/views/admin/settings.phtml:156
-msgid "Appearance"
-msgstr "Darstellung"
-
-#: resources/views/admin/settings.phtml:158
-msgid "Colour palette"
-msgstr "Farbpalette"
-
-#: resources/views/admin/settings.phtml:158
-msgid "Choose the overall heritage colour scheme."
-msgstr "Wählen Sie das übergreifende historische Farbschema."
-
-#: resources/views/admin/settings.phtml:159
-msgid "Text size"
-msgstr "Textgröße"
-
-#: resources/views/admin/settings.phtml:159
-msgid "Increase base text across the public site."
-msgstr "Vergrößert die Basisschrift auf der öffentlichen Website."
-
-#: resources/views/admin/settings.phtml:160
-msgid "Card corners"
-msgstr "Kartenecken"
-
-#: resources/views/admin/settings.phtml:160
-msgid "Control how rounded cards, panels and controls appear."
-msgstr ""
-"Legt fest, wie stark Karten, Bereiche und Bedienelemente abgerundet "
-"erscheinen."
-
-#: resources/views/admin/settings.phtml:161
-msgid "Card shadows"
-msgstr "Kartenschatten"
-
-#: resources/views/admin/settings.phtml:161
-msgid "Choose a flatter or more dimensional appearance."
-msgstr "Wählen Sie eine flachere oder räumlichere Darstellung."
-
-#: resources/views/admin/settings.phtml:166
-msgid "Layout"
-msgstr "Layout"
-
-#: resources/views/admin/settings.phtml:168
-msgid "Page width"
-msgstr "Seitenbreite"
-
-#: resources/views/admin/settings.phtml:168
-msgid "Standard suits most screens; Wide gives charts and books more room."
-msgstr ""
-"Standard passt für die meisten Bildschirme; Breit gibt Diagrammen und "
-"Büchern mehr Raum."
-
-#: resources/views/admin/settings.phtml:169
-msgid "Content spacing"
-msgstr "Inhaltsabstände"
-
-#: resources/views/admin/settings.phtml:169
-msgid "Adjust spacing within cards and between homepage blocks."
-msgstr "Passt die Abstände innerhalb von Karten und zwischen Startseiten-Blöcken an."
-
-#: resources/views/admin/settings.phtml:170
-msgid "Individual-page sidebar"
-msgstr "Seitenleiste der Personenseite"
-
-#: resources/views/admin/settings.phtml:170
-msgid "Controls the width of the Family navigator on larger screens."
-msgstr "Steuert die Breite des Familien-Navigators auf größeren Bildschirmen."
-
-#: resources/views/admin/settings.phtml:175
-msgid "Header and navigation"
-msgstr "Kopfbereich und Navigation"
-
-#: resources/views/admin/settings.phtml:177
-msgid "Main icon size"
-msgstr "Größe der Hauptsymbole"
-
-#: resources/views/admin/settings.phtml:177
-msgid "Change the size of the modern genealogy menu icons."
-msgstr "Ändert die Größe der modernen Genealogie-Menüsymbole."
-
-#: resources/views/admin/settings.phtml:178
-msgid "Main menu display"
-msgstr "Anzeige des Hauptmenüs"
-
-#: resources/views/admin/settings.phtml:178
-msgid "Display modern icons with labels or use labels alone."
-msgstr "Zeigt moderne Symbole mit Beschriftungen an oder verwendet nur Beschriftungen."
-
-#: resources/views/admin/settings.phtml:181
-msgid "Show the family photo strip"
-msgstr "Familien-Fotoleiste anzeigen"
-
-#: resources/views/admin/settings.phtml:181
-msgid "Display the rotating family photograph banner beneath the menu."
-msgstr "Zeigt das wechselnde Familienfoto-Banner unter dem Menü an."
-
-#: resources/views/admin/settings.phtml:182
-msgid "Show modern dropdown icons"
-msgstr "Moderne Dropdown-Symbole anzeigen"
-
-#: resources/views/admin/settings.phtml:182
-msgid ""
-"Use the refreshed line icons in Charts, Lists, Calendar and other dropdown "
-"menus."
-msgstr ""
-"Verwendet die überarbeiteten Liniensymbole in Diagrammen, Listen, Kalender "
-"und anderen Dropdown-Menüs."
-
-#: resources/views/admin/settings.phtml:183
-msgid "Show modern fact and event icons"
-msgstr "Moderne Fakten- und Ereignissymbole anzeigen"
-
-#: resources/views/admin/settings.phtml:183
-msgid ""
-"Display consistent line icons beside Birth, Marriage, Occupation, Residence "
-"and other facts."
-msgstr ""
-"Zeigt einheitliche Liniensymbole neben Geburt, Heirat, Beruf, Wohnsitz und "
-"anderen Fakten."
-
-#: resources/views/admin/settings.phtml:188
-msgid "Accessibility"
-msgstr "Barrierefreiheit"
-
-#: resources/views/admin/settings.phtml:190
-msgid "Larger controls"
-msgstr "Größere Bedienelemente"
-
-#: resources/views/admin/settings.phtml:190
-msgid "Increase the height of buttons, fields and selectors for easier use."
-msgstr "Erhöht Buttons, Felder und Auswahllisten für eine einfachere Bedienung."
-
-#: resources/views/admin/settings.phtml:191
-msgid "Higher contrast"
-msgstr "Höherer Kontrast"
-
-#: resources/views/admin/settings.phtml:191
-msgid "Strengthen borders, links and keyboard focus indicators."
-msgstr "Verstärkt Rahmen, Links und Tastatur-Fokusmarkierungen."
-
-#: resources/views/admin/settings.phtml:192
-msgid "Reduce animation"
-msgstr "Animationen reduzieren"
-
-#: resources/views/admin/settings.phtml:192
-msgid "Remove transitions and smooth scrolling throughout the theme."
-msgstr "Entfernt Übergänge und sanftes Scrollen im gesamten Theme."
-
-#: resources/views/admin/settings.phtml:197
-msgid "Theme preview"
-msgstr "Theme-Vorschau"
-
-#: resources/views/admin/settings.phtml:199
-msgid "Preview"
-msgstr "Vorschau"
-
-#: resources/views/admin/settings.phtml:203
-msgid "Family Tree"
-msgstr "Stammbaum"
-
-#: resources/views/admin/settings.phtml:204
-msgid "Search"
-msgstr "Suche"
-
-#: resources/views/admin/settings.phtml:209
-msgid "Family history"
-msgstr "Familiengeschichte"
-
-#: resources/views/admin/settings.phtml:210
-msgid "A preview of cards, text, navigation and heritage accents."
-msgstr "Eine Vorschau auf Karten, Text, Navigation und historische Akzente."
-
-#: resources/views/admin/settings.phtml:214
-msgid "Individuals"
-msgstr "Personen"
-
-#: resources/views/admin/settings.phtml:215
-msgid "Place hierarchy"
-msgstr "Orts-Hierarchie"
-
-#: resources/views/admin/settings.phtml:216
-msgid "Sources"
-msgstr "Quellen"
-
-#: resources/views/admin/settings.phtml:227
-msgid "Save when you are happy with the preview."
-msgstr "Speichern Sie, wenn Sie mit der Vorschau zufrieden sind."
-
-#: resources/views/admin/settings.phtml:228
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: resources/views/individual-page.phtml:142 resources/views/individual-page.phtml:342
+#, php-format, python-format
+msgid "%s child"
+msgid_plural "%s children"
+msgstr[0] ""
+msgstr[1] ""
+
+#: resources/views/admin/settings.phtml:295
 msgid "A hard refresh may be needed after changing cached styles."
 msgstr "Nach dem Ändern zwischengespeicherter Styles kann ein Hard Refresh nötig sein."
 
+#: PottsModernTheme.php:96
+msgid "A modern, responsive heritage theme for webtrees."
+msgstr "Ein modernes, responsives Heritage-Theme für webtrees."
+
+#: resources/views/admin/settings.phtml:277
+msgid "A preview of cards, text, navigation and heritage accents."
+msgstr "Eine Vorschau auf Karten, Text, Navigation und historische Akzente."
+
 #: resources/views/admin/settings.phtml:231
+msgid "A short introduction shown beneath the welcome heading."
+msgstr ""
+
+#: resources/views/admin/settings.phtml:226
+msgid "A tighter dashboard for information-rich homepages."
+msgstr ""
+
+#: resources/views/admin/settings.phtml:255
+msgid "Accessibility"
+msgstr "Barrierefreiheit"
+
+#: PottsModernTheme.php:577
+msgid "Account and settings"
+msgstr "Konto und Einstellungen"
+
+#: resources/views/individual-page.phtml:250
+msgid "Add a media object"
+msgstr ""
+
+#: resources/views/admin/settings.phtml:236
+msgid "Add a prominent family-tree search field to the welcome panel."
+msgstr ""
+
+#: resources/views/admin/settings.phtml:215
+msgid "Adjust spacing within cards and between homepage blocks."
+msgstr "Passt die Abstände innerhalb von Karten und zwischen Startseiten-Blöcken an."
+
+#: resources/views/admin/settings.phtml:201
+msgid "Appearance"
+msgstr "Darstellung"
+
+#: resources/views/admin/settings.phtml:234
+msgid "Apply coordinated cards, headers, tables, forms and homepage presentation."
+msgstr ""
+
+#: resources/views/individual-page.phtml:210
+msgid "Biography"
+msgstr ""
+
+#: PottsModernTheme.php:324
+msgid "Bold"
+msgstr ""
+
+#: resources/views/individual-page.phtml:278
+msgid "Born"
+msgstr ""
+
+#: resources/views/individual-page.phtml:158
+#, php-format, python-format
+msgid "Born %s in %s."
+msgstr ""
+
+#: resources/views/individual-page.phtml:162
+#, php-format, python-format
+msgid "Born %s."
+msgstr ""
+
+#: resources/views/individual-page.phtml:160
+#, php-format, python-format
+msgid "Born in %s."
+msgstr ""
+
+#: resources/views/admin/settings.phtml:52
+msgid "Burgundy"
+msgstr ""
+
+#: PottsModernTheme.php:311
+msgid "Burgundy and archival ivory"
+msgstr ""
+
+#: resources/views/admin/settings.phtml:206
+msgid "Card corners"
+msgstr "Kartenecken"
+
+#: resources/views/admin/settings.phtml:207
+msgid "Card shadows"
+msgstr "Kartenschatten"
+
+#: resources/views/admin/settings.phtml:244
+msgid "Change the size of the modern genealogy menu icons."
+msgstr "Ändert die Größe der modernen Genealogie-Menüsymbole."
+
+#: resources/views/individual-page.phtml:341 resources/views/individual-page.phtml:359
+msgid "Children"
+msgstr ""
+
+#: resources/views/admin/settings.phtml:72
+msgid "Choose a complete colour scheme for the header, navigation, cards and page background."
+msgstr ""
+
+#: resources/views/admin/settings.phtml:207
+msgid "Choose a flatter or more dimensional appearance."
+msgstr "Wählen Sie eine flachere oder räumlichere Darstellung."
+
+#: resources/views/admin/settings.phtml:205
+msgid "Choose lighter, standard or bolder headings, navigation and labels."
+msgstr ""
+
+msgid "Choose the overall heritage colour scheme."
+msgstr "Wählen Sie das übergreifende historische Farbschema."
+
+#: resources/views/admin/settings.phtml:229
+msgid "Choose the overall spacing and presentation of the family-tree homepage."
+msgstr ""
+
+msgid "Claret and archival ivory"
+msgstr "Bordeauxrot und Archiv-Elfenbein"
+
+#: resources/views/admin/settings.phtml:225
+msgid "Classic"
+msgstr ""
+
+#: PottsModernTheme.php:358
+msgid "Classic blocks"
+msgstr ""
+
+#: PottsModernTheme.php:575
+msgid "Close menu"
+msgstr "Menü schließen"
+
+msgid "Colour palette"
+msgstr "Farbpalette"
+
+#: resources/views/admin/settings.phtml:60
+msgid "Colour preset"
+msgstr ""
+
+#: PottsModernTheme.php:343
+msgid "Comfortable"
+msgstr "Komfortabel"
+
+#: PottsModernTheme.php:342 PottsModernTheme.php:347 PottsModernTheme.php:352
+#: resources/views/admin/settings.phtml:226
+msgid "Compact"
+msgstr "Kompakt"
+
+#: PottsModernTheme.php:359
+msgid "Compact dashboard"
+msgstr ""
+
+#: resources/views/admin/settings.phtml:215
+msgid "Content spacing"
+msgstr "Inhaltsabstände"
+
+#: resources/views/admin/settings.phtml:206
+msgid "Control how rounded cards, panels and controls appear."
+msgstr "Legt fest, wie stark Karten, Bereiche und Bedienelemente abgerundet erscheinen."
+
+#: resources/views/admin/settings.phtml:216
+msgid "Controls the width of the Family navigator on larger screens."
+msgstr "Steuert die Breite des Familien-Navigators auf größeren Bildschirmen."
+
+msgid "Cool teal and mist"
+msgstr "Kühles Petrol und Nebel"
+
+#: resources/views/individual-page.phtml:368
+msgid "Countries"
+msgstr ""
+
+#: resources/views/individual-page.phtml:286
+msgid "Died"
+msgstr ""
+
+#: resources/views/individual-page.phtml:199
+#, php-format, python-format
+msgid "Died %s (%s)."
+msgstr ""
+
+#: resources/views/individual-page.phtml:195
+#, php-format, python-format
+msgid "Died %s in %s%s."
+msgstr ""
+
+#: resources/views/individual-page.phtml:201
+#, php-format, python-format
+msgid "Died %s."
+msgstr ""
+
+#: resources/views/individual-page.phtml:197
+#, php-format, python-format
+msgid "Died in %s%s."
+msgstr ""
+
+#: resources/views/admin/settings.phtml:250
+msgid "Display consistent line icons beside Birth, Marriage, Occupation, Residence and other facts."
+msgstr "Zeigt einheitliche Liniensymbole neben Geburt, Heirat, Beruf, Wohnsitz und anderen Fakten."
+
+#: resources/views/admin/settings.phtml:245
+msgid "Display modern icons with labels or use labels alone."
+msgstr "Zeigt moderne Symbole mit Beschriftungen an oder verwendet nur Beschriftungen."
+
+#: resources/views/admin/settings.phtml:235
+msgid "Display the homepage introduction above the webtrees blocks."
+msgstr ""
+
+#: resources/views/admin/settings.phtml:248
+msgid "Display the rotating family photograph banner beneath the menu."
+msgstr "Zeigt das wechselnde Familienfoto-Banner unter dem Menü an."
+
+#: resources/views/admin/settings.phtml:234
+msgid "Enable Potts Modern Experience"
+msgstr ""
+
+msgid "Eucalyptus green and linen"
+msgstr "Eukalyptusgrün und Leinen"
+
+#: PottsModernTheme.php:576
+msgid "Explore"
+msgstr "Erkunden"
+
+#: resources/views/individual-page.phtml:314
+msgid "Family"
+msgstr ""
+
+#: resources/views/admin/settings.phtml:270
+msgid "Family Tree"
+msgstr "Stammbaum"
+
+#: resources/views/admin/settings.phtml:276 resources/views/tree-page.phtml:39
+msgid "Family history"
+msgstr "Familiengeschichte"
+
+#: PottsModernTheme.php:339
+msgid "Full width"
+msgstr "Volle Breite"
+
+#: resources/views/admin/settings.phtml:242
+msgid "Header and navigation"
+msgstr "Kopfbereich und Navigation"
+
+#: resources/views/admin/settings.phtml:53
+msgid "Heritage Purple"
+msgstr ""
+
+#: PottsModernTheme.php:312
+msgid "Heritage purple and lilac"
+msgstr ""
+
+msgid "Heritage teal and parchment"
+msgstr "Historisches Petrol und Pergament"
+
+#: resources/views/admin/settings.phtml:258
+msgid "Higher contrast"
+msgstr "Höherer Kontrast"
+
+#: resources/views/admin/settings.phtml:222
+msgid "Homepage experience"
+msgstr ""
+
+#: resources/views/admin/settings.phtml:229
+msgid "Homepage style"
+msgstr ""
+
+#: PottsModernTheme.php:362
+msgid "Icons and labels"
+msgstr "Symbole und Beschriftungen"
+
+#: resources/views/individual-page.phtml:138 resources/views/individual-page.phtml:139
+msgid "Immigrant"
+msgstr ""
+
+#: resources/views/admin/settings.phtml:204
+msgid "Increase base text across the public site."
+msgstr "Vergrößert die Basisschrift auf der öffentlichen Website."
+
+#: resources/views/admin/settings.phtml:257
+msgid "Increase the height of buttons, fields and selectors for easier use."
+msgstr "Erhöht Buttons, Felder und Auswahllisten für eine einfachere Bedienung."
+
+#: resources/views/admin/settings.phtml:216
+msgid "Individual-page sidebar"
+msgstr "Seitenleiste der Personenseite"
+
+#: resources/views/admin/settings.phtml:281
+msgid "Individuals"
+msgstr "Personen"
+
+#: resources/views/admin/settings.phtml:237
+msgid "Integrate Potts Hero Slideshow"
+msgstr ""
+
+#: PottsModernTheme.php:363
+msgid "Labels only"
+msgstr "Nur Beschriftungen"
+
+#: PottsModernTheme.php:354
+msgid "Large"
+msgstr "Groß"
+
+#: PottsModernTheme.php:319
+msgid "Larger"
+msgstr "Größer"
+
+#: resources/views/admin/settings.phtml:257
+msgid "Larger controls"
+msgstr "Größere Bedienelemente"
+
+#: resources/views/admin/settings.phtml:212
+msgid "Layout"
+msgstr "Layout"
+
+#: resources/views/admin/settings.phtml:230
+msgid "Leave blank to use the family-tree title automatically."
+msgstr ""
+
+#: resources/views/individual-page.phtml:354
+msgid "Life at a glance"
+msgstr ""
+
+#: resources/views/individual-page.phtml:268 resources/views/individual-page.phtml:308
+msgid "Life summary"
+msgstr ""
+
+#: PottsModernTheme.php:322
+msgid "Light"
+msgstr ""
+
+#: resources/views/individual-page.phtml:356
+msgid "Lived"
+msgstr ""
+
+#: resources/views/individual-page.phtml:190
+#, php-format, python-format
+msgid "Lived in %s country."
+msgid_plural "Lived in %s countries."
+msgstr[0] ""
+msgstr[1] ""
+
+#: resources/views/admin/settings.phtml:244
+msgid "Main icon size"
+msgstr "Größe der Hauptsymbole"
+
+#: resources/views/admin/settings.phtml:245
+msgid "Main menu display"
+msgstr "Anzeige des Hauptmenüs"
+
+#: resources/views/individual-page.phtml:297
+msgid "Married"
+msgstr ""
+
+#: resources/views/individual-page.phtml:178
+#, php-format, python-format
+msgid "Married %s in %s."
+msgstr ""
+
+#: resources/views/individual-page.phtml:174
+#, php-format, python-format
+msgid "Married %s on %s in %s."
+msgstr ""
+
+#: resources/views/individual-page.phtml:176
+#, php-format, python-format
+msgid "Married %s on %s."
+msgstr ""
+
+#: resources/views/individual-page.phtml:180
+#, php-format, python-format
+msgid "Married %s."
+msgstr ""
+
+#: PottsModernTheme.php:573
+msgid "Menu"
+msgstr "Menü"
+
+#: PottsModernTheme.php:328
+msgid "Moderately rounded"
+msgstr "Mäßig abgerundet"
+
+#: PottsModernTheme.php:329
+msgid "Mostly square"
+msgstr "Überwiegend eckig"
+
+#: resources/views/tree-page.phtml:51
+msgid "Name, place or record"
+msgstr ""
+
+#: resources/views/individual-page.phtml:349
+msgid "Names and personal details"
+msgstr ""
+
+#: resources/views/individual-page.phtml:243
+msgid "No known portrait"
+msgstr ""
+
+#: resources/views/individual-page.phtml:240
+msgid "No photograph available"
+msgstr ""
+
+#: PottsModernTheme.php:334
+msgid "None"
+msgstr "Keine"
+
+#: resources/views/individual-page.phtml:362
+msgid "Occupations"
+msgstr ""
+
+#: resources/views/admin/settings.phtml:51
+msgid "Ocean Blue"
+msgstr ""
+
+#: PottsModernTheme.php:310
+msgid "Ocean blue and mist"
+msgstr ""
+
+#: PottsModernTheme.php:574
+msgid "Open menu"
+msgstr "Menü öffnen"
+
+#: resources/views/admin/settings.phtml:214
+msgid "Page width"
+msgstr "Seitenbreite"
+
+#: resources/views/individual-page.phtml:186
+#, php-format, python-format
+msgid "Parent of %s child."
+msgid_plural "Parent of %s children."
+msgstr[0] ""
+msgstr[1] ""
+
+#: resources/views/individual-page.phtml:317
+msgid "Parents"
+msgstr ""
+
+#: resources/views/admin/settings.phtml:282
+msgid "Place hierarchy"
+msgstr "Orts-Hierarchie"
+
+#: resources/views/admin/settings.phtml:50
+msgid "Potts Green"
+msgstr ""
+
+#: PottsModernTheme.php:91
+msgid "Potts Modern"
+msgstr "Potts Modern"
+
+#: PottsModernTheme.php:204 resources/views/admin/settings.phtml:189
+msgid "Potts Modern theme settings"
+msgstr "Einstellungen für das Potts-Modern-Theme"
+
+#: PottsModernTheme.php:309
+msgid "Potts green and parchment"
+msgstr ""
+
+#: resources/views/admin/settings.phtml:266
+msgid "Preview"
+msgstr "Vorschau"
+
+#: resources/views/admin/settings.phtml:223
+msgid "Quick homepage styles"
+msgstr ""
+
+#: resources/views/admin/settings.phtml:259
+msgid "Reduce animation"
+msgstr "Animationen reduzieren"
+
+#: resources/views/admin/settings.phtml:259
+msgid "Remove transitions and smooth scrolling throughout the theme."
+msgstr "Entfernt Übergänge und sanftes Scrollen im gesamten Theme."
+
+#: resources/views/individual-page.phtml:365
+msgid "Residences"
+msgstr ""
+
+#: resources/views/admin/settings.phtml:298
 msgid "Restore all Potts Modern settings to their defaults?"
 msgstr "Alle Potts-Modern-Einstellungen auf ihre Standardwerte zurücksetzen?"
 
-#: resources/views/admin/settings.phtml:231
+#: resources/views/admin/settings.phtml:298
 msgid "Restore defaults"
 msgstr "Standards wiederherstellen"
 
-#: resources/views/admin/settings.phtml:232
+#: resources/views/admin/settings.phtml:56
+msgid "Sandstone"
+msgstr ""
+
+#: PottsModernTheme.php:315
+msgid "Sandstone and walnut"
+msgstr ""
+
+#: resources/views/admin/settings.phtml:299
 msgid "Save settings"
 msgstr "Einstellungen speichern"
+
+#: resources/views/admin/settings.phtml:294
+msgid "Save when you are happy with the preview."
+msgstr "Speichern Sie, wenn Sie mit der Vorschau zufrieden sind."
+
+#: resources/views/admin/settings.phtml:271 resources/views/tree-page.phtml:52
+msgid "Search"
+msgstr "Suche"
+
+#: resources/views/tree-page.phtml:49
+msgid "Search this family tree"
+msgstr ""
+
+#: resources/views/individual-page.phtml:389
+msgid "Share"
+msgstr ""
+
+#: PottsModernTheme.php:581
+msgid "Show fewer events"
+msgstr "Weniger Ereignisse anzeigen"
+
+#: resources/views/admin/settings.phtml:236
+msgid "Show homepage quick search"
+msgstr ""
+
+#: resources/views/admin/settings.phtml:249
+msgid "Show modern dropdown icons"
+msgstr "Moderne Dropdown-Symbole anzeigen"
+
+#: resources/views/admin/settings.phtml:250
+msgid "Show modern fact and event icons"
+msgstr "Moderne Fakten- und Ereignissymbole anzeigen"
+
+#: PottsModernTheme.php:580
+msgid "Show more events"
+msgstr "Mehr Ereignisse anzeigen"
+
+#: resources/views/admin/settings.phtml:248
+msgid "Show the family photo strip"
+msgstr "Familien-Fotoleiste anzeigen"
+
+#: resources/views/admin/settings.phtml:235
+msgid "Show welcome panel"
+msgstr ""
+
+#: PottsModernTheme.php:578
+msgid "Sign in"
+msgstr "Anmelden"
+
+#: PottsModernTheme.php:579
+msgid "Sign out"
+msgstr "Abmelden"
+
+#: resources/views/admin/settings.phtml:54
+msgid "Slate"
+msgstr ""
+
+#: PottsModernTheme.php:313
+msgid "Slate and silver"
+msgstr ""
+
+#: PottsModernTheme.php:332
+msgid "Soft"
+msgstr "Weich"
+
+#: PottsModernTheme.php:327
+msgid "Soft and rounded"
+msgstr "Weich und abgerundet"
+
+#: resources/views/admin/settings.phtml:283
+msgid "Sources"
+msgstr "Quellen"
+
+#: PottsModernTheme.php:344
+msgid "Spacious"
+msgstr "Großzügig"
+
+#: resources/views/individual-page.phtml:329 resources/views/individual-page.phtml:371
+msgid "Spouses"
+msgstr ""
+
+#: PottsModernTheme.php:318 PottsModernTheme.php:323 PottsModernTheme.php:337 PottsModernTheme.php:348
+#: PottsModernTheme.php:353
+msgid "Standard"
+msgstr "Standard"
+
+#: resources/views/admin/settings.phtml:214
+msgid "Standard suits most screens; Wide gives charts and books more room."
+msgstr "Standard passt für die meisten Bildschirme; Breit gibt Diagrammen und Büchern mehr Raum."
+
+#: PottsModernTheme.php:357 resources/views/admin/settings.phtml:224
+msgid "Storytelling"
+msgstr ""
+
+#: resources/views/admin/settings.phtml:258
+msgid "Strengthen borders, links and keyboard focus indicators."
+msgstr "Verstärkt Rahmen, Links und Tastatur-Fokusmarkierungen."
+
+#: PottsModernTheme.php:333
+msgid "Stronger"
+msgstr "Stärker"
+
+#: resources/views/admin/settings.phtml:55
+msgid "Teal"
+msgstr ""
+
+#: PottsModernTheme.php:314
+msgid "Teal and sea glass"
+msgstr ""
+
+#: resources/views/admin/settings.phtml:204
+msgid "Text size"
+msgstr "Textgröße"
+
+#: resources/views/admin/settings.phtml:184
+msgid "The Potts Modern defaults have been restored."
+msgstr "Die Potts-Modern-Standardeinstellungen wurden wiederhergestellt."
+
+#: resources/views/admin/settings.phtml:181
+msgid "The Potts Modern settings have been saved."
+msgstr "Die Potts-Modern-Einstellungen wurden gespeichert."
+
+#: resources/views/admin/settings.phtml:264
+msgid "Theme preview"
+msgstr "Theme-Vorschau"
+
+#: resources/views/admin/settings.phtml:190
+msgid ""
+"These settings apply site-wide whenever Potts Modern is the selected theme. Changes are easy to "
+"reverse using Restore defaults."
+msgstr ""
+"Diese Einstellungen gelten seitenweit, wenn Potts Modern als Theme ausgewählt ist. Änderungen "
+"lassen sich über „Standards wiederherstellen“ leicht rückgängig machen."
+
+#: resources/views/admin/settings.phtml:225
+msgid "Traditional webtrees blocks with subtle theme polish."
+msgstr ""
+
+#: resources/views/admin/settings.phtml:205
+msgid "Typography weight"
+msgstr ""
+
+#: resources/views/admin/settings.phtml:249
+msgid "Use the refreshed line icons in Charts, Lists, Calendar and other dropdown menus."
+msgstr ""
+"Verwendet die überarbeiteten Liniensymbole in Diagrammen, Listen, Kalender und anderen Dropdown-"
+"Menüs."
+
+msgid "Warm sepia and walnut"
+msgstr "Warmes Sepia und Walnuss"
+
+#: resources/views/admin/settings.phtml:230
+msgid "Welcome heading"
+msgstr ""
+
+#: resources/views/admin/settings.phtml:231
+msgid "Welcome message"
+msgstr ""
+
+#: resources/views/admin/settings.phtml:224
+msgid "Welcome panel, quick search and generous spacing."
+msgstr ""
+
+#: resources/views/admin/settings.phtml:237
+msgid ""
+"When the slideshow module is present, move its homepage block above the welcome panel and allow "
+"it to span the page."
+msgstr ""
+
+#: PottsModernTheme.php:338 PottsModernTheme.php:349
+msgid "Wide"
+msgstr "Breit"
+

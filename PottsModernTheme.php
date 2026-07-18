@@ -83,7 +83,7 @@ final class PottsModernTheme extends AbstractModule implements ModuleThemeInterf
         'WELCOME_TEXT'          => 'Discover the people, places and stories that shaped our family.',
     ];
 
-    private const CUSTOM_VERSION = '1.2.0';
+    private const CUSTOM_VERSION = '1.3.0';
     private const LATEST_VERSION_URL = 'https://raw.githubusercontent.com/PottsNet/potts-modern-theme/main/latest-version.txt';
 
     public function title(): string

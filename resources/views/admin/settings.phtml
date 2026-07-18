@@ -47,13 +47,13 @@ $textField = static function (string $key, string $label, string $help, bool $mu
 
 $paletteCards = static function () use ($settings): void {
     $palettes = [
-        'heritage'  => ['Potts Green', '#203e34', '#416b56', '#a88a52', '#edf1e9'],
-        'ocean'     => ['Ocean Blue', '#17455f', '#246f98', '#b18b45', '#eaf1f6'],
-        'claret'    => ['Burgundy', '#4d2731', '#743c4a', '#aa8954', '#f2ece8'],
-        'purple'    => ['Heritage Purple', '#453355', '#6b4f83', '#b08a4d', '#f1edf5'],
-        'slate'     => ['Slate', '#344650', '#536b78', '#a9864b', '#edf0f2'],
-        'teal'      => ['Teal', '#194c47', '#2c786f', '#af8b45', '#eaf3f1'],
-        'sandstone' => ['Sandstone', '#4e3424', '#765038', '#b27b33', '#eee4d3'],
+        'heritage'  => [I18N::translate('Potts Green'), '#203e34', '#416b56', '#a88a52', '#edf1e9'],
+        'ocean'     => [I18N::translate('Ocean Blue'), '#17455f', '#246f98', '#b18b45', '#eaf1f6'],
+        'claret'    => [I18N::translate('Burgundy'), '#4d2731', '#743c4a', '#aa8954', '#f2ece8'],
+        'purple'    => [I18N::translate('Heritage Purple'), '#453355', '#6b4f83', '#b08a4d', '#f1edf5'],
+        'slate'     => [I18N::translate('Slate'), '#344650', '#536b78', '#a9864b', '#edf0f2'],
+        'teal'      => [I18N::translate('Teal'), '#194c47', '#2c786f', '#af8b45', '#eaf3f1'],
+        'sandstone' => [I18N::translate('Sandstone'), '#4e3424', '#765038', '#b27b33', '#eee4d3'],
     ];
     ?>
     <fieldset class="potts-palette-fieldset">
@@ -65,7 +65,7 @@ $paletteCards = static function () use ($settings): void {
                     <span class="potts-palette-swatch" style="--swatch-dark:<?= e($dark) ?>;--swatch-accent:<?= e($accent) ?>;--swatch-gold:<?= e($gold) ?>;--swatch-bg:<?= e($background) ?>">
                         <i></i><i></i><i></i><i></i>
                     </span>
-                    <strong><?= e(I18N::translate($label)) ?></strong>
+                    <strong><?= e($label) ?></strong>
                 </label>
             <?php endforeach ?>
         </div>

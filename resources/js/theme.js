@@ -1602,24 +1602,35 @@
     }
 
     function inferGender(element) {
-      const own = ((element.getAttribute('class') || '') + ' ' + (element.getAttribute('src') || '') + ' ' + (element.getAttribute('alt') || '')).toLowerCase();
+      const own = [
+        element.getAttribute('class') || '',
+        element.getAttribute('src') || '',
+        element.getAttribute('alt') || '',
+        element.getAttribute('title') || '',
+        element.getAttribute('data-sex') || '',
+        element.getAttribute('data-gender') || ''
+      ].join(' ').toLowerCase();
 
       // Female first because "female" contains "male".
-      if (/female|icon-silhouette[-_\s]?f\b|silhouette[-_\s]?f\b|person_boxf\b|sex[-_\s]?f\b/.test(own)) {
+      if (/female|icon-silhouette[-_\s]?f\b|silhouette[-_\s]?f\b|person_boxf\b|sex[-_\s]?f\b|gender[-_\s]?f\b/.test(own)) {
         return 'female';
       }
-      if (/male|icon-silhouette[-_\s]?m\b|silhouette[-_\s]?m\b|person_boxm\b|sex[-_\s]?m\b/.test(own)) {
+      if (/(^|[^a-z])male\b|icon-silhouette[-_\s]?m\b|silhouette[-_\s]?m\b|person_boxm\b|sex[-_\s]?m\b|gender[-_\s]?m\b/.test(own)) {
         return 'male';
       }
 
-      const context = element.closest('.wt-individual-page, .wt-chart-box, .person_box, .person_boxF, .person_boxM, .person_boxNN, .card, .row, main');
-      const contextClass = context ? (context.getAttribute('class') || '').toLowerCase() : '';
-      const contextText = context ? normalise(context.textContent || '') : '';
+      const context = element.closest('[data-sex], [data-gender], .wt-individual-page, .wt-chart-box, .person_box, .person_boxF, .person_boxM, .person_boxNN, .card, .row, main');
+      const contextMarker = context ? [
+        context.getAttribute('class') || '',
+        context.getAttribute('data-sex') || '',
+        context.getAttribute('data-gender') || '',
+        context.textContent || ''
+      ].join(' ').toLowerCase() : '';
 
-      if (/person_boxf\b|female|sex female/.test(contextClass + ' ' + contextText)) {
+      if (/person_boxf\b|female|sex[-_\s]?f\b|gender[-_\s]?f\b|sex female/.test(contextMarker)) {
         return 'female';
       }
-      if (/person_boxm\b|male|sex male/.test(contextClass + ' ' + contextText)) {
+      if (/person_boxm\b|(^|[^a-z])male\b|sex[-_\s]?m\b|gender[-_\s]?m\b|sex male/.test(contextMarker)) {
         return 'male';
       }
 
@@ -1636,15 +1647,42 @@
       );
     }
 
+    function isNarrativeAncestorBookPage() {
+      const route = ((window.location.pathname || '') + ' ' + (window.location.search || '')).toLowerCase();
+
+      if (/potts[-_]narrative[-_]ancestor[-_]book/.test(route)) {
+        return true;
+      }
+
+      const main = document.querySelector('main');
+
+      return Boolean(main && main.querySelector([
+        '[data-potts-narrative-ancestor-book]',
+        '[class*="potts-narrative-ancestor" i]',
+        '[class*="narrative-ancestor-book" i]',
+        '[id*="narrative-ancestor-book" i]'
+      ].join(', ')));
+    }
+
+    function isBookSilhouetteReplacementAllowed(element) {
+      if (!element || !isNarrativeAncestorBookPage()) {
+        return false;
+      }
+
+      const main = document.querySelector('main');
+
+      return Boolean(main && main.contains(element) && !isChartSilhouetteReplacementAllowed(element));
+    }
+
     function isProfileSilhouetteReplacementAllowed(element) {
       // Only replace the main individual portrait placeholder with the large
       // framed artwork. Compact tree/chart silhouettes use a separate simpler
-      // icon set.
+      // icon set and the Narrative Ancestor Book is handled explicitly below.
       if (!element) {
         return false;
       }
 
-      if (isChartSilhouetteReplacementAllowed(element) || element.closest('svg')) {
+      if (isChartSilhouetteReplacementAllowed(element) || isBookSilhouetteReplacementAllowed(element) || element.closest('svg')) {
         return false;
       }
 
@@ -1665,6 +1703,30 @@
       return false;
     }
 
+    function variantFor(element) {
+      if (isChartSilhouetteReplacementAllowed(element)) {
+        return 'chart';
+      }
+
+      if (isBookSilhouetteReplacementAllowed(element)) {
+        return 'book';
+      }
+
+      return 'profile';
+    }
+
+    function isReplacementAllowed(element, variant) {
+      if (variant === 'chart') {
+        return isChartSilhouetteReplacementAllowed(element);
+      }
+
+      if (variant === 'book') {
+        return isBookSilhouetteReplacementAllowed(element);
+      }
+
+      return isProfileSilhouetteReplacementAllowed(element);
+    }
+
     function replacementSource(gender, variant) {
       if (variant === 'chart') {
         if (gender === 'female' && placeholders.chartFemale) {
@@ -1682,16 +1744,42 @@
         return placeholders.chartMale || placeholders.chartFemale || '';
       }
 
-      return placeholders[gender] || '';
+      // The book uses the same detailed Potts Modern artwork as the main
+      // individual portrait. Unknown-sex records retain a neutral compact
+      // placeholder rather than being assigned a gender.
+      if (gender === 'female' && placeholders.female) {
+        return placeholders.female;
+      }
+
+      if (gender === 'male' && placeholders.male) {
+        return placeholders.male;
+      }
+
+      return placeholders.chartUnknown || placeholders.male || placeholders.female || '';
+    }
+
+    function replacementClasses(gender, variant) {
+      if (variant === 'chart') {
+        return ['potts-modern-chart-silhouette', 'potts-modern-chart-silhouette-' + (gender || 'unknown')];
+      }
+
+      if (variant === 'book') {
+        return ['potts-modern-book-silhouette', 'potts-modern-book-silhouette-' + (gender || 'unknown')];
+      }
+
+      return ['potts-modern-silhouette', 'potts-modern-silhouette-' + (gender || 'unknown')];
+    }
+
+    function alreadyReplaced(element) {
+      return element.classList.contains('potts-modern-silhouette') ||
+        element.classList.contains('potts-modern-chart-silhouette') ||
+        element.classList.contains('potts-modern-book-silhouette');
     }
 
     function replaceElementWithImage(element, gender, variant) {
       const source = replacementSource(gender, variant);
-      const isChart = variant === 'chart';
-      const allowed = isChart ? isChartSilhouetteReplacementAllowed(element) : isProfileSilhouetteReplacementAllowed(element);
-      const alreadyDone = element.classList.contains('potts-modern-silhouette') || element.classList.contains('potts-modern-chart-silhouette');
 
-      if (!source || alreadyDone || !allowed) {
+      if (!source || alreadyReplaced(element) || !isReplacementAllowed(element, variant)) {
         return;
       }
 
@@ -1699,7 +1787,9 @@
       image.src = source;
       image.alt = element.getAttribute('alt') || '';
       image.setAttribute('aria-hidden', element.getAttribute('aria-hidden') || 'true');
-      image.className = (isChart ? 'potts-modern-chart-silhouette' : 'potts-modern-silhouette') + ' ' + (isChart ? 'potts-modern-chart-silhouette-' : 'potts-modern-silhouette-') + (gender || 'unknown');
+      replacementClasses(gender, variant).forEach(function (className) {
+        image.classList.add(className);
+      });
 
       const classNames = (element.getAttribute('class') || '').split(/\s+/).filter(Boolean);
       classNames.forEach(function (className) {
@@ -1729,23 +1819,34 @@
         return;
       }
 
-      replaceElementWithImage(element, inferGender(element), isChartSilhouetteReplacementAllowed(element) ? 'chart' : 'profile');
+      replaceElementWithImage(element, inferGender(element), variantFor(element));
     });
 
-    // Some themes/modules may render a real <img> placeholder instead.
+    // Some themes/modules render a real <img> placeholder instead. Keep the
+    // scope narrow: profile, chart and Potts Narrative Ancestor Book only.
     Array.from(document.images || []).forEach(function (image) {
-      if (!(image instanceof HTMLImageElement) || image.classList.contains('potts-modern-silhouette') || image.classList.contains('potts-modern-chart-silhouette')) {
+      if (!(image instanceof HTMLImageElement) || alreadyReplaced(image)) {
         return;
       }
 
-      const marker = ((image.getAttribute('class') || '') + ' ' + (image.getAttribute('src') || '') + ' ' + (image.getAttribute('alt') || '')).toLowerCase();
+      const marker = [
+        image.getAttribute('class') || '',
+        image.getAttribute('src') || '',
+        image.getAttribute('alt') || '',
+        image.getAttribute('title') || ''
+      ].join(' ').toLowerCase();
 
       if (!marker.includes('silhouette')) {
         return;
       }
 
       const gender = inferGender(image) || 'unknown';
-      const variant = isChartSilhouetteReplacementAllowed(image) ? 'chart' : 'profile';
+      const variant = variantFor(image);
+
+      if (!isReplacementAllowed(image, variant)) {
+        return;
+      }
+
       const source = replacementSource(gender, variant);
 
       if (!source) {
@@ -1758,10 +1859,11 @@
 
       image.removeAttribute('srcset');
       image.src = source;
-      image.classList.add(
-        variant === 'chart' ? 'potts-modern-chart-silhouette' : 'potts-modern-silhouette',
-        variant === 'chart' ? 'potts-modern-chart-silhouette-' + gender : 'potts-modern-silhouette-' + gender
-      );
+      replacementClasses(gender, variant).forEach(function (className) {
+        image.classList.add(className);
+      });
+      image.removeAttribute('width');
+      image.removeAttribute('height');
     });
   }
 
@@ -4259,39 +4361,197 @@
   }
 })();
 
-/* Potts Modern 1.2.0 event-card classification - test 8 */
+/* Potts Modern 1.3.0 life-story event foundation. */
 (function () {
   'use strict';
 
-  function classifyPottsLifeEvents() {
-    document.querySelectorAll('main .wt-tab-facts .potts-top-level-fact-row').forEach(function (row) {
-      var title = row.querySelector('.potts-event-title-panel, .potts-fact-title, th, td');
-      var text = title ? title.textContent.trim().toLowerCase() : '';
-      var classes = {
-        birth: ['birth', 'baptism', 'christening'],
-        marriage: ['marriage', 'married'],
-        occupation: ['occupation', 'employment', 'economic'],
-        residence: ['residence', 'property'],
-        migration: ['immigration', 'emigration', 'arrival', 'departure'],
-        death: ['death', 'burial', 'cremation'],
-        will: ['will', 'probate']
-      };
+  var definitions = [
+    { kind: 'birth', tier: 'major', words: ['birth'] },
+    { kind: 'baptism', tier: 'major', words: ['baptism', 'christening'] },
+    { kind: 'marriage', tier: 'major', words: ['marriage', 'married', 'civil partnership'] },
+    { kind: 'migration', tier: 'major', words: ['immigration', 'emigration', 'arrival', 'departure', 'naturalisation', 'naturalization', 'citizenship'] },
+    { kind: 'military', tier: 'major', words: ['military', 'service', 'enlistment', 'discharge', 'medal'] },
+    { kind: 'will', tier: 'major', words: ['will', 'probate', 'administration'] },
+    { kind: 'death', tier: 'major', words: ['death'] },
+    { kind: 'burial', tier: 'major', words: ['burial', 'cremation'] },
+    { kind: 'occupation', tier: 'standard', words: ['occupation', 'employment', 'economic'] },
+    { kind: 'education', tier: 'standard', words: ['education', 'school', 'graduation'] },
+    { kind: 'residence', tier: 'standard', words: ['residence', 'address', 'census'] },
+    { kind: 'property', tier: 'standard', words: ['property', 'land', 'real estate'] },
+    { kind: 'religion', tier: 'standard', words: ['religion', 'faith', 'confirmation', 'ordination'] },
+    { kind: 'public', tier: 'standard', words: ['councillor', 'council', 'public office', 'judicial', 'court case'] },
+    { kind: 'event', tier: 'minor', words: ['event', 'associate', 'member', 'award'] }
+  ];
 
-      Object.keys(classes).some(function (kind) {
-        if (classes[kind].some(function (word) { return text.indexOf(word) !== -1; })) {
-          row.classList.add('potts-event-' + kind);
-          return true;
-        }
-        return false;
-      });
+  function normalise(text) {
+    return (text || '').replace(/\s+/g, ' ').trim().toLowerCase();
+  }
+
+  function classifyPottsLifeEvents() {
+    var rows = document.querySelectorAll('main .wt-tab-facts .potts-top-level-fact-row');
+    rows.forEach(function (row, index) {
+      var title = row.querySelector('.potts-event-title-text, .potts-fact-title, .wt-fact-label, th');
+      var text = normalise(title ? title.textContent : '');
+      var match = definitions.find(function (definition) {
+        return definition.words.some(function (word) { return text.indexOf(word) !== -1; });
+      }) || { kind: 'event', tier: 'minor' };
+
+      row.classList.add('potts-life-event', 'potts-event-' + match.kind, 'potts-event-tier-' + match.tier);
+      row.dataset.pottsEventKind = match.kind;
+      row.dataset.pottsEventTier = match.tier;
+      row.style.setProperty('--potts-event-index', index);
+
+      var summary = row.querySelector('.potts-fact-summary-cell, th');
+      if (summary && !summary.querySelector(':scope > .potts-life-event-marker')) {
+        var marker = document.createElement('span');
+        marker.className = 'potts-life-event-marker';
+        marker.setAttribute('aria-hidden', 'true');
+        summary.prepend(marker);
+      }
     });
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', classifyPottsLifeEvents);
-  } else {
+  function schedule() {
     classifyPottsLifeEvents();
+    window.setTimeout(classifyPottsLifeEvents, 350);
+    window.setTimeout(classifyPottsLifeEvents, 1200);
   }
-  window.setTimeout(classifyPottsLifeEvents, 350);
-  window.setTimeout(classifyPottsLifeEvents, 1200);
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', schedule, { once: true });
+  } else {
+    schedule();
+  }
+}());
+
+/* Potts Modern 1.3.0 alpha 4 — promote webtrees AJAX modals above backdrops. */
+(function () {
+  'use strict';
+
+  var modalSelector = '#wt-ajax-modal, .wt-ajax-modal, .modal.show';
+  var refreshQueued = false;
+
+  function isModal(element) {
+    return element instanceof Element && element.matches('.modal, #wt-ajax-modal, .wt-ajax-modal');
+  }
+
+  function shouldPromote(modal) {
+    if (!isModal(modal)) {
+      return false;
+    }
+
+    if (modal.matches('#wt-ajax-modal, .wt-ajax-modal')) {
+      return true;
+    }
+
+    return Boolean(modal.closest(
+      'main, #content, #main, #main-content, #page, .wt-page, .wt-page-content, ' +
+      '.wt-block, .wt-side-block, .potts-homepage, .potts-home-blocks, .potts-home-columns'
+    ));
+  }
+
+  function promoteModal(modal) {
+    if (!shouldPromote(modal)) {
+      return;
+    }
+
+    if (modal.parentElement !== document.body) {
+      document.body.appendChild(modal);
+    }
+
+    modal.classList.add('potts-promoted-modal');
+    modal.style.setProperty('position', 'fixed', 'important');
+    modal.style.setProperty('z-index', '20050', 'important');
+    modal.style.setProperty('opacity', '1', 'important');
+    modal.style.setProperty('filter', 'none', 'important');
+    modal.style.setProperty('isolation', 'isolate', 'important');
+  }
+
+  function promoteAvailableModals(root) {
+    var scope = root && root.querySelectorAll ? root : document;
+    var modals = [];
+
+    if (isModal(root)) {
+      modals.push(root);
+    }
+
+    scope.querySelectorAll(modalSelector).forEach(function (modal) {
+      if (!modals.includes(modal)) {
+        modals.push(modal);
+      }
+    });
+
+    modals.forEach(promoteModal);
+
+    document.querySelectorAll('body > .modal-backdrop').forEach(function (backdrop) {
+      backdrop.style.setProperty('z-index', '20040', 'important');
+    });
+  }
+
+  function queuePromotion(root) {
+    if (refreshQueued) {
+      return;
+    }
+
+    refreshQueued = true;
+    window.requestAnimationFrame(function () {
+      refreshQueued = false;
+      promoteAvailableModals(root || document);
+    });
+  }
+
+  document.addEventListener('show.bs.modal', function (event) {
+    promoteModal(event.target);
+    queuePromotion(document);
+  }, true);
+
+  document.addEventListener('shown.bs.modal', function (event) {
+    promoteModal(event.target);
+    queuePromotion(document);
+  }, true);
+
+  document.addEventListener('click', function (event) {
+    var target = event.target instanceof Element ? event.target : null;
+    if (!target || !target.closest(
+      '[data-bs-toggle="modal"], [data-bs-target*="modal"], ' +
+      '[data-wt-ajax], [data-wt-href], [data-wt-post], ' +
+      'a[href*="favorite" i], a[href*="favourite" i], ' +
+      'button[title*="favorite" i], button[title*="favourite" i]'
+    )) {
+      return;
+    }
+
+    [0, 30, 100, 250].forEach(function (delay) {
+      window.setTimeout(function () {
+        promoteAvailableModals(document);
+      }, delay);
+    });
+  }, true);
+
+  var observer = new MutationObserver(function (mutations) {
+    var foundModalLayer = mutations.some(function (mutation) {
+      return Array.from(mutation.addedNodes).some(function (node) {
+        return node instanceof Element && (
+          isModal(node) ||
+          node.matches('.modal-backdrop') ||
+          Boolean(node.querySelector('.modal, #wt-ajax-modal, .wt-ajax-modal, .modal-backdrop'))
+        );
+      });
+    });
+
+    if (foundModalLayer) {
+      queuePromotion(document);
+    }
+  });
+
+  function startModalStackingRepair() {
+    promoteAvailableModals(document);
+    observer.observe(document.body, { childList: true, subtree: true });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startModalStackingRepair, { once: true });
+  } else {
+    startModalStackingRepair();
+  }
 }());

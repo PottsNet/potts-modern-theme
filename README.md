@@ -1,158 +1,131 @@
 # Potts Modern Theme for webtrees
 
-Potts Modern is a modern, highly configurable theme for webtrees 2.2.x, designed to present family history in a clean, engaging and story-focused way. It combines a refined heritage-inspired design with flexible personalisation options and deep integration with the webtrees user experience.
+Potts Modern is a responsive, highly configurable heritage theme for webtrees 2.2.x. It presents family history with clearer navigation, story-focused individual pages, refined cards and tables and practical desktop, tablet and phone layouts.
 
-Version 1.2.0 is the personalisation release for Potts Modern Theme.
+**Current version: 1.3.0**
 
-## Version 1.2.0
-
-Compatibility update for Potts Hero Slideshow v1.0.0+. Potts Modern now treats the slideshow as an independent module: the theme provides enhanced full-width homepage placement and theme colour variables, while the slideshow module controls its own styling, captions, transitions, selector dots and timing.
-
-This release corrects the search and report field widths by matching the actual webtrees 2.2.6 form grid and separating form layouts from the compact calendar table styling.
-
-## Translations
-
-The translation template is `resources/lang/messages.pot`. Current translation files are provided for Dutch (`nl`), German (`de`), French (`fr`), Spanish (`es`), Polish (`pl`) and Portuguese (`pt`). These files are starter translations for community review. Native-speaker corrections are welcome.
-
-Contributors can edit the `.po` files with Poedit or a text editor, translating each `msgstr` while leaving its English `msgid` unchanged. Submit the completed PO file in a pull request or attach it to a GitHub issue. Release builds compile accepted PO files to the MO files loaded by webtrees.
-
-### What is new in 1.2.0
-
-- Seven professionally coordinated colour presets
-- Light, Standard and Bold typography
-- Compact, Comfortable and Spacious content density
-- Standard, Wide and Full Width page layouts
-- Live settings preview
-- Improved menus, forms, cards, tables and buttons
-- Webtrees 2.2.6 form and report compatibility fixes
-
+Version 1.3.0 brings together the tested life-story presentation work, translated homepage improvements, broader translation coverage and compatibility fixes for Potts companion modules.
 
 ## Features
 
-- Responsive desktop, tablet and mobile layouts
-- Modern icon-based primary and dropdown navigation
-- Restyled individual, family, chart, report and administration pages
-- Enhanced fact and event cards with matching SVG icons
-- Original themed male and female placeholder portraits
-- Configurable colour palette, spacing, page width, corners and shadows
-- Contributor-ready gettext translation files
-- Optional larger controls, high contrast and reduced motion settings
-- Graceful styling for optional third-party history, story, book and hero slideshow modules
-- Update-service support through `latest-version.txt`
-- No webtrees core-file modifications
+- responsive desktop, tablet and phone layouts
+- modern primary and dropdown navigation
+- Storytelling, Classic and Compact homepage experiences
+- optional welcome panel, quick search and full-width hero placement
+- biography-style individual identity area and life-event presentation
+- themed male, female and unknown profile and chart placeholders
+- seven coordinated colour presets
+- Light, Standard and Bold typography settings
+- Compact, Comfortable and Spacious content density
+- Standard, Wide and Full Width page layouts
+- optional larger controls, higher contrast and reduced animation
+- gettext translation files for Dutch, German, French, Spanish, Polish and Portuguese
+- no webtrees core-file modifications
+
+## Highlights in 1.3.0
+
+- added the first stable foundation for semantic life-event presentation on individual pages
+- added configurable typography weight presets, including a lighter option
+- improved dropdown sizing for long and translated menu labels
+- strengthened masthead and table-heading contrast
+- stabilised logged-in homepage columns in translated languages
+- contained Favourite blocks within their selected homepage column
+- corrected the **Add a favourite** AJAX dialog so it appears above its backdrop and remains interactive
+- replaced legacy webtrees silhouettes in Potts Narrative Ancestor Book output with Potts Modern male, female or neutral artwork
+- expanded the translation template and included updated Dutch translations
+- refreshed the README with links to the wider Potts webtrees toolkit
 
 ## Compatibility
 
-- Developed for webtrees 2.2.x
+- developed for webtrees 2.2.x
 - PHP requirements are the same as the installed webtrees release
-- Designed for current versions of Chrome, Edge, Firefox and Safari
+- designed for current Chrome, Edge, Firefox and Safari releases
 
-Because third-party modules can register their own menus and markup, test the theme with your site’s module combination before using it in production.
+Third-party modules can supply their own markup and styles. Test your installed module combination after upgrading and keep the previous theme folder available until checks are complete.
 
 ## Installation
 
 1. Download the release ZIP.
-2. Extract it so the folder is named exactly:
+2. Remove or rename the existing `modules_v4/potts_modern_theme` folder.
+3. Extract the ZIP so the installed path is exactly:
 
    ```text
    modules_v4/potts_modern_theme/
    ```
 
-3. In webtrees, open **Control panel → Modules → All modules**.
-4. Enable **Potts Modern**.
-5. Select **Potts Modern** from the Theme menu or your tree preferences.
-6. Open the module settings to choose the preferred palette and layout options.
-7. Clear the webtrees cache and hard-refresh the browser if an older version was previously installed.
+4. Open **Control panel → Modules → All modules** and enable **Potts Modern**.
+5. Select **Potts Modern** from the Theme menu or tree preferences.
+6. Review the module settings.
+7. Clear the webtrees cache and hard-refresh the browser.
 
-The module is disabled by default after installation so an administrator can review it before activation.
+The module is disabled by default after a fresh installation so an administrator can review it before activation.
 
-## Upgrade
+## Upgrade and rollback
 
-Replace the existing `potts_modern_theme` folder with the new release. The folder name remains unchanged, so saved theme preferences should be retained.
+Replace the existing `potts_modern_theme` folder with the new one. Saved preferences should remain because the folder and preference keys are unchanged.
 
-Keep a copy of the previous release until the updated theme has been tested with anonymous visitors, members, editors and administrators.
+Keep the previous version until testing is complete. To roll back, restore the previous folder or select another theme. If the web interface is unavailable, rename the folder to `potts_modern_theme.disable`.
 
-## Rollback
+## Translations
 
-Select another installed theme from the Theme menu. If the web interface is unavailable, rename the module folder to:
+The master template is `resources/lang/messages.pot`. Starter catalogues are included for:
 
-```text
-potts_modern_theme.disable
-```
+- Dutch (`nl`)
+- German (`de`)
+- French (`fr`)
+- Spanish (`es`)
+- Polish (`pl`)
+- Portuguese (`pt`)
 
-## Settings
-
-The administration page provides options for:
-
-- colour palette
-- text size
-- corner style
-- shadows
-- page and sidebar width
-- content spacing
-- navigation icon size and label display
-- photo strip, submenu icons and event icons
-- large controls
-- high contrast
-- reduced motion
+Translate the `msgstr` values in the relevant `.po` file while leaving each English `msgid` unchanged. Compile the updated PO file to MO format before testing it in webtrees. Native-speaker corrections are welcome through a pull request or GitHub issue.
 
 ## Optional integrations
 
-Potts Modern includes non-essential styling for some third-party modules, including history-region selectors, stories, family-book interfaces and Potts Hero Slideshow homepage placement. These integrations are optional. The theme should continue to operate when those modules are not installed.
+Potts Modern includes restrained compatibility styling for Potts modules such as Hero Slideshow, Historical Facts, Biography, Family Books and Narrative Ancestor Book. These integrations are optional and the theme should continue to work when the companion modules are not installed.
 
-The Potts Historical Facts global region selector is styled so it remains with the utility/language controls, including when webtrees is displayed in translated languages.
+Potts Hero Slideshow remains an independent module. The theme can move its homepage block above the normal columns and provide theme variables, while the slideshow module controls images, captions, transitions, dots and timing.
 
-When Potts Hero Slideshow is installed, Potts Modern can place the slideshow above the normal homepage columns as a full-width hero area. Potts Hero Slideshow remains an independent module and controls its own image styling, captions, transition effects, selector dots and timing.
+## Other Potts modules
+
+Potts Modern is part of a wider webtrees toolkit. These are the 12 other Potts modules and closely related projects:
+
+1. **[Potts Biography / Life Story Engine](https://github.com/PottsNet/potts_life_story_engine)** — creates a responsive, story-focused biography from recorded facts, relationships and media.
+2. **[Potts Hero Slideshow](https://github.com/PottsNet/potts-hero-slideshow)** — provides a theme-aware full-width homepage photograph slideshow.
+3. **[Potts Family Books](https://github.com/PottsNet/potts-family-books)** — creates and publishes family-history books, chapters, images and genealogy links.
+4. **[Potts SEO Helper](https://github.com/PottsNet/potts-seo-helper)** — provides genealogy-focused metadata, sitemap and robots.txt support and public landing-page assistance.
+5. **[Potts On This Day Email](https://github.com/PottsNet/potts_on_this_day_email)** — sends scheduled family-history anniversaries and personalised email content.
+6. **[Potts Relationship Context](https://github.com/PottsNet/potts_relationship_context)** — explains how an individual is related to a selected reference person.
+7. **[Potts Narrative Ancestor Book](https://github.com/PottsNet/potts_narrative_ancestor_book)** — produces readable narrative ancestor books from GEDCOM records.
+8. **[Potts Admin Shortcuts](https://github.com/PottsNet/potts_admin_shortcuts)** — adds convenient webtrees administration links to My Page.
+9. **[Potts Fact Ages](https://github.com/PottsNet/potts_fact_ages)** — displays age-at-event labels beside personal and historical facts.
+10. **[Potts Historical Facts](https://github.com/PottsNet/potts-historical-facts)** — places sourced regional historical events alongside a person's life facts.
+11. **[Potts Favicon](https://github.com/PottsNet/potts_favicon)** — supplies configurable site and browser icons for webtrees installations.
+12. **[Custom Module Manager – PottsNet fork](https://github.com/PottsNet/CustomModuleManager)** — installs and updates compatible webtrees custom modules.
+
+The complete collection is available from the **[PottsNet GitHub profile](https://github.com/PottsNet?tab=repositories)**. A link may temporarily lead to the profile or a not-yet-public repository while a module is being prepared for its first public release.
 
 ## Known considerations
 
-- The theme overrides the shared webtrees menu-item view to provide modern menu icons. Test custom modules that add unusual menu structures.
-- Third-party modules may require small CSS adjustments if they use custom markup.
+- The theme overrides the shared webtrees menu-item view to supply modern menu icons. Test custom modules that add unusual menu structures.
+- Some third-party modules may need small CSS adjustments when they use fixed widths or custom page wrappers.
 - The bundled `foundation.min.css` is derived from the neutral webtrees 2.2.x theme foundation and is distributed under the same GPL licence.
 
 ## Reporting problems
 
-When reporting a problem, include:
+Include the following when opening an issue:
 
-- webtrees version
+- Potts Modern and webtrees versions
 - PHP version
 - browser and device
+- selected language
 - whether the visitor was logged in
 - relevant third-party modules
-- a screenshot and browser-console error, where available
+- screenshot and browser-console error where available
 
-Report problems through the repository's [GitHub Issues](https://github.com/PottsNet/potts-modern-theme/issues) page.
+Report problems through [GitHub Issues](https://github.com/PottsNet/potts-modern-theme/issues).
 
 ## Licence
 
 Copyright © 2026 Jason Potts.
 
 Potts Modern is free software licensed under the GNU General Public License, version 3 or later. See [LICENSE](LICENSE).
-
-
-## Optional homepage hero banner
-
-Potts Modern includes layout-only support for **Potts Hero Slideshow**. If the slideshow block is added to the tree homepage, the theme can move the block above the normal homepage columns and remove the usual block/card chrome so the slideshow presents as a full-width hero area.
-
-The slideshow module itself controls the hero markup, image frame, captions, transitions, selector dots, timing and upload handling. This keeps Potts Hero Slideshow usable with other webtrees themes and avoids duplicate slideshow behaviour in Potts Modern.
-
-### 1.1.1-beta.35
-
-Fixes the remaining narrow ordinary text fields on Advanced Search and report setup pages by restricting compact calendar control styling to the calendar table only.
-
-### 1.1.1-beta.34
-
-- Restored webtrees 2.2.6 search/report grid widths and isolated compact calendar widths to calendar tables.
-
-### 1.1.1-beta.33
-
-Updates the Potts Hero Slideshow integration so Potts Modern is only an enhancer. It keeps full-width homepage placement and theme colour variables, but removes duplicated slideshow JavaScript and old theme-side hero component styling.
-
-### 1.1.1-beta.31
-
-Refines General Search and legacy report option form styling after live testing, including wider query fields and report label cells.
-
-
-## Homepage experience
-
-Version 1.2.0 adds Storytelling, Classic and Compact homepage modes, an optional welcome panel, homepage quick search and automatic integration with the separately installed Potts Hero Slideshow module. These features can be managed from the Potts Modern theme settings page.

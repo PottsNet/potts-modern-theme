@@ -5,365 +5,689 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Potts Modern Theme 1.1.0-beta.62\n"
+"Project-Id-Version: Potts Modern Theme 1.3.0\n"
 "Report-Msgid-Bugs-To: https://github.com/PottsNet/potts-modern-theme/issues\n"
-"POT-Creation-Date: 2026-06-21 21:18-0500\n"
+"POT-Creation-Date: 2026-07-19 00:14+1000\n"
 "PO-Revision-Date: 2026-06-22 17:20+0200\n"
 "Last-Translator: TheDutchJewel <thedutchjewel@gmail.com>\n"
-"Language-Team: Dutch\n"
 "Language: nl\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Language-Team: Dutch\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.9\n"
-
-#: PottsModernTheme.php:78
-msgid "Potts Modern"
-msgstr "Potts Modern"
-
-#: PottsModernTheme.php:83
-msgid "A modern, responsive heritage theme for webtrees."
-msgstr "Een modern, responsief erfgoedthema voor webtrees."
-
-#: PottsModernTheme.php:167 resources/views/admin/settings.phtml:144
-msgid "Potts Modern theme settings"
-msgstr "Instellingen voor het Potts Modern-thema"
-
-#: PottsModernTheme.php:260
-msgid "Heritage teal and parchment"
-msgstr "Erfgoed blauwgroen en perkament"
-
-#: PottsModernTheme.php:261
-msgid "Cool teal and mist"
-msgstr "Koel blauwgroen en mist"
-
-#: PottsModernTheme.php:262
-msgid "Warm sepia and walnut"
-msgstr "Warm sepia en walnoot"
-
-#: PottsModernTheme.php:263
-msgid "Eucalyptus green and linen"
-msgstr "Eucalyptusgroen en linnen"
-
-#: PottsModernTheme.php:264
-msgid "Claret and archival ivory"
-msgstr "Wijnrood en archiefivoor"
-
-#: PottsModernTheme.php:267 PottsModernTheme.php:281 PottsModernTheme.php:292
-#: PottsModernTheme.php:297
-msgid "Standard"
-msgstr "Standaard"
-
-#: PottsModernTheme.php:268
-msgid "Larger"
-msgstr "Groter"
-
-#: PottsModernTheme.php:271
-msgid "Soft and rounded"
-msgstr "Zacht en afgerond"
-
-#: PottsModernTheme.php:272
-msgid "Moderately rounded"
-msgstr "Matig afgerond"
-
-#: PottsModernTheme.php:273
-msgid "Mostly square"
-msgstr "Meestal hoekig"
-
-#: PottsModernTheme.php:276
-msgid "Soft"
-msgstr "Zacht"
-
-#: PottsModernTheme.php:277
-msgid "Stronger"
-msgstr "Sterker"
-
-#: PottsModernTheme.php:278
-msgid "None"
-msgstr "Geen"
-
-#: PottsModernTheme.php:282 PottsModernTheme.php:293
-msgid "Wide"
-msgstr "Breed"
-
-#: PottsModernTheme.php:283
-msgid "Full width"
-msgstr "Volledige breedte"
-
-#: PottsModernTheme.php:286 PottsModernTheme.php:291 PottsModernTheme.php:296
-msgid "Compact"
-msgstr "Compact"
-
-#: PottsModernTheme.php:287
-msgid "Comfortable"
-msgstr "Comfortabel"
-
-#: PottsModernTheme.php:288
-msgid "Spacious"
-msgstr "Ruim"
-
-#: PottsModernTheme.php:298
-msgid "Large"
-msgstr "Groot"
-
-#: PottsModernTheme.php:301
-msgid "Icons and labels"
-msgstr "Pictogrammen en labels"
-
-#: PottsModernTheme.php:302
-msgid "Labels only"
-msgstr "Alleen labels"
-
-#: PottsModernTheme.php:479
-msgid "Menu"
-msgstr "Menu"
-
-#: PottsModernTheme.php:480
-msgid "Open menu"
-msgstr "Menu openen"
-
-#: PottsModernTheme.php:481
-msgid "Close menu"
-msgstr "Menu sluiten"
-
-#: PottsModernTheme.php:482
-msgid "Explore"
-msgstr "Verkennen"
-
-#: PottsModernTheme.php:483
-msgid "Account and settings"
-msgstr "Account en instellingen"
-
-#: PottsModernTheme.php:484
-msgid "Sign in"
-msgstr "Inloggen"
-
-#: PottsModernTheme.php:485
-msgid "Sign out"
-msgstr "Uitloggen"
-
-#: PottsModernTheme.php:486
-msgid "Show more events"
-msgstr "Meer gebeurtenissen tonen"
-
-#: PottsModernTheme.php:487
-msgid "Show fewer events"
-msgstr "Minder gebeurtenissen tonen"
-
-#: resources/views/admin/settings.phtml:136
-msgid "The Potts Modern settings have been saved."
-msgstr "De Potts Modern-instellingen zijn opgeslagen."
-
-#: resources/views/admin/settings.phtml:139
-msgid "The Potts Modern defaults have been restored."
-msgstr "De standaardinstellingen van Potts Modern zijn hersteld."
-
-#: resources/views/admin/settings.phtml:145
-msgid ""
-"These settings apply site-wide whenever Potts Modern is the selected theme. "
-"Changes are easy to reverse using Restore defaults."
-msgstr ""
-"Deze instellingen gelden voor de hele site wanneer Potts Modern als thema is "
-"geselecteerd. Wijzigingen kunnen eenvoudig worden teruggedraaid via "
-"Standaardinstellingen herstellen."
-
-#: resources/views/admin/settings.phtml:156
-msgid "Appearance"
-msgstr "Weergave"
-
-#: resources/views/admin/settings.phtml:158
-msgid "Colour palette"
-msgstr "Kleurenpalet"
-
-#: resources/views/admin/settings.phtml:158
-msgid "Choose the overall heritage colour scheme."
-msgstr "Kies het algemene erfgoedkleurenschema."
-
-#: resources/views/admin/settings.phtml:159
-msgid "Text size"
-msgstr "Tekstgrootte"
-
-#: resources/views/admin/settings.phtml:159
-msgid "Increase base text across the public site."
-msgstr "Vergroot de standaardtekst op de hele site."
-
-#: resources/views/admin/settings.phtml:160
-msgid "Card corners"
-msgstr "Kaarthoeken"
-
-#: resources/views/admin/settings.phtml:160
-msgid "Control how rounded cards, panels and controls appear."
-msgstr "Bepaal hoe afgerond kaarten, panelen en bedieningselementen zijn."
-
-#: resources/views/admin/settings.phtml:161
-msgid "Card shadows"
-msgstr "Kaartschaduwen"
-
-#: resources/views/admin/settings.phtml:161
-msgid "Choose a flatter or more dimensional appearance."
-msgstr "Kies voor een vlakker of meer diepte-effect."
-
-#: resources/views/admin/settings.phtml:166
-msgid "Layout"
-msgstr "Indeling"
-
-#: resources/views/admin/settings.phtml:168
-msgid "Page width"
-msgstr "Paginabreedte"
-
-#: resources/views/admin/settings.phtml:168
-msgid "Standard suits most screens; Wide gives charts and books more room."
-msgstr "Standaard past op de meeste schermen; Breed geeft grafieken en boeken meer ruimte."
-
-#: resources/views/admin/settings.phtml:169
-msgid "Content spacing"
-msgstr "Afstand tussen inhoud"
-
-#: resources/views/admin/settings.phtml:169
-msgid "Adjust spacing within cards and between homepage blocks."
-msgstr "Pas de ruimte binnen kaarten en tussen blokken op de startpagina aan."
-
-#: resources/views/admin/settings.phtml:170
-msgid "Individual-page sidebar"
-msgstr "Zijbalk per pagina"
-
-#: resources/views/admin/settings.phtml:170
-msgid "Controls the width of the Family navigator on larger screens."
-msgstr "Regelt de breedte van de gezinsnavigator op grotere schermen."
-
-#: resources/views/admin/settings.phtml:175
-msgid "Header and navigation"
-msgstr "Kop en navigatie"
-
-#: resources/views/admin/settings.phtml:177
-msgid "Main icon size"
-msgstr "Grootte hoofdiconen"
-
-#: resources/views/admin/settings.phtml:177
-msgid "Change the size of the modern genealogy menu icons."
-msgstr "Verander de grootte van de moderne genealogie-menupictogrammen."
-
-#: resources/views/admin/settings.phtml:178
-msgid "Main menu display"
-msgstr "Weergave hoofdmenu"
-
-#: resources/views/admin/settings.phtml:178
-msgid "Display modern icons with labels or use labels alone."
-msgstr "Toon moderne pictogrammen met labels of alleen labels."
-
-#: resources/views/admin/settings.phtml:181
-msgid "Show the family photo strip"
-msgstr "Familiefotobalk tonen"
-
-#: resources/views/admin/settings.phtml:181
-msgid "Display the rotating family photograph banner beneath the menu."
-msgstr "Toon de roterende familiefotobanner onder het menu."
-
-#: resources/views/admin/settings.phtml:182
-msgid "Show modern dropdown icons"
-msgstr "Moderne uitklappictogrammen tonen"
-
-#: resources/views/admin/settings.phtml:182
-msgid ""
-"Use the refreshed line icons in Charts, Lists, Calendar and other dropdown "
-"menus."
-msgstr ""
-"Gebruik de vernieuwde lijnpictogrammen in Diagrammen, Lijsten, Kalender en "
-"andere uitklapmenu’s."
-
-#: resources/views/admin/settings.phtml:183
-msgid "Show modern fact and event icons"
-msgstr "Moderne feit- en gebeurtenispictogrammen tonen"
-
-#: resources/views/admin/settings.phtml:183
-msgid ""
-"Display consistent line icons beside Birth, Marriage, Occupation, Residence "
-"and other facts."
-msgstr ""
-"Toon consistente lijnpictogrammen naast Geboorte, Huwelijk, Beroep, "
-"Woonplaats en andere feiten."
-
-#: resources/views/admin/settings.phtml:188
-msgid "Accessibility"
-msgstr "Toegankelijkheid"
-
-#: resources/views/admin/settings.phtml:190
-msgid "Larger controls"
-msgstr "Grotere bedieningselementen"
-
-#: resources/views/admin/settings.phtml:190
-msgid "Increase the height of buttons, fields and selectors for easier use."
-msgstr "Vergroot de hoogte van knoppen, velden en keuzelijsten voor eenvoudiger gebruik."
-
-#: resources/views/admin/settings.phtml:191
-msgid "Higher contrast"
-msgstr "Hoger contrast"
-
-#: resources/views/admin/settings.phtml:191
-msgid "Strengthen borders, links and keyboard focus indicators."
-msgstr "Versterk randen, links en focusindicatoren voor toetsenbordgebruik."
-
-#: resources/views/admin/settings.phtml:192
-msgid "Reduce animation"
-msgstr "Animatie verminderen"
-
-#: resources/views/admin/settings.phtml:192
-msgid "Remove transitions and smooth scrolling throughout the theme."
-msgstr "Verwijder overgangen en vloeiend scrollen in het hele thema."
-
-#: resources/views/admin/settings.phtml:197
-msgid "Theme preview"
-msgstr "Thema-voorbeeld"
-
-#: resources/views/admin/settings.phtml:199
-msgid "Preview"
-msgstr "Voorbeeld"
-
-#: resources/views/admin/settings.phtml:203
-msgid "Family Tree"
-msgstr "Stamboom"
-
-#: resources/views/admin/settings.phtml:204
-msgid "Search"
-msgstr "Zoeken"
-
-#: resources/views/admin/settings.phtml:209
-msgid "Family history"
-msgstr "Familiegeschiedenis"
-
-#: resources/views/admin/settings.phtml:210
-msgid "A preview of cards, text, navigation and heritage accents."
-msgstr "Een voorbeeld van kaarten, tekst, navigatie en erfgoedaccenten."
-
-#: resources/views/admin/settings.phtml:214
-msgid "Individuals"
-msgstr "Personen"
-
-#: resources/views/admin/settings.phtml:215
-msgid "Place hierarchy"
-msgstr "Plaatsenhiërarchie"
-
-#: resources/views/admin/settings.phtml:216
-msgid "Sources"
-msgstr "Bronnen"
-
-#: resources/views/admin/settings.phtml:227
-msgid "Save when you are happy with the preview."
-msgstr "Opslaan wanneer u tevreden bent met het voorbeeld."
-
-#: resources/views/admin/settings.phtml:228
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: resources/views/individual-page.phtml:142 resources/views/individual-page.phtml:342
+#, php-format, python-format
+msgid "%s child"
+msgid_plural "%s children"
+msgstr[0] ""
+msgstr[1] ""
+
+#: resources/views/admin/settings.phtml:295
 msgid "A hard refresh may be needed after changing cached styles."
 msgstr "Een harde verversing kan nodig zijn na het wijzigen van gecachte stijlen."
 
+#: PottsModernTheme.php:96
+msgid "A modern, responsive heritage theme for webtrees."
+msgstr "Een modern, responsief erfgoedthema voor webtrees."
+
+#: resources/views/admin/settings.phtml:277
+msgid "A preview of cards, text, navigation and heritage accents."
+msgstr "Een voorbeeld van kaarten, tekst, navigatie en erfgoedaccenten."
+
 #: resources/views/admin/settings.phtml:231
+msgid "A short introduction shown beneath the welcome heading."
+msgstr ""
+
+#: resources/views/admin/settings.phtml:226
+msgid "A tighter dashboard for information-rich homepages."
+msgstr ""
+
+#: resources/views/admin/settings.phtml:255
+msgid "Accessibility"
+msgstr "Toegankelijkheid"
+
+#: PottsModernTheme.php:577
+msgid "Account and settings"
+msgstr "Account en instellingen"
+
+#: resources/views/individual-page.phtml:250
+msgid "Add a media object"
+msgstr ""
+
+#: resources/views/admin/settings.phtml:236
+msgid "Add a prominent family-tree search field to the welcome panel."
+msgstr ""
+
+#: resources/views/admin/settings.phtml:215
+msgid "Adjust spacing within cards and between homepage blocks."
+msgstr "Pas de ruimte binnen kaarten en tussen blokken op de startpagina aan."
+
+#: resources/views/admin/settings.phtml:201
+msgid "Appearance"
+msgstr "Weergave"
+
+#: resources/views/admin/settings.phtml:234
+msgid "Apply coordinated cards, headers, tables, forms and homepage presentation."
+msgstr ""
+
+#: resources/views/individual-page.phtml:210
+msgid "Biography"
+msgstr ""
+
+#: PottsModernTheme.php:324
+msgid "Bold"
+msgstr "Vet"
+
+#: resources/views/individual-page.phtml:278
+msgid "Born"
+msgstr ""
+
+#: resources/views/individual-page.phtml:158
+#, php-format, python-format
+msgid "Born %s in %s."
+msgstr ""
+
+#: resources/views/individual-page.phtml:162
+#, php-format, python-format
+msgid "Born %s."
+msgstr ""
+
+#: resources/views/individual-page.phtml:160
+#, php-format, python-format
+msgid "Born in %s."
+msgstr ""
+
+#: resources/views/admin/settings.phtml:52
+msgid "Burgundy"
+msgstr "Bordeauxrood"
+
+#: PottsModernTheme.php:311
+msgid "Burgundy and archival ivory"
+msgstr "Bordeauxrood en archiefivoor"
+
+#: resources/views/admin/settings.phtml:206
+msgid "Card corners"
+msgstr "Kaarthoeken"
+
+#: resources/views/admin/settings.phtml:207
+msgid "Card shadows"
+msgstr "Kaartschaduwen"
+
+#: resources/views/admin/settings.phtml:244
+msgid "Change the size of the modern genealogy menu icons."
+msgstr "Verander de grootte van de moderne genealogie-menupictogrammen."
+
+#: resources/views/individual-page.phtml:341 resources/views/individual-page.phtml:359
+msgid "Children"
+msgstr ""
+
+#: resources/views/admin/settings.phtml:72
+msgid "Choose a complete colour scheme for the header, navigation, cards and page background."
+msgstr ""
+
+#: resources/views/admin/settings.phtml:207
+msgid "Choose a flatter or more dimensional appearance."
+msgstr "Kies voor een vlakker of meer diepte-effect."
+
+#: resources/views/admin/settings.phtml:205
+msgid "Choose lighter, standard or bolder headings, navigation and labels."
+msgstr "Kies lichtere, standaard of vettere koppen, navigatie-elementen en labels."
+
+msgid "Choose the overall heritage colour scheme."
+msgstr "Kies het algemene erfgoedkleurenschema."
+
+#: resources/views/admin/settings.phtml:229
+msgid "Choose the overall spacing and presentation of the family-tree homepage."
+msgstr ""
+
+msgid "Claret and archival ivory"
+msgstr "Wijnrood en archiefivoor"
+
+#: resources/views/admin/settings.phtml:225
+msgid "Classic"
+msgstr ""
+
+#: PottsModernTheme.php:358
+msgid "Classic blocks"
+msgstr ""
+
+#: PottsModernTheme.php:575
+msgid "Close menu"
+msgstr "Menu sluiten"
+
+msgid "Colour palette"
+msgstr "Kleurenpalet"
+
+#: resources/views/admin/settings.phtml:60
+msgid "Colour preset"
+msgstr ""
+
+#: PottsModernTheme.php:343
+msgid "Comfortable"
+msgstr "Comfortabel"
+
+#: PottsModernTheme.php:342 PottsModernTheme.php:347 PottsModernTheme.php:352
+#: resources/views/admin/settings.phtml:226
+msgid "Compact"
+msgstr "Compact"
+
+#: PottsModernTheme.php:359
+msgid "Compact dashboard"
+msgstr ""
+
+#: resources/views/admin/settings.phtml:215
+msgid "Content spacing"
+msgstr "Afstand tussen inhoud"
+
+#: resources/views/admin/settings.phtml:206
+msgid "Control how rounded cards, panels and controls appear."
+msgstr "Bepaal hoe afgerond kaarten, panelen en bedieningselementen zijn."
+
+#: resources/views/admin/settings.phtml:216
+msgid "Controls the width of the Family navigator on larger screens."
+msgstr "Regelt de breedte van de gezinsnavigator op grotere schermen."
+
+msgid "Cool teal and mist"
+msgstr "Koel blauwgroen en mist"
+
+#: resources/views/individual-page.phtml:368
+msgid "Countries"
+msgstr ""
+
+#: resources/views/individual-page.phtml:286
+msgid "Died"
+msgstr ""
+
+#: resources/views/individual-page.phtml:199
+#, php-format, python-format
+msgid "Died %s (%s)."
+msgstr ""
+
+#: resources/views/individual-page.phtml:195
+#, php-format, python-format
+msgid "Died %s in %s%s."
+msgstr ""
+
+#: resources/views/individual-page.phtml:201
+#, php-format, python-format
+msgid "Died %s."
+msgstr ""
+
+#: resources/views/individual-page.phtml:197
+#, php-format, python-format
+msgid "Died in %s%s."
+msgstr ""
+
+#: resources/views/admin/settings.phtml:250
+msgid "Display consistent line icons beside Birth, Marriage, Occupation, Residence and other facts."
+msgstr "Toon consistente lijnpictogrammen naast Geboorte, Huwelijk, Beroep, Woonplaats en andere feiten."
+
+#: resources/views/admin/settings.phtml:245
+msgid "Display modern icons with labels or use labels alone."
+msgstr "Toon moderne pictogrammen met labels of alleen labels."
+
+#: resources/views/admin/settings.phtml:235
+msgid "Display the homepage introduction above the webtrees blocks."
+msgstr ""
+
+#: resources/views/admin/settings.phtml:248
+msgid "Display the rotating family photograph banner beneath the menu."
+msgstr "Toon de roterende familiefotobanner onder het menu."
+
+#: resources/views/admin/settings.phtml:234
+msgid "Enable Potts Modern Experience"
+msgstr ""
+
+msgid "Eucalyptus green and linen"
+msgstr "Eucalyptusgroen en linnen"
+
+#: PottsModernTheme.php:576
+msgid "Explore"
+msgstr "Verkennen"
+
+#: resources/views/individual-page.phtml:314
+msgid "Family"
+msgstr ""
+
+#: resources/views/admin/settings.phtml:270
+msgid "Family Tree"
+msgstr "Stamboom"
+
+#: resources/views/admin/settings.phtml:276 resources/views/tree-page.phtml:39
+msgid "Family history"
+msgstr "Familiegeschiedenis"
+
+#: PottsModernTheme.php:339
+msgid "Full width"
+msgstr "Volledige breedte"
+
+#: resources/views/admin/settings.phtml:242
+msgid "Header and navigation"
+msgstr "Kop en navigatie"
+
+#: resources/views/admin/settings.phtml:53
+msgid "Heritage Purple"
+msgstr "Erfgoedpaars"
+
+#: PottsModernTheme.php:312
+msgid "Heritage purple and lilac"
+msgstr "Erfgoedpaars en lila"
+
+msgid "Heritage teal and parchment"
+msgstr "Erfgoed blauwgroen en perkament"
+
+#: resources/views/admin/settings.phtml:258
+msgid "Higher contrast"
+msgstr "Hoger contrast"
+
+#: resources/views/admin/settings.phtml:222
+msgid "Homepage experience"
+msgstr ""
+
+#: resources/views/admin/settings.phtml:229
+msgid "Homepage style"
+msgstr ""
+
+#: PottsModernTheme.php:362
+msgid "Icons and labels"
+msgstr "Pictogrammen en labels"
+
+#: resources/views/individual-page.phtml:138 resources/views/individual-page.phtml:139
+msgid "Immigrant"
+msgstr ""
+
+#: resources/views/admin/settings.phtml:204
+msgid "Increase base text across the public site."
+msgstr "Vergroot de standaardtekst op de hele site."
+
+#: resources/views/admin/settings.phtml:257
+msgid "Increase the height of buttons, fields and selectors for easier use."
+msgstr "Vergroot de hoogte van knoppen, velden en keuzelijsten voor eenvoudiger gebruik."
+
+#: resources/views/admin/settings.phtml:216
+msgid "Individual-page sidebar"
+msgstr "Zijbalk per pagina"
+
+#: resources/views/admin/settings.phtml:281
+msgid "Individuals"
+msgstr "Personen"
+
+#: resources/views/admin/settings.phtml:237
+msgid "Integrate Potts Hero Slideshow"
+msgstr ""
+
+#: PottsModernTheme.php:363
+msgid "Labels only"
+msgstr "Alleen labels"
+
+#: PottsModernTheme.php:354
+msgid "Large"
+msgstr "Groot"
+
+#: PottsModernTheme.php:319
+msgid "Larger"
+msgstr "Groter"
+
+#: resources/views/admin/settings.phtml:257
+msgid "Larger controls"
+msgstr "Grotere bedieningselementen"
+
+#: resources/views/admin/settings.phtml:212
+msgid "Layout"
+msgstr "Indeling"
+
+#: resources/views/admin/settings.phtml:230
+msgid "Leave blank to use the family-tree title automatically."
+msgstr ""
+
+#: resources/views/individual-page.phtml:354
+msgid "Life at a glance"
+msgstr ""
+
+#: resources/views/individual-page.phtml:268 resources/views/individual-page.phtml:308
+msgid "Life summary"
+msgstr ""
+
+#: PottsModernTheme.php:322
+msgid "Light"
+msgstr "Licht"
+
+#: resources/views/individual-page.phtml:356
+msgid "Lived"
+msgstr ""
+
+#: resources/views/individual-page.phtml:190
+#, php-format, python-format
+msgid "Lived in %s country."
+msgid_plural "Lived in %s countries."
+msgstr[0] ""
+msgstr[1] ""
+
+#: resources/views/admin/settings.phtml:244
+msgid "Main icon size"
+msgstr "Grootte hoofdiconen"
+
+#: resources/views/admin/settings.phtml:245
+msgid "Main menu display"
+msgstr "Weergave hoofdmenu"
+
+#: resources/views/individual-page.phtml:297
+msgid "Married"
+msgstr ""
+
+#: resources/views/individual-page.phtml:178
+#, php-format, python-format
+msgid "Married %s in %s."
+msgstr ""
+
+#: resources/views/individual-page.phtml:174
+#, php-format, python-format
+msgid "Married %s on %s in %s."
+msgstr ""
+
+#: resources/views/individual-page.phtml:176
+#, php-format, python-format
+msgid "Married %s on %s."
+msgstr ""
+
+#: resources/views/individual-page.phtml:180
+#, php-format, python-format
+msgid "Married %s."
+msgstr ""
+
+#: PottsModernTheme.php:573
+msgid "Menu"
+msgstr "Menu"
+
+#: PottsModernTheme.php:328
+msgid "Moderately rounded"
+msgstr "Matig afgerond"
+
+#: PottsModernTheme.php:329
+msgid "Mostly square"
+msgstr "Meestal hoekig"
+
+#: resources/views/tree-page.phtml:51
+msgid "Name, place or record"
+msgstr ""
+
+#: resources/views/individual-page.phtml:349
+msgid "Names and personal details"
+msgstr ""
+
+#: resources/views/individual-page.phtml:243
+msgid "No known portrait"
+msgstr ""
+
+#: resources/views/individual-page.phtml:240
+msgid "No photograph available"
+msgstr ""
+
+#: PottsModernTheme.php:334
+msgid "None"
+msgstr "Geen"
+
+#: resources/views/individual-page.phtml:362
+msgid "Occupations"
+msgstr ""
+
+#: resources/views/admin/settings.phtml:51
+msgid "Ocean Blue"
+msgstr "Oceaanblauw"
+
+#: PottsModernTheme.php:310
+msgid "Ocean blue and mist"
+msgstr "Oceaanblauw en mist"
+
+#: PottsModernTheme.php:574
+msgid "Open menu"
+msgstr "Menu openen"
+
+#: resources/views/admin/settings.phtml:214
+msgid "Page width"
+msgstr "Paginabreedte"
+
+#: resources/views/individual-page.phtml:186
+#, php-format, python-format
+msgid "Parent of %s child."
+msgid_plural "Parent of %s children."
+msgstr[0] ""
+msgstr[1] ""
+
+#: resources/views/individual-page.phtml:317
+msgid "Parents"
+msgstr ""
+
+#: resources/views/admin/settings.phtml:282
+msgid "Place hierarchy"
+msgstr "Plaatsenhiërarchie"
+
+#: resources/views/admin/settings.phtml:50
+msgid "Potts Green"
+msgstr "Potts-groen"
+
+#: PottsModernTheme.php:91
+msgid "Potts Modern"
+msgstr "Potts Modern"
+
+#: PottsModernTheme.php:204 resources/views/admin/settings.phtml:189
+msgid "Potts Modern theme settings"
+msgstr "Instellingen voor het Potts Modern-thema"
+
+#: PottsModernTheme.php:309
+msgid "Potts green and parchment"
+msgstr "Potts-groen en perkament"
+
+#: resources/views/admin/settings.phtml:266
+msgid "Preview"
+msgstr "Voorbeeld"
+
+#: resources/views/admin/settings.phtml:223
+msgid "Quick homepage styles"
+msgstr ""
+
+#: resources/views/admin/settings.phtml:259
+msgid "Reduce animation"
+msgstr "Animatie verminderen"
+
+#: resources/views/admin/settings.phtml:259
+msgid "Remove transitions and smooth scrolling throughout the theme."
+msgstr "Verwijder overgangen en vloeiend scrollen in het hele thema."
+
+#: resources/views/individual-page.phtml:365
+msgid "Residences"
+msgstr ""
+
+#: resources/views/admin/settings.phtml:298
 msgid "Restore all Potts Modern settings to their defaults?"
 msgstr "Alle Potts Modern-instellingen herstellen naar de standaardwaarden?"
 
-#: resources/views/admin/settings.phtml:231
+#: resources/views/admin/settings.phtml:298
 msgid "Restore defaults"
 msgstr "Standaardinstellingen herstellen"
 
-#: resources/views/admin/settings.phtml:232
+#: resources/views/admin/settings.phtml:56
+msgid "Sandstone"
+msgstr "Zandsteen"
+
+#: PottsModernTheme.php:315
+msgid "Sandstone and walnut"
+msgstr "Zandsteen en walnoot"
+
+#: resources/views/admin/settings.phtml:299
 msgid "Save settings"
 msgstr "Instellingen opslaan"
+
+#: resources/views/admin/settings.phtml:294
+msgid "Save when you are happy with the preview."
+msgstr "Opslaan wanneer u tevreden bent met het voorbeeld."
+
+#: resources/views/admin/settings.phtml:271 resources/views/tree-page.phtml:52
+msgid "Search"
+msgstr "Zoeken"
+
+#: resources/views/tree-page.phtml:49
+msgid "Search this family tree"
+msgstr ""
+
+#: resources/views/individual-page.phtml:389
+msgid "Share"
+msgstr ""
+
+#: PottsModernTheme.php:581
+msgid "Show fewer events"
+msgstr "Minder gebeurtenissen tonen"
+
+#: resources/views/admin/settings.phtml:236
+msgid "Show homepage quick search"
+msgstr ""
+
+#: resources/views/admin/settings.phtml:249
+msgid "Show modern dropdown icons"
+msgstr "Moderne uitklappictogrammen tonen"
+
+#: resources/views/admin/settings.phtml:250
+msgid "Show modern fact and event icons"
+msgstr "Moderne feit- en gebeurtenispictogrammen tonen"
+
+#: PottsModernTheme.php:580
+msgid "Show more events"
+msgstr "Meer gebeurtenissen tonen"
+
+#: resources/views/admin/settings.phtml:248
+msgid "Show the family photo strip"
+msgstr "Familiefotobalk tonen"
+
+#: resources/views/admin/settings.phtml:235
+msgid "Show welcome panel"
+msgstr ""
+
+#: PottsModernTheme.php:578
+msgid "Sign in"
+msgstr "Inloggen"
+
+#: PottsModernTheme.php:579
+msgid "Sign out"
+msgstr "Uitloggen"
+
+#: resources/views/admin/settings.phtml:54
+msgid "Slate"
+msgstr "Leigrijs"
+
+#: PottsModernTheme.php:313
+msgid "Slate and silver"
+msgstr "Leigrijs en zilver"
+
+#: PottsModernTheme.php:332
+msgid "Soft"
+msgstr "Zacht"
+
+#: PottsModernTheme.php:327
+msgid "Soft and rounded"
+msgstr "Zacht en afgerond"
+
+#: resources/views/admin/settings.phtml:283
+msgid "Sources"
+msgstr "Bronnen"
+
+#: PottsModernTheme.php:344
+msgid "Spacious"
+msgstr "Ruim"
+
+#: resources/views/individual-page.phtml:329 resources/views/individual-page.phtml:371
+msgid "Spouses"
+msgstr ""
+
+#: PottsModernTheme.php:318 PottsModernTheme.php:323 PottsModernTheme.php:337 PottsModernTheme.php:348
+#: PottsModernTheme.php:353
+msgid "Standard"
+msgstr "Standaard"
+
+#: resources/views/admin/settings.phtml:214
+msgid "Standard suits most screens; Wide gives charts and books more room."
+msgstr "Standaard past op de meeste schermen; Breed geeft grafieken en boeken meer ruimte."
+
+#: PottsModernTheme.php:357 resources/views/admin/settings.phtml:224
+msgid "Storytelling"
+msgstr ""
+
+#: resources/views/admin/settings.phtml:258
+msgid "Strengthen borders, links and keyboard focus indicators."
+msgstr "Versterk randen, links en focusindicatoren voor toetsenbordgebruik."
+
+#: PottsModernTheme.php:333
+msgid "Stronger"
+msgstr "Sterker"
+
+#: resources/views/admin/settings.phtml:55
+msgid "Teal"
+msgstr "Blauwgroen"
+
+#: PottsModernTheme.php:314
+msgid "Teal and sea glass"
+msgstr "Blauwgroen en zeeglas"
+
+#: resources/views/admin/settings.phtml:204
+msgid "Text size"
+msgstr "Tekstgrootte"
+
+#: resources/views/admin/settings.phtml:184
+msgid "The Potts Modern defaults have been restored."
+msgstr "De standaardinstellingen van Potts Modern zijn hersteld."
+
+#: resources/views/admin/settings.phtml:181
+msgid "The Potts Modern settings have been saved."
+msgstr "De Potts Modern-instellingen zijn opgeslagen."
+
+#: resources/views/admin/settings.phtml:264
+msgid "Theme preview"
+msgstr "Thema-voorbeeld"
+
+#: resources/views/admin/settings.phtml:190
+msgid ""
+"These settings apply site-wide whenever Potts Modern is the selected theme. Changes are easy to "
+"reverse using Restore defaults."
+msgstr ""
+"Deze instellingen gelden voor de hele site wanneer Potts Modern als thema is geselecteerd. "
+"Wijzigingen kunnen eenvoudig worden teruggedraaid via Standaardinstellingen herstellen."
+
+#: resources/views/admin/settings.phtml:225
+msgid "Traditional webtrees blocks with subtle theme polish."
+msgstr ""
+
+#: resources/views/admin/settings.phtml:205
+msgid "Typography weight"
+msgstr "Typografische dikte"
+
+#: resources/views/admin/settings.phtml:249
+msgid "Use the refreshed line icons in Charts, Lists, Calendar and other dropdown menus."
+msgstr "Gebruik de vernieuwde lijnpictogrammen in Diagrammen, Lijsten, Kalender en andere uitklapmenu’s."
+
+msgid "Warm sepia and walnut"
+msgstr "Warm sepia en walnoot"
+
+#: resources/views/admin/settings.phtml:230
+msgid "Welcome heading"
+msgstr ""
+
+#: resources/views/admin/settings.phtml:231
+msgid "Welcome message"
+msgstr ""
+
+#: resources/views/admin/settings.phtml:224
+msgid "Welcome panel, quick search and generous spacing."
+msgstr ""
+
+#: resources/views/admin/settings.phtml:237
+msgid ""
+"When the slideshow module is present, move its homepage block above the welcome panel and allow "
+"it to span the page."
+msgstr ""
+
+#: PottsModernTheme.php:338 PottsModernTheme.php:349
+msgid "Wide"
+msgstr "Breed"
+
