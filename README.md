@@ -1,7 +1,8 @@
-<img width="2648" height="1780" alt="Image 26-7-2026 at 1 15 pm (1)" src="https://github.com/user-attachments/assets/8e8efa98-b79b-43be-90d9-aec5e0e9c6df" />
-<img width="2648" height="1780" alt="Image 26-7-2026 at 1 15 pm" src="https://github.com/user-attachments/assets/419fb07b-726f-463a-a682-9402a1370838" />
 <img width="2648" height="1780" alt="Image 26-7-2026 at 1 14 pm" src="https://github.com/user-attachments/assets/00bc9931-0935-4450-9acb-c7449ffaffa5" />
-# Potts Modern Theme for webtrees
+<img width="2648" height="1780" alt="Image 26-7-2026 at 1 15 pm" src="https://github.com/user-attachments/assets/419fb07b-726f-463a-a682-9402a1370838" />
+<img width="2648" height="1780" alt="Image 26-7-2026 at 1 15 pm (1)" src="https://github.com/user-attachments/assets/8e8efa98-b79b-43be-90d9-aec5e0e9c6df" />
+
+## Potts Modern Theme for webtrees
 
 Potts Modern is a responsive, highly configurable heritage theme for webtrees 2.2.x. It presents family history with clearer navigation, story-focused individual pages, refined cards and tables and practical desktop, tablet and phone layouts.
 
