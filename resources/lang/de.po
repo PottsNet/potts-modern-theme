@@ -6,22 +6,23 @@ msgstr ""
 "Project-Id-Version: Potts Modern Theme 1.3.0\n"
 "Report-Msgid-Bugs-To: https://github.com/PottsNet/potts-modern-theme/issues\n"
 "POT-Creation-Date: 2026-07-19 00:14+1000\n"
-"PO-Revision-Date: 2026-06-29 21:40+1000\n"
-"Last-Translator: Jason Potts <noreply@potts.net.au>\n"
-"Language: de\n"
+"PO-Revision-Date: 2026-08-08 09:56+0200\n"
+"Last-Translator: Holger André Eisold <github@eisold.family>\n"
 "Language-Team: German\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.18.0\n"
+"X-Generator: Poedit 3.9\n"
 
 #: resources/views/individual-page.phtml:142 resources/views/individual-page.phtml:342
-#, php-format, python-format
+#, python-format, php-format
 msgid "%s child"
 msgid_plural "%s children"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s Kind"
+msgstr[1] "%s Kinder"
 
 #: resources/views/admin/settings.phtml:295
 msgid "A hard refresh may be needed after changing cached styles."
@@ -37,11 +38,11 @@ msgstr "Eine Vorschau auf Karten, Text, Navigation und historische Akzente."
 
 #: resources/views/admin/settings.phtml:231
 msgid "A short introduction shown beneath the welcome heading."
-msgstr ""
+msgstr "Eine kurze Einführung unter der Begrüßungsüberschrift."
 
 #: resources/views/admin/settings.phtml:226
 msgid "A tighter dashboard for information-rich homepages."
-msgstr ""
+msgstr "Ein übersichtlicheres Dashboard für informationsreiche Startseiten."
 
 #: resources/views/admin/settings.phtml:255
 msgid "Accessibility"
@@ -57,7 +58,7 @@ msgstr ""
 
 #: resources/views/admin/settings.phtml:236
 msgid "Add a prominent family-tree search field to the welcome panel."
-msgstr ""
+msgstr "Fügen Sie im Begrüßungsbereich ein gut sichtbares Suchfeld für den Stammbaum hinzu."
 
 #: resources/views/admin/settings.phtml:215
 msgid "Adjust spacing within cards and between homepage blocks."
@@ -70,41 +71,45 @@ msgstr "Darstellung"
 #: resources/views/admin/settings.phtml:234
 msgid "Apply coordinated cards, headers, tables, forms and homepage presentation."
 msgstr ""
+"Verwenden Sie aufeinander abgestimmte Karten, Kopfzeilen, Tabellen, Formulare und die Gestaltung "
+"der Startseite."
 
 #: resources/views/individual-page.phtml:210
 msgid "Biography"
-msgstr ""
+msgstr "Biografie"
 
 #: PottsModernTheme.php:324
 msgid "Bold"
-msgstr ""
+msgstr "Fett"
 
 #: resources/views/individual-page.phtml:278
 msgid "Born"
-msgstr ""
+msgstr "Geboren"
 
 #: resources/views/individual-page.phtml:158
-#, php-format, python-format
+#, python-format, php-format
 msgid "Born %s in %s."
-msgstr ""
+msgstr "Geboren %s in %s."
 
 #: resources/views/individual-page.phtml:162
-#, php-format, python-format
+#, python-format, php-format
 msgid "Born %s."
-msgstr ""
+msgstr "Geboren %s."
 
 #: resources/views/individual-page.phtml:160
-#, php-format, python-format
+#, python-format, php-format
 msgid "Born in %s."
-msgstr ""
+msgstr "Geboren in %s."
 
 #: resources/views/admin/settings.phtml:52
+#, fuzzy
 msgid "Burgundy"
-msgstr ""
+msgstr "Burgunderrot"
 
 #: PottsModernTheme.php:311
+#, fuzzy
 msgid "Burgundy and archival ivory"
-msgstr ""
+msgstr "Burgunderrot und Archiv-Elfenbein"
 
 #: resources/views/admin/settings.phtml:206
 msgid "Card corners"
@@ -120,11 +125,12 @@ msgstr "Ändert die Größe der modernen Genealogie-Menüsymbole."
 
 #: resources/views/individual-page.phtml:341 resources/views/individual-page.phtml:359
 msgid "Children"
-msgstr ""
+msgstr "Kinder"
 
 #: resources/views/admin/settings.phtml:72
 msgid "Choose a complete colour scheme for the header, navigation, cards and page background."
 msgstr ""
+"Wählen Sie ein vollständiges Farbschema für Kopfzeile, Navigation, Karten und Seitenhintergrund."
 
 #: resources/views/admin/settings.phtml:207
 msgid "Choose a flatter or more dimensional appearance."
@@ -133,24 +139,26 @@ msgstr "Wählen Sie eine flachere oder räumlichere Darstellung."
 #: resources/views/admin/settings.phtml:205
 msgid "Choose lighter, standard or bolder headings, navigation and labels."
 msgstr ""
+"Wählen Sie hellere, standardmäßige oder kräftigere Überschriften, Navigationselemente und "
+"Beschriftungen."
 
 msgid "Choose the overall heritage colour scheme."
 msgstr "Wählen Sie das übergreifende historische Farbschema."
 
 #: resources/views/admin/settings.phtml:229
 msgid "Choose the overall spacing and presentation of the family-tree homepage."
-msgstr ""
+msgstr "Wählen Sie die allgemeine Anordnung und Darstellung der Startseite des Stammbaums."
 
 msgid "Claret and archival ivory"
-msgstr "Bordeauxrot und Archiv-Elfenbein"
+msgstr "Weinrot und Archiv-Elfenbein"
 
 #: resources/views/admin/settings.phtml:225
 msgid "Classic"
-msgstr ""
+msgstr "Klassisch"
 
 #: PottsModernTheme.php:358
 msgid "Classic blocks"
-msgstr ""
+msgstr "Klassische Blocks"
 
 #: PottsModernTheme.php:575
 msgid "Close menu"
@@ -161,7 +169,7 @@ msgstr "Farbpalette"
 
 #: resources/views/admin/settings.phtml:60
 msgid "Colour preset"
-msgstr ""
+msgstr "Farbvoreinstellung"
 
 #: PottsModernTheme.php:343
 msgid "Comfortable"
@@ -174,7 +182,7 @@ msgstr "Kompakt"
 
 #: PottsModernTheme.php:359
 msgid "Compact dashboard"
-msgstr ""
+msgstr "Kompaktes Dashboard"
 
 #: resources/views/admin/settings.phtml:215
 msgid "Content spacing"
@@ -193,31 +201,31 @@ msgstr "Kühles Petrol und Nebel"
 
 #: resources/views/individual-page.phtml:368
 msgid "Countries"
-msgstr ""
+msgstr "Länder"
 
 #: resources/views/individual-page.phtml:286
 msgid "Died"
-msgstr ""
+msgstr "Gestorben"
 
 #: resources/views/individual-page.phtml:199
-#, php-format, python-format
+#, python-format, php-format
 msgid "Died %s (%s)."
-msgstr ""
+msgstr "Gestorben %s (%s)."
 
 #: resources/views/individual-page.phtml:195
-#, php-format, python-format
+#, python-format, php-format
 msgid "Died %s in %s%s."
-msgstr ""
+msgstr "Gestorben %s in %s%s."
 
 #: resources/views/individual-page.phtml:201
-#, php-format, python-format
+#, python-format, php-format
 msgid "Died %s."
-msgstr ""
+msgstr "Gestorben %s."
 
 #: resources/views/individual-page.phtml:197
-#, php-format, python-format
+#, python-format, php-format
 msgid "Died in %s%s."
-msgstr ""
+msgstr "Gestorben %s%s."
 
 #: resources/views/admin/settings.phtml:250
 msgid "Display consistent line icons beside Birth, Marriage, Occupation, Residence and other facts."
@@ -229,7 +237,7 @@ msgstr "Zeigt moderne Symbole mit Beschriftungen an oder verwendet nur Beschrift
 
 #: resources/views/admin/settings.phtml:235
 msgid "Display the homepage introduction above the webtrees blocks."
-msgstr ""
+msgstr "Zeigt die Startseiteneinletung oberhalb der webtrees-Blöcke an."
 
 #: resources/views/admin/settings.phtml:248
 msgid "Display the rotating family photograph banner beneath the menu."
@@ -237,7 +245,7 @@ msgstr "Zeigt das wechselnde Familienfoto-Banner unter dem Menü an."
 
 #: resources/views/admin/settings.phtml:234
 msgid "Enable Potts Modern Experience"
-msgstr ""
+msgstr "Potts Modern Experience aktivieren"
 
 msgid "Eucalyptus green and linen"
 msgstr "Eukalyptusgrün und Leinen"
@@ -248,7 +256,7 @@ msgstr "Erkunden"
 
 #: resources/views/individual-page.phtml:314
 msgid "Family"
-msgstr ""
+msgstr "Familie"
 
 #: resources/views/admin/settings.phtml:270
 msgid "Family Tree"
@@ -268,11 +276,11 @@ msgstr "Kopfbereich und Navigation"
 
 #: resources/views/admin/settings.phtml:53
 msgid "Heritage Purple"
-msgstr ""
+msgstr "Historisches Violett"
 
 #: PottsModernTheme.php:312
 msgid "Heritage purple and lilac"
-msgstr ""
+msgstr "Historisches Violett und Flieder"
 
 msgid "Heritage teal and parchment"
 msgstr "Historisches Petrol und Pergament"
@@ -283,11 +291,11 @@ msgstr "Höherer Kontrast"
 
 #: resources/views/admin/settings.phtml:222
 msgid "Homepage experience"
-msgstr ""
+msgstr "Startseitenerlebnis"
 
 #: resources/views/admin/settings.phtml:229
 msgid "Homepage style"
-msgstr ""
+msgstr "Homepage-Stil"
 
 #: PottsModernTheme.php:362
 msgid "Icons and labels"
@@ -295,7 +303,7 @@ msgstr "Symbole und Beschriftungen"
 
 #: resources/views/individual-page.phtml:138 resources/views/individual-page.phtml:139
 msgid "Immigrant"
-msgstr ""
+msgstr "Einwanderer"
 
 #: resources/views/admin/settings.phtml:204
 msgid "Increase base text across the public site."
@@ -315,7 +323,7 @@ msgstr "Personen"
 
 #: resources/views/admin/settings.phtml:237
 msgid "Integrate Potts Hero Slideshow"
-msgstr ""
+msgstr "Potts-Hero-Slideshow integrieren"
 
 #: PottsModernTheme.php:363
 msgid "Labels only"
@@ -339,30 +347,30 @@ msgstr "Layout"
 
 #: resources/views/admin/settings.phtml:230
 msgid "Leave blank to use the family-tree title automatically."
-msgstr ""
+msgstr "Leer lassen, um den Stammbaum-Titel automatisch zu verwenden."
 
 #: resources/views/individual-page.phtml:354
 msgid "Life at a glance"
-msgstr ""
+msgstr "Das Leben auf einen Blick"
 
 #: resources/views/individual-page.phtml:268 resources/views/individual-page.phtml:308
 msgid "Life summary"
-msgstr ""
+msgstr "Zusammenfassung des Lebenslaufs"
 
 #: PottsModernTheme.php:322
 msgid "Light"
-msgstr ""
+msgstr "Leicht"
 
 #: resources/views/individual-page.phtml:356
 msgid "Lived"
-msgstr ""
+msgstr "Lebte"
 
 #: resources/views/individual-page.phtml:190
-#, php-format, python-format
+#, python-format, php-format
 msgid "Lived in %s country."
 msgid_plural "Lived in %s countries."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Lebte in %s Land."
+msgstr[1] "Lebte in %s Ländern."
 
 #: resources/views/admin/settings.phtml:244
 msgid "Main icon size"
@@ -374,27 +382,27 @@ msgstr "Anzeige des Hauptmenüs"
 
 #: resources/views/individual-page.phtml:297
 msgid "Married"
-msgstr ""
+msgstr "Verheiratet"
 
 #: resources/views/individual-page.phtml:178
-#, php-format, python-format
+#, python-format, php-format
 msgid "Married %s in %s."
-msgstr ""
+msgstr "Geheiratet %s in %s."
 
 #: resources/views/individual-page.phtml:174
-#, php-format, python-format
+#, python-format, php-format
 msgid "Married %s on %s in %s."
-msgstr ""
+msgstr "Geheiratet %s on %s in %s."
 
 #: resources/views/individual-page.phtml:176
-#, php-format, python-format
+#, python-format, php-format
 msgid "Married %s on %s."
-msgstr ""
+msgstr "Geheiratet %s on %s."
 
 #: resources/views/individual-page.phtml:180
-#, php-format, python-format
+#, python-format, php-format
 msgid "Married %s."
-msgstr ""
+msgstr "Verheiratet %s."
 
 #: PottsModernTheme.php:573
 msgid "Menu"
@@ -410,19 +418,19 @@ msgstr "Überwiegend eckig"
 
 #: resources/views/tree-page.phtml:51
 msgid "Name, place or record"
-msgstr ""
+msgstr "Name, Ort oder Aufzeichnung"
 
 #: resources/views/individual-page.phtml:349
 msgid "Names and personal details"
-msgstr ""
+msgstr "Namen und persönliche Angaben"
 
 #: resources/views/individual-page.phtml:243
 msgid "No known portrait"
-msgstr ""
+msgstr "Kein Porträt vorhanden"
 
 #: resources/views/individual-page.phtml:240
 msgid "No photograph available"
-msgstr ""
+msgstr "Kein Foto verfügbar"
 
 #: PottsModernTheme.php:334
 msgid "None"
@@ -430,15 +438,15 @@ msgstr "Keine"
 
 #: resources/views/individual-page.phtml:362
 msgid "Occupations"
-msgstr ""
+msgstr "Berufe"
 
 #: resources/views/admin/settings.phtml:51
 msgid "Ocean Blue"
-msgstr ""
+msgstr "Ozeanblau"
 
 #: PottsModernTheme.php:310
 msgid "Ocean blue and mist"
-msgstr ""
+msgstr "Ozeanblau und Nebel"
 
 #: PottsModernTheme.php:574
 msgid "Open menu"
@@ -449,15 +457,15 @@ msgid "Page width"
 msgstr "Seitenbreite"
 
 #: resources/views/individual-page.phtml:186
-#, php-format, python-format
+#, python-format, php-format
 msgid "Parent of %s child."
 msgid_plural "Parent of %s children."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Elternteil von %s Kind."
+msgstr[1] "Elternteil von %s Kindern."
 
 #: resources/views/individual-page.phtml:317
 msgid "Parents"
-msgstr ""
+msgstr "Eltern"
 
 #: resources/views/admin/settings.phtml:282
 msgid "Place hierarchy"
@@ -465,7 +473,7 @@ msgstr "Orts-Hierarchie"
 
 #: resources/views/admin/settings.phtml:50
 msgid "Potts Green"
-msgstr ""
+msgstr "Potts Grün"
 
 #: PottsModernTheme.php:91
 msgid "Potts Modern"
@@ -477,7 +485,7 @@ msgstr "Einstellungen für das Potts-Modern-Theme"
 
 #: PottsModernTheme.php:309
 msgid "Potts green and parchment"
-msgstr ""
+msgstr "Potts Grün und Pergament"
 
 #: resources/views/admin/settings.phtml:266
 msgid "Preview"
@@ -485,7 +493,7 @@ msgstr "Vorschau"
 
 #: resources/views/admin/settings.phtml:223
 msgid "Quick homepage styles"
-msgstr ""
+msgstr "Schnelle Startseiten-Stile"
 
 #: resources/views/admin/settings.phtml:259
 msgid "Reduce animation"
@@ -497,7 +505,7 @@ msgstr "Entfernt Übergänge und sanftes Scrollen im gesamten Theme."
 
 #: resources/views/individual-page.phtml:365
 msgid "Residences"
-msgstr ""
+msgstr "Wohnsitze"
 
 #: resources/views/admin/settings.phtml:298
 msgid "Restore all Potts Modern settings to their defaults?"
@@ -509,11 +517,11 @@ msgstr "Standards wiederherstellen"
 
 #: resources/views/admin/settings.phtml:56
 msgid "Sandstone"
-msgstr ""
+msgstr "Sandstein"
 
 #: PottsModernTheme.php:315
 msgid "Sandstone and walnut"
-msgstr ""
+msgstr "Sandstein und Walnussholz"
 
 #: resources/views/admin/settings.phtml:299
 msgid "Save settings"
@@ -529,11 +537,11 @@ msgstr "Suche"
 
 #: resources/views/tree-page.phtml:49
 msgid "Search this family tree"
-msgstr ""
+msgstr "Diesen Stammbaum durchsuchen"
 
 #: resources/views/individual-page.phtml:389
 msgid "Share"
-msgstr ""
+msgstr "Teilen"
 
 #: PottsModernTheme.php:581
 msgid "Show fewer events"
@@ -541,7 +549,7 @@ msgstr "Weniger Ereignisse anzeigen"
 
 #: resources/views/admin/settings.phtml:236
 msgid "Show homepage quick search"
-msgstr ""
+msgstr "Schnellsuche auf der Startseite anzeigen"
 
 #: resources/views/admin/settings.phtml:249
 msgid "Show modern dropdown icons"
@@ -561,7 +569,7 @@ msgstr "Familien-Fotoleiste anzeigen"
 
 #: resources/views/admin/settings.phtml:235
 msgid "Show welcome panel"
-msgstr ""
+msgstr "Willkommensbereich anzeigen"
 
 #: PottsModernTheme.php:578
 msgid "Sign in"
@@ -573,11 +581,11 @@ msgstr "Abmelden"
 
 #: resources/views/admin/settings.phtml:54
 msgid "Slate"
-msgstr ""
+msgstr "Schiefer"
 
 #: PottsModernTheme.php:313
 msgid "Slate and silver"
-msgstr ""
+msgstr "Schiefer und Silber"
 
 #: PottsModernTheme.php:332
 msgid "Soft"
@@ -597,7 +605,7 @@ msgstr "Großzügig"
 
 #: resources/views/individual-page.phtml:329 resources/views/individual-page.phtml:371
 msgid "Spouses"
-msgstr ""
+msgstr "Ehepartner"
 
 #: PottsModernTheme.php:318 PottsModernTheme.php:323 PottsModernTheme.php:337 PottsModernTheme.php:348
 #: PottsModernTheme.php:353
@@ -610,7 +618,7 @@ msgstr "Standard passt für die meisten Bildschirme; Breit gibt Diagrammen und B
 
 #: PottsModernTheme.php:357 resources/views/admin/settings.phtml:224
 msgid "Storytelling"
-msgstr ""
+msgstr "Geschichtenerzählen"
 
 #: resources/views/admin/settings.phtml:258
 msgid "Strengthen borders, links and keyboard focus indicators."
@@ -622,11 +630,11 @@ msgstr "Stärker"
 
 #: resources/views/admin/settings.phtml:55
 msgid "Teal"
-msgstr ""
+msgstr "Blaugrün"
 
 #: PottsModernTheme.php:314
 msgid "Teal and sea glass"
-msgstr ""
+msgstr "Blaugrün und Meerglas"
 
 #: resources/views/admin/settings.phtml:204
 msgid "Text size"
@@ -654,11 +662,11 @@ msgstr ""
 
 #: resources/views/admin/settings.phtml:225
 msgid "Traditional webtrees blocks with subtle theme polish."
-msgstr ""
+msgstr "Traditionelle webtrees-Blöcke mit dezenter optischer Verfeinerung durch das Theme."
 
 #: resources/views/admin/settings.phtml:205
 msgid "Typography weight"
-msgstr ""
+msgstr "Schriftstärke"
 
 #: resources/views/admin/settings.phtml:249
 msgid "Use the refreshed line icons in Charts, Lists, Calendar and other dropdown menus."
@@ -671,23 +679,24 @@ msgstr "Warmes Sepia und Walnuss"
 
 #: resources/views/admin/settings.phtml:230
 msgid "Welcome heading"
-msgstr ""
+msgstr "Willkommensüberschrift"
 
 #: resources/views/admin/settings.phtml:231
 msgid "Welcome message"
-msgstr ""
+msgstr "Willkommensnachricht"
 
 #: resources/views/admin/settings.phtml:224
 msgid "Welcome panel, quick search and generous spacing."
-msgstr ""
+msgstr "Willkommensbereich, Schnellsuche und großzügige Abstände."
 
 #: resources/views/admin/settings.phtml:237
 msgid ""
-"When the slideshow module is present, move its homepage block above the welcome panel and allow "
-"it to span the page."
+"When the slideshow module is present, move its homepage block above the welcome panel and allow it "
+"to span the page."
 msgstr ""
+"Wenn das Slideshow-Modul vorhanden ist, verschiebe dessen Homepage-Block oberhalb des "
+"Willkommensbereichs und lasse ihn über die gesamte Seitenbreite verlaufen."
 
 #: PottsModernTheme.php:338 PottsModernTheme.php:349
 msgid "Wide"
 msgstr "Breit"
-
