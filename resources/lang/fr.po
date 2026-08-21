@@ -6,22 +6,23 @@ msgstr ""
 "Project-Id-Version: Potts Modern Theme 1.3.0\n"
 "Report-Msgid-Bugs-To: https://github.com/PottsNet/potts-modern-theme/issues\n"
 "POT-Creation-Date: 2026-07-19 00:14+1000\n"
-"PO-Revision-Date: 2026-06-29 21:40+1000\n"
+"PO-Revision-Date: 2026-08-15 23:03+0200\n"
 "Last-Translator: Jason Potts <noreply@potts.net.au>\n"
-"Language: fr\n"
 "Language-Team: French\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Generated-By: Babel 2.18.0\n"
+"X-Generator: Poedit 3.9\n"
 
 #: resources/views/individual-page.phtml:142 resources/views/individual-page.phtml:342
-#, php-format, python-format
+#, python-format, php-format
 msgid "%s child"
 msgid_plural "%s children"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s enfant"
+msgstr[1] "%s enfants"
 
 #: resources/views/admin/settings.phtml:295
 msgid "A hard refresh may be needed after changing cached styles."
@@ -53,7 +54,7 @@ msgstr "Compte et paramètres"
 
 #: resources/views/individual-page.phtml:250
 msgid "Add a media object"
-msgstr ""
+msgstr "Ajouter un média"
 
 #: resources/views/admin/settings.phtml:236
 msgid "Add a prominent family-tree search field to the welcome panel."
@@ -73,7 +74,7 @@ msgstr ""
 
 #: resources/views/individual-page.phtml:210
 msgid "Biography"
-msgstr ""
+msgstr "Biographie"
 
 #: PottsModernTheme.php:324
 msgid "Bold"
@@ -81,22 +82,22 @@ msgstr ""
 
 #: resources/views/individual-page.phtml:278
 msgid "Born"
-msgstr ""
+msgstr "Naissance"
 
 #: resources/views/individual-page.phtml:158
-#, php-format, python-format
+#, python-format, php-format
 msgid "Born %s in %s."
-msgstr ""
+msgstr "Né(e) le %s à %s."
 
 #: resources/views/individual-page.phtml:162
-#, php-format, python-format
+#, python-format, php-format
 msgid "Born %s."
-msgstr ""
+msgstr "Né(e) le %s."
 
 #: resources/views/individual-page.phtml:160
-#, php-format, python-format
+#, python-format, php-format
 msgid "Born in %s."
-msgstr ""
+msgstr "Né(e) à %s."
 
 #: resources/views/admin/settings.phtml:52
 msgid "Burgundy"
@@ -120,7 +121,7 @@ msgstr "Modifie la taille des icônes modernes du menu de généalogie."
 
 #: resources/views/individual-page.phtml:341 resources/views/individual-page.phtml:359
 msgid "Children"
-msgstr ""
+msgstr "Enfants"
 
 #: resources/views/admin/settings.phtml:72
 msgid "Choose a complete colour scheme for the header, navigation, cards and page background."
@@ -193,37 +194,37 @@ msgstr "Bleu sarcelle froid et brume"
 
 #: resources/views/individual-page.phtml:368
 msgid "Countries"
-msgstr ""
+msgstr "Pays"
 
 #: resources/views/individual-page.phtml:286
 msgid "Died"
-msgstr ""
+msgstr "Décès"
 
 #: resources/views/individual-page.phtml:199
-#, php-format, python-format
+#, python-format, php-format
 msgid "Died %s (%s)."
-msgstr ""
+msgstr "Décédé(e) le %s (%s)."
 
 #: resources/views/individual-page.phtml:195
-#, php-format, python-format
+#, python-format, php-format
 msgid "Died %s in %s%s."
-msgstr ""
+msgstr "Décédé(e) le %s à %s%s."
 
 #: resources/views/individual-page.phtml:201
-#, php-format, python-format
+#, python-format, php-format
 msgid "Died %s."
-msgstr ""
+msgstr "Décédé(e) %s."
 
 #: resources/views/individual-page.phtml:197
-#, php-format, python-format
+#, python-format, php-format
 msgid "Died in %s%s."
-msgstr ""
+msgstr "Décédé(e) à %s%s."
 
 #: resources/views/admin/settings.phtml:250
 msgid "Display consistent line icons beside Birth, Marriage, Occupation, Residence and other facts."
 msgstr ""
-"Affiche des icônes linéaires cohérentes à côté des naissances, mariages, professions, résidences "
-"et autres faits."
+"Affiche des icônes linéaires cohérentes à côté des naissances, mariages, professions, résidences et "
+"autres faits."
 
 #: resources/views/admin/settings.phtml:245
 msgid "Display modern icons with labels or use labels alone."
@@ -250,7 +251,7 @@ msgstr "Explorer"
 
 #: resources/views/individual-page.phtml:314
 msgid "Family"
-msgstr ""
+msgstr "Famille"
 
 #: resources/views/admin/settings.phtml:270
 msgid "Family Tree"
@@ -349,7 +350,7 @@ msgstr ""
 
 #: resources/views/individual-page.phtml:268 resources/views/individual-page.phtml:308
 msgid "Life summary"
-msgstr ""
+msgstr "Résumé de vie"
 
 #: PottsModernTheme.php:322
 msgid "Light"
@@ -357,14 +358,14 @@ msgstr ""
 
 #: resources/views/individual-page.phtml:356
 msgid "Lived"
-msgstr ""
+msgstr "Vivant(e)"
 
 #: resources/views/individual-page.phtml:190
-#, php-format, python-format
+#, python-format, php-format
 msgid "Lived in %s country."
 msgid_plural "Lived in %s countries."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Vécu(e) dans %s pays."
+msgstr[1] "Vécu(e) dans %s pays."
 
 #: resources/views/admin/settings.phtml:244
 msgid "Main icon size"
@@ -376,27 +377,27 @@ msgstr "Affichage du menu principal"
 
 #: resources/views/individual-page.phtml:297
 msgid "Married"
-msgstr ""
+msgstr "Mariage"
 
 #: resources/views/individual-page.phtml:178
-#, php-format, python-format
+#, python-format, php-format
 msgid "Married %s in %s."
-msgstr ""
+msgstr "Marié(e) avec %s à %s."
 
 #: resources/views/individual-page.phtml:174
-#, php-format, python-format
+#, python-format, php-format
 msgid "Married %s on %s in %s."
-msgstr ""
+msgstr "Marié(e) avec %s le %s à %s."
 
 #: resources/views/individual-page.phtml:176
-#, php-format, python-format
+#, python-format, php-format
 msgid "Married %s on %s."
-msgstr ""
+msgstr "Marié(e) avec %s le %s."
 
 #: resources/views/individual-page.phtml:180
-#, php-format, python-format
+#, python-format, php-format
 msgid "Married %s."
-msgstr ""
+msgstr "Marié(e) avec %s."
 
 #: PottsModernTheme.php:573
 msgid "Menu"
@@ -412,11 +413,11 @@ msgstr "Plutôt carré"
 
 #: resources/views/tree-page.phtml:51
 msgid "Name, place or record"
-msgstr ""
+msgstr "Nom, lieu ou évènement"
 
 #: resources/views/individual-page.phtml:349
 msgid "Names and personal details"
-msgstr ""
+msgstr "Noms et détails personnels"
 
 #: resources/views/individual-page.phtml:243
 msgid "No known portrait"
@@ -432,7 +433,7 @@ msgstr "Aucun"
 
 #: resources/views/individual-page.phtml:362
 msgid "Occupations"
-msgstr ""
+msgstr "Professions"
 
 #: resources/views/admin/settings.phtml:51
 msgid "Ocean Blue"
@@ -451,15 +452,15 @@ msgid "Page width"
 msgstr "Largeur de page"
 
 #: resources/views/individual-page.phtml:186
-#, php-format, python-format
+#, python-format, php-format
 msgid "Parent of %s child."
 msgid_plural "Parent of %s children."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Parent de %s enfant."
+msgstr[1] "Parent de %s enfants"
 
 #: resources/views/individual-page.phtml:317
 msgid "Parents"
-msgstr ""
+msgstr "Parents"
 
 #: resources/views/admin/settings.phtml:282
 msgid "Place hierarchy"
@@ -499,7 +500,7 @@ msgstr "Supprime les transitions et le défilement fluide dans tout le thème."
 
 #: resources/views/individual-page.phtml:365
 msgid "Residences"
-msgstr ""
+msgstr "Résidences"
 
 #: resources/views/admin/settings.phtml:298
 msgid "Restore all Potts Modern settings to their defaults?"
@@ -531,11 +532,11 @@ msgstr "Rechercher"
 
 #: resources/views/tree-page.phtml:49
 msgid "Search this family tree"
-msgstr ""
+msgstr "Rechercher dans l'arbre"
 
 #: resources/views/individual-page.phtml:389
 msgid "Share"
-msgstr ""
+msgstr "Partager"
 
 #: PottsModernTheme.php:581
 msgid "Show fewer events"
@@ -609,8 +610,7 @@ msgstr "Standard"
 #: resources/views/admin/settings.phtml:214
 msgid "Standard suits most screens; Wide gives charts and books more room."
 msgstr ""
-"Standard convient à la plupart des écrans ; Large donne plus d’espace aux graphiques et aux "
-"livres."
+"Standard convient à la plupart des écrans ; Large donne plus d’espace aux graphiques et aux livres."
 
 #: PottsModernTheme.php:357 resources/views/admin/settings.phtml:224
 msgid "Storytelling"
@@ -687,11 +687,10 @@ msgstr ""
 
 #: resources/views/admin/settings.phtml:237
 msgid ""
-"When the slideshow module is present, move its homepage block above the welcome panel and allow "
-"it to span the page."
+"When the slideshow module is present, move its homepage block above the welcome panel and allow it "
+"to span the page."
 msgstr ""
 
 #: PottsModernTheme.php:338 PottsModernTheme.php:349
 msgid "Wide"
 msgstr "Large"
-
