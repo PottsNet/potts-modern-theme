@@ -1,4 +1,58 @@
+## [1.4.0-alpha.8] - 2026-08-24
+
+- Integrated community German translation updates from PR #20.
+- Integrated community French translation updates from PR #25.
+- Rebuilt `de.mo` and `fr.mo`.
+
 # Changelog
+
+## [1.4.0-alpha.7] - 2026-08-24
+
+### Fixed
+- Fixed webtrees silhouettes being mirrored in third-party chart modules such as Extended Family.
+- Replacement silhouette images no longer inherit the `wt-icon-flip-rtl` utility class from the original webtrees icon element.
+- Kept silhouette replacement generic rather than special-casing individual modules.
+
+## [1.4.0-alpha.6] - 2026-08-24
+
+- Added explicit compatibility for Repository Hierarchy source-citation action controls (GitHub issue #22).
+- Protects Repository Hierarchy copy/paste/delete/sort citation links from Potts Modern's legacy fact-artwork cleanup even when third-party markup does not use native webtrees action classes.
+- Keeps the Paste copied source citation action available when Facts and Events rows are rebuilt after the Relationship filter is toggled.
+- Retains the 1.4.0-alpha.4 fact action-control restoration and 1.4.0-alpha.3 overflow fixes.
+
+## [1.4.0-alpha.4] - 2026-08-24
+
+- Fixed GitHub issue #21 where fact edit/copy/delete controls could disappear after switching tabs on an individual page.
+- Fact action detection now recognises webtrees action containers, common icon variants, routes and data attributes rather than depending on English labels alone.
+- Added a safe restoration pass so controls accidentally marked as legacy artwork are made visible again after AJAX/tab refreshes.
+
+## [1.4.0-alpha.3] - 2026-08-24
+
+- Fixed GitHub issue #24 by allowing editing cards/sections, AJAX dialogs and interactive fact rows to show menus and enhanced selector results outside their immediate container.
+- Made long Select2/Choices/Tom Select result lists vertically scrollable rather than clipping the lower results.
+- Kept the normal rounded-card overflow treatment elsewhere in the theme.
+
+## [1.4.0-alpha.2] - 2026-08-12
+
+### Fixed
+
+- Hidden source citations no longer leave an empty cream/gold card on individual fact and event displays when webtrees privacy rules suppress the source for the current visitor.
+- Added a JavaScript fallback for dynamically loaded/AJAX fact content and browsers that do not apply the CSS `:has()` empty-source rule.
+- Preserved normal source visibility, links, expansion controls and citation styling whenever webtrees supplies visible source content.
+
+## [1.4.0-alpha.1] - 2026-07-24
+
+### Added
+
+- Added a clearly labelled **Explore this person** navigation panel above individual-page tabs.
+- Added a short explanation to help visitors understand that the tabs are the main way to explore a person’s story, family, records, photographs and research.
+- Added a two-column mobile tab layout with a single-column fallback on very narrow screens.
+
+### Improved
+
+- Strengthened the selected tab with a solid high-contrast state.
+- Improved inactive-tab borders, hover feedback, keyboard focus and minimum touch size.
+- Preserved the native webtrees tab structure for AJAX loading, URL fragments and Potts Member Help contextual links.
 
 ## [1.3.0] - 2026-07-19
 

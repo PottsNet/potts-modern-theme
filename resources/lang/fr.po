@@ -8,17 +8,16 @@ msgstr ""
 "POT-Creation-Date: 2026-07-19 00:14+1000\n"
 "PO-Revision-Date: 2026-08-15 23:03+0200\n"
 "Last-Translator: Jason Potts <noreply@potts.net.au>\n"
-"Language-Team: French\n"
 "Language: fr\n"
+"Language-Team: French\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Generated-By: Babel 2.18.0\n"
-"X-Generator: Poedit 3.9\n"
 
 #: resources/views/individual-page.phtml:142 resources/views/individual-page.phtml:342
-#, python-format, php-format
+#, php-format, python-format
 msgid "%s child"
 msgid_plural "%s children"
 msgstr[0] "%s enfant"
@@ -85,17 +84,17 @@ msgid "Born"
 msgstr "Naissance"
 
 #: resources/views/individual-page.phtml:158
-#, python-format, php-format
+#, php-format, python-format
 msgid "Born %s in %s."
 msgstr "Né(e) le %s à %s."
 
 #: resources/views/individual-page.phtml:162
-#, python-format, php-format
+#, php-format, python-format
 msgid "Born %s."
 msgstr "Né(e) le %s."
 
 #: resources/views/individual-page.phtml:160
-#, python-format, php-format
+#, php-format, python-format
 msgid "Born in %s."
 msgstr "Né(e) à %s."
 
@@ -201,30 +200,30 @@ msgid "Died"
 msgstr "Décès"
 
 #: resources/views/individual-page.phtml:199
-#, python-format, php-format
+#, php-format, python-format
 msgid "Died %s (%s)."
 msgstr "Décédé(e) le %s (%s)."
 
 #: resources/views/individual-page.phtml:195
-#, python-format, php-format
+#, php-format, python-format
 msgid "Died %s in %s%s."
 msgstr "Décédé(e) le %s à %s%s."
 
 #: resources/views/individual-page.phtml:201
-#, python-format, php-format
+#, php-format, python-format
 msgid "Died %s."
 msgstr "Décédé(e) %s."
 
 #: resources/views/individual-page.phtml:197
-#, python-format, php-format
+#, php-format, python-format
 msgid "Died in %s%s."
 msgstr "Décédé(e) à %s%s."
 
 #: resources/views/admin/settings.phtml:250
 msgid "Display consistent line icons beside Birth, Marriage, Occupation, Residence and other facts."
-msgstr ""
-"Affiche des icônes linéaires cohérentes à côté des naissances, mariages, professions, résidences et "
-"autres faits."
+msgstr "Affiche des icônes linéaires cohérentes à côté des naissances, mariages, professions, résidences et autres faits."
+"Affiche des icônes linéaires cohérentes à côté des naissances, mariages, professions, résidences "
+"et autres faits."
 
 #: resources/views/admin/settings.phtml:245
 msgid "Display modern icons with labels or use labels alone."
@@ -361,7 +360,7 @@ msgid "Lived"
 msgstr "Vivant(e)"
 
 #: resources/views/individual-page.phtml:190
-#, python-format, php-format
+#, php-format, python-format
 msgid "Lived in %s country."
 msgid_plural "Lived in %s countries."
 msgstr[0] "Vécu(e) dans %s pays."
@@ -380,22 +379,22 @@ msgid "Married"
 msgstr "Mariage"
 
 #: resources/views/individual-page.phtml:178
-#, python-format, php-format
+#, php-format, python-format
 msgid "Married %s in %s."
 msgstr "Marié(e) avec %s à %s."
 
 #: resources/views/individual-page.phtml:174
-#, python-format, php-format
+#, php-format, python-format
 msgid "Married %s on %s in %s."
 msgstr "Marié(e) avec %s le %s à %s."
 
 #: resources/views/individual-page.phtml:176
-#, python-format, php-format
+#, php-format, python-format
 msgid "Married %s on %s."
 msgstr "Marié(e) avec %s le %s."
 
 #: resources/views/individual-page.phtml:180
-#, python-format, php-format
+#, php-format, python-format
 msgid "Married %s."
 msgstr "Marié(e) avec %s."
 
@@ -452,7 +451,7 @@ msgid "Page width"
 msgstr "Largeur de page"
 
 #: resources/views/individual-page.phtml:186
-#, python-format, php-format
+#, php-format, python-format
 msgid "Parent of %s child."
 msgid_plural "Parent of %s children."
 msgstr[0] "Parent de %s enfant."
@@ -610,7 +609,8 @@ msgstr "Standard"
 #: resources/views/admin/settings.phtml:214
 msgid "Standard suits most screens; Wide gives charts and books more room."
 msgstr ""
-"Standard convient à la plupart des écrans ; Large donne plus d’espace aux graphiques et aux livres."
+"Standard convient à la plupart des écrans ; Large donne plus d’espace aux graphiques et aux "
+"livres."
 
 #: PottsModernTheme.php:357 resources/views/admin/settings.phtml:224
 msgid "Storytelling"
@@ -687,10 +687,11 @@ msgstr ""
 
 #: resources/views/admin/settings.phtml:237
 msgid ""
-"When the slideshow module is present, move its homepage block above the welcome panel and allow it "
-"to span the page."
+"When the slideshow module is present, move its homepage block above the welcome panel and allow "
+"it to span the page."
 msgstr ""
 
 #: PottsModernTheme.php:338 PottsModernTheme.php:349
 msgid "Wide"
 msgstr "Large"
+

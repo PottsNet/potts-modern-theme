@@ -1118,6 +1118,18 @@
     const protectedSelector = 'a, button, input, select, textarea, .potts-modern-fact-icon';
 
     cell.querySelectorAll('.wt-fact-icon').forEach(function (symbol) {
+      // Third-party modules can legitimately use webtrees' standard
+      // .wt-fact-icon class for clickable fact actions (for example the
+      // Repository Hierarchy copy/paste citation controls).  Never hide an
+      // icon that belongs to an actionable link/button.
+      if (symbol.closest('a, button, input, select, textarea') || isFactActionControl(symbol)) {
+        symbol.classList.remove('potts-legacy-fact-symbol');
+        symbol.removeAttribute('aria-hidden');
+        symbol.style.removeProperty('display');
+        symbol.style.removeProperty('visibility');
+        return;
+      }
+
       symbol.classList.add('potts-legacy-fact-symbol');
       symbol.setAttribute('aria-hidden', 'true');
       symbol.style.setProperty('display', 'none', 'important');
@@ -1182,7 +1194,23 @@
       return false;
     }
 
-    if (control.querySelector('.wt-icon-edit, .wt-icon-copy, .wt-icon-delete')) {
+    // webtrees and third-party modules do not all render fact controls with
+    // the same icon class.  After a tab/AJAX refresh the visible link can also
+    // be rebuilt before its icon/title is fully initialised.  Protect controls
+    // by their action host, route/data attributes and common icon variants
+    // rather than relying only on English labels.
+    if (control.closest(
+      '.wt-fact-edit-links, .wt-fact-actions, [class*="fact-edit"], ' +
+      '[class*="fact-action"], .wt-edit-menu, .wt-action-links'
+    )) {
+      return true;
+    }
+
+    if (control.querySelector(
+      '.wt-icon-edit, .wt-icon-copy, .wt-icon-delete, ' +
+      '[class*="icon-edit"], [class*="icon-copy"], [class*="icon-delete"], ' +
+      '[class*="icon-remove"], [class*="icon-unlink"]'
+    )) {
       return true;
     }
 
@@ -1190,10 +1218,52 @@
       control.getAttribute('href') || '',
       control.getAttribute('title') || '',
       control.getAttribute('aria-label') || '',
+      control.getAttribute('data-bs-title') || '',
+      control.getAttribute('data-wt-confirm') || '',
+      control.getAttribute('data-action') || '',
+      control.className || '',
       control.textContent || ''
     ].join(' '));
 
-    return /(?:^|\b)(?:edit|copy|delete|remove|unlink)(?:\b|$)/.test(hint);
+    // Repository Hierarchy (and similar modules) can supply source-citation
+    // actions without native webtrees fact-action classes.  Recognise its
+    // route/data signatures explicitly so the Potts legacy-artwork cleanup
+    // never mistakes the paste icon for decorative artwork.  This is
+    // especially important when webtrees rebuilds the Facts and Events rows
+    // after the Relationship filter is toggled.
+    if (/repositoryhierarchy[_\/-](?:copy|paste|delete|sort)[_\/-]citation/.test(hint) ||
+        /repositoryhierarchy_(?:copy|paste|delete|sort)_citation/.test(hint)) {
+      return true;
+    }
+
+    return /(?:^|\b)(?:edit|copy|delete|remove|unlink|paste|citation)(?:\b|$)/.test(hint) ||
+      /(?:edit|copy|delete|remove|unlink|paste)[-_\/]/.test(hint);
+  }
+
+  function restoreFactActionControls(root) {
+    if (!root || !root.querySelectorAll) {
+      return;
+    }
+
+    root.querySelectorAll('a, button').forEach(function (control) {
+      if (!isFactActionControl(control)) {
+        return;
+      }
+
+      control.classList.remove('potts-legacy-fact-symbol');
+      control.removeAttribute('aria-hidden');
+      ['display', 'visibility', 'opacity', 'width', 'height', 'overflow'].forEach(function (property) {
+        control.style.removeProperty(property);
+      });
+
+      control.querySelectorAll('.potts-legacy-fact-symbol').forEach(function (child) {
+        child.classList.remove('potts-legacy-fact-symbol');
+        child.removeAttribute('aria-hidden');
+        ['display', 'visibility', 'opacity', 'width', 'height', 'overflow'].forEach(function (property) {
+          child.style.removeProperty(property);
+        });
+      });
+    });
   }
 
   /*
@@ -1793,7 +1863,10 @@
 
       const classNames = (element.getAttribute('class') || '').split(/\s+/).filter(Boolean);
       classNames.forEach(function (className) {
-        if (!/silhouette/i.test(className)) {
+        // Do not carry webtrees' directional icon-flip utility onto the
+        // replacement <img>. It is intended for the original icon glyph and
+        // can mirror Potts Modern silhouettes in third-party chart modules.
+        if (!/silhouette/i.test(className) && className !== 'wt-icon-flip-rtl') {
           image.classList.add(className);
         }
       });
@@ -3910,6 +3983,7 @@
       enhanceFamilyNavigator();
 
       const factsRoot = getFactsRoot();
+      restoreFactActionControls(factsRoot);
 
       if (!isMobileIndividualPage()) {
         const factRows = factsRoot ? factsRoot.querySelectorAll('tr').length : 0;
@@ -3925,6 +3999,7 @@
       // Apply shape and semantic colour after optional reconstruction so its
       // legacy inline parchment colour cannot override event-group colours.
       markResponsiveFactTiles(factsRoot);
+      restoreFactActionControls(factsRoot);
 
       synchroniseHistoricalFactVisibility();
       installMobileFactsLimiter();
@@ -4555,3 +4630,90 @@
     startModalStackingRepair();
   }
 }());
+
+/* Potts Modern 1.4.0 alpha 2 — suppress empty privacy-filtered source cards. */
+(function () {
+  'use strict';
+
+  var sourceSelector = 'main .wt-fact-sources';
+  var refreshQueued = false;
+
+  function sourceWrappers(root) {
+    var wrappers = [];
+    var scope = root && root.querySelectorAll ? root : document;
+
+    if (root instanceof Element && root.matches(sourceSelector)) {
+      wrappers.push(root);
+    }
+
+    scope.querySelectorAll(sourceSelector).forEach(function (wrapper) {
+      if (!wrappers.includes(wrapper)) {
+        wrappers.push(wrapper);
+      }
+    });
+
+    return wrappers;
+  }
+
+  function hasMeaningfulSourceContent(wrapper) {
+    if (wrapper.querySelector('a, button, img, svg, input, select, textarea, table, dl, ul, ol')) {
+      return true;
+    }
+
+    return (wrapper.textContent || '').replace(/\u00a0/g, ' ').trim() !== '';
+  }
+
+  function refreshEmptySourceCards(root) {
+    sourceWrappers(root).forEach(function (wrapper) {
+      var empty = !hasMeaningfulSourceContent(wrapper);
+      wrapper.classList.toggle('potts-empty-source-citation', empty);
+
+      if (empty) {
+        wrapper.setAttribute('aria-hidden', 'true');
+      } else if (wrapper.getAttribute('aria-hidden') === 'true') {
+        wrapper.removeAttribute('aria-hidden');
+      }
+    });
+  }
+
+  function queueRefresh(root) {
+    if (refreshQueued) {
+      return;
+    }
+
+    refreshQueued = true;
+    window.requestAnimationFrame(function () {
+      refreshQueued = false;
+      refreshEmptySourceCards(root || document);
+    });
+  }
+
+  var observer = new MutationObserver(function (mutations) {
+    var needsRefresh = mutations.some(function (mutation) {
+      return mutation.type === 'childList' && (
+        mutation.target instanceof Element &&
+        (mutation.target.matches(sourceSelector) || Boolean(mutation.target.closest(sourceSelector)))
+      ) || Array.from(mutation.addedNodes).some(function (node) {
+        return node instanceof Element && (
+          node.matches(sourceSelector) || Boolean(node.querySelector(sourceSelector))
+        );
+      });
+    });
+
+    if (needsRefresh) {
+      queueRefresh(document);
+    }
+  });
+
+  function startEmptySourceRepair() {
+    refreshEmptySourceCards(document);
+    observer.observe(document.body, { childList: true, subtree: true });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startEmptySourceRepair, { once: true });
+  } else {
+    startEmptySourceRepair();
+  }
+}());
+

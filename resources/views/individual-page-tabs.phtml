@@ -1,0 +1,88 @@
+<?php
+
+declare(strict_types=1);
+
+use Fisharebest\Webtrees\I18N;
+use Fisharebest\Webtrees\Individual;
+use Fisharebest\Webtrees\Module\ModuleTabInterface;
+use Fisharebest\Webtrees\View;
+use Illuminate\Support\Collection;
+
+/**
+ * @var Individual                             $record
+ * @var Collection<int,ModuleTabInterface>     $tabs
+ */
+
+?>
+
+<div class="wt-tabs-individual" id="individual-tabs">
+    <section class="potts-person-explorer-intro" aria-labelledby="potts-person-explorer-heading">
+        <span class="potts-person-explorer-kicker"><?= I18N::translate('Person navigation') ?></span>
+        <h2 id="potts-person-explorer-heading"><?= I18N::translate('Explore this person') ?></h2>
+        <p><?= I18N::translate('Choose a section below to explore this person’s story, family, records, photographs and research.') ?></p>
+    </section>
+
+    <ul class="nav nav-tabs flex-wrap potts-person-explorer-tabs" role="tablist" aria-labelledby="potts-person-explorer-heading">
+        <?php foreach ($tabs as $tab) : ?>
+            <li class="nav-item" role="presentation">
+                <a
+                    class="nav-link<?= $tab->isGrayedOut($record) ? ' text-muted' : '' ?>"
+                    data-bs-toggle="tab"
+                    role="tab"
+                    data-wt-href="<?= e(route('module', [
+                        'module' => $tab->name(),
+                        'action' => 'Tab',
+                        'tree'   => $record->tree()->name(),
+                        'xref'   => $record->xref(),
+                    ])) ?>"
+                    href="#<?= e($tab->name()) ?>"
+                >
+                    <?= $tab->tabTitle() ?>
+                </a>
+            </li>
+        <?php endforeach ?>
+    </ul>
+
+    <div class="tab-content">
+        <?php foreach ($tabs as $tab) : ?>
+            <div id="<?= e($tab->name()) ?>" class="tab-pane mt-2 fade" role="tabpanel"><?php if (!$tab->canLoadAjax()) : ?><?= $tab->getTabContent($record) ?><?php endif ?></div>
+        <?php endforeach ?>
+    </div>
+</div>
+
+<?php View::push('javascript') ?>
+<script>
+    'use strict';
+
+    // Bootstrap tabs - load content dynamically using AJAX.
+    $('a[data-bs-toggle="tab"][data-wt-href]').on('show.bs.tab', function () {
+        let target = $(this.hash + ':empty');
+
+        if (target.length > 0) {
+            // Start the download immediately...
+            let download = webtrees.httpGet(this.dataset.wtHref);
+
+            // ...but do not insert it until the tab is ready.
+            $(this).one('shown.bs.tab', () => {
+                download
+                    .then(data => data.text())
+                    .then(data => target.html(data));
+            });
+        }
+    });
+
+    // If the URL contains a fragment, activate the corresponding tab.
+    // Use a prefix on the fragment to prevent scrolling to the element.
+    let target = window.location.hash.replace('tab-', '');
+    let tab = document.querySelector("#individual-tabs .nav-link[href='" + target + "']");
+
+    // Otherwise activate the first tab.
+    tab = tab ?? document.querySelector('#individual-tabs .nav-link');
+    tab?.click();
+
+    // If the user selects a tab, update the URL to reflect this.
+    $('#individual-tabs a[data-bs-toggle="tab"]').on('shown.bs.tab', function (event) {
+        window.location.hash = 'tab-' + event.target.href.substring(event.target.href.indexOf('#') + 1);
+    });
+</script>
+<?php View::endpush() ?>

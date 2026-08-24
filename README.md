@@ -1,14 +1,10 @@
-<img width="2648" height="1780" alt="Image 26-7-2026 at 1 14 pm" src="https://github.com/user-attachments/assets/00bc9931-0935-4450-9acb-c7449ffaffa5" />
-<img width="2648" height="1780" alt="Image 26-7-2026 at 1 15 pm" src="https://github.com/user-attachments/assets/419fb07b-726f-463a-a682-9402a1370838" />
-<img width="2648" height="1780" alt="Image 26-7-2026 at 1 15 pm (1)" src="https://github.com/user-attachments/assets/8e8efa98-b79b-43be-90d9-aec5e0e9c6df" />
-
-## Potts Modern Theme for webtrees
+# Potts Modern Theme for webtrees
 
 Potts Modern is a responsive, highly configurable heritage theme for webtrees 2.2.x. It presents family history with clearer navigation, story-focused individual pages, refined cards and tables and practical desktop, tablet and phone layouts.
 
-**Current version: 1.3.0**
+**Current test version: 1.4.0-alpha.8**
 
-Version 1.3.0 brings together the tested life-story presentation work, translated homepage improvements, broader translation coverage and compatibility fixes for Potts companion modules.
+Version 1.4.0-alpha.8 adds explicit compatibility for Repository Hierarchy source-citation action controls, including the Paste copied source citation button when webtrees rebuilds Facts and Events after the Relationship filter is toggled. It retains the 1.4.0-alpha.4 tab/action-control fix and the 1.4.0-alpha.3 editing/dropdown overflow fix.
 
 ## Features
 

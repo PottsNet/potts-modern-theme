@@ -1,0 +1,11 @@
+Potts Modern Theme – GitHub sync package 1.4.0-alpha.8
+
+These files are the additions/replacements needed to bring GitHub main up to the current alpha.8 working build.
+
+Upload the CONTENTS of this folder to the ROOT of PottsNet/potts-modern-theme, preserving the folders.
+Do not upload the enclosing potts-modern-theme-github-sync-1.4.0-alpha.8 folder itself.
+
+Recommended commit message:
+Sync Potts Modern Theme 1.4.0-alpha.8
+
+This package includes the current fixes for GitHub issues #24, #21, defensive compatibility work for #22, the #19 silhouette fix, and the merged German/French translation updates.

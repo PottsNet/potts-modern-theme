@@ -5586,6 +5586,20 @@ main :is(.wt-fact-sources, .wt-source-citation, .wt-citation, .citation, .source
   font-weight: 750 !important;
 }
 
+/*
+ * webtrees can intentionally render an empty fact-source wrapper when the
+ * linked source is hidden by privacy rules.  Do not turn that empty wrapper
+ * into a visible citation card.  :has() handles modern browsers immediately;
+ * theme.js adds the class below as a compatibility/dynamic-content fallback.
+ */
+main .wt-fact-sources:not(:has(*)),
+main .wt-fact-sources.potts-empty-source-citation {
+  display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
 /* Record-linked tables should sit comfortably inside the record card. */
 body.potts-record-page .tab-pane :is(.table-responsive, .dataTables_wrapper, .dt-container) {
   margin-top: .35rem;
@@ -12880,4 +12894,275 @@ body > :is(#wt-ajax-modal, .wt-ajax-modal, .modal.potts-promoted-modal) .modal-c
   opacity: 1 !important;
   filter: none !important;
   pointer-events: auto !important;
+}
+
+/* ========================================================================== 
+   Potts Modern 1.4.0 alpha 1 — Explore this person navigation
+
+   The individual-page tabs are a primary wayfinding tool rather than a minor
+   filter. Present them as a clearly labelled navigation panel while keeping
+   the native #individual-tabs structure intact for Bootstrap, AJAX loading and
+   contextual-help modules.
+   ========================================================================== */
+
+body.wt-route-IndividualPage #individual-tabs > .potts-person-explorer-intro,
+body:has(.wt-individual-page) #individual-tabs > .potts-person-explorer-intro {
+  position: relative;
+  margin: 0 !important;
+  padding: clamp(1rem, 2vw, 1.35rem) clamp(1rem, 2.4vw, 1.5rem) .72rem !important;
+  border: 1px solid rgba(61, 83, 64, .16) !important;
+  border-bottom: 0 !important;
+  border-radius: 18px 18px 0 0 !important;
+  background:
+    radial-gradient(circle at 100% 0, rgba(24, 90, 113, .08), transparent 42%),
+    linear-gradient(135deg, rgba(255, 253, 248, .98), rgba(247, 250, 249, .98)) !important;
+  color: var(--potts-ink) !important;
+  box-shadow: 0 14px 34px rgba(35, 48, 56, .08) !important;
+}
+
+body.wt-route-IndividualPage #individual-tabs > .potts-person-explorer-intro::after,
+body:has(.wt-individual-page) #individual-tabs > .potts-person-explorer-intro::after {
+  content: "";
+  position: absolute;
+  right: clamp(1rem, 2.4vw, 1.5rem);
+  bottom: 0;
+  left: clamp(1rem, 2.4vw, 1.5rem);
+  height: 1px;
+  background: linear-gradient(90deg, rgba(24, 90, 113, .22), rgba(185, 134, 56, .20), transparent);
+}
+
+body.wt-route-IndividualPage #individual-tabs .potts-person-explorer-kicker,
+body:has(.wt-individual-page) #individual-tabs .potts-person-explorer-kicker {
+  display: block;
+  margin: 0 0 .28rem !important;
+  color: var(--potts-muted) !important;
+  font-size: .76rem !important;
+  font-weight: 850 !important;
+  letter-spacing: .09em !important;
+  line-height: 1.25 !important;
+  text-transform: uppercase !important;
+}
+
+body.wt-route-IndividualPage #individual-tabs .potts-person-explorer-intro h2,
+body:has(.wt-individual-page) #individual-tabs .potts-person-explorer-intro h2 {
+  margin: 0 !important;
+  color: var(--potts-blue-dark) !important;
+  font-size: clamp(1.28rem, 2vw, 1.62rem) !important;
+  font-weight: 850 !important;
+  line-height: 1.15 !important;
+}
+
+body.wt-route-IndividualPage #individual-tabs .potts-person-explorer-intro p,
+body:has(.wt-individual-page) #individual-tabs .potts-person-explorer-intro p {
+  max-width: 62rem;
+  margin: .42rem 0 0 !important;
+  color: var(--potts-muted) !important;
+  font-size: .96rem !important;
+  line-height: 1.5 !important;
+}
+
+body.wt-route-IndividualPage #individual-tabs > .potts-person-explorer-tabs,
+body:has(.wt-individual-page) #individual-tabs > .potts-person-explorer-tabs {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: stretch !important;
+  gap: .52rem !important;
+  margin: 0 0 1rem !important;
+  padding: .86rem clamp(1rem, 2.4vw, 1.5rem) 1rem !important;
+  overflow: visible !important;
+  border: 1px solid rgba(61, 83, 64, .16) !important;
+  border-top: 0 !important;
+  border-radius: 0 0 18px 18px !important;
+  background: rgba(255, 253, 248, .96) !important;
+  box-shadow: 0 14px 34px rgba(35, 48, 56, .08) !important;
+}
+
+body.wt-route-IndividualPage #individual-tabs > .potts-person-explorer-tabs .nav-item,
+body:has(.wt-individual-page) #individual-tabs > .potts-person-explorer-tabs .nav-item {
+  display: flex !important;
+  margin: 0 !important;
+}
+
+body.wt-route-IndividualPage #individual-tabs > .potts-person-explorer-tabs .nav-link,
+body:has(.wt-individual-page) #individual-tabs > .potts-person-explorer-tabs .nav-link {
+  display: inline-flex !important;
+  min-height: 44px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: .62rem .95rem !important;
+  border: 1px solid rgba(61, 83, 64, .18) !important;
+  border-radius: 12px !important;
+  background: rgba(255, 255, 255, .94) !important;
+  color: #42535b !important;
+  font-weight: 780 !important;
+  line-height: 1.2 !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  box-shadow: 0 3px 9px rgba(35, 48, 56, .045) !important;
+  transition: border-color 150ms ease, background-color 150ms ease,
+    color 150ms ease, box-shadow 150ms ease, transform 150ms ease !important;
+}
+
+body.wt-route-IndividualPage #individual-tabs > .potts-person-explorer-tabs .nav-link:hover,
+body:has(.wt-individual-page) #individual-tabs > .potts-person-explorer-tabs .nav-link:hover {
+  border-color: rgba(24, 90, 113, .34) !important;
+  background: #edf5f3 !important;
+  color: var(--potts-blue-dark) !important;
+  box-shadow: 0 8px 18px rgba(35, 48, 56, .08) !important;
+  transform: translateY(-1px) !important;
+}
+
+body.wt-route-IndividualPage #individual-tabs > .potts-person-explorer-tabs .nav-link:focus-visible,
+body:has(.wt-individual-page) #individual-tabs > .potts-person-explorer-tabs .nav-link:focus-visible {
+  border-color: var(--potts-blue) !important;
+  outline: 3px solid rgba(24, 90, 113, .19) !important;
+  outline-offset: 2px !important;
+  background: #edf5f3 !important;
+  color: var(--potts-blue-dark) !important;
+  box-shadow: none !important;
+}
+
+body.wt-route-IndividualPage #individual-tabs > .potts-person-explorer-tabs .nav-link.active,
+body.wt-route-IndividualPage #individual-tabs > .potts-person-explorer-tabs .nav-item.show .nav-link,
+body:has(.wt-individual-page) #individual-tabs > .potts-person-explorer-tabs .nav-link.active,
+body:has(.wt-individual-page) #individual-tabs > .potts-person-explorer-tabs .nav-item.show .nav-link {
+  border-color: var(--potts-blue) !important;
+  background: var(--potts-blue) !important;
+  color: #fff !important;
+  box-shadow: 0 9px 21px rgba(24, 90, 113, .22), inset 0 -3px 0 rgba(185, 134, 56, .72) !important;
+  transform: none !important;
+}
+
+body.wt-route-IndividualPage #individual-tabs > .potts-person-explorer-tabs .nav-link.active :is(.badge, small),
+body:has(.wt-individual-page) #individual-tabs > .potts-person-explorer-tabs .nav-link.active :is(.badge, small) {
+  color: inherit !important;
+}
+
+/* Contextual help remains a secondary guide immediately beneath the boxed
+   navigation panel. Its own module retains control of colours and actions. */
+body.wt-route-IndividualPage #individual-tabs > .potts-person-explorer-tabs + .pmh-contextual-help,
+body:has(.wt-individual-page) #individual-tabs > .potts-person-explorer-tabs + .pmh-contextual-help {
+  margin-top: 0 !important;
+}
+
+body.wt-route-IndividualPage #individual-tabs > .tab-content,
+body:has(.wt-individual-page) #individual-tabs > .tab-content {
+  margin-top: 0 !important;
+}
+
+@media (max-width: 620px) {
+  body.wt-route-IndividualPage #individual-tabs > .potts-person-explorer-intro,
+  body:has(.wt-individual-page) #individual-tabs > .potts-person-explorer-intro {
+    padding: .9rem .9rem .65rem !important;
+    border-radius: 15px 15px 0 0 !important;
+  }
+
+  body.wt-route-IndividualPage #individual-tabs > .potts-person-explorer-tabs,
+  body:has(.wt-individual-page) #individual-tabs > .potts-person-explorer-tabs {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: .48rem !important;
+    padding: .75rem .9rem .9rem !important;
+    border-radius: 0 0 15px 15px !important;
+  }
+
+  body.wt-route-IndividualPage #individual-tabs > .potts-person-explorer-tabs .nav-item,
+  body:has(.wt-individual-page) #individual-tabs > .potts-person-explorer-tabs .nav-item {
+    min-width: 0 !important;
+  }
+
+  body.wt-route-IndividualPage #individual-tabs > .potts-person-explorer-tabs .nav-link,
+  body:has(.wt-individual-page) #individual-tabs > .potts-person-explorer-tabs .nav-link {
+    width: 100% !important;
+    min-height: 48px !important;
+    padding: .6rem .55rem !important;
+    white-space: normal !important;
+  }
+}
+
+@media (max-width: 390px) {
+  body.wt-route-IndividualPage #individual-tabs > .potts-person-explorer-tabs,
+  body:has(.wt-individual-page) #individual-tabs > .potts-person-explorer-tabs {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}
+
+@media print {
+  body.wt-route-IndividualPage #individual-tabs > .potts-person-explorer-intro,
+  body.wt-route-IndividualPage #individual-tabs > .potts-person-explorer-tabs,
+  body:has(.wt-individual-page) #individual-tabs > .potts-person-explorer-intro,
+  body:has(.wt-individual-page) #individual-tabs > .potts-person-explorer-tabs {
+    display: none !important;
+  }
+}
+
+/* ========================================================================
+   Potts Modern 1.4.0-alpha.3 - GitHub issue #24: editing/dropdown overflow
+
+   The general Potts card treatment intentionally clips overflowing content so
+   rounded cards stay visually clean.  On edit pages and AJAX edit dialogs,
+   however, webtrees and third-party modules can render menus, autocomplete
+   results and enhanced select controls beyond their immediate card/section.
+   Allow those editing surfaces to overflow so controls are not cut off.
+   ======================================================================== */
+body.potts-edit-page :is(
+  .wt-block,
+  .wt-side-block,
+  .card,
+  .block,
+  .panel,
+  .box,
+  .wt-page-content > section,
+  fieldset
+),
+:is(.modal, .wt-ajax-modal, #wt-ajax-modal) :is(
+  .wt-block,
+  .wt-side-block,
+  .card,
+  .block,
+  .panel,
+  .box,
+  .wt-page-content > section,
+  fieldset
+) {
+  overflow: visible !important;
+}
+
+/* webtrees edit controls can also be embedded directly in an individual
+   Facts and Events row.  Keep the row's normal card clipping until an
+   interactive menu or enhanced selector is present. */
+body.potts-record-page .wt-tab-facts .potts-top-level-fact-row:has(
+  .dropdown-menu,
+  .select2-container,
+  .choices,
+  .ts-wrapper,
+  [role="listbox"],
+  [role="combobox"]
+),
+body:has(.wt-individual-page) .wt-tab-facts .potts-top-level-fact-row:has(
+  .dropdown-menu,
+  .select2-container,
+  .choices,
+  .ts-wrapper,
+  [role="listbox"],
+  [role="combobox"]
+) {
+  overflow: visible !important;
+}
+
+/* Keep result panes scrollable when they contain more choices than will fit
+   in the viewport.  `overflow:hidden` on the dropdown itself caused the
+   lower results to be inaccessible in issue #24. */
+.select2-dropdown,
+.choices__list--dropdown,
+.ts-dropdown {
+  overflow: visible !important;
+}
+
+.select2-results__options,
+.choices__list--dropdown .choices__list,
+.ts-dropdown-content {
+  max-height: min(18rem, 55vh) !important;
+  overflow-y: auto !important;
+  overscroll-behavior: contain;
 }
