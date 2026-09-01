@@ -83,7 +83,7 @@ final class PottsModernTheme extends AbstractModule implements ModuleThemeInterf
         'WELCOME_TEXT'          => 'Discover the people, places and stories that shaped our family.',
     ];
 
-    private const CUSTOM_VERSION = '1.4.0-alpha.8';
+    private const CUSTOM_VERSION = '1.4.0-alpha.9';
     private const LATEST_VERSION_URL = 'https://raw.githubusercontent.com/PottsNet/potts-modern-theme/main/latest-version.txt';
 
     public function title(): string
@@ -465,10 +465,11 @@ final class PottsModernTheme extends AbstractModule implements ModuleThemeInterf
             '}' .
             'html body,html body button,html body input,html body select,html body textarea{font-size:var(--potts-font-size)!important;}' .
             'html body :is(h1,h2,h3,h4,h5,h6,.wt-page-title,.card-title,.modal-title,.potts-preview-title){font-weight:var(--potts-weight-heading)!important;}' .
-            'html body :is(.wt-genealogy-menu,.wt-user-menu,.potts-nav-feature-link,.potts-submenu-item,.navbar-nav) :is(a,button,.nav-link,.dropdown-item,.potts-nav-label,.potts-submenu-label){font-weight:var(--potts-weight-navigation)!important;}' .
+            'html body :is(.wt-genealogy-menu,.wt-user-menu,.potts-nav-feature-link,.potts-submenu-item,.nav-link,.dropdown-item,.potts-nav-label,.potts-submenu-label){font-weight:var(--potts-weight-navigation)!important;}' .
+            'html body :is(label,.form-label,.col-form-label,.wt-page-options-label,th,.table th){font-weight:var(--potts-weight-label)!important;}' .
             'html body :is(label,.form-label,.col-form-label,.wt-page-options-label,th,.table th){font-weight:var(--potts-weight-label)!important;}' .
             'html body :is(strong,b,.fw-bold){font-weight:var(--potts-weight-emphasis)!important;}' .
-            'body>header,header[role="banner"],.wt-header-wrapper,#header,#top-header{background:linear-gradient(135deg,' . $palette['header1'] . ' 0%,' . $palette['header2'] . ' 100%)!important;}' .
+            'body>header,header[role="banner"],.wt-header-wrapper,#header,#top-header{background:linear-gradient(135deg,' . $palette['header1'] . ' 0%, ' . $palette['header2'] . ' 100%)!important;}' .
             'body.wt-control-panel>header>.nav>.nav-item>.nav-link{color:#fff!important;text-decoration:none!important;}' .
             'body.wt-control-panel>header>.nav>.nav-item>.nav-link:is(:hover,:focus-visible,.show){color:#fff!important;background:rgba(255,255,255,.13)!important;}' .
             'body.wt-control-panel>header>.nav>.nav-item>.dropdown-toggle::after{border-top-color:currentColor!important;}' .
@@ -635,18 +636,26 @@ final class PottsModernTheme extends AbstractModule implements ModuleThemeInterf
             $placeholders_json = '{}';
         }
 
+        $fix_file    = $this->resourcesFolder() . 'js/alpha9-fixes.js';
+        $fix_script  = is_readable($fix_file) ? file_get_contents($fix_file) : false;
         $script_file = $this->resourcesFolder() . 'js/theme.js';
         $script      = is_readable($script_file) ? file_get_contents($script_file) : false;
 
         $config = "\n<script id=\"potts-modern-theme-config\">window.PottsModernThemeIcons=" . $icons_json . ';window.PottsModernThemeSettings=' . $settings_json . ';window.PottsModernThemeLabels=' . $labels_json . ';window.PottsModernThemePlaceholders=' . $placeholders_json . ";</script>\n";
+        $fix    = '';
+
+        if ($fix_script !== false && $fix_script !== '') {
+            $fix_script = str_replace('</script', '<\/script', $fix_script);
+            $fix = "<script id=\"potts-modern-theme-alpha9-fixes\">\n" . $fix_script . "\n</script>\n";
+        }
 
         if ($script === false || $script === '') {
-            return $config;
+            return $config . $fix;
         }
 
         $script = str_replace('</script', '<\/script', $script);
 
-        return $config . "<script id=\"potts-modern-theme-script\">\n" . $script . "\n</script>\n";
+        return $config . $fix . "<script id=\"potts-modern-theme-script\">\n" . $script . "\n</script>\n";
     }
 
     /** @return array<string,string> */
