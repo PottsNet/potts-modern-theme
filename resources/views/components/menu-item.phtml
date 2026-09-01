@@ -29,8 +29,6 @@ $cleanLabel = static function (string $value): string {
 $iconForSubmenu = static function (string $label, string $class = '', string $link = '', string|null $parent_icon = null) use ($normalise): string|null {
     $text = $normalise($label . ' ' . $class . ' ' . $link);
 
-    // Exact labels first.  This covers every core webtrees chart/list/calendar
-    // item and the custom items currently used on a customised webtrees site.
     $exact = [
         'ancestors'                    => 'ancestors',
         'compact tree'                 => 'compact-tree',
@@ -59,6 +57,7 @@ $iconForSubmenu = static function (string $label, string $class = '', string $li
         'month'                        => 'calendar',
         'year'                         => 'calendar',
         'custom module manager'        => 'module',
+        'contributions'                => 'contributions',
         'faq'                          => 'faq',
         'faqs'                         => 'faq',
         'frequently asked questions'   => 'faq',
@@ -87,8 +86,6 @@ $iconForSubmenu = static function (string $label, string $class = '', string $li
         return $exact[$text];
     }
 
-    // Ordered from most specific to most general so labels such as
-    // “Pedigree map” and “Family book” receive the correct icon.
     $checks = [
         'compact-tree'     => ['compact tree'],
         'fan-chart'        => ['fan chart'],
@@ -103,6 +100,7 @@ $iconForSubmenu = static function (string $label, string $class = '', string $li
         'ancestors'        => ['ancestor'],
         'descendants'      => ['descendant', 'descendancy'],
         'pedigree'         => ['pedigree'],
+        'contributions'    => ['contribution'],
         'module'           => ['custom module', 'module manager'],
         'faq'              => [
             'faq',
@@ -152,8 +150,6 @@ $iconForSubmenu = static function (string $label, string $class = '', string $li
         }
     }
 
-    // Never leave a submenu blank.  Third-party modules can add their own
-    // labels, so use the parent menu's icon family as a safe fallback.
     $fallbacks = [
         'family-tree' => 'family-tree',
         'charts'      => 'charts',
@@ -171,9 +167,9 @@ $iconForSubmenu = static function (string $label, string $class = '', string $li
     return $parent_icon !== null ? ($fallbacks[$parent_icon] ?? $parent_icon) : 'reports';
 };
 
-$raw_label   = $menu->getLabel();
-$menu_label  = $normalise($raw_label);
-$menu_class  = $menu->getClass();
+$raw_label     = $menu->getLabel();
+$menu_label    = $normalise($raw_label);
+$menu_class    = $menu->getClass();
 $display_label = $cleanLabel($raw_label);
 
 $label_icons = [
@@ -188,6 +184,7 @@ $label_icons = [
     'more charts'    => 'more-charts',
     'books'          => 'books',
     'your book'      => 'your-book',
+    'contributions'  => 'contributions',
     'faq'            => 'faq',
     'faqs'           => 'faq',
     'frequently asked questions'   => 'faq',
@@ -216,18 +213,19 @@ $icon = $label_icons[$menu_label] ?? null;
 
 if ($icon === null) {
     $class_checks = [
-        'faq'      => 'faq',
+        'faq'              => 'faq',
         'frequently-asked' => 'faq',
-        'question' => 'faq',
-        'clipping' => 'cart',
-        'calendar' => 'calendar',
-        'report'   => 'reports',
-        'search'   => 'search',
-        'story'    => 'stories',
-        'book'     => 'books',
-        'list'     => 'lists',
-        'chart'    => 'charts',
-        'tree'     => 'family-tree',
+        'question'         => 'faq',
+        'contribution'     => 'contributions',
+        'clipping'         => 'cart',
+        'calendar'         => 'calendar',
+        'report'           => 'reports',
+        'search'           => 'search',
+        'story'            => 'stories',
+        'book'             => 'books',
+        'list'             => 'lists',
+        'chart'            => 'charts',
+        'tree'             => 'family-tree',
     ];
 
     foreach ($class_checks as $needle => $candidate) {
@@ -250,9 +248,6 @@ if ($icon === null) {
     }
 }
 
-// Third-party modules can register top-level menu items with labels this theme
-// cannot know in advance. Use a generic module icon for module-like links,
-// while leaving utility menus such as language/sign-in alone.
 if ($icon === null) {
     $menu_link  = strtolower((string) $menu->getLink());
     $menu_probe = $menu_label . ' ' . strtolower($menu_class) . ' ' . $menu_link;
@@ -272,7 +267,16 @@ $link_class    = $icon !== null ? ' potts-nav-feature-link' : '';
 $render_label = static function (Menu $item, string|null $item_icon, string $clean_label): void {
     if ($item_icon !== null) {
         ?>
-        <span class="potts-nav-icon" aria-hidden="true"></span>
+        <span class="potts-nav-icon" aria-hidden="true">
+            <?php if ($item_icon === 'contributions') : ?>
+                <svg viewBox="0 0 24 24" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true">
+                    <circle cx="8" cy="7" r="3"></circle>
+                    <path d="M3.5 18c.6-3.3 2.5-5 4.5-5 1.5 0 2.8.6 3.6 1.7"></path>
+                    <path d="M13 4.5h6.5a1.5 1.5 0 0 1 1.5 1.5v12a1.5 1.5 0 0 1-1.5 1.5H13A1.5 1.5 0 0 1 11.5 18V6A1.5 1.5 0 0 1 13 4.5Z"></path>
+                    <path d="M14.5 9h3.5M16.25 7.25v3.5M14.5 14h4M14.5 17h3"></path>
+                </svg>
+            <?php endif ?>
+        </span>
         <span class="potts-nav-label"><?= e($clean_label) ?></span>
         <?php
     } else {
