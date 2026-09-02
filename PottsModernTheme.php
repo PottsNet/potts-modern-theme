@@ -83,7 +83,7 @@ final class PottsModernTheme extends AbstractModule implements ModuleThemeInterf
         'WELCOME_TEXT'          => 'Discover the people, places and stories that shaped our family.',
     ];
 
-    private const CUSTOM_VERSION = '1.4.0-alpha.9';
+    private const CUSTOM_VERSION = '1.4.0-alpha.10';
     private const LATEST_VERSION_URL = 'https://raw.githubusercontent.com/PottsNet/potts-modern-theme/main/latest-version.txt';
 
     public function title(): string
@@ -657,7 +657,6 @@ final class PottsModernTheme extends AbstractModule implements ModuleThemeInterf
 
         return $config . $fix . "<script id=\"potts-modern-theme-script\">\n" . $script . "\n</script>\n";
     }
-
     /** @return array<string,string> */
     private function iconFiles(): array
     {
