@@ -16,35 +16,98 @@ use Illuminate\Support\Collection;
 ?>
 
 <style>
-/* Keep the Biography block readable on phones by stacking the portrait above
- * the person's details before the narrow two-column layout becomes cramped. */
+/* Issue #31 test: on phones, flatten the Biography core wrapper into the
+ * one-column grid. Keep the fallback portrait in normal document flow so it
+ * cannot paint over the person's name or the following biography details. */
 @media (max-width: 767.98px) {
     .potts-profile-grid {
         grid-template-columns: 1fr !important;
     }
 
-    .potts-profile-photo {
+    .potts-profile-grid > .potts-profile-photo {
+        order: 1 !important;
+        position: relative !important;
         width: 100%;
         max-width: 260px;
+        min-height: 0 !important;
         margin-inline: auto;
+        padding-bottom: 0 !important;
+        overflow: visible !important;
     }
 
-    .potts-profile-core {
+    /* Alpha.9 positions the generated fallback portrait absolutely. That works
+     * beside the desktop biography columns, but on a one-column phone layout it
+     * lets the image extend beyond the photo grid item's measured height and
+     * cover the following name. Put the fallback back into normal flow. */
+    .potts-profile-photo > .potts-profile-fallback-portrait {
+        position: relative !important;
+        inset: auto !important;
+        top: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+        width: 100% !important;
+        min-height: 0 !important;
+        margin: 0 !important;
+    }
+
+    .potts-profile-photo:has(.potts-profile-fallback-portrait) .potts-profile-add-media {
+        position: static !important;
+        top: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+        width: 100% !important;
+        margin-top: .4rem !important;
+    }
+
+    .potts-profile-grid > .potts-profile-core {
+        display: contents !important;
+    }
+
+    .potts-profile-core > .potts-profile-name {
+        order: 2 !important;
         width: 100%;
-        min-width: 0;
+        max-width: none !important;
+        margin: .35rem 0 .15rem !important;
+        text-align: center !important;
     }
 
-    .potts-profile-name,
-    .potts-profile-lifespan {
-        text-align: center;
+    .potts-profile-core > .potts-profile-lifespan {
+        order: 3 !important;
+        width: 100%;
+        margin-top: .15rem !important;
+        justify-content: center !important;
+        text-align: center !important;
     }
 
-    .potts-profile-chips {
-        justify-content: center;
+    .potts-profile-core > .potts-profile-chips {
+        order: 4 !important;
+        width: 100%;
+        justify-content: center !important;
     }
 
-    .potts-profile-vitals {
-        grid-template-columns: 1fr;
+    .potts-profile-core > .potts-profile-vitals {
+        order: 5 !important;
+        width: 100%;
+        grid-template-columns: 1fr !important;
+    }
+
+    .potts-profile-core > .potts-profile-marriages {
+        order: 6 !important;
+        width: 100%;
+    }
+
+    .potts-profile-core > .potts-profile-life-summary {
+        order: 7 !important;
+        width: 100%;
+    }
+
+    .potts-profile-grid > .potts-profile-family {
+        order: 8 !important;
+        width: 100%;
+        grid-column: 1 !important;
+        grid-template-columns: 1fr !important;
     }
 }
 </style>
