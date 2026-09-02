@@ -434,7 +434,7 @@ msgstr ""
 #: resources/views/individual-page.phtml:186
 #, php-format, python-format
 msgid "Parent of %s child."
-msgid_plural "Parent of %s children."
+msgid_plural "%s children."
 msgstr[0] ""
 msgstr[1] ""
 
@@ -667,3 +667,14 @@ msgstr ""
 msgid "Wide"
 msgstr ""
 
+#: resources/views/individual-page-tabs.phtml:54
+msgid "Person navigation"
+msgstr ""
+
+#: resources/views/individual-page-tabs.phtml:55
+msgid "Explore this person"
+msgstr ""
+
+#: resources/views/individual-page-tabs.phtml:56
+msgid "Choose a section below to explore this person’s story, family, records, photographs and research."
+msgstr ""
