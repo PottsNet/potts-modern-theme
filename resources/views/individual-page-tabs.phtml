@@ -95,37 +95,69 @@ use Illuminate\Support\Collection;
 <script>
     'use strict';
 
-    // Issue #31: on phones, put the existing person-name heading immediately
-    // after the portrait. Keep a marker so resizing back to desktop restores
-    // the original markup position without creating a duplicate heading.
+    // Issue #31: on phones, keep the existing person-name heading immediately
+    // after the portrait. The normal theme enhancement can run after this view,
+    // so re-apply the placement once the page has settled rather than moving it
+    // only during the initial render.
     (() => {
         const grid = document.querySelector('.potts-profile-grid');
         const photo = grid?.querySelector(':scope > .potts-profile-photo');
         const core = grid?.querySelector(':scope > .potts-profile-core');
-        const name = core?.querySelector(':scope > .potts-profile-name');
+        const name = document.querySelector('.potts-profile-name');
 
         if (!grid || !photo || !core || !name) {
             return;
         }
 
         const marker = document.createComment('potts-profile-name-original-position');
-        core.insertBefore(marker, name);
+        core.insertBefore(marker, core.firstChild);
 
         const phoneLayout = window.matchMedia('(max-width: 767.98px)');
+        let placing = false;
+
         const placeName = () => {
-            if (phoneLayout.matches) {
-                photo.insertAdjacentElement('afterend', name);
-            } else if (marker.parentNode) {
-                marker.parentNode.insertBefore(name, marker.nextSibling);
+            if (placing) {
+                return;
             }
+
+            placing = true;
+
+            if (phoneLayout.matches) {
+                if (name.parentElement !== grid || name.previousElementSibling !== photo) {
+                    photo.insertAdjacentElement('afterend', name);
+                }
+            } else if (marker.parentNode) {
+                if (name.parentNode !== marker.parentNode || name.previousSibling !== marker) {
+                    marker.parentNode.insertBefore(name, marker.nextSibling);
+                }
+            }
+
+            placing = false;
         };
 
-        placeName();
+        const settleName = () => {
+            placeName();
+            window.requestAnimationFrame(() => window.requestAnimationFrame(placeName));
+            window.setTimeout(placeName, 100);
+            window.setTimeout(placeName, 350);
+            window.setTimeout(placeName, 900);
+        };
+
+        settleName();
+        window.addEventListener('load', settleName, { once: true });
+
+        const observer = new MutationObserver(() => {
+            if (!placing) {
+                placeName();
+            }
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+        window.setTimeout(() => observer.disconnect(), 3000);
 
         if (typeof phoneLayout.addEventListener === 'function') {
-            phoneLayout.addEventListener('change', placeName);
+            phoneLayout.addEventListener('change', settleName);
         } else if (typeof phoneLayout.addListener === 'function') {
-            phoneLayout.addListener(placeName);
+            phoneLayout.addListener(settleName);
         }
     })();
 
