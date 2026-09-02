@@ -17,8 +17,8 @@ use Illuminate\Support\Collection;
 
 <style>
 /* Issue #31 test: on phones, flatten the Biography core wrapper into the
- * one-column grid. This preserves the existing single person-name heading and
- * gives the natural mobile sequence: portrait, name, biography details, family. */
+ * one-column grid. Keep the fallback portrait in normal document flow so it
+ * cannot paint over the person's name or the following biography details. */
 @media (max-width: 767.98px) {
     .potts-profile-grid {
         grid-template-columns: 1fr !important;
@@ -26,9 +26,39 @@ use Illuminate\Support\Collection;
 
     .potts-profile-grid > .potts-profile-photo {
         order: 1 !important;
+        position: relative !important;
         width: 100%;
         max-width: 260px;
+        min-height: 0 !important;
         margin-inline: auto;
+        padding-bottom: 0 !important;
+        overflow: visible !important;
+    }
+
+    /* Alpha.9 positions the generated fallback portrait absolutely. That works
+     * beside the desktop biography columns, but on a one-column phone layout it
+     * lets the image extend beyond the photo grid item's measured height and
+     * cover the following name. Put the fallback back into normal flow. */
+    .potts-profile-photo > .potts-profile-fallback-portrait {
+        position: relative !important;
+        inset: auto !important;
+        top: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+        width: 100% !important;
+        min-height: 0 !important;
+        margin: 0 !important;
+    }
+
+    .potts-profile-photo:has(.potts-profile-fallback-portrait) .potts-profile-add-media {
+        position: static !important;
+        top: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+        width: 100% !important;
+        margin-top: .4rem !important;
     }
 
     .potts-profile-grid > .potts-profile-core {
