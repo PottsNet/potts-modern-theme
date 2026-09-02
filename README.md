@@ -2,9 +2,9 @@
 
 Potts Modern is a responsive, highly configurable heritage theme for webtrees 2.2.x. It presents family history with clearer navigation, story-focused individual pages, refined cards and tables and practical desktop, tablet and phone layouts.
 
-**Current test version: 1.4.0-alpha.9**
+**Current test version: 1.4.0-alpha.10**
 
-Version 1.4.0-alpha.9 fixes module access-level forms by preserving their ownership when Potts Modern promotes Bootstrap modals above their backdrops, and makes homepage detection language-independent so translated webtrees homepages retain the intended main/sidebar layout. It also retains the Repository Hierarchy source-citation compatibility work from alpha.8.
+Version 1.4.0-alpha.10 improves the Biography block on phones so the portrait, person name and biography details form a clear one-column sequence, including a fix that keeps generated fallback portraits in normal mobile document flow. It also adds the missing individual-navigation strings to the translation template while retaining the alpha.9 compatibility fixes.
 
 ## Features
 
