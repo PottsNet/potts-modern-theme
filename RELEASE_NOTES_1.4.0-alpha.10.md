@@ -8,6 +8,10 @@ This release focuses on mobile Biography readability and translation catalogue c
 - **Fallback portrait flow on phones (#31):** the generated `No known portrait` fallback is returned to normal document flow on mobile instead of remaining absolutely positioned. This prevents the portrait from covering the person’s name or following Biography content.
 - **Individual navigation translation catalogue (#30):** added the missing `Person navigation`, `Explore this person` and explanatory navigation text to `resources/lang/messages.pot`.
 
+## Other improvement
+
+- **Contributions menu icon:** recognises the Contributions menu label/class and supplies a dedicated person/document/plus icon so the Family Contributions entry is represented consistently in Potts Modern navigation.
+
 ## Retained compatibility fixes
 
 - Repository Hierarchy source-citation actions remain protected from Potts Modern's fact-artwork cleanup, including copy/paste citation controls used on Facts and Events (#22).
