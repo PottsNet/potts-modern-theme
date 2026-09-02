@@ -23,22 +23,31 @@ use Illuminate\Support\Collection;
         grid-template-columns: 1fr !important;
     }
 
-    .potts-profile-photo {
+    .potts-profile-grid > .potts-profile-photo {
+        order: 1 !important;
         width: 100%;
         max-width: 260px;
         margin-inline: auto;
     }
 
     .potts-profile-grid > .potts-profile-name {
+        order: 2 !important;
         width: 100%;
         max-width: none !important;
         margin: .35rem 0 .15rem !important;
         text-align: center !important;
     }
 
-    .potts-profile-core {
+    .potts-profile-grid > .potts-profile-core {
+        order: 3 !important;
         width: 100%;
         min-width: 0;
+    }
+
+    .potts-profile-grid > .potts-profile-family {
+        order: 4 !important;
+        width: 100%;
+        grid-template-columns: 1fr !important;
     }
 
     .potts-profile-lifespan {
