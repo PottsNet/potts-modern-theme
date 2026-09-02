@@ -434,7 +434,7 @@ msgstr ""
 #: resources/views/individual-page.phtml:186
 #, php-format, python-format
 msgid "Parent of %s child."
-msgid_plural "%s children."
+msgid_plural "Parent of %s children."
 msgstr[0] ""
 msgstr[1] ""
 
