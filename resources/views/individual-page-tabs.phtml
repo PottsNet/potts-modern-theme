@@ -16,8 +16,9 @@ use Illuminate\Support\Collection;
 ?>
 
 <style>
-/* Issue #31 test: keep the Biography block readable on phones by stacking
- * the portrait above the person's details before the two-column layout cramps. */
+/* Issue #31 test: on phones, flatten the Biography core wrapper into the
+ * one-column grid. This preserves the existing single person-name heading and
+ * gives the natural mobile sequence: portrait, name, biography details, family. */
 @media (max-width: 767.98px) {
     .potts-profile-grid {
         grid-template-columns: 1fr !important;
@@ -30,7 +31,11 @@ use Illuminate\Support\Collection;
         margin-inline: auto;
     }
 
-    .potts-profile-grid > .potts-profile-name {
+    .potts-profile-grid > .potts-profile-core {
+        display: contents !important;
+    }
+
+    .potts-profile-core > .potts-profile-name {
         order: 2 !important;
         width: 100%;
         max-width: none !important;
@@ -38,29 +43,41 @@ use Illuminate\Support\Collection;
         text-align: center !important;
     }
 
-    .potts-profile-grid > .potts-profile-core {
+    .potts-profile-core > .potts-profile-lifespan {
         order: 3 !important;
         width: 100%;
-        min-width: 0;
+        margin-top: .15rem !important;
+        justify-content: center !important;
+        text-align: center !important;
     }
 
-    .potts-profile-grid > .potts-profile-family {
+    .potts-profile-core > .potts-profile-chips {
         order: 4 !important;
+        width: 100%;
+        justify-content: center !important;
+    }
+
+    .potts-profile-core > .potts-profile-vitals {
+        order: 5 !important;
         width: 100%;
         grid-template-columns: 1fr !important;
     }
 
-    .potts-profile-lifespan {
-        margin-top: .15rem !important;
-        text-align: center;
+    .potts-profile-core > .potts-profile-marriages {
+        order: 6 !important;
+        width: 100%;
     }
 
-    .potts-profile-chips {
-        justify-content: center;
+    .potts-profile-core > .potts-profile-life-summary {
+        order: 7 !important;
+        width: 100%;
     }
 
-    .potts-profile-vitals {
-        grid-template-columns: 1fr;
+    .potts-profile-grid > .potts-profile-family {
+        order: 8 !important;
+        width: 100%;
+        grid-column: 1 !important;
+        grid-template-columns: 1fr !important;
     }
 }
 </style>
@@ -103,72 +120,6 @@ use Illuminate\Support\Collection;
 <?php View::push('javascript') ?>
 <script>
     'use strict';
-
-    // Issue #31: on phones, keep the existing person-name heading immediately
-    // after the portrait. The normal theme enhancement can run after this view,
-    // so re-apply the placement once the page has settled rather than moving it
-    // only during the initial render.
-    (() => {
-        const grid = document.querySelector('.potts-profile-grid');
-        const photo = grid?.querySelector(':scope > .potts-profile-photo');
-        const core = grid?.querySelector(':scope > .potts-profile-core');
-        const name = document.querySelector('.potts-profile-name');
-
-        if (!grid || !photo || !core || !name) {
-            return;
-        }
-
-        const marker = document.createComment('potts-profile-name-original-position');
-        core.insertBefore(marker, core.firstChild);
-
-        const phoneLayout = window.matchMedia('(max-width: 767.98px)');
-        let placing = false;
-
-        const placeName = () => {
-            if (placing) {
-                return;
-            }
-
-            placing = true;
-
-            if (phoneLayout.matches) {
-                if (name.parentElement !== grid || name.previousElementSibling !== photo) {
-                    photo.insertAdjacentElement('afterend', name);
-                }
-            } else if (marker.parentNode) {
-                if (name.parentNode !== marker.parentNode || name.previousSibling !== marker) {
-                    marker.parentNode.insertBefore(name, marker.nextSibling);
-                }
-            }
-
-            placing = false;
-        };
-
-        const settleName = () => {
-            placeName();
-            window.requestAnimationFrame(() => window.requestAnimationFrame(placeName));
-            window.setTimeout(placeName, 100);
-            window.setTimeout(placeName, 350);
-            window.setTimeout(placeName, 900);
-        };
-
-        settleName();
-        window.addEventListener('load', settleName, { once: true });
-
-        const observer = new MutationObserver(() => {
-            if (!placing) {
-                placeName();
-            }
-        });
-        observer.observe(document.body, { childList: true, subtree: true });
-        window.setTimeout(() => observer.disconnect(), 3000);
-
-        if (typeof phoneLayout.addEventListener === 'function') {
-            phoneLayout.addEventListener('change', settleName);
-        } else if (typeof phoneLayout.addListener === 'function') {
-            phoneLayout.addListener(settleName);
-        }
-    })();
 
     // Bootstrap tabs - load content dynamically using AJAX.
     $('a[data-bs-toggle="tab"][data-wt-href]').on('show.bs.tab', function () {
