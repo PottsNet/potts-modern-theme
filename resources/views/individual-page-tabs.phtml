@@ -15,6 +15,40 @@ use Illuminate\Support\Collection;
 
 ?>
 
+<style>
+/* Keep the Biography block readable on phones by stacking the portrait above
+ * the person's details before the narrow two-column layout becomes cramped. */
+@media (max-width: 767.98px) {
+    .potts-profile-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .potts-profile-photo {
+        width: 100%;
+        max-width: 260px;
+        margin-inline: auto;
+    }
+
+    .potts-profile-core {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .potts-profile-name,
+    .potts-profile-lifespan {
+        text-align: center;
+    }
+
+    .potts-profile-chips {
+        justify-content: center;
+    }
+
+    .potts-profile-vitals {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
 <div class="wt-tabs-individual" id="individual-tabs">
     <section class="potts-person-explorer-intro" aria-labelledby="potts-person-explorer-heading">
         <span class="potts-person-explorer-kicker"><?= I18N::translate('Person navigation') ?></span>
