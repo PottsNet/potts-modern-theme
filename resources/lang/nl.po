@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Potts Modern Theme 1.3.0\n"
 "Report-Msgid-Bugs-To: https://github.com/PottsNet/potts-modern-theme/issues\n"
 "POT-Creation-Date: 2026-07-19 00:14+1000\n"
-"PO-Revision-Date: 2026-07-18 18:26+0200\n"
+"PO-Revision-Date: 2026-09-03 06:54+0200\n"
 "Last-Translator: TheDutchJewel <thedutchjewel@gmail.com>\n"
 "Language-Team: Dutch\n"
 "Language: nl\n"
@@ -721,5 +721,18 @@ msgstr ""
 "paginabreedte innemen."
 
 #: PottsModernTheme.php:338 PottsModernTheme.php:349
-msgid "Wide"
-msgstr "Breed"
+#: resources/views/individual-page-tabs.phtml:54
+msgid "Person navigation"
+msgstr "Persoonsnavigatie"
+
+#: resources/views/individual-page-tabs.phtml:55
+msgid "Explore this person"
+msgstr "Verken deze persoon"
+
+#: resources/views/individual-page-tabs.phtml:56
+msgid ""
+"Choose a section below to explore this person’s story, family, records, "
+"photographs and research."
+msgstr ""
+"Kies hieronder een sectie om het verhaal, de gezinnen, de archieven, de "
+"foto's en het onderzoek van deze persoon te verkennen."
