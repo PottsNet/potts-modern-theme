@@ -1,8 +1,26 @@
-/* Potts Modern 1.4.0-alpha.9 compatibility fixes. */
+/* Potts Modern compatibility fixes introduced in 1.4.0-alpha.9. */
 (function () {
   'use strict';
 
   var modalFormIdCounter = 0;
+
+  function installFamilyChartDropdownFix() {
+    var styleId = 'potts-modern-family-chart-dropdown-fix';
+
+    if (document.getElementById(styleId)) {
+      return;
+    }
+
+    var style = document.createElement('style');
+    style.id = styleId;
+    style.textContent = [
+      'body.potts-family-page .wt-family-members:has(.wt-chart-box-dropdown.show){overflow:visible!important;position:relative!important;z-index:20!important;}',
+      'body.potts-family-page .wt-family-members .wt-chart-box:has(.wt-chart-box-dropdown.show){overflow:visible!important;position:relative!important;z-index:30!important;}',
+      'body.potts-family-page .wt-family-members .wt-chart-box-dropdown.show{z-index:40!important;}'
+    ].join('');
+
+    (document.head || document.documentElement).appendChild(style);
+  }
 
   function markStructuralHomepage() {
     var homepage = document.querySelector('[data-potts-homepage]');
@@ -52,6 +70,7 @@
   }
 
   function applyFixes(root) {
+    installFamilyChartDropdownFix();
     markStructuralHomepage();
     preserveModalFormOwnership(root || document);
   }
