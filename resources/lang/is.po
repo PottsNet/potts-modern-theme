@@ -29,7 +29,7 @@ msgstr[1] "%s börn"
 
 #: resources/views/admin/settings.phtml:295
 msgid "A hard refresh may be needed after changing cached styles."
-msgstr "Það gæti verið nauðsynlegt að endurglæpa handvirkt eftir að stílum í skyndiminni hefur verið breytt."
+msgstr "Það gæti verið nauðsynlegt að endurglæða handvirkt eftir að stílum í skyndiminni hefur verið breytt."
 
 #: PottsModernTheme.php:96
 msgid "A modern, responsive heritage theme for webtrees."
@@ -341,14 +341,14 @@ msgstr "Ljóst"
 
 #: resources/views/individual-page.phtml:356
 msgid "Lived"
-msgstr "Lifði"
+msgstr "Lífaldur"
 
 #: resources/views/individual-page.phtml:190
 #, python-format, php-format
 msgid "Lived in %s country."
 msgid_plural "Lived in %s countries."
-msgstr[0] "Bjó í %s löndum."
-msgstr[1] "Bjó í %s landi."
+msgstr[0] "Bjó í %s landi."
+msgstr[1] "Bjó í %s löndum."
 
 #: resources/views/admin/settings.phtml:244
 msgid "Main icon size"
@@ -365,7 +365,7 @@ msgstr "Giftist"
 #: resources/views/individual-page.phtml:178
 #, python-format, php-format
 msgid "Married %s in %s."
-msgstr "Giftisst %s þann %s."
+msgstr "Giftist %s í %s."
 
 #: resources/views/individual-page.phtml:174
 #, python-format, php-format
@@ -640,7 +640,7 @@ msgstr ""
 
 #: resources/views/admin/settings.phtml:225
 msgid "Traditional webtrees blocks with subtle theme polish."
-msgstr "Hefðbundnar webtrees blokkir með fínlegri þema útfærslu."
+msgstr "Hefðbundnar webtrees blokkir með fínlegri útfærslu þema."
 
 #: resources/views/admin/settings.phtml:205
 msgid "Typography weight"
