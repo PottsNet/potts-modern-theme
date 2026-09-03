@@ -1,0 +1,687 @@
+# Translations template for Potts Modern Theme.
+# Copyright (C) 2026 Jason Potts
+# This file is distributed under the same license as the Potts Modern Theme project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Potts Modern Theme 1.4.0\n"
+"Report-Msgid-Bugs-To: https://github.com/PottsNet/potts-modern-theme/issues\n"
+"POT-Creation-Date: 2026-07-19 00:14+1000\n"
+"PO-Revision-Date: 2026-09-03 21:34+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: is_IS\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n%10==1 && n%100!=11);\n"
+"Generated-By: Babel 2.18.0\n"
+"X-Generator: Poedit 3.9\n"
+
+#: resources/views/individual-page.phtml:142 resources/views/individual-page.phtml:342
+#, python-format, php-format
+msgid "%s child"
+msgid_plural "%s children"
+msgstr[0] "%s barn"
+msgstr[1] "%s börn"
+
+#: resources/views/admin/settings.phtml:295
+msgid "A hard refresh may be needed after changing cached styles."
+msgstr "Það gæti verið nauðsynlegt að endurglæða handvirkt eftir að stílum í skyndiminni hefur verið breytt."
+
+#: PottsModernTheme.php:96
+msgid "A modern, responsive heritage theme for webtrees."
+msgstr "Nútímalegt, gagnvirkt arfleifðarþema fyrir webtrees."
+
+#: resources/views/admin/settings.phtml:277
+msgid "A preview of cards, text, navigation and heritage accents."
+msgstr "Forskoðun á kortum, texta, leiðsögn og arfleifðar áherslum."
+
+#: resources/views/admin/settings.phtml:231
+msgid "A short introduction shown beneath the welcome heading."
+msgstr "Stutt kynning sýnd undir fyrirsögninni „velkomin“."
+
+#: resources/views/admin/settings.phtml:226
+msgid "A tighter dashboard for information-rich homepages."
+msgstr "Þéttara mælaborð fyrir upplýsingaríkar heimasíður."
+
+#: resources/views/admin/settings.phtml:255
+msgid "Accessibility"
+msgstr "Aðgengi"
+
+#: PottsModernTheme.php:577
+msgid "Account and settings"
+msgstr "Notendareikningar og stillingar"
+
+#: resources/views/individual-page.phtml:250
+msgid "Add a media object"
+msgstr "Bæta við gagnahlut"
+
+#: resources/views/admin/settings.phtml:236
+msgid "Add a prominent family-tree search field to the welcome panel."
+msgstr "Bættu við áberandi leitarreit fyrir ættartölu í velkomin spjaldið."
+
+#: resources/views/admin/settings.phtml:215
+msgid "Adjust spacing within cards and between homepage blocks."
+msgstr "Stilla bil innan spjalda og á milli forsíðu blokka."
+
+#: resources/views/admin/settings.phtml:201
+msgid "Appearance"
+msgstr "Útlit"
+
+#: resources/views/admin/settings.phtml:234
+msgid "Apply coordinated cards, headers, tables, forms and homepage presentation."
+msgstr "Nota samræmd kort, hausa, töflur, eyðublöð og framsetningu á heimasíðum."
+
+#: resources/views/individual-page.phtml:210
+msgid "Biography"
+msgstr "Æviágrip"
+
+#: PottsModernTheme.php:324
+msgid "Bold"
+msgstr "Feitletrað"
+
+#: resources/views/individual-page.phtml:278
+msgid "Born"
+msgstr "Fæðing"
+
+#: resources/views/individual-page.phtml:158
+#, python-format, php-format
+msgid "Born %s in %s."
+msgstr "Fædd/-ur %s í %s."
+
+#: resources/views/individual-page.phtml:162
+#, python-format, php-format
+msgid "Born %s."
+msgstr "Fædd/-ur %s."
+
+#: resources/views/individual-page.phtml:160
+#, python-format, php-format
+msgid "Born in %s."
+msgstr "Fædd/-ur í %s."
+
+#: resources/views/admin/settings.phtml:52
+msgid "Burgundy"
+msgstr "Vínrauður"
+
+#: PottsModernTheme.php:311
+msgid "Burgundy and archival ivory"
+msgstr "Vínrauður og geymslufílabein"
+
+#: resources/views/admin/settings.phtml:206
+msgid "Card corners"
+msgstr "Horn korta"
+
+#: resources/views/admin/settings.phtml:207
+msgid "Card shadows"
+msgstr "Skuggar korta"
+
+#: resources/views/admin/settings.phtml:244
+msgid "Change the size of the modern genealogy menu icons."
+msgstr "Breyta stærð táknanna í nútíma ættfræði valmyndinni."
+
+#: resources/views/individual-page.phtml:341 resources/views/individual-page.phtml:359
+msgid "Children"
+msgstr "Börn"
+
+#: resources/views/admin/settings.phtml:72
+msgid "Choose a complete colour scheme for the header, navigation, cards and page background."
+msgstr "Veldu heildstæða litasamsetningu fyrir haus, leiðsögn, spjöld og bakgrunn síðunnar."
+
+#: resources/views/admin/settings.phtml:207
+msgid "Choose a flatter or more dimensional appearance."
+msgstr "Veldu flatara eða meiri vídd í útliti."
+
+#: resources/views/admin/settings.phtml:205
+msgid "Choose lighter, standard or bolder headings, navigation and labels."
+msgstr "Veldu léttari, venjulegri eða feitletraðari fyrirsagnir, leiðsögn og merki."
+
+#: resources/views/admin/settings.phtml:229
+msgid "Choose the overall spacing and presentation of the family-tree homepage."
+msgstr "Veldu heildarbil og framsetningu á forsíðu ættartölunnar."
+
+#: resources/views/admin/settings.phtml:225
+msgid "Classic"
+msgstr "Klassískt"
+
+#: PottsModernTheme.php:358
+msgid "Classic blocks"
+msgstr "Klassískar blokkir"
+
+#: PottsModernTheme.php:575
+msgid "Close menu"
+msgstr "Loka valmynd"
+
+#: resources/views/admin/settings.phtml:60
+msgid "Colour preset"
+msgstr "Forstilltur litur"
+
+#: PottsModernTheme.php:343
+msgid "Comfortable"
+msgstr "Þægilegt"
+
+#: PottsModernTheme.php:342 PottsModernTheme.php:347 PottsModernTheme.php:352
+#: resources/views/admin/settings.phtml:226
+msgid "Compact"
+msgstr "Samþjöppuð"
+
+#: PottsModernTheme.php:359
+msgid "Compact dashboard"
+msgstr "Samþjappað stjórnborð"
+
+#: resources/views/admin/settings.phtml:215
+msgid "Content spacing"
+msgstr "Bil milli efnis"
+
+#: resources/views/admin/settings.phtml:206
+msgid "Control how rounded cards, panels and controls appear."
+msgstr "Stjórnaðu því hvernig ávöl spjöld, blokkir og stýringar birtast."
+
+#: resources/views/admin/settings.phtml:216
+msgid "Controls the width of the Family navigator on larger screens."
+msgstr "Stýrir breidd fjölskyldu leiðsögukerfisins á stærri skjám."
+
+#: resources/views/individual-page.phtml:368
+msgid "Countries"
+msgstr "Lönd"
+
+#: resources/views/individual-page.phtml:286
+msgid "Died"
+msgstr "Andlát"
+
+#: resources/views/individual-page.phtml:199
+#, python-format, php-format
+msgid "Died %s (%s)."
+msgstr "Lést %s (%s)."
+
+#: resources/views/individual-page.phtml:195
+#, python-format, php-format
+msgid "Died %s in %s%s."
+msgstr "Lést %s í %s%s."
+
+#: resources/views/individual-page.phtml:201
+#, python-format, php-format
+msgid "Died %s."
+msgstr "Lést %s."
+
+#: resources/views/individual-page.phtml:197
+#, python-format, php-format
+msgid "Died in %s%s."
+msgstr "Lést í %s%s."
+
+#: resources/views/admin/settings.phtml:250
+msgid "Display consistent line icons beside Birth, Marriage, Occupation, Residence and other facts."
+msgstr "Birta samræmdar línutáknmyndir við hliðina á fæðingu, hjónabandi, starfi, búsetu og öðrum staðreyndum."
+
+#: resources/views/admin/settings.phtml:245
+msgid "Display modern icons with labels or use labels alone."
+msgstr "Birta nútímaleg tákn með merkimiðum eða nota eingöngu merkimiða."
+
+#: resources/views/admin/settings.phtml:235
+msgid "Display the homepage introduction above the webtrees blocks."
+msgstr "Birta kynningu á forsíðunni fyrir ofan webtrees blokkirnar."
+
+#: resources/views/admin/settings.phtml:248
+msgid "Display the rotating family photograph banner beneath the menu."
+msgstr "Birtu borða með snúningsmynd af fjölskyldumyndinni fyrir neðan valmyndina."
+
+#: resources/views/admin/settings.phtml:234
+msgid "Enable Potts Modern Experience"
+msgstr "Virkjaðu Potts Nútímalega Upplifun"
+
+#: PottsModernTheme.php:576
+msgid "Explore"
+msgstr "Kanna"
+
+#: resources/views/individual-page.phtml:314
+msgid "Family"
+msgstr "Fjöldskylda"
+
+#: resources/views/admin/settings.phtml:270
+msgid "Family Tree"
+msgstr "Ættartala"
+
+#: resources/views/admin/settings.phtml:276 resources/views/tree-page.phtml:39
+msgid "Family history"
+msgstr "Fjölskyldusaga"
+
+#: PottsModernTheme.php:339
+msgid "Full width"
+msgstr "Full breidd"
+
+#: resources/views/admin/settings.phtml:242
+msgid "Header and navigation"
+msgstr "Haus og leiðsögn"
+
+#: resources/views/admin/settings.phtml:53
+msgid "Heritage Purple"
+msgstr "Arfleifðar Fjólublár"
+
+#: PottsModernTheme.php:312
+msgid "Heritage purple and lilac"
+msgstr "Arfleifðar fjólublár og dauf fjólublár"
+
+#: resources/views/admin/settings.phtml:258
+msgid "Higher contrast"
+msgstr "Meiri birtuskil"
+
+#: resources/views/admin/settings.phtml:222
+msgid "Homepage experience"
+msgstr "Upplifun á forsíðu"
+
+#: resources/views/admin/settings.phtml:229
+msgid "Homepage style"
+msgstr "Stíll heimasíðunnar"
+
+#: PottsModernTheme.php:362
+msgid "Icons and labels"
+msgstr "Táknmyndir og merkimiðar"
+
+#: resources/views/individual-page.phtml:138 resources/views/individual-page.phtml:139
+msgid "Immigrant"
+msgstr "Innflytjandi"
+
+#: resources/views/admin/settings.phtml:204
+msgid "Increase base text across the public site."
+msgstr "Auka grunntexta á opinberu síðunni."
+
+#: resources/views/admin/settings.phtml:257
+msgid "Increase the height of buttons, fields and selectors for easier use."
+msgstr "Auka hæð hnappa, reita og valmöguleika til að auðvelda notkun."
+
+#: resources/views/admin/settings.phtml:216
+msgid "Individual-page sidebar"
+msgstr "Hliðarstika fyrir einstaklingssíðu"
+
+#: resources/views/admin/settings.phtml:281
+msgid "Individuals"
+msgstr "Einstaklingar"
+
+#: resources/views/admin/settings.phtml:237
+msgid "Integrate Potts Hero Slideshow"
+msgstr "Samþætta Potts Hetju Myndsýningu"
+
+#: PottsModernTheme.php:363
+msgid "Labels only"
+msgstr "Aðeins merkimiðar"
+
+#: PottsModernTheme.php:354
+msgid "Large"
+msgstr "Stór"
+
+#: PottsModernTheme.php:319
+msgid "Larger"
+msgstr "Stærri"
+
+#: resources/views/admin/settings.phtml:257
+msgid "Larger controls"
+msgstr "Stærri stýringar"
+
+#: resources/views/admin/settings.phtml:212
+msgid "Layout"
+msgstr "Útlit"
+
+#: resources/views/admin/settings.phtml:230
+msgid "Leave blank to use the family-tree title automatically."
+msgstr "Skiljið eftir autt til að nota ættartrésheitið sjálfkrafa."
+
+#: resources/views/individual-page.phtml:354
+msgid "Life at a glance"
+msgstr "Lífið í hnotskurn"
+
+#: resources/views/individual-page.phtml:268 resources/views/individual-page.phtml:308
+msgid "Life summary"
+msgstr "Lífsyfirlit"
+
+#: PottsModernTheme.php:322
+msgid "Light"
+msgstr "Ljóst"
+
+#: resources/views/individual-page.phtml:356
+msgid "Lived"
+msgstr "Lífaldur"
+
+#: resources/views/individual-page.phtml:190
+#, python-format, php-format
+msgid "Lived in %s country."
+msgid_plural "Lived in %s countries."
+msgstr[0] "Bjó í %s landi."
+msgstr[1] "Bjó í %s löndum."
+
+#: resources/views/admin/settings.phtml:244
+msgid "Main icon size"
+msgstr "Stærð aðaltákns"
+
+#: resources/views/admin/settings.phtml:245
+msgid "Main menu display"
+msgstr "Birting aðalvalmyndar"
+
+#: resources/views/individual-page.phtml:297
+msgid "Married"
+msgstr "Giftist"
+
+#: resources/views/individual-page.phtml:178
+#, python-format, php-format
+msgid "Married %s in %s."
+msgstr "Giftist %s í %s."
+
+#: resources/views/individual-page.phtml:174
+#, python-format, php-format
+msgid "Married %s on %s in %s."
+msgstr "Giftist %s þann %s í %s."
+
+#: resources/views/individual-page.phtml:176
+#, python-format, php-format
+msgid "Married %s on %s."
+msgstr "Giftist %s þann %s."
+
+#: resources/views/individual-page.phtml:180
+#, python-format, php-format
+msgid "Married %s."
+msgstr "Giftist %s."
+
+#: PottsModernTheme.php:573
+msgid "Menu"
+msgstr "Valmynd"
+
+#: PottsModernTheme.php:328
+msgid "Moderately rounded"
+msgstr "Miðlungs ávöl"
+
+#: PottsModernTheme.php:329
+msgid "Mostly square"
+msgstr "Að mestu leyti ferkantað"
+
+#: resources/views/tree-page.phtml:51
+msgid "Name, place or record"
+msgstr "Nafn, staður eða skrár"
+
+#: resources/views/individual-page.phtml:349
+msgid "Names and personal details"
+msgstr "Nöfn og einstaklingsupplýsingar"
+
+#: resources/views/individual-page.phtml:243
+msgid "No known portrait"
+msgstr "Engin þekkt portrettmynd"
+
+#: resources/views/individual-page.phtml:240
+msgid "No photograph available"
+msgstr "Engin ljósmynd tiltæk"
+
+#: PottsModernTheme.php:334
+msgid "None"
+msgstr "Ekkert"
+
+#: resources/views/individual-page.phtml:362
+msgid "Occupations"
+msgstr "Störf"
+
+#: resources/views/admin/settings.phtml:51
+msgid "Ocean Blue"
+msgstr "Hafblár"
+
+#: PottsModernTheme.php:310
+msgid "Ocean blue and mist"
+msgstr "Hafblár og mistur"
+
+#: PottsModernTheme.php:574
+msgid "Open menu"
+msgstr "Opna valmynd"
+
+#: resources/views/admin/settings.phtml:214
+msgid "Page width"
+msgstr "Síðubreidd"
+
+#: resources/views/individual-page.phtml:186
+#, python-format, php-format
+msgid "Parent of %s child."
+msgid_plural "Parent of %s children."
+msgstr[0] "Foreldri %s barns."
+msgstr[1] "Foreldri %s barna."
+
+#: resources/views/individual-page.phtml:317
+msgid "Parents"
+msgstr "Foreldrar"
+
+#: resources/views/admin/settings.phtml:282
+msgid "Place hierarchy"
+msgstr "Staðar stigveldi"
+
+#: resources/views/admin/settings.phtml:50
+msgid "Potts Green"
+msgstr "Potts Grænn"
+
+#: PottsModernTheme.php:91
+msgid "Potts Modern"
+msgstr "Potts Modern"
+
+#: PottsModernTheme.php:204 resources/views/admin/settings.phtml:189
+msgid "Potts Modern theme settings"
+msgstr "Stillingar fyrir Potts Modern þema"
+
+#: PottsModernTheme.php:309
+msgid "Potts green and parchment"
+msgstr "Potts grænn og pergamín"
+
+#: resources/views/admin/settings.phtml:266
+msgid "Preview"
+msgstr "Forskoða"
+
+#: resources/views/admin/settings.phtml:223
+msgid "Quick homepage styles"
+msgstr "Fljótlegir forsíðustílar"
+
+#: resources/views/admin/settings.phtml:259
+msgid "Reduce animation"
+msgstr "Minnka hreyfimynd"
+
+#: resources/views/admin/settings.phtml:259
+msgid "Remove transitions and smooth scrolling throughout the theme."
+msgstr "Fjarlægðu umskipti og mjúka skrunun í gegnum þemað."
+
+#: resources/views/individual-page.phtml:365
+msgid "Residences"
+msgstr "Búsetur"
+
+#: resources/views/admin/settings.phtml:298
+msgid "Restore all Potts Modern settings to their defaults?"
+msgstr "Endurstilla allar stillingar Potts Modern í sjálfgefnar stillingar?"
+
+#: resources/views/admin/settings.phtml:298
+msgid "Restore defaults"
+msgstr "Endurheimta sjálfgefnar stillingar"
+
+#: resources/views/admin/settings.phtml:56
+msgid "Sandstone"
+msgstr "Sandsteinn"
+
+#: PottsModernTheme.php:315
+msgid "Sandstone and walnut"
+msgstr "Sandsteinn og valhneta"
+
+#: resources/views/admin/settings.phtml:299
+msgid "Save settings"
+msgstr "Vista stillingar"
+
+#: resources/views/admin/settings.phtml:294
+msgid "Save when you are happy with the preview."
+msgstr "Vistaðu þegar þú ert ánægð(ur) með forskoðunina."
+
+#: resources/views/admin/settings.phtml:271 resources/views/tree-page.phtml:52
+msgid "Search"
+msgstr "Leita"
+
+#: resources/views/tree-page.phtml:49
+msgid "Search this family tree"
+msgstr "Leita í þessari ættartölu"
+
+#: resources/views/individual-page.phtml:389
+msgid "Share"
+msgstr "Deila"
+
+#: PottsModernTheme.php:581
+msgid "Show fewer events"
+msgstr "Sýna færri atburði"
+
+#: resources/views/admin/settings.phtml:236
+msgid "Show homepage quick search"
+msgstr "Sýna flýtileit á forsíðu"
+
+#: resources/views/admin/settings.phtml:249
+msgid "Show modern dropdown icons"
+msgstr "Sýna nútímaleg fellilistatákn"
+
+#: resources/views/admin/settings.phtml:250
+msgid "Show modern fact and event icons"
+msgstr "Sýna nútímaleg tákn fyrir staðreyndir og atburði"
+
+#: PottsModernTheme.php:580
+msgid "Show more events"
+msgstr "Sýna fleiri viðburði"
+
+#: resources/views/admin/settings.phtml:248
+msgid "Show the family photo strip"
+msgstr "Sýna fjölskyldumyndaræmuna"
+
+#: resources/views/admin/settings.phtml:235
+msgid "Show welcome panel"
+msgstr "Sýna velkomið spjald"
+
+#: PottsModernTheme.php:578
+msgid "Sign in"
+msgstr "Innskráning"
+
+#: PottsModernTheme.php:579
+msgid "Sign out"
+msgstr "Útskráning"
+
+#: resources/views/admin/settings.phtml:54
+msgid "Slate"
+msgstr "Grágrænn"
+
+#: PottsModernTheme.php:313
+msgid "Slate and silver"
+msgstr "Grágrænn og silfur"
+
+#: PottsModernTheme.php:332
+msgid "Soft"
+msgstr "Mjúkt"
+
+#: PottsModernTheme.php:327
+msgid "Soft and rounded"
+msgstr "Mjúkt og ávalt"
+
+#: resources/views/admin/settings.phtml:283
+msgid "Sources"
+msgstr "Heimildir"
+
+#: PottsModernTheme.php:344
+msgid "Spacious"
+msgstr "Rúmgott"
+
+#: resources/views/individual-page.phtml:329 resources/views/individual-page.phtml:371
+msgid "Spouses"
+msgstr "Makar"
+
+#: PottsModernTheme.php:318 PottsModernTheme.php:323 PottsModernTheme.php:337 PottsModernTheme.php:348
+#: PottsModernTheme.php:353
+msgid "Standard"
+msgstr "Staðlað"
+
+#: resources/views/admin/settings.phtml:214
+msgid "Standard suits most screens; Wide gives charts and books more room."
+msgstr "Staðlað hentar flestum skjám; Breitt gefur töflum og bókum meira pláss."
+
+#: PottsModernTheme.php:357 resources/views/admin/settings.phtml:224
+msgid "Storytelling"
+msgstr "Frásögn"
+
+#: resources/views/admin/settings.phtml:258
+msgid "Strengthen borders, links and keyboard focus indicators."
+msgstr "Styrkja ramma, tengla og fókusvísa á lyklaborðinu."
+
+#: PottsModernTheme.php:333
+msgid "Stronger"
+msgstr "Sterkari"
+
+#: resources/views/admin/settings.phtml:55
+msgid "Teal"
+msgstr "Grænblár"
+
+#: PottsModernTheme.php:314
+msgid "Teal and sea glass"
+msgstr "Grænblár og hafgler"
+
+#: resources/views/admin/settings.phtml:204
+msgid "Text size"
+msgstr "Stærð texta"
+
+#: resources/views/admin/settings.phtml:184
+msgid "The Potts Modern defaults have been restored."
+msgstr "Sjálfgefnar stillingar Potts Modern hafa verið endurheimtar."
+
+#: resources/views/admin/settings.phtml:181
+msgid "The Potts Modern settings have been saved."
+msgstr "Stillingar Potts Modern hafa verið vistaðar."
+
+#: resources/views/admin/settings.phtml:264
+msgid "Theme preview"
+msgstr "Forskoðun á þema"
+
+#: resources/views/admin/settings.phtml:190
+msgid ""
+"These settings apply site-wide whenever Potts Modern is the selected theme. Changes are easy to reverse using "
+"Restore defaults."
+msgstr ""
+"Þessar stillingar eiga við um alla síðuna þegar Potts Modern er valið sem þema. Auðvelt er að snúa breytingum við "
+"með því að nota „Endurheimta sjálfgefnar stillingar“."
+
+#: resources/views/admin/settings.phtml:225
+msgid "Traditional webtrees blocks with subtle theme polish."
+msgstr "Hefðbundnar webtrees blokkir með fínlegri útfærslu þema."
+
+#: resources/views/admin/settings.phtml:205
+msgid "Typography weight"
+msgstr "Þyngd leturgerðar"
+
+#: resources/views/admin/settings.phtml:249
+msgid "Use the refreshed line icons in Charts, Lists, Calendar and other dropdown menus."
+msgstr "Notaðu uppfærðu línutáknin í töflum, listum, dagatali og öðrum fellivalmyndum."
+
+#: resources/views/admin/settings.phtml:230
+msgid "Welcome heading"
+msgstr "Velkomin fyrirsögn"
+
+#: resources/views/admin/settings.phtml:231
+msgid "Welcome message"
+msgstr "Velkomin skilaboð"
+
+#: resources/views/admin/settings.phtml:224
+msgid "Welcome panel, quick search and generous spacing."
+msgstr "Velkomið spjald, fljótleg leit og rúmgott bil."
+
+#: resources/views/admin/settings.phtml:237
+msgid ""
+"When the slideshow module is present, move its homepage block above the welcome panel and allow it to span the "
+"page."
+msgstr ""
+"Þegar myndasýningareiningin er til staðar skaltu færa heimasíðublokk hennar fyrir ofan velkomin spjaldið og leyfa "
+"henni að spanna alla síðuna."
+
+#: PottsModernTheme.php:338 PottsModernTheme.php:349
+msgid "Wide"
+msgstr "Breitt"
+
+#: resources/views/individual-page-tabs.phtml:54
+msgid "Person navigation"
+msgstr "Einstaklingsleiðsögn"
+
+#: resources/views/individual-page-tabs.phtml:55
+msgid "Explore this person"
+msgstr "Skoða þennan einstakling"
+
+#: resources/views/individual-page-tabs.phtml:56
+msgid "Choose a section below to explore this person’s story, family, records, photographs and research."
+msgstr "Veldu flipa hér að neðan til að skoða sögu þessa einstaklings, fjölskyldu, skjöl, ljósmyndir og rannsóknir."
