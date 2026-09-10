@@ -41,6 +41,23 @@
     (document.head || document.documentElement).appendChild(style);
   }
 
+  function installFancyImagebarFullWidthFix() {
+    var styleId = 'potts-modern-fancy-imagebar-full-width-fix';
+
+    if (document.getElementById(styleId)) {
+      return;
+    }
+
+    var style = document.createElement('style');
+    style.id = styleId;
+    style.textContent = [
+      '.wt-main-wrapper>.jc-fancy-imagebar{box-sizing:border-box!important;width:100vw!important;max-width:none!important;margin-left:calc(50% - 50vw)!important;margin-right:calc(50% - 50vw)!important;}',
+      '.wt-main-wrapper>.jc-fancy-imagebar>img{display:block!important;width:100%!important;max-width:none!important;height:auto!important;margin:0!important;}'
+    ].join('');
+
+    (document.head || document.documentElement).appendChild(style);
+  }
+
   function markStructuralHomepage() {
     var homepage = document.querySelector('[data-potts-homepage]');
     if (!(homepage instanceof HTMLElement)) {
@@ -91,6 +108,7 @@
   function applyFixes(root) {
     installFamilyChartDropdownFix();
     installBiographyDropdownFix();
+    installFancyImagebarFullWidthFix();
     markStructuralHomepage();
     preserveModalFormOwnership(root || document);
   }
