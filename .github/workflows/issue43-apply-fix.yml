@@ -27,8 +27,8 @@ jobs:
           path = Path('resources/views/individual-page.phtml')
           text = path.read_text(encoding='utf-8')
 
-          old_row = """        $marriage_rows->push([\n            'spouse' => $spouse,\n            'date'   => $marriage?->date(),\n            'place'  => $marriage?->place()->gedcomName() ?? '',\n        ]);"""
-          new_row = """        $marriage_rows->push([\n            'spouse'  => $spouse,\n            'married' => $marriage instanceof Fact,\n            'date'    => $marriage?->date(),\n            'place'   => $marriage?->place()->gedcomName() ?? '',\n        ]);"""
+          old_row = "        $marriage_rows->push([\n            'spouse' => $spouse,\n            'date'   => $marriage?->date(),\n            'place'  => $marriage?->place()->gedcomName() ?? '',\n        ]);"
+          new_row = "        $marriage_rows->push([\n            'spouse'  => $spouse,\n            'married' => $marriage instanceof Fact,\n            'date'    => $marriage?->date(),\n            'place'   => $marriage?->place()->gedcomName() ?? '',\n        ]);"
           if text.count(old_row) != 1:
               raise SystemExit('Expected spouse relationship row block once')
           text = text.replace(old_row, new_row, 1)
@@ -42,33 +42,35 @@ jobs:
           if end == -1:
               raise SystemExit('Could not find end of life-summary relationship block')
 
-          new_summary = """if ($marriage_rows->isNotEmpty()) {
-    $summary_relationship = $marriage_rows->first(static fn ($row): bool => is_array($row) && (bool) ($row['married'] ?? false));
-    if (!is_array($summary_relationship)) {
-        $summary_relationship = $marriage_rows->first();
-    }
-
-    if (is_array($summary_relationship) && $summary_relationship['spouse'] instanceof Individual) {
-        $spouse_name = $plain_text($summary_relationship['spouse']->fullName());
-        $is_married = (bool) ($summary_relationship['married'] ?? false);
-        $marriage_date_text = $summary_relationship['date']?->isOK() ? $plain_text($summary_relationship['date']->display()) : '';
-        $marriage_place_text = trim((string) $summary_relationship['place']);
-
-        if ($is_married) {
-            if ($marriage_date_text !== '' && $marriage_place_text !== '') {
-                $life_summary[] = I18N::translate('Married %s on %s in %s.', $spouse_name, $marriage_date_text, $marriage_place_text);
-            } elseif ($marriage_date_text !== '') {
-                $life_summary[] = I18N::translate('Married %s on %s.', $spouse_name, $marriage_date_text);
-            } elseif ($marriage_place_text !== '') {
-                $life_summary[] = I18N::translate('Married %s in %s.', $spouse_name, $marriage_place_text);
-            } else {
-                $life_summary[] = I18N::translate('Married %s.', $spouse_name);
-            }
-        } else {
-            $life_summary[] = I18N::translate('Partner: %s.', $spouse_name);
-        }
-    }
-}"""
+          new_summary = "\n".join([
+              "if ($marriage_rows->isNotEmpty()) {",
+              "    $summary_relationship = $marriage_rows->first(static fn ($row): bool => is_array($row) && (bool) ($row['married'] ?? false));",
+              "    if (!is_array($summary_relationship)) {",
+              "        $summary_relationship = $marriage_rows->first();",
+              "    }",
+              "",
+              "    if (is_array($summary_relationship) && $summary_relationship['spouse'] instanceof Individual) {",
+              "        $spouse_name = $plain_text($summary_relationship['spouse']->fullName());",
+              "        $is_married = (bool) ($summary_relationship['married'] ?? false);",
+              "        $marriage_date_text = $summary_relationship['date']?->isOK() ? $plain_text($summary_relationship['date']->display()) : '';",
+              "        $marriage_place_text = trim((string) $summary_relationship['place']);",
+              "",
+              "        if ($is_married) {",
+              "            if ($marriage_date_text !== '' && $marriage_place_text !== '') {",
+              "                $life_summary[] = I18N::translate('Married %s on %s in %s.', $spouse_name, $marriage_date_text, $marriage_place_text);",
+              "            } elseif ($marriage_date_text !== '') {",
+              "                $life_summary[] = I18N::translate('Married %s on %s.', $spouse_name, $marriage_date_text);",
+              "            } elseif ($marriage_place_text !== '') {",
+              "                $life_summary[] = I18N::translate('Married %s in %s.', $spouse_name, $marriage_place_text);",
+              "            } else {",
+              "                $life_summary[] = I18N::translate('Married %s.', $spouse_name);",
+              "            }",
+              "        } else {",
+              "            $life_summary[] = I18N::translate('Partner: %s.', $spouse_name);",
+              "        }",
+              "    }",
+              "}",
+          ])
           text = text[:start] + new_summary + text[end:]
 
           old_label = "<span class=\"potts-vital-label\"><?= I18N::translate('Married') ?></span>"
