@@ -1,0 +1,102 @@
+name: Protect update feed
+
+on:
+  release:
+    types: [published]
+  pull_request:
+    paths:
+      - latest-version.txt
+      - .github/workflows/protect-update-feed.yml
+  push:
+    branches:
+      - main
+    paths:
+      - latest-version.txt
+      - .github/workflows/protect-update-feed.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-release:
+    if: github.event_name == 'release'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Update feed from published release
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG='${{ github.event.release.tag_name }}'
+          VERSION="${TAG#v}"
+
+          if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+([+-][A-Za-z0-9.-]+)?$ ]]; then
+            echo "Release tag '$TAG' is not a supported module version."
+            exit 1
+          fi
+
+          printf '%s\n' "$VERSION" > latest-version.txt
+
+          if git diff --quiet -- latest-version.txt; then
+            echo "latest-version.txt already advertises $VERSION"
+            exit 0
+          fi
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add latest-version.txt
+          git commit -m "Advertise published ${VERSION} release"
+          git push origin HEAD:main
+
+  validate-feed:
+    if: github.event_name != 'release'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Verify advertised version has a published GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION="$(tr -d '\r\n' < latest-version.txt)"
+
+          if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+([+-][A-Za-z0-9.-]+)?$ ]]; then
+            echo "latest-version.txt contains an invalid version: '$VERSION'"
+            exit 1
+          fi
+
+          FOUND='false'
+          for TAG in "v${VERSION}" "${VERSION}"; do
+            STATUS="$(curl --silent --show-error --location \
+              --output release.json \
+              --write-out '%{http_code}' \
+              --header 'Accept: application/vnd.github+json' \
+              --header "Authorization: Bearer ${GH_TOKEN}" \
+              --header 'X-GitHub-Api-Version: 2022-11-28' \
+              "https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/${TAG}")"
+
+            if [[ "$STATUS" == '200' ]]; then
+              DRAFT="$(jq -r '.draft' release.json)"
+              PUBLISHED_AT="$(jq -r '.published_at // empty' release.json)"
+
+              if [[ "$DRAFT" == 'false' && -n "$PUBLISHED_AT" ]]; then
+                echo "Update feed is valid: ${VERSION} -> ${TAG}"
+                FOUND='true'
+                break
+              fi
+            fi
+          done
+
+          if [[ "$FOUND" != 'true' ]]; then
+            echo "latest-version.txt advertises ${VERSION}, but no matching published GitHub release exists."
+            echo "Publish the release first. The release-published workflow will then update the feed automatically."
+            exit 1
+          fi
