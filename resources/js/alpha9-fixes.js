@@ -71,7 +71,7 @@
       '.wt-site-title.potts-tree-title-link>a{color:inherit!important;text-decoration:none!important;}',
       '.wt-site-title.potts-tree-title-link>a:hover,.wt-site-title.potts-tree-title-link>a:focus-visible{text-decoration:underline!important;text-underline-offset:.18em;}',
       '.potts-mobile-nav-toggle,.potts-mobile-nav-panel{display:none;}',
-      '@media(max-width:991.98px){',
+      '@media(max-width:1199.98px){',
       '.wt-header-wrapper{position:relative!important;overflow:visible!important;z-index:1030!important;}',
       '.wt-header-container{position:relative!important;overflow:visible!important;}',
       '.wt-header-content.potts-mobile-header-ready{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;align-items:center!important;gap:.65rem!important;position:relative!important;overflow:visible!important;}',
@@ -104,7 +104,7 @@
       '.potts-mobile-nav-panel .potts-nav-icon{flex:0 0 auto!important;}',
       'body.potts-mobile-nav-active{overflow:hidden!important;}',
       '}',
-      '@media(min-width:992px){.potts-mobile-nav-toggle,.potts-mobile-nav-panel{display:none!important;}}'
+      '@media(min-width:1200px){.potts-mobile-nav-toggle,.potts-mobile-nav-panel{display:none!important;}}'
     ].join('');
 
     (document.head || document.documentElement).appendChild(style);
@@ -242,7 +242,7 @@
       var open = button.getAttribute('aria-expanded') !== 'true';
       button.setAttribute('aria-expanded', open ? 'true' : 'false');
       panel.classList.toggle('potts-mobile-nav-open', open);
-      document.body.classList.toggle('potts-mobile-nav-active', open && window.matchMedia('(max-width:991.98px)').matches);
+      document.body.classList.toggle('potts-mobile-nav-active', open && window.matchMedia('(max-width:1199.98px)').matches);
     });
 
     panel.addEventListener('click', function (event) {
@@ -266,7 +266,7 @@
     });
 
     window.addEventListener('resize', function () {
-      if (!window.matchMedia('(max-width:991.98px)').matches) {
+      if (!window.matchMedia('(max-width:1199.98px)').matches) {
         closeMobileNavigation(header);
       }
     });
