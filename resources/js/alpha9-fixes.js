@@ -3,6 +3,7 @@
   'use strict';
 
   var modalFormIdCounter = 0;
+  var unifiedResponsiveNavigation = null;
 
   function installFamilyChartDropdownFix() {
     var styleId = 'potts-modern-family-chart-dropdown-fix';
@@ -70,41 +71,38 @@
     style.textContent = [
       '.wt-site-title.potts-tree-title-link>a{color:inherit!important;text-decoration:none!important;}',
       '.wt-site-title.potts-tree-title-link>a:hover,.wt-site-title.potts-tree-title-link>a:focus-visible{text-decoration:underline!important;text-underline-offset:.18em;}',
-      '.potts-mobile-nav-toggle,.potts-mobile-nav-panel{display:none;}',
       '@media(min-width:768px) and (max-width:1199.98px){',
       '.wt-header-wrapper{position:relative!important;overflow:visible!important;z-index:1030!important;}',
-      '.wt-header-container{position:relative!important;overflow:visible!important;}',
-      '.wt-header-content.potts-mobile-header-ready{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;align-items:center!important;gap:.65rem!important;position:relative!important;overflow:visible!important;}',
-      '.wt-header-content.potts-mobile-header-ready>.wt-accessibility-links{position:absolute!important;}',
-      '.wt-header-content.potts-mobile-header-ready>.wt-site-logo,',
-      '.wt-header-content.potts-mobile-header-ready>.wt-header-search,',
-      '.wt-header-content.potts-mobile-header-ready>.wt-secondary-navigation,',
-      '.wt-header-content.potts-mobile-header-ready>.wt-primary-navigation{display:none!important;}',
-      '.wt-header-content.potts-mobile-header-ready>.wt-site-title{display:block!important;grid-column:1!important;min-width:0!important;width:auto!important;max-width:none!important;margin:0!important;padding:.65rem .25rem!important;white-space:normal!important;overflow-wrap:anywhere!important;}',
-      '.wt-header-content.potts-mobile-header-ready>.potts-mobile-nav-toggle{display:inline-flex!important;grid-column:2!important;align-items:center!important;justify-content:center!important;width:46px!important;height:46px!important;margin-right:.25rem!important;padding:0!important;border:1px solid rgba(255,255,255,.32)!important;border-radius:10px!important;background:rgba(255,255,255,.10)!important;color:#fff!important;box-shadow:none!important;}',
-      '.wt-header-content.potts-mobile-header-ready>.potts-mobile-nav-toggle:hover,.wt-header-content.potts-mobile-header-ready>.potts-mobile-nav-toggle:focus-visible{background:rgba(255,255,255,.20)!important;outline:2px solid rgba(255,255,255,.7)!important;outline-offset:2px!important;}',
-      '.potts-mobile-nav-toggle-lines,.potts-mobile-nav-toggle-lines::before,.potts-mobile-nav-toggle-lines::after{display:block;width:22px;height:2px;background:currentColor;border-radius:999px;content:"";transition:transform .18s ease,opacity .18s ease;}',
-      '.potts-mobile-nav-toggle-lines{position:relative;}',
-      '.potts-mobile-nav-toggle-lines::before{position:absolute;left:0;top:-7px;}',
-      '.potts-mobile-nav-toggle-lines::after{position:absolute;left:0;top:7px;}',
-      '.potts-mobile-nav-toggle[aria-expanded="true"] .potts-mobile-nav-toggle-lines{background:transparent;}',
-      '.potts-mobile-nav-toggle[aria-expanded="true"] .potts-mobile-nav-toggle-lines::before{top:0;transform:rotate(45deg);}',
-      '.potts-mobile-nav-toggle[aria-expanded="true"] .potts-mobile-nav-toggle-lines::after{top:0;transform:rotate(-45deg);}',
-      '.wt-header-content.potts-mobile-header-ready>.potts-mobile-nav-panel{display:none;grid-column:1 / -1!important;position:absolute!important;top:100%!important;left:0!important;right:0!important;z-index:1100!important;max-height:calc(100vh - 72px)!important;overflow:auto!important;margin:0!important;padding:.7rem!important;background:var(--potts-bg-2,#fff)!important;color:var(--potts-ink,#26352e)!important;border:1px solid rgba(0,0,0,.12)!important;border-radius:0 0 14px 14px!important;box-shadow:0 18px 38px rgba(0,0,0,.22)!important;}',
-      '.wt-header-content.potts-mobile-header-ready>.potts-mobile-nav-panel.potts-mobile-nav-open{display:block!important;}',
-      '.potts-mobile-nav-panel .potts-mobile-nav-section+.potts-mobile-nav-section{margin-top:.7rem;padding-top:.7rem;border-top:1px solid rgba(0,0,0,.10);}',
-      '.potts-mobile-nav-panel .nav{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:.15rem!important;width:100%!important;}',
-      '.potts-mobile-nav-panel .nav-item{display:block!important;width:100%!important;margin:0!important;}',
-      '.potts-mobile-nav-panel .nav-link,.potts-mobile-nav-panel .dropdown-item{display:flex!important;align-items:center!important;width:100%!important;min-height:44px!important;margin:0!important;padding:.65rem .75rem!important;color:var(--potts-ink,#26352e)!important;white-space:normal!important;text-align:left!important;}',
-      '.potts-mobile-nav-panel .dropdown-menu{position:static!important;inset:auto!important;transform:none!important;float:none!important;width:100%!important;max-width:none!important;margin:.15rem 0 .35rem!important;padding:.2rem!important;box-shadow:none!important;border:1px solid rgba(0,0,0,.10)!important;background:rgba(255,255,255,.55)!important;}',
-      '.potts-mobile-nav-panel .dropdown-menu:not(.show){display:none!important;}',
-      '.potts-mobile-nav-panel .dropdown-menu.show{display:block!important;}',
-      '.potts-mobile-nav-panel .wt-header-search-form{display:flex!important;width:100%!important;margin:0!important;}',
-      '.potts-mobile-nav-panel .wt-header-search-form .input-group{width:100%!important;}',
-      '.potts-mobile-nav-panel .potts-nav-icon{flex:0 0 auto!important;}',
-      'body.potts-mobile-nav-active{overflow:hidden!important;}',
+      '.wt-header-container,.wt-header-content{position:relative!important;overflow:visible!important;}',
+      '.wt-header-content{display:grid!important;grid-template-columns:minmax(0,1fr)!important;align-items:center!important;}',
+      '.wt-header-content>.wt-accessibility-links{position:absolute!important;}',
+      '.wt-header-content>.wt-site-logo{display:none!important;}',
+      '.wt-header-content>.wt-site-title{display:block!important;min-width:0!important;width:auto!important;max-width:none!important;margin:0!important;padding:.65rem 4.25rem .65rem .25rem!important;white-space:normal!important;overflow-wrap:anywhere!important;}',
+      '.wt-header-wrapper>.potts-mobile-menu-toggle{display:inline-grid!important;position:absolute!important;z-index:1040!important;top:50%!important;right:max(.8rem,env(safe-area-inset-right))!important;width:46px!important;height:46px!important;place-items:center!important;margin:0!important;padding:0!important;border:1px solid rgba(255,255,255,.32)!important;border-radius:10px!important;background:rgba(255,255,255,.10)!important;color:#fff!important;box-shadow:none!important;transform:translateY(-50%)!important;}',
+      '.wt-header-wrapper>.potts-mobile-menu-toggle:hover,.wt-header-wrapper>.potts-mobile-menu-toggle:focus-visible{background:rgba(255,255,255,.20)!important;outline:2px solid rgba(255,255,255,.7)!important;outline-offset:2px!important;}',
+      '.potts-mobile-menu-layer[hidden]{display:none!important;}',
+      '.potts-mobile-menu-layer:not([hidden]){display:block!important;position:fixed!important;inset:0!important;z-index:20000!important;}',
+      '.potts-mobile-menu-backdrop{display:block!important;position:absolute!important;inset:0!important;width:100%!important;height:100%!important;margin:0!important;padding:0!important;border:0!important;background:rgba(20,28,31,.50)!important;opacity:0!important;transition:opacity 180ms ease!important;}',
+      '.potts-mobile-menu-drawer{display:flex!important;position:absolute!important;top:0!important;right:0!important;bottom:0!important;width:min(420px,92vw)!important;max-width:92vw!important;flex-direction:column!important;overflow:hidden!important;margin:0!important;padding:0!important;background:var(--potts-bg-2,#fffdf8)!important;color:var(--potts-ink,#26343c)!important;box-shadow:-18px 0 40px rgba(20,28,31,.24)!important;transform:translateX(102%)!important;transition:transform 180ms ease!important;}',
+      '.potts-mobile-menu-layer.is-open .potts-mobile-menu-backdrop{opacity:1!important;}',
+      '.potts-mobile-menu-layer.is-open .potts-mobile-menu-drawer{transform:translateX(0)!important;}',
+      '.potts-mobile-menu-header{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:1rem!important;min-height:64px!important;padding:.85rem 1rem!important;border-bottom:1px solid rgba(61,83,64,.16)!important;background:var(--potts-green-soft,#e3eadf)!important;}',
+      '.potts-mobile-menu-close{display:inline-grid!important;width:42px!important;height:42px!important;place-items:center!important;border:0!important;border-radius:10px!important;background:rgba(255,255,255,.65)!important;color:inherit!important;}',
+      '.potts-mobile-menu-body{display:flex!important;min-height:0!important;flex:1 1 auto!important;flex-direction:column!important;gap:.85rem!important;overflow:auto!important;padding:1rem!important;}',
+      '.potts-unified-mobile-host{display:flex!important;flex-direction:column!important;gap:.85rem!important;width:100%!important;}',
+      '.potts-unified-mobile-host>.potts-mobile-menu-section{display:block!important;width:100%!important;margin:0!important;padding:0!important;}',
+      '.potts-unified-search .wt-header-search,.potts-unified-search .wt-header-search-form,.potts-unified-search .input-group{display:flex!important;width:100%!important;max-width:none!important;margin:0!important;}',
+      '.potts-unified-mobile-host .wt-secondary-navigation,.potts-unified-mobile-host .wt-primary-navigation{display:block!important;width:100%!important;max-width:none!important;margin:0!important;padding:0!important;}',
+      '.potts-unified-mobile-host .nav{display:flex!important;width:100%!important;flex-direction:column!important;align-items:stretch!important;gap:.35rem!important;margin:0!important;padding:0!important;}',
+      '.potts-unified-mobile-host .nav-item{display:block!important;width:100%!important;margin:0!important;}',
+      '.potts-unified-mobile-host .nav-link,.potts-unified-mobile-host .dropdown-item{display:flex!important;align-items:center!important;width:100%!important;min-width:0!important;min-height:44px!important;margin:0!important;padding:.65rem .75rem!important;border-radius:8px!important;color:var(--potts-ink,#26343c)!important;white-space:normal!important;text-align:left!important;}',
+      '.potts-unified-mobile-host .dropdown-toggle::after{margin-left:auto!important;}',
+      '.potts-unified-mobile-host .dropdown-menu{position:static!important;inset:auto!important;float:none!important;width:100%!important;max-width:none!important;margin:.15rem 0 .35rem!important;padding:.2rem!important;border:1px solid rgba(0,0,0,.10)!important;background:rgba(255,255,255,.72)!important;box-shadow:none!important;transform:none!important;}',
+      '.potts-unified-mobile-host .dropdown-menu:not(.show){display:none!important;}',
+      '.potts-unified-mobile-host .dropdown-menu.show{display:block!important;}',
+      'body.potts-mobile-menu-open{overflow:hidden!important;overscroll-behavior:none;}',
       '}',
-      '@media(min-width:1200px){.potts-mobile-nav-toggle,.potts-mobile-nav-panel{display:none!important;}}'
+      '@media(min-width:768px) and (max-width:1199.98px) and (prefers-reduced-motion:reduce){.potts-mobile-menu-drawer,.potts-mobile-menu-backdrop{transition:none!important;}}'
     ].join('');
 
     (document.head || document.documentElement).appendChild(style);
@@ -158,122 +156,240 @@
     title.classList.add('potts-tree-title-link');
   }
 
-  function cloneHeaderSection(source, className) {
-    if (!source) {
-      return null;
+  function positionMarkers(container) {
+    if (!container) {
+      return [];
     }
 
-    var section = document.createElement('div');
-    section.className = 'potts-mobile-nav-section ' + className;
-
-    var clone = source.cloneNode(true);
-    clone.removeAttribute('id');
-
-    clone.querySelectorAll('[id]').forEach(function (element) {
-      element.removeAttribute('id');
+    return Array.from(container.childNodes).filter(function (node) {
+      return node.nodeType === Node.COMMENT_NODE && String(node.nodeValue || '') === 'potts-mobile-menu-position';
     });
-
-    clone.querySelectorAll('label[for]').forEach(function (label) {
-      label.removeAttribute('for');
-    });
-
-    section.appendChild(clone);
-    return section;
   }
 
-  function closeMobileNavigation(header) {
-    if (!header) {
+  function insertAfterMarker(node, marker, fallback) {
+    if (!node) {
       return;
     }
 
-    var button = header.querySelector(':scope > .potts-mobile-nav-toggle');
-    var panel = header.querySelector(':scope > .potts-mobile-nav-panel');
+    if (marker && marker.parentNode) {
+      marker.parentNode.insertBefore(node, marker.nextSibling);
+    } else if (fallback) {
+      fallback.appendChild(node);
+    }
+  }
 
-    if (!button || !panel) {
-      return;
+  function closeExistingMobileDrawer(toggle, layer) {
+    if (toggle) {
+      toggle.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
     }
 
-    button.setAttribute('aria-expanded', 'false');
-    panel.classList.remove('potts-mobile-nav-open');
-    document.body.classList.remove('potts-mobile-nav-active');
+    if (layer) {
+      layer.classList.remove('is-open');
+      layer.hidden = true;
+    }
+
+    document.body.classList.remove('potts-mobile-menu-open');
   }
 
   function installResponsiveHeader() {
     installResponsiveHeaderStyles();
     makeTreeTitleClickable();
 
-    var header = document.querySelector('.wt-header-wrapper .wt-header-content');
-    if (!header || header.classList.contains('potts-mobile-header-ready')) {
-      return;
+    if (unifiedResponsiveNavigation) {
+      unifiedResponsiveNavigation.refresh();
+      return true;
     }
 
-    var genealogy = header.querySelector('.wt-primary-navigation');
-    var user = header.querySelector('.wt-secondary-navigation');
-    var search = header.querySelector('.wt-header-search');
+    var wrapper = document.querySelector('.wt-header-wrapper');
+    var header = wrapper ? wrapper.querySelector('.wt-header-content') : null;
+    var drawer = document.querySelector('.potts-mobile-menu-drawer');
+    var drawerBody = drawer ? drawer.querySelector('.potts-mobile-menu-body') : null;
+    var layer = document.querySelector('.potts-mobile-menu-layer');
+    var toggle = wrapper ? wrapper.querySelector(':scope > .potts-mobile-menu-toggle') : null;
 
-    if (!genealogy && !user && !search) {
-      return;
+    if (!wrapper || !header || !drawer || !drawerBody || !layer || !toggle) {
+      return false;
     }
 
-    var button = document.createElement('button');
-    button.type = 'button';
-    button.className = 'potts-mobile-nav-toggle';
-    button.setAttribute('aria-expanded', 'false');
-    button.setAttribute('aria-label', 'Menu');
-    button.innerHTML = '<span class="potts-mobile-nav-toggle-lines" aria-hidden="true"></span>';
+    var search = header.querySelector(':scope > .wt-header-search');
+    var user = header.querySelector(':scope > .wt-secondary-navigation');
+    var genealogy = header.querySelector(':scope > .wt-primary-navigation');
+    var structuralNodes = [search, user, genealogy].filter(Boolean);
 
-    var panel = document.createElement('div');
-    panel.className = 'potts-mobile-nav-panel';
+    if (structuralNodes.length === 0) {
+      return false;
+    }
 
-    var searchSection = cloneHeaderSection(search, 'potts-mobile-search');
-    var genealogySection = cloneHeaderSection(genealogy, 'potts-mobile-genealogy');
-    var userSection = cloneHeaderSection(user, 'potts-mobile-user');
+    var structuralPositions = structuralNodes.map(function (node) {
+      var marker = document.createComment('potts-unified-header-position');
+      node.parentNode.insertBefore(marker, node);
+      return { node: node, marker: marker };
+    });
 
-    [searchSection, genealogySection, userSection].forEach(function (section) {
-      if (section) {
-        panel.appendChild(section);
+    var host = document.createElement('div');
+    host.className = 'potts-unified-mobile-host';
+    host.hidden = true;
+
+    var searchSection = document.createElement('section');
+    searchSection.className = 'potts-mobile-menu-section potts-mobile-menu-utility potts-unified-search';
+
+    var userSection = document.createElement('section');
+    userSection.className = 'potts-mobile-menu-section potts-mobile-menu-utility potts-unified-user';
+
+    var genealogySection = document.createElement('section');
+    genealogySection.className = 'potts-mobile-menu-section potts-mobile-menu-primary potts-unified-genealogy';
+
+    var extraSection = document.createElement('section');
+    extraSection.className = 'potts-mobile-menu-section potts-mobile-menu-utility potts-unified-extra';
+    var extraList = document.createElement('ul');
+    extraList.className = 'potts-mobile-account-menu';
+    extraSection.appendChild(extraList);
+
+    [searchSection, userSection, genealogySection, extraSection].forEach(function (section) {
+      host.appendChild(section);
+    });
+    drawerBody.appendChild(host);
+
+    var compactQuery = window.matchMedia('(max-width:1199.98px)');
+    var phoneQuery = window.matchMedia('(max-width:767.98px)');
+    var refreshTimer = 0;
+
+    function restoreLegacyMobileMoves() {
+      var searchForm = document.querySelector('.potts-mobile-menu-search');
+      if (search && searchForm && !search.contains(searchForm)) {
+        insertAfterMarker(searchForm, positionMarkers(search)[0], search);
       }
-    });
 
-    button.addEventListener('click', function (event) {
-      event.preventDefault();
-      event.stopPropagation();
-
-      var open = button.getAttribute('aria-expanded') !== 'true';
-      button.setAttribute('aria-expanded', open ? 'true' : 'false');
-      panel.classList.toggle('potts-mobile-nav-open', open);
-      document.body.classList.toggle('potts-mobile-nav-active', open && window.matchMedia('(min-width:768px) and (max-width:1199.98px)').matches);
-    });
-
-    panel.addEventListener('click', function (event) {
-      var link = event.target.closest('a[href]');
-      if (link && !link.matches('[data-bs-toggle="dropdown"], .dropdown-toggle')) {
-        closeMobileNavigation(header);
+      var genealogyMenu = document.querySelector('.wt-genealogy-menu');
+      if (genealogy && genealogyMenu && !genealogy.contains(genealogyMenu)) {
+        insertAfterMarker(genealogyMenu, positionMarkers(genealogy)[0], genealogy);
       }
-    });
 
-    document.addEventListener('click', function (event) {
-      if (!header.contains(event.target)) {
-        closeMobileNavigation(header);
+      var userMenu = user ? user.querySelector('.wt-user-menu') : null;
+      var legacyAccountMenu = drawer.querySelector('.potts-mobile-menu-body > .potts-mobile-menu-utility .potts-mobile-account-menu');
+      if (userMenu && legacyAccountMenu && legacyAccountMenu !== extraList) {
+        var markers = positionMarkers(userMenu);
+        var movedRoots = Array.from(legacyAccountMenu.children);
+        var restoreCount = Math.min(markers.length, movedRoots.length);
+
+        for (var i = 0; i < restoreCount; i += 1) {
+          insertAfterMarker(movedRoots[i], markers[i], userMenu);
+        }
+
+        Array.from(legacyAccountMenu.children).forEach(function (remaining) {
+          if (remaining.querySelector('.potts-mobile-menu-sign-out') && !remaining.querySelector('.potts-history-global')) {
+            remaining.remove();
+          } else {
+            extraList.appendChild(remaining);
+          }
+        });
       }
-    });
 
-    document.addEventListener('keydown', function (event) {
-      if (event.key === 'Escape') {
-        closeMobileNavigation(header);
-        button.focus();
+      drawerBody.querySelectorAll(':scope > .potts-mobile-menu-sign-in').forEach(function (clone) {
+        clone.remove();
+      });
+
+      document.querySelectorAll('.potts-mobile-menu-auth-original').forEach(function (original) {
+        original.classList.remove('potts-mobile-menu-auth-original');
+      });
+
+      drawerBody.querySelectorAll(':scope > .potts-mobile-menu-primary, :scope > .potts-mobile-menu-utility').forEach(function (section) {
+        if (!host.contains(section)) {
+          section.hidden = true;
+        }
+      });
+
+      document.querySelectorAll('.potts-mobile-menu-vacant').forEach(function (element) {
+        element.classList.remove('potts-mobile-menu-vacant');
+      });
+    }
+
+    function moveStructuralNavigation() {
+      if (!compactQuery.matches) {
+        return;
       }
-    });
 
-    window.addEventListener('resize', function () {
-      if (!window.matchMedia('(min-width:768px) and (max-width:1199.98px)').matches) {
-        closeMobileNavigation(header);
+      restoreLegacyMobileMoves();
+
+      if (search) {
+        var searchForm = search.querySelector('form');
+        if (searchForm) {
+          searchForm.classList.add('potts-mobile-menu-search');
+        }
+        searchSection.appendChild(search);
       }
-    });
+      if (user) {
+        userSection.appendChild(user);
+      }
+      if (genealogy) {
+        genealogySection.appendChild(genealogy);
+      }
 
-    header.appendChild(button);
-    header.appendChild(panel);
-    header.classList.add('potts-mobile-header-ready');
+      extraSection.hidden = extraList.children.length === 0;
+      host.hidden = false;
+      document.body.classList.add('potts-unified-mobile-navigation-ready');
+    }
+
+    function restoreDesktopNavigation() {
+      closeExistingMobileDrawer(toggle, layer);
+
+      structuralPositions.forEach(function (position) {
+        if (position.marker.parentNode) {
+          position.marker.parentNode.insertBefore(position.node, position.marker.nextSibling);
+        }
+      });
+
+      host.hidden = true;
+      document.body.classList.remove('potts-unified-mobile-navigation-ready');
+    }
+
+    function refresh() {
+      window.clearTimeout(refreshTimer);
+      refreshTimer = window.setTimeout(function () {
+        if (compactQuery.matches) {
+          moveStructuralNavigation();
+        } else {
+          restoreDesktopNavigation();
+        }
+      }, 0);
+    }
+
+    function onPhoneBoundaryChange() {
+      // The original 1.1 mobile drawer moves individual translated menu items
+      // at 767.98px. Re-normalise immediately afterwards so one structural
+      // webtrees user menu owns both phone and tablet widths.
+      window.setTimeout(refresh, 0);
+      window.setTimeout(refresh, 80);
+    }
+
+    if (typeof compactQuery.addEventListener === 'function') {
+      compactQuery.addEventListener('change', refresh);
+    } else {
+      compactQuery.addListener(refresh);
+    }
+
+    if (typeof phoneQuery.addEventListener === 'function') {
+      phoneQuery.addEventListener('change', onPhoneBoundaryChange);
+    } else {
+      phoneQuery.addListener(onPhoneBoundaryChange);
+    }
+
+    unifiedResponsiveNavigation = {
+      refresh: refresh,
+      restore: restoreDesktopNavigation
+    };
+
+    refresh();
+    return true;
+  }
+
+  function scheduleResponsiveHeaderInstall() {
+    [0, 40, 120, 300, 700].forEach(function (delay) {
+      window.setTimeout(function () {
+        installResponsiveHeader();
+      }, delay);
+    });
   }
 
   function markStructuralHomepage() {
@@ -327,7 +443,9 @@
     installFamilyChartDropdownFix();
     installBiographyDropdownFix();
     installFancyImagebarFullWidthFix();
-    installResponsiveHeader();
+    installResponsiveHeaderStyles();
+    makeTreeTitleClickable();
+    scheduleResponsiveHeaderInstall();
     markStructuralHomepage();
     preserveModalFormOwnership(root || document);
   }
