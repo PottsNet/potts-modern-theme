@@ -139,6 +139,26 @@ main.container-fluid,
   width: min(var(--potts-page-width), calc(100vw - 2rem)) !important;
 }
 
+/* Separate the place map from the tabs or overview links below it.
+   This wrapper is shared by standard webtrees and Vesta. */
+#place-hierarchy .wt-place-hierarchy-wrapper {
+  margin-bottom: 1.5rem;
+}
+
+/* Keep tab navigation close to its content without touching the panel. */
+#place-hierarchy .nav-tabs {
+  margin-bottom: .75rem;
+}
+
+#place-hierarchy .nav-tabs + .tab-content {
+  margin-top: 0 !important;
+}
+
+/* Separate the final view-switching links from the results or place list. */
+#place-hierarchy > .container > div.text-center:last-child {
+  margin-top: 1.5rem;
+}
+
 
 /* ------------------------------------------------------------
    Version 1.0.36
