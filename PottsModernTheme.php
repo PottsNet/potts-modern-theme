@@ -161,6 +161,7 @@ final class PottsModernTheme extends AbstractModule implements ModuleThemeInterf
         View::registerCustomView('::tree-page', 'potts-modern::tree-page');
         View::registerCustomView('::individual-page', 'potts-modern::individual-page');
         View::registerCustomView('::individual-page-tabs', 'potts-modern::individual-page-tabs');
+        View::registerCustomView('::lists/datatables-attributes', 'potts-modern::lists/datatables-attributes');
 
         View::pushunique('styles');
         echo $this->iconStyle();

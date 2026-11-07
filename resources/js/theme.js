@@ -478,12 +478,12 @@
     // styled reliably and independently from the rest of the summary cell.
     const candidates = Array.from(cell.querySelectorAll('div, span, strong, b'));
     const exactElement = candidates.find(function (candidate) {
-      if (candidate.closest('a, button, .potts-fact-actions')) {
+      if (candidate.children.length !== 0 || candidate.closest('a, button, .potts-fact-actions')) {
         return false;
       }
 
-      const value = cleanRelationshipLabel(candidate.innerText || candidate.textContent || '');
-      return value === label && candidate.children.length === 0;
+      const value = cleanRelationshipLabel(candidate.textContent || '');
+      return value === label;
     });
 
     if (exactElement) {
@@ -604,7 +604,7 @@
   }
 
   function factLabelFor(element) {
-    const raw = String(element.innerText || element.textContent || '');
+    const raw = String(element.getAttribute('data-potts-fact-title') || element.innerText || element.textContent || '');
     const lines = raw.split(/\r?\n/).map(cleanRelationshipLabel).filter(Boolean);
     const values = [cleanRelationshipLabel(raw)].concat(lines.slice(0, 2));
 
@@ -625,15 +625,21 @@
         return;
       }
 
-      if (candidate.closest('a, button, input, select, textarea, .potts-fact-title')) {
+      if (candidate.closest('a, button, input, select, textarea, .potts-fact-title, .potts-original-fact-title, .potts-legacy-fact-symbol') || isFactActionControl(candidate)) {
         return;
       }
 
-      const text = normalise(candidate.textContent || '');
-      const rect = candidate.getBoundingClientRect();
-      const compactGraphic = rect.width <= 84 && rect.height <= 84 && text.length <= 4;
+      let graphic = candidate.matches('img, svg, i, .wt-fact-icon');
+      if (!graphic) {
+        const text = normalise(candidate.textContent || '');
+        if (text.length > 4) {
+          return;
+        }
+        const rect = candidate.getBoundingClientRect();
+        graphic = rect.width <= 84 && rect.height <= 84;
+      }
 
-      if (candidate.matches('img, svg, i') || compactGraphic) {
+      if (graphic) {
         candidate.classList.add('potts-legacy-fact-symbol');
         candidate.setAttribute('aria-hidden', 'true');
       }
@@ -845,7 +851,7 @@
 
     duplicateNodes.forEach(function (node) {
       const parent = node.parentElement;
-      const parentText = parent ? cleanRelationshipLabel(parent.innerText || parent.textContent || '') : '';
+      const parentText = parent ? cleanRelationshipLabel(parent.textContent || '') : '';
 
       if (parent && parent !== cell && parentText === label && !parent.querySelector('a, button, input, select, textarea')) {
         parent.classList.add('potts-original-fact-title');
@@ -933,8 +939,8 @@
     // never expose the marker or make the theme copy it into the title panel.
     formatHistoricalAgeMarkers(factRoot);
 
-    // First handle conventional table rows inside the Facts and events tab.
-    factRoot.querySelectorAll('tr').forEach(function (row) {
+    // Read headings before updating rows to avoid repeated layouts.
+    Array.from(factRoot.querySelectorAll('tr')).map(function (row) {
       // Related-person and associate events can contain their own tables
       // inside the detail cell of a primary fact. They are supporting
       // information, not separate top-level facts, so leave them untouched.
@@ -968,7 +974,16 @@
         }
       });
 
-      titleElement = titleElement || ensureFactTitleElement(cells[0], label);
+      return { row, cells, label, titleElement };
+    }).filter(Boolean).forEach(function (fact) {
+      const { row, cells, label } = fact;
+
+      // A preceding primary row may just have marked this nested row.
+      if (row.closest('.potts-fact-detail-cell, .potts-related-facts-table')) {
+        return;
+      }
+
+      const titleElement = fact.titleElement || ensureFactTitleElement(cells[0], label);
       markFactRow(cells[0], cells.slice(1), titleElement, label);
     });
 
@@ -1144,7 +1159,11 @@
         return;
       }
 
-      if (candidate.closest(protectedSelector)) {
+      if (candidate.closest(protectedSelector) || isFactActionControl(candidate)) {
+        return;
+      }
+
+      if (candidate.closest('.potts-original-fact-title, .potts-legacy-fact-symbol')) {
         return;
       }
 
@@ -1188,9 +1207,7 @@
   }
 
   function isFactActionControl(element) {
-    const control = element instanceof Element ? element.closest('a, button') : null;
-
-    if (!control) {
+    if (!(element instanceof Element)) {
       return false;
     }
 
@@ -1199,11 +1216,17 @@
     // be rebuilt before its icon/title is fully initialised.  Protect controls
     // by their action host, route/data attributes and common icon variants
     // rather than relying only on English labels.
-    if (control.closest(
+    if (element.closest(
       '.wt-fact-edit-links, .wt-fact-actions, [class*="fact-edit"], ' +
       '[class*="fact-action"], .wt-edit-menu, .wt-action-links'
     )) {
       return true;
+    }
+
+    const control = element.closest('a, button');
+
+    if (!control) {
+      return false;
     }
 
     if (control.querySelector(
@@ -1295,14 +1318,24 @@
         return;
       }
 
+      if (candidate.closest('.potts-original-fact-title, .potts-legacy-fact-symbol')) {
+        return;
+      }
+
       const text = String(candidate.textContent || '').trim();
+      const graphicElement = candidate.matches('img, svg, i, [role="img"], [class*="icon"], [class*="fa-"]') ||
+        (candidate.style.backgroundImage && candidate.style.backgroundImage !== 'none');
+      const symbolOnlyLink = candidate.matches('a') && text.length <= 6 && !/[A-Za-z0-9]/.test(text);
+      const imageOnlyLink = candidate.matches('a') && candidate.querySelector('img, svg, i, [role="img"], [class*="icon"]') && text.length <= 6;
+
+      // Only measure likely graphics to avoid unnecessary layouts.
+      if (!graphicElement && !symbolOnlyLink && !imageOnlyLink) {
+        return;
+      }
+
       const rect = candidate.getBoundingClientRect();
       const compact = (rect.width === 0 || rect.width <= 110) && (rect.height === 0 || rect.height <= 110);
-      const graphicElement = candidate.matches('img, svg, i, [role="img"], [style*="background-image"], [class*="icon"], [class*="fa-"]');
-      const symbolOnlyLink = candidate.matches('a') && compact && text.length <= 6 && !/[A-Za-z0-9]/.test(text);
-      const imageOnlyLink = candidate.matches('a') && compact && candidate.querySelector('img, svg, i, [role="img"], [class*="icon"]') && text.length <= 6;
-
-      if (compact && (graphicElement || symbolOnlyLink || imageOnlyLink)) {
+      if (compact) {
         candidate.classList.add('potts-legacy-fact-symbol');
         candidate.setAttribute('aria-hidden', 'true');
         candidate.style.setProperty('display', 'none', 'important');
@@ -1363,7 +1396,7 @@
     }
 
     main.querySelectorAll('.potts-fact-summary-cell').forEach(function (cell) {
-      let label = factLabelFor(cell) || compactFactHeading(cell);
+      let label = cleanRelationshipLabel(cell.getAttribute('data-potts-fact-title') || '') || factLabelFor(cell) || compactFactHeading(cell);
       const type = String(cell.getAttribute('data-potts-fact-type') || '').replace(/-/g, ' ');
 
       if (!label && type) {
@@ -1640,7 +1673,7 @@
     });
   }
 
-  function replaceDefaultSilhouettes() {
+  function replaceDefaultSilhouettes(scope = document) {
     const placeholders = window.PottsModernThemePlaceholders || {};
 
     if (!placeholders.male && !placeholders.female) {
@@ -1881,7 +1914,7 @@
     // webtrees commonly renders the default portrait as an <i> element with
     // icon-silhouette classes. Some installs use upper-case sex suffixes, so
     // use JavaScript class inspection instead of exact CSS selectors.
-    Array.from(document.querySelectorAll('[class*="silhouette" i]')).forEach(function (element) {
+    Array.from(scope.querySelectorAll('[class*="silhouette" i]')).forEach(function (element) {
       if (!element.matches('i, span, div')) {
         return;
       }
@@ -1897,7 +1930,7 @@
 
     // Some themes/modules render a real <img> placeholder instead. Keep the
     // scope narrow: profile, chart and Potts Narrative Ancestor Book only.
-    Array.from(document.images || []).forEach(function (image) {
+    Array.from(scope.querySelectorAll('img')).forEach(function (image) {
       if (!(image instanceof HTMLImageElement) || alreadyReplaced(image)) {
         return;
       }
@@ -2513,12 +2546,12 @@
     });
   }
 
-  function enhanceRelationshipLinks() {
+  function enhanceRelationshipLinks(scope = null) {
     if (!isIndividualPage()) {
       return;
     }
 
-    const main = document.querySelector('main');
+    const main = scope || document.querySelector('main');
 
     if (!main) {
       return;
@@ -3968,6 +4001,29 @@
     installHomepageReveal(homepage);
   }
 
+  function enhanceIndividualFacts() {
+    const factsRoot = getFactsRoot();
+    restoreFactActionControls(factsRoot);
+
+    if (!isMobileIndividualPage()) {
+      const factRows = factsRoot ? factsRoot.querySelectorAll('tr').length : 0;
+
+      if (factRows < 60) {
+        resetNestedFactEnhancements();
+        enhanceFactCells();
+        resetNestedFactEnhancements();
+        renderReliableFactIcons();
+      }
+    }
+
+    // Apply shape and semantic colour after optional reconstruction so its
+    // legacy inline parchment colour cannot override event-group colours.
+    markResponsiveFactTiles(factsRoot);
+    restoreFactActionControls(factsRoot);
+    synchroniseHistoricalFactVisibility();
+    installMobileFactsLimiter();
+  }
+
   function runEnhancements() {
     refreshPending = false;
     cleanIndividualCarryover();
@@ -3982,27 +4038,7 @@
       enhanceIndividualRelationshipPanel();
       enhanceFamilyNavigator();
 
-      const factsRoot = getFactsRoot();
-      restoreFactActionControls(factsRoot);
-
-      if (!isMobileIndividualPage()) {
-        const factRows = factsRoot ? factsRoot.querySelectorAll('tr').length : 0;
-
-        if (factRows < 60) {
-          resetNestedFactEnhancements();
-          enhanceFactCells();
-          resetNestedFactEnhancements();
-          renderReliableFactIcons();
-        }
-      }
-
-      // Apply shape and semantic colour after optional reconstruction so its
-      // legacy inline parchment colour cannot override event-group colours.
-      markResponsiveFactTiles(factsRoot);
-      restoreFactActionControls(factsRoot);
-
-      synchroniseHistoricalFactVisibility();
-      installMobileFactsLimiter();
+      enhanceIndividualFacts();
       enhanceIndividualLayout();
       positionMobileIndividualSidebar();
       cleanEmptyStoriesScriptLeak();
@@ -4287,31 +4323,38 @@
       enhanceFamilyPopovers();
     });
 
-    /* Performance-safe refreshes. A page-wide MutationObserver caused every
-       DOM change made by the theme to trigger another full document scan.
-       Refresh only after user actions that can load AJAX content. */
-    document.addEventListener('click', function (event) {
-      const target = event.target instanceof Element ? event.target : null;
-      if (!target) {
-        return;
-      }
+    // Refresh after AJAX inserts tab content. Observe only direct children
+    // to ignore nested DOM changes made by the theme.
+    const tabPanes = document.querySelectorAll('#individual-tabs > .tab-content > .tab-pane');
+    if (tabPanes.length) {
+      const observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function (mutation) {
+          const pane = mutation.target;
+          if (!Array.from(mutation.addedNodes).some(node => node instanceof Element && !node.matches('.wt-icon-spinner'))) {
+            return;
+          }
 
-      if (target.closest('[data-bs-toggle=\"tab\"], [role=\"tab\"], .nav-tabs a, .wt-tabs a, [data-bs-toggle=\"collapse\"], .accordion-button')) {
-        [80, 350].forEach(function (delay) {
-          window.setTimeout(scheduleEnhancements, delay);
+          const factsRoot = getFactsRoot();
+          if (factsRoot && pane.contains(factsRoot)) {
+            window.requestAnimationFrame(function enhanceLoadedFacts() {
+              cleanIncorrectFactEnhancements();
+              enhanceIndividualFacts();
+            });
+          } else {
+            replaceDefaultSilhouettes(pane);
+            enhanceRelationshipLinks(pane);
+          }
         });
-      }
-    });
+      });
+      tabPanes.forEach(pane => observer.observe(pane, { childList: true }));
+    }
 
-    document.addEventListener('shown.bs.tab', scheduleEnhancements, true);
-    document.addEventListener('shown.bs.collapse', scheduleEnhancements, true);
     document.addEventListener('shown.bs.modal', scheduleEnhancements, true);
 
     document.addEventListener('change', function (event) {
       const target = event.target instanceof Element ? event.target : null;
       if (target && target.matches('input[type=\"checkbox\"]') && isInsideFactsRoot(target)) {
         synchroniseHistoricalFactVisibility();
-        scheduleEnhancements();
       }
     }, true);
 

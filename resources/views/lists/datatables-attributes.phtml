@@ -1,0 +1,23 @@
+<?php
+
+declare(strict_types=1);
+
+// Use the core view directly to avoid recursion and preserve webtrees
+// translations and table options.
+$attributes = preg_replace_callback(
+    '/\bdata-layout=(["\'])(.*?)\1/s',
+    static function (array $match): string {
+        $layout = json_decode(html_entity_decode($match[2], ENT_QUOTES), true, 512, JSON_THROW_ON_ERROR);
+
+        // Keep native pagination below the table.
+        $layout['topStart'] = null;
+        $layout['bottom2'] = 'paging';
+
+        return 'data-layout="' . e(json_encode($layout, JSON_THROW_ON_ERROR)) . '"';
+    },
+    view('::lists/datatables-attributes')
+);
+
+?>
+
+<?= $attributes ?>

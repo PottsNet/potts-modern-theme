@@ -139,6 +139,26 @@ main.container-fluid,
   width: min(var(--potts-page-width), calc(100vw - 2rem)) !important;
 }
 
+/* Separate the place map from the tabs or overview links below it.
+   This wrapper is shared by standard webtrees and Vesta. */
+#place-hierarchy .wt-place-hierarchy-wrapper {
+  margin-bottom: 1.5rem;
+}
+
+/* Keep tab navigation close to its content without touching the panel. */
+#place-hierarchy .nav-tabs {
+  margin-bottom: .75rem;
+}
+
+#place-hierarchy .nav-tabs + .tab-content {
+  margin-top: 0 !important;
+}
+
+/* Separate the final view-switching links from the results or place list. */
+#place-hierarchy > .container > div.text-center:last-child {
+  margin-top: 1.5rem;
+}
+
 
 /* ------------------------------------------------------------
    Version 1.0.36
@@ -4451,6 +4471,11 @@ body.potts-structured-page .potts-structured-content {
   padding-bottom: 2.5rem !important;
 }
 
+/* Avoid applying the page gutter twice on list views. */
+body.potts-list-page main .wt-page-content {
+  padding-inline: 0 !important;
+}
+
 body.potts-structured-page :is(.wt-page-options, .wt-chart-options, .wt-report-options, .card, .list-group) {
   border-color: rgba(61, 83, 64, .16) !important;
 }
@@ -4638,7 +4663,29 @@ body.potts-list-page main :is(.dataTables_filter, .dt-search) input {
   margin-inline-start: .45rem !important;
 }
 
-body.potts-list-page main :is(.paginate_button, .page-link, .dt-paging-button) {
+body.potts-list-page main :is(.dataTables_paginate, .dt-paging) {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-inline: 0 !important;
+}
+
+body.potts-list-page main :is(.dataTables_paginate, .dt-paging) .pagination {
+  justify-content: center !important;
+  flex-wrap: wrap;
+  gap: .25rem;
+  margin: 0 !important;
+}
+
+body.potts-list-page main :is(.dataTables_paginate, .dt-paging) .pagination > .page-item {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+/* Bootstrap wraps each page-link in a page-item. Style only the control so
+   the wrapper does not add a second border, margin or circular background. */
+body.potts-list-page main :is(.paginate_button:not(.page-item), .page-link, button.dt-paging-button) {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -4652,10 +4699,52 @@ body.potts-list-page main :is(.paginate_button, .page-link, .dt-paging-button) {
   text-decoration: none !important;
 }
 
-body.potts-list-page main :is(.paginate_button.current, .page-item.active .page-link, .dt-paging-button.current) {
+body.potts-list-page main :is(.paginate_button.current:not(.page-item), .page-item.active .page-link, button.dt-paging-button.current) {
   border-color: var(--potts-blue) !important;
   background: var(--potts-blue) !important;
   color: #fff !important;
+}
+
+body.potts-list-page main .wt-page-options-individual-list {
+  padding: clamp(.75rem, 2vw, 1rem);
+}
+
+/* Keep alphabet navigation evenly spaced when it wraps. */
+body.potts-list-page main .wt-initials-list {
+  font-size: 1.125rem;
+  gap: .25rem 0;
+}
+
+body.potts-list-page main .wt-initials-list-item {
+  align-items: center;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  border-bottom: 0 !important;
+}
+
+body.potts-list-page main .wt-initials-list-item > .wt-initial {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 1.75rem !important;
+  min-width: 1.75rem !important;
+  height: 2rem;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1;
+}
+
+body.potts-list-page main .wt-initials-list-item > a.wt-initial {
+  width: 2rem !important;
+  min-width: 2rem !important;
+  margin-inline: .1rem !important;
+}
+
+body.potts-list-page main .wt-initials-list-item:last-child > .wt-initial {
+  width: auto !important;
+  padding-inline: .45rem !important;
+  white-space: nowrap;
 }
 
 /* Alphabet/surname indexes become readable navigation chips. */

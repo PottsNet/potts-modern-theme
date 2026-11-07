@@ -15,6 +15,11 @@ use Illuminate\Support\Collection;
 
 ?>
 
+<?php View::pushunique('styles') ?>
+<link rel="preload" href="<?= e(asset('js/vendor.min.js')) ?>" as="script">
+<link rel="preload" href="<?= e(asset('js/webtrees.min.js')) ?>" as="script">
+<?php View::endpushunique() ?>
+
 <style>
 /* Issue #31 test: on phones, flatten the Biography core wrapper into the
  * one-column grid. Keep the fallback portrait in normal document flow so it
@@ -153,18 +158,20 @@ use Illuminate\Support\Collection;
 
     // Bootstrap tabs - load content dynamically using AJAX.
     $('a[data-bs-toggle="tab"][data-wt-href]').on('show.bs.tab', function () {
-        let target = $(this.hash + ':empty');
+        let target = $(this.hash).filter(':empty, [data-potts-load-failed]');
 
         if (target.length > 0) {
-            // Start the download immediately...
-            let download = webtrees.httpGet(this.dataset.wtHref);
+            target.removeAttr('data-potts-load-failed').attr('aria-busy', 'true').html(<?= json_encode(view('icons/spinner')) ?>);
+            target.children('.wt-icon-spinner')
+                .addClass('d-block text-center p-4')
+                .attr({role: 'status', 'aria-label': <?= json_encode(I18N::translate('Loading…')) ?>});
 
-            // ...but do not insert it until the tab is ready.
-            $(this).one('shown.bs.tab', () => {
-                download
-                    .then(data => data.text())
-                    .then(data => target.html(data));
-            });
+            // Download immediately; insert the content when the tab is ready.
+            let shown = new Promise(resolve => $(this).one('shown.bs.tab', resolve));
+            Promise.all([webtrees.httpGet(this.dataset.wtHref).then(data => data.text()), shown])
+                .then(([data]) => target.html(data))
+                .catch(error => target.attr('data-potts-load-failed', 'true').text(error.message))
+                .finally(() => target.removeAttr('aria-busy'));
         }
     });
 
